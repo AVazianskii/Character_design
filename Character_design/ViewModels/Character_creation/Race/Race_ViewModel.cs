@@ -13,7 +13,9 @@ namespace Character_design
     {
         private static Race_ViewModel _instance;
         private Notify current_VM;
+        private string selected_race_description;
 
+        public Command Show_human_race { get; private set; }
         public static Race_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -35,6 +37,10 @@ namespace Character_design
             }
         }
 
+        private Race_ViewModel()
+        {
+            Show_human_race = new Command(o => _Show_human_race());
+        }
         public List<Race_class> Races
         {
             get
@@ -63,10 +69,27 @@ namespace Character_design
             }
             
         }
+        public string Selected_race_description
+        {
+            get
+            {
+                return selected_race_description;
+            }
+            set
+            {
+                selected_race_description = value;
+                OnPropertyChanged("Selected_race_description");
+            }
+        }
+        private void _Show_human_race()
+        {
+            Selected_race_description = Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_general_description();
+        }
 
 
 
 
-            
+
+
     }
 }

@@ -6,8 +6,8 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1146">
-    <Grid Background="Black">
-        <Canvas HorizontalAlignment="Left" Height="800" VerticalAlignment="Center" Width="250">
+    <Grid Background="White">
+        <Canvas HorizontalAlignment="Left" Height="800" VerticalAlignment="Center" Width="250" Background="Black">
             <Button Height="60" Canvas.Left="5" Canvas.Top="46" Width="240" Background="Black"
                     BorderThickness="0"
                     Command="{Binding Show_human_race}">
@@ -24,6 +24,16 @@
             <TextBlock Height="36" Canvas.Left="10" TextWrapping="Wrap" Text="Выберите расу:" Canvas.Top="10" Width="230"
                        Foreground="Wheat" FontSize="20" TextAlignment="Center"/>
         </Canvas>
+        <Image HorizontalAlignment="Left" Height="502" Margin="262,6,0,0" VerticalAlignment="Top" Width="371"/>
+        <TextBlock HorizontalAlignment="Left" Height="34" Margin="645,10,0,0" TextWrapping="Wrap" Text="Описание расы:" VerticalAlignment="Top" Width="365"
+                   FontSize="18"/>
+        <ScrollViewer Margin="645,49,10,447" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+            <TextBlock Height="294"  TextWrapping="Wrap" Width="471"
+                   Text="{Binding Selected_race_description}"/>
+        </ScrollViewer>
+
+
+
 
     </Grid>
 </UserControl>
