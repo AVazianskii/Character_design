@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Character_design.Views.Character_creation.Main_Window_Creation_View.Main_Window_Creation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:general_data="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
+             xmlns:race="clr-namespace:Character_design.Views.Character_creation.Race"
+             xmlns:range="clr-namespace:Character_design.Views.Character_creation.Range_View"
+             xmlns:local="clr-namespace:Character_design"
+             mc:Ignorable="d" 
+             d:DesignHeight="850" d:DesignWidth="1500">
+    <Grid Background="Black">
+        <TextBlock HorizontalAlignment="Left" Margin="1093,20,0,0" TextWrapping="Wrap" 
+                   Text="Создание персонажа" VerticalAlignment="Top" Height="53" Width="405"
+                   Foreground="Wheat" TextAlignment="Center" FontSize="38"/>
+        <Border HorizontalAlignment="Left" Height="800" Margin="354,100,0,0" VerticalAlignment="Top" Width="1146">
+            <Border.Resources>
+                <DataTemplate DataType="{x:Type local:General_Data_ViewModel}">
+                    <general_data:General_Data/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Race_ViewModel}">
+                    <race:Race_User_control/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Range_ViewModel}">
+                    <range:Range/>
+                </DataTemplate>
+            </Border.Resources>
+            <ContentControl Content="{Binding Path=CurrentViewModel}"/>
+        </Border>
+        <Canvas HorizontalAlignment="Left" Height="850" VerticalAlignment="Center" Width="349">
+            <Button Content="Общие данные" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
+                Command="{Binding Open_general_data_user_control}" Canvas.Left="50" Canvas.Top="25" />
+            <Button Content="Выбор расы" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
+                Command="{Binding Open_race_user_control}" Canvas.Left="50" Canvas.Top="100" />
+            <Button Content="Выбор ранга" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
+                Command="{Binding Open_range_user_control}" Canvas.Left="50" Canvas.Top="175" />
+        </Canvas>
+
+    </Grid>
+</UserControl>
