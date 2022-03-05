@@ -13,6 +13,7 @@ namespace Character_design
     {
         private static Race_ViewModel _instance;
         private Notify current_VM;
+
         public static Race_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -47,7 +48,21 @@ namespace Character_design
                 return temp_list;
             }
         }
-        
+        public string Human_race_name
+        {
+            get
+            {
+                return Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_race_name();
+            }
+        }
+        public string Human_race_small_pic
+        {
+            get
+            {
+                return Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_small_img_path();
+            }
+            
+        }
 
 
 

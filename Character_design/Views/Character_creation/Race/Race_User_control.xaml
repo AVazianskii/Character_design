@@ -6,10 +6,24 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1146">
-    <Grid Background="Yellow">
-        <ListBox Grid.Column="0"
-                 ItemsSource="{Binding Races}"
-                 Margin="166,10,166,10"/>
+    <Grid Background="Black">
+        <Canvas HorizontalAlignment="Left" Height="800" VerticalAlignment="Center" Width="250">
+            <Button Height="60" Canvas.Left="5" Canvas.Top="46" Width="240" Background="Black"
+                    BorderThickness="0"
+                    Command="{Binding Show_human_race}">
+                <Button.Content>
+                    <Canvas Height="60" Canvas.Left="5" Canvas.Top="46" Width="240">
+                        <Image Height="50" Canvas.Left="7" Canvas.Top="5" Width="52"
+                               Source="{Binding Human_race_small_pic}"/>
+                        <TextBlock Height="26" Canvas.Left="83" TextWrapping="Wrap"  Canvas.Top="18" Width="147"
+                                   Foreground="Wheat" TextAlignment="Center" FontSize="16"
+                                   Text="{Binding Human_race_name}" />
+                    </Canvas>
+                </Button.Content>
+            </Button>
+            <TextBlock Height="36" Canvas.Left="10" TextWrapping="Wrap" Text="Выберите расу:" Canvas.Top="10" Width="230"
+                       Foreground="Wheat" FontSize="20" TextAlignment="Center"/>
+        </Canvas>
 
     </Grid>
 </UserControl>

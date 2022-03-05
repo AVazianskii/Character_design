@@ -10,10 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="850" d:DesignWidth="1500">
     <Grid Background="Black">
-        <TextBlock HorizontalAlignment="Left" Margin="1093,20,0,0" TextWrapping="Wrap" 
-                   Text="Создание персонажа" VerticalAlignment="Top" Height="53" Width="405"
-                   Foreground="Wheat" TextAlignment="Center" FontSize="38"/>
-        <Border HorizontalAlignment="Left" Height="800" Margin="354,100,0,0" VerticalAlignment="Top" Width="1146">
+        <Border HorizontalAlignment="Left" Height="850" Margin="354,0,0,0" VerticalAlignment="Center" Width="1146">
             <Border.Resources>
                 <DataTemplate DataType="{x:Type local:General_Data_ViewModel}">
                     <general_data:General_Data/>
