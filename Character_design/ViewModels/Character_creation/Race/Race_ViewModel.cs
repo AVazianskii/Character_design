@@ -11,6 +11,12 @@ namespace Character_design
 {
     internal class Race_ViewModel : Notify
     {
+        List<Race_class> temp_list = new List<Race_class>();
+        private void Temp_void()
+        {
+
+        }
+
         private static Race_ViewModel _instance;
         private Notify current_VM;
         private string selected_race_description;
@@ -39,13 +45,13 @@ namespace Character_design
 
         private Race_ViewModel()
         {
+            Temp_void();
             Show_human_race = new Command(o => _Show_human_race());
         }
         public List<Race_class> Races
         {
             get
             {
-                List<Race_class> temp_list = new List<Race_class>();
                 foreach (Race_class race in Character_properties.GetInstance().Race_Manager.Get_Race_list())
                 {
                     temp_list.Add(race);
@@ -85,6 +91,7 @@ namespace Character_design
         {
             Selected_race_description = Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_general_description();
         }
+
 
 
 
