@@ -11,15 +11,20 @@ namespace Character_design
 {
     internal class Race_ViewModel : Notify
     {
-        List<Race_class> temp_list = new List<Race_class>();
-        private void Temp_void()
+        List<Race_class> destination_race_list = new List<Race_class>();
+        private void Initial_load_race_list(List<Race_class> _destination_race_list)
         {
-
+            foreach (Race_class race in Character_properties.GetInstance().Race_Manager.Get_Race_list())
+            {
+                _destination_race_list.Add(race);
+            }
+            _destination_race_list.RemoveAt(0);
         }
 
         private static Race_ViewModel _instance;
         private Notify current_VM;
         private string selected_race_description;
+        private Race_class selected_race;
 
         public Command Show_human_race { get; private set; }
         public static Race_ViewModel GetInstance()
@@ -45,35 +50,16 @@ namespace Character_design
 
         private Race_ViewModel()
         {
-            Temp_void();
+            Initial_load_race_list(destination_race_list);
+            Selected_race = Character_properties.GetInstance().Race_Manager.Get_Empty_race();
             Show_human_race = new Command(o => _Show_human_race());
         }
         public List<Race_class> Races
         {
             get
             {
-                foreach (Race_class race in Character_properties.GetInstance().Race_Manager.Get_Race_list())
-                {
-                    temp_list.Add(race);
-                }
-                temp_list.RemoveAt(0);
-                return temp_list;
+                return destination_race_list;
             }
-        }
-        public string Human_race_name
-        {
-            get
-            {
-                return Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_race_name();
-            }
-        }
-        public string Human_race_small_pic
-        {
-            get
-            {
-                return Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_small_img_path();
-            }
-            
         }
         public string Selected_race_description
         {
@@ -91,7 +77,20 @@ namespace Character_design
         {
             Selected_race_description = Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_general_description();
         }
-
+        public Race_class Selected_race
+        {
+            get
+            {
+                return selected_race;
+            }
+            set
+            {
+                selected_race = value;
+                Selected_race_description = selected_race.Get_general_description();
+                OnPropertyChanged("Selected_race");
+                OnPropertyChanged("Selected_race_description");
+            }
+        }
 
 
 

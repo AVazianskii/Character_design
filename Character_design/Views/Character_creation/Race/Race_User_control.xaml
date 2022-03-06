@@ -3,23 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1146">
     <Grid Background="White">
         <Canvas HorizontalAlignment="Left" Height="800" VerticalAlignment="Center" Width="250" Background="Black">
             <TextBlock Height="36" Canvas.Left="10" TextWrapping="Wrap" Text="Выберите расу:" Canvas.Top="10" Width="230"
                        Foreground="Wheat" FontSize="20" TextAlignment="Center"/>
-            <ListBox Grid.Column="0" Height="744" Canvas.Left="10" Canvas.Top="46" Width="230" 
-                     ItemsSource="{Binding Races}">
+            <ListBox Grid.Column="0" Height="754" Canvas.Top="46" Width="250" Background="Black"
+                     BorderThickness="0" 
+                     ItemsSource="{Binding Races}"
+                     SelectedItem="{Binding Selected_race}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5">
-                            <Image Height="50" Width="52" Source="{Binding Path=Small_img_path}"/>
-                            <TextBlock Height="26" TextWrapping="Wrap" Width="147" Foreground="Wheat" TextAlignment="Center" FontSize="16" 
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Column="0" Grid.Row="0" Height="50" Width="52" 
+                                   Source="{Binding Path=Small_img_path}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Height="26" TextWrapping="Wrap" Width="147" Foreground="Wheat" 
+                                       TextAlignment="Center" FontSize="16" 
                                        Text="{Binding Path=Race_name}" />
-
-                        </StackPanel>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
 
