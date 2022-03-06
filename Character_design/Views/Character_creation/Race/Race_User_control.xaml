@@ -31,17 +31,119 @@
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-
             </ListBox>
         </Canvas>
         <Image HorizontalAlignment="Left" Height="502" Margin="262,6,0,0" VerticalAlignment="Top" Width="371"
                Source="{Binding Selected_race_full_img_path}"/>
-        <TextBlock HorizontalAlignment="Left" Height="34" Margin="645,15,0,0" TextWrapping="Wrap" Text="Описание расы:" VerticalAlignment="Top" Width="365"
+
+        <ScrollViewer Margin="645,6,16,349" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                    HorizontalAlignment="Left" Height="34" Margin="5,15,0,0" TextWrapping="Wrap" 
+                    Text="Описание расы:" VerticalAlignment="Top" Width="365"
                    FontSize="18"/>
-        <ScrollViewer Margin="645,49,10,447" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-            <TextBlock Height="294"  TextWrapping="Wrap" Width="471"
-                   Text="{Binding Selected_race_description}"/>
+                <TextBlock Grid.Column="0" Grid.Row="1"  TextWrapping="Wrap"
+                   Text="{Binding Selected_race_description}" Margin="10,10,10,10"/>
+                <TextBlock Grid.Column="0" Grid.Row="2"
+                    HorizontalAlignment="Left" Height="34" Margin="5,15,0,0" TextWrapping="Wrap" 
+                    Text="Персональные данные:" VerticalAlignment="Top" Width="365"
+                   FontSize="18"/>
+                <TextBlock Grid.Column="0" Grid.Row="3"  TextWrapping="Wrap"
+                   Text="{Binding Selected_race_personal_data}" Margin="10,10,10,10"/>
+                <TextBlock Grid.Column="0" Grid.Row="4"
+                    HorizontalAlignment="Left" Height="34" Margin="5,15,0,0" TextWrapping="Wrap" 
+                    Text="Физические данные:" VerticalAlignment="Top" Width="365"
+                   FontSize="18"/>
+                <TextBlock Grid.Column="0" Grid.Row="5"  TextWrapping="Wrap"
+                   Text="{Binding Selected_race_physical_data}" Margin="10,10,10,10"/>
+                <TextBlock Grid.Column="0" Grid.Row="6"
+                    HorizontalAlignment="Left" Height="34" Margin="5,15,0,0" TextWrapping="Wrap" 
+                    Text="Родной мир:" VerticalAlignment="Top" Width="365"
+                   FontSize="18"/>
+                <TextBlock Grid.Column="0" Grid.Row="7"  TextWrapping="Wrap"
+                   Text="{Binding Selected_race_home_world}" Margin="10,10,10,10"/>
+            </Grid>
         </ScrollViewer>
+        <Canvas HorizontalAlignment="Left" Height="334" Margin="262,516,0,0" VerticalAlignment="Top" Width="375">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Height="25" Width="156"
+                       FontSize="16" Margin="7,0,10,20"
+                       Text="Бонус к атрибутам:" />
+                <TextBlock Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Height="20" Margin="7"
+                       Text="Сила"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Height="20" Margin="7"
+                       Text="Ловкость"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Height="20" Margin="7"
+                       Text="Выносливость"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Height="20" Margin="7"
+                       Text="Проворство"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Height="20" Margin="7"
+                       Text="Восприятие"/>
+                <TextBlock Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Height="20" Margin="7"
+                       Text="Интеллект"/>
+                <TextBlock Grid.Row="8" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Height="20" Margin="7"
+                       Text="Обаяние"/>
+                <TextBlock Grid.Row="9" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Height="20" Margin="7"
+                       Text="Сила воли"/>
+                <Canvas Grid.Row="2" Grid.Column="1" >
+                    <TextBlock Canvas.Top="0" Canvas.Left="0" Height="15" Width="15" Text="-4" />
+                    <TextBlock Canvas.Top="0" Canvas.Left="22" Height="15" Width="15" Text="-3" />
+                    <TextBlock Canvas.Top="0" Canvas.Left="44" Height="15" Width="15" Text="-2" />
+                    <TextBlock Canvas.Top="0" Canvas.Left="66" Height="15" Width="15" Text="-1" />
+                    <TextBlock Canvas.Top="0" Canvas.Left="95" Height="15" Width="15" Text="0" />
+                    <TextBlock Canvas.Top="0" Canvas.Left="110" Height="15" Width="15" Text="+1" />
+                    <TextBlock Canvas.Top="0" Canvas.Left="153" Height="15" Width="15" Text="+2" />
+                    <TextBlock Canvas.Top="0" Canvas.Left="168" Height="15" Width="15" Text="+3" />
+                    <TextBlock Canvas.Top="0" Canvas.Left="183" Height="15" Width="15" Text="+4" />
+                    <ProgressBar Canvas.Top="17"
+                             Height="10" Width="198"
+                             Maximum="4"
+                             Minimum="-4"
+                             Foreground="Red"
+                             Value="{Binding Selected_race_strength_bonus}"/>
+                </Canvas>
+            </Grid>
+        </Canvas>
+        <Canvas HorizontalAlignment="Left" Height="270" Margin="652,519,0,0" VerticalAlignment="Top" Width="484">
+        </Canvas>
+
 
 
 

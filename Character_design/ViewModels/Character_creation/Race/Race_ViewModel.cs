@@ -25,6 +25,9 @@ namespace Character_design
         private Notify current_VM;
         private string selected_race_description;
         private string selected_race_full_img_path;
+        private string selected_race_personal_data;
+        private string selected_race_physical_data;
+        private string selected_race_home_world;
         private Race_class selected_race;
 
         public Command Show_human_race { get; private set; }
@@ -86,6 +89,43 @@ namespace Character_design
                 OnPropertyChanged("Selected_race_full_img_path");
             }
         }
+        public string Selected_race_personal_data
+        {
+            get
+            {
+                return selected_race_personal_data;
+            }
+            set
+            {
+                selected_race_personal_data = value;
+                OnPropertyChanged("Selected_race_personal_data");
+            }
+        }
+        public string Selected_race_physical_data
+        {
+            get
+            {
+                return selected_race_physical_data;
+            }
+            set
+            {
+                selected_race_physical_data = value;
+                OnPropertyChanged("Selected_race_physical_data");
+            }
+        }
+        public string Selected_race_home_world
+        {
+            get
+            {
+                return selected_race_home_world;
+            }
+            set
+            {
+                selected_race_home_world = value;
+
+                OnPropertyChanged("Selected_race_home_world");
+            }
+        }
         private void _Show_human_race()
         {
             Selected_race_description = Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_general_description();
@@ -101,9 +141,10 @@ namespace Character_design
                 selected_race = value;
                 Selected_race_description = selected_race.Get_general_description();
                 Selected_race_full_img_path = selected_race.Get_img_path();
+                Selected_race_personal_data = selected_race.Get_personal_properties();
+                Selected_race_physical_data = selected_race.Get_physical_properties();
+                Selected_race_home_world = selected_race.Get_home_world();
                 OnPropertyChanged("Selected_race");
-                OnPropertyChanged("Selected_race_description");
-                OnPropertyChanged("Selected_race_full_img_path");
             }
         }
 
