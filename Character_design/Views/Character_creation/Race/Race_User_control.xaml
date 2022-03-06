@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1146">
+             d:DesignHeight="860" d:DesignWidth="1146">
     <Grid Background="White">
-        <Canvas HorizontalAlignment="Left" Height="800" VerticalAlignment="Center" Width="250" Background="Black">
+        <Canvas HorizontalAlignment="Left" Height="860" VerticalAlignment="Center" Width="250" Background="Black">
             <TextBlock Height="36" Canvas.Left="10" TextWrapping="Wrap" Text="Выберите расу:" Canvas.Top="10" Width="230"
                        Foreground="Wheat" FontSize="20" TextAlignment="Center"/>
-            <ListBox Grid.Column="0" Height="754" Canvas.Top="46" Width="250" Background="Black"
+            <ListBox Grid.Column="0" Height="814" Canvas.Top="46" Width="250" Background="Black"
                      BorderThickness="0" 
                      ItemsSource="{Binding Races}"
                      SelectedItem="{Binding Selected_race}">
@@ -36,7 +36,7 @@
         </Canvas>
         <Image HorizontalAlignment="Left" Height="502" Margin="262,6,0,0" VerticalAlignment="Top" Width="371"
                Source="{Binding Selected_race_full_img_path}"/>
-        <TextBlock HorizontalAlignment="Left" Height="34" Margin="645,10,0,0" TextWrapping="Wrap" Text="Описание расы:" VerticalAlignment="Top" Width="365"
+        <TextBlock HorizontalAlignment="Left" Height="34" Margin="645,15,0,0" TextWrapping="Wrap" Text="Описание расы:" VerticalAlignment="Top" Width="365"
                    FontSize="18"/>
         <ScrollViewer Margin="645,49,10,447" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
             <TextBlock Height="294"  TextWrapping="Wrap" Width="471"

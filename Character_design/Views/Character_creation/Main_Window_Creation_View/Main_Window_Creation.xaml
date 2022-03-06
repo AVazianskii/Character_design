@@ -8,9 +8,9 @@
              xmlns:range="clr-namespace:Character_design.Views.Character_creation.Range_View"
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
-             d:DesignHeight="850" d:DesignWidth="1500">
+             d:DesignHeight="860" d:DesignWidth="1500">
     <Grid Background="Black">
-        <Border HorizontalAlignment="Left" Height="850" Margin="354,0,0,0" VerticalAlignment="Center" Width="1146">
+        <Border HorizontalAlignment="Left" Height="860" Margin="354,0,0,0" VerticalAlignment="Center" Width="1146">
             <Border.Resources>
                 <DataTemplate DataType="{x:Type local:General_Data_ViewModel}">
                     <general_data:General_Data/>
@@ -24,14 +24,13 @@
             </Border.Resources>
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>
         </Border>
-        <Canvas HorizontalAlignment="Left" Height="850" VerticalAlignment="Center" Width="349">
-            <Button Content="Общие данные" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
+        <Canvas HorizontalAlignment="Left" Height="860" VerticalAlignment="Center" Width="349">
+            <Button Content="Ваш персонаж" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                 Command="{Binding Open_general_data_user_control}" Canvas.Left="50" Canvas.Top="25" />
             <Button Content="Выбор расы" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                 Command="{Binding Open_race_user_control}" Canvas.Left="50" Canvas.Top="100" />
             <Button Content="Выбор ранга" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                 Command="{Binding Open_range_user_control}" Canvas.Left="50" Canvas.Top="175" />
         </Canvas>
-
     </Grid>
 </UserControl>
