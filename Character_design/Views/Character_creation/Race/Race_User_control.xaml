@@ -34,7 +34,8 @@
 
             </ListBox>
         </Canvas>
-        <Image HorizontalAlignment="Left" Height="502" Margin="262,6,0,0" VerticalAlignment="Top" Width="371"/>
+        <Image HorizontalAlignment="Left" Height="502" Margin="262,6,0,0" VerticalAlignment="Top" Width="371"
+               Source="{Binding Selected_race_full_img_path}"/>
         <TextBlock HorizontalAlignment="Left" Height="34" Margin="645,10,0,0" TextWrapping="Wrap" Text="Описание расы:" VerticalAlignment="Top" Width="365"
                    FontSize="18"/>
         <ScrollViewer Margin="645,49,10,447" CanContentScroll="True" VerticalScrollBarVisibility="Auto">

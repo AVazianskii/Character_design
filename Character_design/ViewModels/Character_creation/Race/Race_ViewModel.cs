@@ -24,6 +24,7 @@ namespace Character_design
         private static Race_ViewModel _instance;
         private Notify current_VM;
         private string selected_race_description;
+        private string selected_race_full_img_path;
         private Race_class selected_race;
 
         public Command Show_human_race { get; private set; }
@@ -73,6 +74,18 @@ namespace Character_design
                 OnPropertyChanged("Selected_race_description");
             }
         }
+        public string Selected_race_full_img_path
+        {
+            get
+            {
+                return selected_race_full_img_path; 
+            }
+            set
+            {
+                selected_race_full_img_path = value;
+                OnPropertyChanged("Selected_race_full_img_path");
+            }
+        }
         private void _Show_human_race()
         {
             Selected_race_description = Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_general_description();
@@ -87,8 +100,10 @@ namespace Character_design
             {
                 selected_race = value;
                 Selected_race_description = selected_race.Get_general_description();
+                Selected_race_full_img_path = selected_race.Get_img_path();
                 OnPropertyChanged("Selected_race");
                 OnPropertyChanged("Selected_race_description");
+                OnPropertyChanged("Selected_race_full_img_path");
             }
         }
 
