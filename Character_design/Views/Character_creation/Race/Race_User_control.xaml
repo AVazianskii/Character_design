@@ -133,8 +133,9 @@
                              Height="10" Width="198"
                              Maximum="4"
                              Minimum="-4"
-                             Foreground="Red"
-                             Value="{Binding Selected_race_strength_bonus}"/>
+                             Foreground="Green"
+                             Value="{Binding Selected_race_strength_bonus}">
+                    </ProgressBar>
                 </Canvas>
                 <Canvas Grid.Row="3" Grid.Column="1" >
                     <TextBlock Canvas.Top="0" Canvas.Left="0" Height="15" Width="15" Text="-4" TextAlignment="Center"/>
@@ -147,7 +148,7 @@
                              Height="10" Width="198"
                              Maximum="4"
                              Minimum="-4"
-                             Foreground="Red"
+                             Foreground="Green"
                              Value="{Binding Selected_race_agility_bonus}"/>
                 </Canvas>
                 <Canvas Grid.Row="4" Grid.Column="1" >
@@ -161,7 +162,7 @@
                              Height="10" Width="198"
                              Maximum="4"
                              Minimum="-4"
-                             Foreground="Red"
+                             Foreground="Green"
                              Value="{Binding Selected_race_stamina_bonus}"/>
                 </Canvas>
                 <Canvas Grid.Row="5" Grid.Column="1" >
@@ -175,7 +176,7 @@
                              Height="10" Width="198"
                              Maximum="4"
                              Minimum="-4"
-                             Foreground="Red"
+                             Foreground="Green"
                              Value="{Binding Selected_race_quickness_bonus}"/>
                 </Canvas>
                 <Canvas Grid.Row="6" Grid.Column="1" >
@@ -189,7 +190,7 @@
                              Height="10" Width="198"
                              Maximum="4"
                              Minimum="-4"
-                             Foreground="Red"
+                             Foreground="Green"
                              Value="{Binding Selected_race_perception_bonus}"/>
                 </Canvas>
                 <Canvas Grid.Row="7" Grid.Column="1" >
@@ -203,7 +204,7 @@
                              Height="10" Width="198"
                              Maximum="4"
                              Minimum="-4"
-                             Foreground="Red"
+                             Foreground="Green"
                              Value="{Binding Selected_race_intelligence_bonus}"/>
                 </Canvas>
                 <Canvas Grid.Row="8" Grid.Column="1" >
@@ -217,7 +218,7 @@
                              Height="10" Width="198"
                              Maximum="4"
                              Minimum="-4"
-                             Foreground="Red"
+                             Foreground="Green"
                              Value="{Binding Selected_race_charm_bonus}"/>
                 </Canvas>
                 <Canvas Grid.Row="9" Grid.Column="1" >
@@ -231,7 +232,7 @@
                              Height="10" Width="198"
                              Maximum="4"
                              Minimum="-4"
-                             Foreground="Red"
+                             Foreground="Green"
                              Value="{Binding Selected_race_will_power_bonus}"/>
                 </Canvas>
 
