@@ -33,10 +33,10 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Canvas>
-        <Image HorizontalAlignment="Left" Height="502" Margin="262,6,0,0" VerticalAlignment="Top" Width="371"
+        <Image HorizontalAlignment="Left" Height="496" Margin="262,6,0,0" VerticalAlignment="Top" Width="371"
                Source="{Binding Selected_race_full_img_path}"/>
 
-        <ScrollViewer Margin="645,6,16,349" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="645,6,16,354" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -77,7 +77,7 @@
                    Text="{Binding Selected_race_home_world}" Margin="10,10,10,10"/>
             </Grid>
         </ScrollViewer>
-        <Canvas HorizontalAlignment="Left" Height="334" Margin="262,516,0,0" VerticalAlignment="Top" Width="375">
+        <Canvas HorizontalAlignment="Left" Height="334" Margin="262,516,0,0" VerticalAlignment="Top" Width="385">
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -238,9 +238,17 @@
 
             </Grid>
         </Canvas>
-        <Canvas HorizontalAlignment="Left" Height="270" Margin="652,519,0,0" VerticalAlignment="Top" Width="484">
+        <Canvas HorizontalAlignment="Left" Height="270" Margin="659,519,0,0" VerticalAlignment="Top" Width="471">
         </Canvas>
-
+        <Border BorderBrush="Black" BorderThickness="0,1,0,0" Margin="250,511,0,0"/>
+        <Border BorderBrush="Black" BorderThickness="1,0,0,0" Margin="652,511,0,0">
+        </Border>
+        <Canvas Margin="659,794,16,10">
+            <Button Content="Отменить выбор" Height="36" Canvas.Left="10" Canvas.Top="10" Width="203"
+                    FontSize="17" Background="Red" Foreground="White"/>
+            <Button Content="Выбрать расу" Height="36" Canvas.Right="10" Canvas.Top="10" Width="203"
+                    FontSize="17" Background="Green" Foreground="White"/>
+        </Canvas>
 
 
 
