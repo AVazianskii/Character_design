@@ -81,7 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Race\Race_model.cs" />
+    <Compile Include="Models\Main_model\Main_model.cs" />
     <Compile Include="MVVM infrastructure\Command.cs" />
     <Compile Include="MVVM infrastructure\Notify.cs" />
     <Compile Include="ViewModels\Character_creation\General_Data\General_Data_ViewModel.cs" />
