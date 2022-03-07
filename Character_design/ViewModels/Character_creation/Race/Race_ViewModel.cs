@@ -28,6 +28,14 @@ namespace Character_design
         private string selected_race_personal_data;
         private string selected_race_physical_data;
         private string selected_race_home_world;
+        private int selected_race_strength_bonus,
+                    selected_race_agility_bonus,
+                    selected_race_stamina_bonus,
+                    selected_race_quickness_bonus,
+                    selected_race_perception_bonus,
+                    selected_race_intelligence_bonus,
+                    selected_race_charm_bonus,
+                    selected_race_will_power_bonus;
         private Race_class selected_race;
 
         public Command Show_human_race { get; private set; }
@@ -126,6 +134,102 @@ namespace Character_design
                 OnPropertyChanged("Selected_race_home_world");
             }
         }
+        public int Selected_race_strength_bonus
+        {
+            get
+            {
+                return selected_race_strength_bonus;
+            }
+            set
+            {
+                selected_race_strength_bonus = value;
+                OnPropertyChanged("Selected_race_strength_bonus");
+            }
+        }
+        public int Selected_race_agility_bonus
+        {
+            get
+            {
+                return selected_race_agility_bonus;
+            }
+            set
+            {
+                selected_race_agility_bonus = value;
+                OnPropertyChanged("Selected_race_agility_bonus");
+            }
+        }
+        public int Selected_race_stamina_bonus
+        {
+            get
+            {
+                return selected_race_stamina_bonus;
+            }
+            set
+            {
+                selected_race_stamina_bonus = value;
+                OnPropertyChanged("Selected_race_stamina_bonus");
+            }
+        }
+        public int Selected_race_quickness_bonus
+        {
+            get
+            {
+                return selected_race_quickness_bonus;
+            }
+            set
+            {
+                selected_race_quickness_bonus = value;
+                OnPropertyChanged("Selected_race_quickness_bonus");
+            }
+        }
+        public int Selected_race_perception_bonus
+        {
+            get
+            {
+                return selected_race_perception_bonus;
+            }
+            set
+            {
+                selected_race_perception_bonus = value;
+                OnPropertyChanged("Selected_race_perception_bonus");
+            }
+        }
+        public int Selected_race_intelligence_bonus
+        {
+            get
+            {
+                return selected_race_intelligence_bonus;
+            }
+            set
+            {
+                selected_race_intelligence_bonus = value;
+                OnPropertyChanged("Selected_race_intelligence_bonus");
+            }
+        }
+        public int Selected_race_charm_bonus
+        {
+            get
+            {
+                return selected_race_charm_bonus;
+            }
+            set
+            {
+                selected_race_charm_bonus = value;
+                OnPropertyChanged("Selected_race_charm_bonus");
+            }
+        }
+        public int Selected_race_will_power_bonus
+        {
+            get
+            {
+                return selected_race_will_power_bonus;
+            }
+            set
+            {
+                selected_race_will_power_bonus = value;
+                OnPropertyChanged("Selected_race_will_power_bonus");
+            }
+        }
         private void _Show_human_race()
         {
             Selected_race_description = Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_general_description();
@@ -144,6 +248,14 @@ namespace Character_design
                 Selected_race_personal_data = selected_race.Get_personal_properties();
                 Selected_race_physical_data = selected_race.Get_physical_properties();
                 Selected_race_home_world = selected_race.Get_home_world();
+                Selected_race_strength_bonus = selected_race.Get_race_bonus_strength();
+                Selected_race_agility_bonus = selected_race.Get_race_bonus_agility();
+                Selected_race_stamina_bonus = selected_race.Get_race_bonus_stamina();
+                Selected_race_quickness_bonus = selected_race.Get_race_bonus_quickness();
+                Selected_race_perception_bonus = selected_race.Get_race_bonus_perception();
+                Selected_race_intelligence_bonus = selected_race.Get_race_bonus_intelligence();
+                Selected_race_charm_bonus = selected_race.Get_race_bonus_charm();
+                Selected_race_will_power_bonus = selected_race.Get_race_bonus_willpower();
                 OnPropertyChanged("Selected_race");
             }
         }
