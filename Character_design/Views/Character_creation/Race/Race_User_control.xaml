@@ -55,25 +55,25 @@
                     HorizontalAlignment="Left" Height="34" Margin="5,15,0,0" TextWrapping="Wrap" 
                     Text="Описание расы:" VerticalAlignment="Top" Width="365"
                    FontSize="18"/>
-                <TextBlock Grid.Column="0" Grid.Row="1"  TextWrapping="Wrap"
+                <TextBlock Grid.Column="0" Grid.Row="1"  TextWrapping="Wrap" FontSize="14"
                    Text="{Binding Selected_race_description}" Margin="10,10,10,10"/>
                 <TextBlock Grid.Column="0" Grid.Row="2"
                     HorizontalAlignment="Left" Height="34" Margin="5,15,0,0" TextWrapping="Wrap" 
                     Text="Персональные данные:" VerticalAlignment="Top" Width="365"
                    FontSize="18"/>
-                <TextBlock Grid.Column="0" Grid.Row="3"  TextWrapping="Wrap"
+                <TextBlock Grid.Column="0" Grid.Row="3"  TextWrapping="Wrap" FontSize="14"
                    Text="{Binding Selected_race_personal_data}" Margin="10,10,10,10"/>
                 <TextBlock Grid.Column="0" Grid.Row="4"
                     HorizontalAlignment="Left" Height="34" Margin="5,15,0,0" TextWrapping="Wrap" 
                     Text="Физические данные:" VerticalAlignment="Top" Width="365"
                    FontSize="18"/>
-                <TextBlock Grid.Column="0" Grid.Row="5"  TextWrapping="Wrap"
+                <TextBlock Grid.Column="0" Grid.Row="5"  TextWrapping="Wrap" FontSize="14" 
                    Text="{Binding Selected_race_physical_data}" Margin="10,10,10,10"/>
                 <TextBlock Grid.Column="0" Grid.Row="6"
                     HorizontalAlignment="Left" Height="34" Margin="5,15,0,0" TextWrapping="Wrap" 
                     Text="Родной мир:" VerticalAlignment="Top" Width="365"
                    FontSize="18"/>
-                <TextBlock Grid.Column="0" Grid.Row="7"  TextWrapping="Wrap"
+                <TextBlock Grid.Column="0" Grid.Row="7"  TextWrapping="Wrap" FontSize="14" 
                    Text="{Binding Selected_race_home_world}" Margin="10,10,10,10"/>
             </Grid>
         </ScrollViewer>
@@ -239,6 +239,22 @@
             </Grid>
         </Canvas>
         <Canvas HorizontalAlignment="Left" Height="270" Margin="659,519,0,0" VerticalAlignment="Top" Width="471">
+            <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Height="25"
+                       FontSize="16" Margin="7,0,160,8"
+                       Text="Расовые бонусы:" />
+            <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto" Width="471" Height="245" Canvas.Top="25">
+                <Grid  Height="225" Width="466" Margin="5,10,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" 
+                       FontSize="14" Margin="10,10,10,10"
+                       Text="{Binding Selected_race_feature_list}"/>
+                </Grid>
+            </ScrollViewer>
         </Canvas>
         <Border BorderBrush="Black" BorderThickness="0,1,0,0" Margin="250,511,0,0"/>
         <Border BorderBrush="Black" BorderThickness="1,0,0,0" Margin="652,511,0,0">

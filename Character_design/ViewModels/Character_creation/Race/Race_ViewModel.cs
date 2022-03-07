@@ -13,6 +13,7 @@ namespace Character_design
     internal class Race_ViewModel : Notify
     {
         List<Race_class> destination_race_list = new List<Race_class>();
+        List<string> Result_text = new List<string>();
         private void Initial_load_race_list(List<Race_class> _destination_race_list)
         {
             foreach (Race_class race in Character_properties.GetInstance().Race_Manager.Get_Race_list())
@@ -20,6 +21,20 @@ namespace Character_design
                 _destination_race_list.Add(race);
             }
             _destination_race_list.RemoveAt(0);
+        }
+        private void Setup_race_features(string feature_1, string feature_2, string feature_3,
+                                         string feature_4, string feature_5, string feature_6, string feature_7, 
+                                         ref string out_text)
+        {
+            out_text = "";
+            if (feature_1 != "") { out_text = out_text + feature_1 + "\n" + "\n"; }
+            if (feature_2 != "") { out_text = out_text + feature_2 + "\n" + "\n"; }
+            if (feature_3 != "") { out_text = out_text + feature_3 + "\n" + "\n"; }
+            if (feature_4 != "") { out_text = out_text + feature_4 + "\n" + "\n"; }
+            if (feature_5 != "") { out_text = out_text + feature_5 + "\n" + "\n"; }
+            if (feature_6 != "") { out_text = out_text + feature_6 + "\n" + "\n"; }
+            if (feature_7 != "") { out_text = out_text + feature_7; }
+
         }
 
         private static Race_ViewModel _instance;
@@ -37,6 +52,8 @@ namespace Character_design
                     selected_race_intelligence_bonus,
                     selected_race_charm_bonus,
                     selected_race_will_power_bonus;
+
+        private string selected_race_feature_list;
         private Race_class selected_race;
 
         public Command Show_human_race { get; private set; }
@@ -231,6 +248,19 @@ namespace Character_design
                 OnPropertyChanged("Selected_race_will_power_bonus");
             }
         }
+        public string Selected_race_feature_list
+        {
+            get
+            {
+                return selected_race_feature_list;
+            }
+            set
+            {
+                selected_race_feature_list = value;
+                OnPropertyChanged("Selected_race_feature_list");
+            }
+        }
+
         private void _Show_human_race()
         {
             Selected_race_description = Character_properties.GetInstance().Race_Manager.Get_Human_race().Get_general_description();
@@ -257,6 +287,18 @@ namespace Character_design
                 Selected_race_intelligence_bonus = selected_race.Get_race_bonus_intelligence();
                 Selected_race_charm_bonus = selected_race.Get_race_bonus_charm();
                 Selected_race_will_power_bonus = selected_race.Get_race_bonus_willpower();
+                Setup_race_features(selected_race.Get_feature_1(),
+                                    selected_race.Get_feature_2(),
+                                    selected_race.Get_feature_3(),
+                                    selected_race.Get_feature_4(),
+                                    selected_race.Get_feature_5(),
+                                    selected_race.Get_feature_6(),
+                                    selected_race.Get_feature_7(), ref selected_race_feature_list);
+                //Selected_race_feature_list = selected_race.Get_feature_1() + selected_race.Get_feature_2() +
+                //                             selected_race.Get_feature_3() + selected_race.Get_feature_4() +
+                //                             selected_race.Get_feature_5() + selected_race.Get_feature_6() +
+                //                             selected_race.Get_feature_7();
+                OnPropertyChanged("Selected_race_feature_list");
                 OnPropertyChanged("Selected_race");
             }
         }
