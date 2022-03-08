@@ -86,7 +86,7 @@
     <Compile Include="MVVM infrastructure\Notify.cs" />
     <Compile Include="ViewModels\Character_creation\General_Data\General_Data_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Main_Window_Creation\Main_Window_Creation_ViewModel.cs" />
-    <Compile Include="ViewModels\Character_creation\Range\Range_ViewModel.cs" />
+    <Compile Include="ViewModels\Character_creation\Skill\Skill_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\Main_Menu_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\MainWindow_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Race\Race_ViewModel.cs" />
@@ -96,8 +96,8 @@
     <Compile Include="Views\Character_creation\Main_Window_Creation_View\Main_Window_Creation.xaml.cs">
       <DependentUpon>Main_Window_Creation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Character_creation\Range_View\Range.xaml.cs">
-      <DependentUpon>Range.xaml</DependentUpon>
+    <Compile Include="Views\Character_creation\Skill_View\Skill.xaml.cs">
+      <DependentUpon>Skill.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow\Main_Menu.xaml.cs">
       <DependentUpon>Main_Menu.xaml</DependentUpon>
@@ -125,7 +125,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Character_creation\Range_View\Range.xaml">
+    <Page Include="Views\Character_creation\Skill_View\Skill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,7 +12,7 @@ namespace Character_design
         private Notify current_VM;
         private General_Data_ViewModel general_data;
         private Race_ViewModel race;
-        private Range_ViewModel range;
+        private Skill_ViewModel skill;
         public static Main_Window_Creation_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -37,10 +37,10 @@ namespace Character_design
         {
             Open_general_data_user_control = new Command(o => _Open_general_fata_user_control());
             Open_race_user_control = new Command(o => _Open_Race_user_control());
-            Open_range_user_control = new Command(o => _Open_range_user_control());
+            Open_range_user_control = new Command(o => _Open_skill_user_control());
             general_data = General_Data_ViewModel.GetInstance();
             race = Race_ViewModel.GetInstance();
-            range = Range_ViewModel.GetInstance();
+            skill = Skill_ViewModel.GetInstance();
             current_VM = null;
         }
         public Command Open_general_data_user_control { get; private set; }
@@ -54,9 +54,9 @@ namespace Character_design
         {
             CurrentViewModel = race;
         }
-        private void _Open_range_user_control()
+        private void _Open_skill_user_control()
         {
-            CurrentViewModel = range;
+            CurrentViewModel = skill;
         }
     }
 }

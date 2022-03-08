@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Character_design
 {
-    internal class Range_ViewModel : Notify
+    internal class Skill_ViewModel : Notify
     {
-        private static Range_ViewModel _instance;
+        private static Skill_ViewModel _instance;
         private Notify current_VM;
-        public static Range_ViewModel GetInstance()
+        public static Skill_ViewModel GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new Range_ViewModel();
+                _instance = new Skill_ViewModel();
             }
             return _instance;
         }
@@ -30,7 +30,7 @@ namespace Character_design
                 OnPropertyChanged("CurrentViewModel");
             }
         }
-        private Range_ViewModel()
+        private Skill_ViewModel()
         {
 
         }

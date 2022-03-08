@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:general_data="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
              xmlns:race="clr-namespace:Character_design.Views.Character_creation.Race"
-             xmlns:range="clr-namespace:Character_design.Views.Character_creation.Range_View"
+             xmlns:skill="clr-namespace:Character_design.Views.Character_creation.Skill_View"
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1500">
@@ -18,8 +18,8 @@
                 <DataTemplate DataType="{x:Type local:Race_ViewModel}">
                     <race:Race_User_control/>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type local:Range_ViewModel}">
-                    <range:Range/>
+                <DataTemplate DataType="{x:Type local:Skill_ViewModel}">
+                    <skill:Skill/>
                 </DataTemplate>
             </Border.Resources>
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>
@@ -29,8 +29,8 @@
                 Command="{Binding Open_general_data_user_control}" Canvas.Left="50" Canvas.Top="25" />
             <Button Content="Выбор расы" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                 Command="{Binding Open_race_user_control}" Canvas.Left="50" Canvas.Top="100" />
-            <Button Content="Выбор ранга" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
-                Command="{Binding Open_range_user_control}" Canvas.Left="50" Canvas.Top="175" />
+            <Button Content="Развитие навыков" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
+                Command="{Binding Open_skill_user_control}" Canvas.Left="50" Canvas.Top="175" />
         </Canvas>
     </Grid>
 </UserControl>

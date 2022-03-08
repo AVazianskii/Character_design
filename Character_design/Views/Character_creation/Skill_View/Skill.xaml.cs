@@ -13,17 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Character_design.Views.Character_creation.Range_View
+namespace Character_design.Views.Character_creation.Skill_View
 {
     /// <summary>
     /// Логика взаимодействия для Range.xaml
     /// </summary>
-    public partial class Range : UserControl
+    public partial class Skill : UserControl
     {
-        public Range()
+        public Skill()
         {
             InitializeComponent();
-            DataContext = Range_ViewModel.GetInstance();
+            DataContext = Skill_ViewModel.GetInstance();
         }
     }
 }
