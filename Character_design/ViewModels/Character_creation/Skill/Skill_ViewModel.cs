@@ -21,6 +21,8 @@ namespace Character_design
         private List<Skill_Class> tech_skills;
         private List<Skill_Class> specific_skills;
 
+        private string selected_skill_description;
+
         private int exp_points_left;
         public static Skill_ViewModel GetInstance()
         {
@@ -121,8 +123,21 @@ namespace Character_design
                 OnPropertyChanged("Skill_group");
             }
         }
-        
-            
+        public string Selected_skill_description
+        {
+            get
+            {
+                return selected_skill_description;
+            }
+            set
+            {
+                selected_skill_description = value;
+                OnPropertyChanged("Selected_skill_description");
+            }
+        }
+
+
+
 
     }
 }
