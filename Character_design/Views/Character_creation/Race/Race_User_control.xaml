@@ -98,9 +98,6 @@
                 <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Height="25" Width="156"
                        FontSize="16" Margin="7,0,10,20"
                        Text="Бонус к атрибутам:" />
-                <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Height="25" Width="156"
-                       FontSize="16" Margin="7,0,10,20"
-                       Text="{Binding Test, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" 
                        FontSize="14" Height="20" Margin="7"
                        Text="Сила"/>

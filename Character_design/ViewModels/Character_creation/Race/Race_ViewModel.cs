@@ -86,7 +86,7 @@ namespace Character_design
             Initial_load_race_list(destination_race_list);
             Selected_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
             Character.GetInstance().Character_race = Selected_race;
-
+            
             race_chosen = false;
             Choose_race = new Command(o => _Choose_race(),
                                       o => race_chosen == false);
@@ -274,28 +274,14 @@ namespace Character_design
         private void _Choose_race()
         {
             Character.GetInstance().Character_race = Selected_race;
-            Test = Character.GetInstance().Character_race.ToString();
             race_chosen = true;    
         }
         private void _Unchoose_race()
         {
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
-            Test = Test = Character.GetInstance().Character_race.ToString(); 
             race_chosen = false;
         }
-        private string test;
-        public string Test
-        {
-            get
-            {
-                return test; 
-            }
-            set
-            {
-                test = value;
-                OnPropertyChanged("Test");
-            }
-        }
+
         public Race_class Selected_race
         {
             get
