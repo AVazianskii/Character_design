@@ -58,7 +58,7 @@
                 VerticalAlignment="Top" Width="1146">
             <Canvas Height="727" Margin="0,0,0,0" Width="1146">
                 <ListBox Height="667" Width="250" Canvas.Top="60" 
-                     Background="Black" Foreground="Wheat" BorderThickness="0"
+                     Background="Black" Foreground="Wheat" BorderThickness="0" BorderBrush="Black"
                      ItemsSource="{Binding Skill_group}"
                      SelectedItem="{Binding Selected_skill}">
                     <ListBox.ItemTemplate>
@@ -79,7 +79,7 @@
                 </ListBox>
                 <TextBlock Height="60" TextWrapping="Wrap" Width="250" Canvas.Top="0"
                            Text="Доступные навыки для развития:" Background="Black"
-                           Foreground="Wheat" FontSize="20" TextAlignment="Center"/>
+                           Foreground="Wheat" FontSize="20" TextAlignment="Center" />
                 <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"/>
                 <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="360"
                             Text="Описание навыка:" FontSize="18"/>
