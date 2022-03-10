@@ -85,6 +85,7 @@ namespace Character_design
         {
             Initial_load_race_list(destination_race_list);
             Selected_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            Character.GetInstance().Character_race = Selected_race;
 
             race_chosen = false;
             Choose_race = new Command(o => _Choose_race(),
