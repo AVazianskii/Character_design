@@ -8,6 +8,7 @@ using Character;
 using Races_libs;
 using Age_status_libs;
 using Attribute_libs;
+using Skills_libs;
 
 namespace Character_design
 {
@@ -18,11 +19,13 @@ namespace Character_design
         internal Race_manager Race_Manager;
         internal Age_status_manager Age_status_Manager;
         internal Attribute_manager Attribute_Manager;
+        internal Skill_manager Skill_Manager;
 
 
         private Main_model()
         {
             Race_Manager = Race_manager.GetInstance();
+            Skill_Manager = Skill_manager.GetInstance();
             //Load_async(Race_Manager);
             Load_all_from(Race_Manager);
         }

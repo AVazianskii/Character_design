@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="Manager_template">
       <HintPath>..\..\Manager_template\Manager_template\bin\Release\Manager_template.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
