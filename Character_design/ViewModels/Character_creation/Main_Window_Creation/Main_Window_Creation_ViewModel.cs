@@ -37,7 +37,7 @@ namespace Character_design
         {
             Open_general_data_user_control = new Command(o => _Open_general_fata_user_control());
             Open_race_user_control = new Command(o => _Open_Race_user_control());
-            Open_range_user_control = new Command(o => _Open_skill_user_control());
+            Open_skill_user_control = new Command(o => _Open_skill_user_control());
             general_data = General_Data_ViewModel.GetInstance();
             race = Race_ViewModel.GetInstance();
             skill = Skill_ViewModel.GetInstance();
@@ -45,7 +45,7 @@ namespace Character_design
         }
         public Command Open_general_data_user_control { get; private set; }
         public Command Open_race_user_control { get; private set; }
-        public Command Open_range_user_control { get; private set; }
+        public Command Open_skill_user_control { get; private set; }
         private void _Open_general_fata_user_control ()
         {
             CurrentViewModel = general_data;

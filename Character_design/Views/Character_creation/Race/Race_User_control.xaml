@@ -98,6 +98,9 @@
                 <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Height="25" Width="156"
                        FontSize="16" Margin="7,0,10,20"
                        Text="Бонус к атрибутам:" />
+                <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Height="25" Width="156"
+                       FontSize="16" Margin="7,0,10,20"
+                       Text="{Binding Test, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" 
                        FontSize="14" Height="20" Margin="7"
                        Text="Сила"/>
@@ -261,9 +264,11 @@
         </Border>
         <Canvas Margin="659,794,16,10">
             <Button Content="Отменить выбор" Height="36" Canvas.Left="10" Canvas.Top="10" Width="203"
-                    FontSize="17" Background="Red" Foreground="White"/>
+                    FontSize="17" Background="Red" Foreground="White"
+                    Command="{Binding Unchoose_race}"/>
             <Button Content="Выбрать расу" Height="36" Canvas.Right="10" Canvas.Top="10" Width="203"
-                    FontSize="17" Background="Green" Foreground="White"/>
+                    FontSize="17" Background="Green" Foreground="White"
+                    Command="{Binding Choose_race}"/>
         </Canvas>
 
 

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SW_Character_creation;
+using Character;
 using Races_libs;
 using Age_status_libs;
 using Attribute_libs;
 
 namespace Character_design
 {
-    internal class Main_model
+    internal class Main_model : Notify
     {
         private static Main_model instance;
 
@@ -18,10 +19,12 @@ namespace Character_design
         internal Age_status_manager Age_status_Manager;
         internal Attribute_manager Attribute_Manager;
 
+
         private Main_model()
         {
             Race_Manager = Race_manager.GetInstance();
-            Load_async(Race_Manager);
+            //Load_async(Race_Manager);
+            Load_all_from(Race_Manager);
         }
 
         public static Main_model GetInstance()

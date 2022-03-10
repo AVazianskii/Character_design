@@ -53,10 +53,13 @@ namespace Character_design
                     selected_race_charm_bonus,
                     selected_race_will_power_bonus;
 
+        private bool race_chosen;
+
         private string selected_race_feature_list;
         private Race_class selected_race;
 
-        public Command Show_human_race { get; private set; }
+        public Command Choose_race { get; private set; }
+        public Command Unchoose_race { get; private set; }
         public static Race_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -82,7 +85,13 @@ namespace Character_design
         {
             Initial_load_race_list(destination_race_list);
             Selected_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
-            Show_human_race = new Command(o => _Show_human_race());
+
+            race_chosen = false;
+            Choose_race = new Command(o => _Choose_race(),
+                                      o => race_chosen == false);
+            Unchoose_race = new Command(o => _Unchoose_race(),
+                                        o => race_chosen == true);
+
         }
         public List<Race_class> Races
         {
@@ -261,9 +270,30 @@ namespace Character_design
             }
         }
 
-        private void _Show_human_race()
+        private void _Choose_race()
         {
-            Selected_race_description = Main_model.GetInstance().Race_Manager.Get_Human_race().Get_general_description();
+            Character.GetInstance().Character_race = Selected_race;
+            Test = Character.GetInstance().Character_race.ToString();
+            race_chosen = true;    
+        }
+        private void _Unchoose_race()
+        {
+            Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            Test = Test = Character.GetInstance().Character_race.ToString(); 
+            race_chosen = false;
+        }
+        private string test;
+        public string Test
+        {
+            get
+            {
+                return test; 
+            }
+            set
+            {
+                test = value;
+                OnPropertyChanged("Test");
+            }
         }
         public Race_class Selected_race
         {
@@ -294,10 +324,6 @@ namespace Character_design
                                     selected_race.Get_feature_5(),
                                     selected_race.Get_feature_6(),
                                     selected_race.Get_feature_7(), ref selected_race_feature_list);
-                //Selected_race_feature_list = selected_race.Get_feature_1() + selected_race.Get_feature_2() +
-                //                             selected_race.Get_feature_3() + selected_race.Get_feature_4() +
-                //                             selected_race.Get_feature_5() + selected_race.Get_feature_6() +
-                //                             selected_race.Get_feature_7();
                 OnPropertyChanged("Selected_race_feature_list");
                 OnPropertyChanged("Selected_race");
             }

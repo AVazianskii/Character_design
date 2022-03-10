@@ -30,6 +30,7 @@ namespace Character_design
         {
             Main_menu = Main_Menu_ViewModel.GetInstance();
             current_VM = Main_menu;
+            Main_model.GetInstance();
         }
     }
 }
