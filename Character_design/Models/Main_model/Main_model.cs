@@ -28,6 +28,7 @@ namespace Character_design
             Skill_Manager = Skill_manager.GetInstance();
             //Load_async(Race_Manager);
             Load_all_from(Race_Manager);
+            Load_all_from(Skill_Manager);
         }
 
         public static Main_model GetInstance()
