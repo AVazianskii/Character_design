@@ -8,7 +8,10 @@
              d:DesignHeight="860" d:DesignWidth="1146">
     <Grid Background="White">
         <Canvas HorizontalAlignment="Center" Height="133" VerticalAlignment="Top" Width="1146" Background="Black">
-            <Button Height="73" Canvas.Top="60" Canvas.Left="0" Width="186"
+            <TextBlock Height="60" TextWrapping="Wrap" Width="216" Canvas.Top="73"
+                           Text="Доступные навыки для развития:" Background="Black"
+                           Foreground="Wheat" FontSize="20" TextAlignment="Center" />
+            <Button Height="73" Canvas.Top="60" Canvas.Right="744" Width="186"
                     Background="Black" BorderThickness="0"
                     Command="{Binding Show_combat_skills}">
                 <Button.Content>
@@ -16,7 +19,7 @@
                                TextWrapping="Wrap"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" Canvas.Top="60" Canvas.Left="186" Width="186"
+            <Button Height="73" Canvas.Top="60" Canvas.Right="558" Width="186"
                     Background="Black" BorderThickness="0"
                     Command="{Binding Show_surviving_skills}">
                 <Button.Content>
@@ -24,7 +27,7 @@
                                TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" Canvas.Top="60" Canvas.Left="372" Width="186"
+            <Button Height="73" Canvas.Top="60" Canvas.Right="372" Width="186"
                     Background="Black" BorderThickness="0"
                     Command="{Binding Show_charming_skills}">
                 <Button.Content>
@@ -32,7 +35,7 @@
                                TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" Canvas.Top="60" Canvas.Left="558" Width="186"
+            <Button Height="73" Canvas.Top="60" Canvas.Right="186" Width="186"
                     Background="Black" BorderThickness="0"
                     Command="{Binding Show_tech_skills}">
                 <Button.Content>
@@ -40,7 +43,7 @@
                                TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" Canvas.Top="60" Canvas.Left="744" Width="186"
+            <Button Height="73" Canvas.Top="60" Canvas.Right="0" Width="186"
                     Background="Black" BorderThickness="0"
                     Command="{Binding Show_specific_skills}">
                 <Button.Content>
@@ -57,7 +60,7 @@
                 HorizontalAlignment="Center" Height="727" Margin="0,133,0,0" 
                 VerticalAlignment="Top" Width="1146">
             <Canvas Height="727" Margin="0,0,0,0" Width="1146">
-                <ListBox Height="667" Width="250" Canvas.Top="60" 
+                <ListBox Height="727" Width="216" Canvas.Top="0" 
                      Background="Black" Foreground="Wheat" BorderThickness="0" BorderBrush="Black"
                      ItemsSource="{Binding Skill_group}"
                      SelectedItem="{Binding Selected_skill}">
@@ -77,9 +80,6 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <TextBlock Height="60" TextWrapping="Wrap" Width="250" Canvas.Top="0"
-                           Text="Доступные навыки для развития:" Background="Black"
-                           Foreground="Wheat" FontSize="20" TextAlignment="Center" />
                 <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"/>
                 <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="360"
                             Text="Описание навыка:" FontSize="18"/>
