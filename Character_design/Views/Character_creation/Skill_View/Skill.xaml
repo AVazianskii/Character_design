@@ -66,14 +66,14 @@
                      SelectedItem="{Binding Selected_skill}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="0">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Height="26" TextWrapping="Wrap" Width="237" Foreground="Wheat" 
+                                <TextBlock Grid.Column="0" Grid.Row="0" Height="46" TextWrapping="Wrap" Width="203" Foreground="Wheat" 
                                        TextAlignment="Center" FontSize="16" 
                                        Text="{Binding Path=Skill_name}" />
                             </Grid>

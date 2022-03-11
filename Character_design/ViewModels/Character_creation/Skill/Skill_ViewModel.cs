@@ -60,6 +60,7 @@ namespace Character_design
             specific_skills = Skill_manager.GetInstance().Get_Specific_skills();
 
             skill_group = combat_skills;
+            Selected_skill = skill_group[0];
 
             Show_combat_skills = new Command(o => _Show_combat_skills());
             Show_surviving_skills = new Command(o => _Show_surviving_skills());
@@ -69,23 +70,28 @@ namespace Character_design
         }
         private void _Show_combat_skills()
         {
-            skill_group = combat_skills;
+            Skill_group = combat_skills;
+            Selected_skill = Skill_group[0];
         }
         private void _Show_surviving_skills()
         {
-            skill_group = surviving_skills;
+            Skill_group = surviving_skills;
+            Selected_skill = Skill_group[0];
         }
         private void _Show_charming_skills()
         {
-            skill_group = charming_skills;
+            Skill_group = charming_skills;
+            Selected_skill = Skill_group[0];
         }
         private void _Show_tech_skills()
         {
-            skill_group = tech_skills;
+            Skill_group = tech_skills;
+            Selected_skill = Skill_group[0];
         }
         private void _Show_specific_skills()
         {
-            skill_group = specific_skills;
+            Skill_group = specific_skills;
+            Selected_skill = Skill_group[0];
         }
 
         public int Exp_points_left
@@ -109,7 +115,10 @@ namespace Character_design
             set
             {
                 selected_skill = value;
-                Skill_name = selected_skill.Get_skill_name();
+                if (selected_skill != null)
+                {
+                    Selected_skill_description = selected_skill.Get_skill_description();
+                }
                 OnPropertyChanged("Selected_skill");
             }
         }
@@ -149,9 +158,5 @@ namespace Character_design
                 OnPropertyChanged("Skill_name");
             }
         }
-
-
-
-
     }
 }
