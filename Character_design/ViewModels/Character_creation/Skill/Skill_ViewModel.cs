@@ -22,6 +22,7 @@ namespace Character_design
         private List<Skill_Class> specific_skills;
 
         private string selected_skill_description;
+        private string skill_name;
 
         private int exp_points_left;
         public static Skill_ViewModel GetInstance()
@@ -108,6 +109,7 @@ namespace Character_design
             set
             {
                 selected_skill = value;
+                Skill_name = selected_skill.Get_skill_name();
                 OnPropertyChanged("Selected_skill");
             }
         }
@@ -133,6 +135,18 @@ namespace Character_design
             {
                 selected_skill_description = value;
                 OnPropertyChanged("Selected_skill_description");
+            }
+        }
+        public string Skill_name
+        {
+            get
+            {
+                return skill_name;
+            }
+            set
+            {
+                skill_name = value;
+                OnPropertyChanged("Skill_name");
             }
         }
 
