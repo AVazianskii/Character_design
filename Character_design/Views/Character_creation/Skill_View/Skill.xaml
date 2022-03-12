@@ -71,10 +71,10 @@
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="50" ></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Height="46" TextWrapping="Wrap" Width="203" Foreground="Wheat" 
-                                       TextAlignment="Center" FontSize="16" 
+                                <TextBlock Grid.Column="0" Grid.Row="0" Height="46" TextWrapping="Wrap" Width="180" Foreground="Wheat" 
+                                       TextAlignment="Center" FontSize="16" VerticalAlignment="Stretch"
                                        Text="{Binding Path=Skill_name}" />
                             </Grid>
                         </DataTemplate>
@@ -83,7 +83,7 @@
                 <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"/>
                 <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="360"
                             Text="Описание навыка:" FontSize="18"/>
-                <TextBlock Height="256" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="44" Width="546"
+                <TextBlock Height="256" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="44" Width="529"
                            FontSize="15"
                            Text="{Binding Selected_skill_description}"/>
 
