@@ -134,11 +134,15 @@
                 </Canvas>
                 <Canvas Height="133" Canvas.Left="770" Canvas.Top="584" Width="349">
                     <Button Height="57" Canvas.Left="10" Canvas.Top="66" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Content="Уменьшить навык на 1"/>
+                            Content="Уменьшить навык на 1"
+                            Command="{Binding Decrease_skill_score}"/>
                     <Button Height="57" Canvas.Right="10" Canvas.Top="66" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Content="Увеличить навык на 1"/>
+                            Content="Увеличить навык на 1"
+                            Command="{Binding Increase_skill_score}"/>
 
                 </Canvas>
+                <TextBox Height="21" Canvas.Left="300" TextWrapping="Wrap" Canvas.Top="439" Width="83"
+                         Text="{Binding Test}"/>
 
             </Canvas>
 

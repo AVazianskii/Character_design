@@ -34,6 +34,8 @@ namespace Character_design
                     selected_skill_age_limit,
                     selected_skill_cost;
 
+        private int test;
+
         private int Return_skill_cost(Skill_Class skill)
         {
             if(Character.GetInstance().Forceuser)
@@ -70,6 +72,8 @@ namespace Character_design
         public Command Show_charming_skills { get; private set; }
         public Command Show_tech_skills { get; private set; }
         public Command Show_specific_skills { get; private set; }
+        public Command Decrease_skill_score { get; private set; }
+        public Command Increase_skill_score { get; private set; }
 
         private Skill_ViewModel()
         {
@@ -87,6 +91,13 @@ namespace Character_design
             Show_charming_skills = new Command(o => _Show_charming_skills());
             Show_tech_skills = new Command(o => _Show_tech_skills());
             Show_specific_skills = new Command(o => _Show_specific_skills());
+
+            Decrease_skill_score = new Command(o => selected_skill.Decrease_score(ref exp_points_left,
+                                                                                  ref selected_skill_score,
+                                                                                  Selected_skill_cost));
+            Increase_skill_score = new Command(o => selected_skill.Increase_score(ref exp_points_left,
+                                                                                  ref selected_skill_score,
+                                                                                  Selected_skill_cost));
         }
         private void _Show_combat_skills()
         {
@@ -118,6 +129,7 @@ namespace Character_design
         {
             get
             {
+                exp_points_left = Character.GetInstance().Experience;
                 return exp_points_left;
             }
             set
@@ -283,6 +295,11 @@ namespace Character_design
                 selected_skill_cost = value;
                 OnPropertyChanged("Selected_skill_cost");
             }
+        }
+        public int Test
+        {
+            get { test = Character.GetInstance().Swimming_skill_score; return test; }
+            set { test = value; OnPropertyChanged("Test"); }
         }
     }
 }

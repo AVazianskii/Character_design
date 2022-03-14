@@ -27,11 +27,14 @@ namespace Character_design
         private Atribute_class Willpower;
 
         private bool Is_forceuser;
+        private int experience;
+        private byte swimming_skill_score;
         
         public Character()
         {
             Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
             Forceuser = false;
+            Experience = 180;
             //Set_Character_Race(Main_model.GetInstance().Race_Manager.Get_Empty_race());
 
             //Load_all_from(Age_status_Manager);
@@ -78,6 +81,16 @@ namespace Character_design
                 Is_forceuser = value;
                 OnPropertyChanged("Forceuser");
             }   
+        }
+        public int Experience
+        {
+            get { return experience; }
+            set { experience = value; OnPropertyChanged("Experience"); }
+        }
+        public byte Swimming_skill_score
+        {
+            get { return swimming_skill_score; }
+            set { swimming_skill_score = value; OnPropertyChanged("Swimming_skill_score"); }
         }
 
         //public void Set_Character_Race(Race_class Choosen_race)
