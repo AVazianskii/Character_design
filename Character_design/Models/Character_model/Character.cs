@@ -26,9 +26,12 @@ namespace Character_design
         private Atribute_class Charm;
         private Atribute_class Willpower;
 
+        private bool Is_forceuser;
+        
         public Character()
         {
             Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            Forceuser = false;
             //Set_Character_Race(Main_model.GetInstance().Race_Manager.Get_Empty_race());
 
             //Load_all_from(Age_status_Manager);
@@ -67,7 +70,15 @@ namespace Character_design
                 OnPropertyChanged("Character_race");
             }
         }
-
+        public bool Forceuser
+        {
+            get { return Is_forceuser; }
+            set
+            { 
+                Is_forceuser = value;
+                OnPropertyChanged("Forceuser");
+            }   
+        }
 
         //public void Set_Character_Race(Race_class Choosen_race)
         //{

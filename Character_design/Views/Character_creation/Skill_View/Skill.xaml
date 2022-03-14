@@ -89,6 +89,13 @@
                 <TextBlock Height="256" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="94" Width="529"
                            FontSize="15"
                            Text="{Binding Selected_skill_description}"/>
+                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="360" Width="250"
+                            Text="Стоимость развития навыка:" FontSize="18"/>
+                <TextBlock Height="34" Canvas.Left="850" TextWrapping="Wrap" Canvas.Top="360" Width="50"
+                           FontSize="18" TextAlignment="Center"
+                           Text="{Binding Selected_skill_cost}"/>
+                <TextBlock Height="34" Canvas.Left="910" TextWrapping="Wrap" Canvas.Top="360" Width="150"
+                            Text="оч. опыта" FontSize="18"/>
                 <TextBlock Height="34" Canvas.Left="490" TextWrapping="Wrap" Canvas.Top="520" Width="360"
                            TextAlignment="Center"
                             Text="Уровень развития навыка:" FontSize="18"/>

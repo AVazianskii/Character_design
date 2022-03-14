@@ -31,7 +31,20 @@ namespace Character_design
                     selected_skill_max_score,
                     selected_skill_race_bonus,
                     selected_skill_range_limit,
-                    selected_skill_age_limit;
+                    selected_skill_age_limit,
+                    selected_skill_cost;
+
+        private int Return_skill_cost(Skill_Class skill)
+        {
+            if(Character.GetInstance().Forceuser)
+            {
+                return skill.Get_Forceuser_cost();
+            }
+            else
+            {
+                return skill.Get_Non_force_user_cost();
+            }
+        }
         public static Skill_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -134,6 +147,7 @@ namespace Character_design
                     Selected_skill_min_score = Selected_skill_race_bonus;  
                     Selected_skill_range_limit = selected_skill.Get_range_skill_limit();
                     selected_skill_age_limit = selected_skill.Get_age_skill_limit();
+                    Selected_skill_cost = Return_skill_cost(selected_skill);
                 }
                 OnPropertyChanged("Selected_skill");
             }
@@ -256,6 +270,18 @@ namespace Character_design
             {
                 selected_skill_age_limit = value;
                 OnPropertyChanged("Selected_skill_age_limit");
+            }
+        }
+        public int Selected_skill_cost
+        {
+            get
+            {
+                return selected_skill_cost;
+            }
+            set
+            {
+                selected_skill_cost = value;
+                OnPropertyChanged("Selected_skill_cost");
             }
         }
     }
