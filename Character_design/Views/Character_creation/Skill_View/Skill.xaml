@@ -59,7 +59,7 @@
         <Border BorderBrush="Wheat" BorderThickness="0,1,0,0" 
                 HorizontalAlignment="Center" Height="727" Margin="0,133,0,0" 
                 VerticalAlignment="Top" Width="1146">
-            <Canvas Height="727" Margin="0,0,0,0" Width="1146">
+            <Canvas Height="727" Margin="0,-1,0,0" Width="1146">
                 <ListBox Height="727" Width="216" Canvas.Top="0" 
                      Background="Black" Foreground="Wheat" BorderThickness="0" BorderBrush="Black"
                      ItemsSource="{Binding Skill_group}"
@@ -81,11 +81,57 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"/>
-                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="360"
+                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="520"
+                           FontSize="27" TextAlignment="Center"
+                           Text="{Binding Selected_skill_title}"/>
+                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="60" Width="360"
                             Text="Описание навыка:" FontSize="18"/>
-                <TextBlock Height="256" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="44" Width="529"
+                <TextBlock Height="256" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="94" Width="529"
                            FontSize="15"
                            Text="{Binding Selected_skill_description}"/>
+                <TextBlock Height="34" Canvas.Left="490" TextWrapping="Wrap" Canvas.Top="520" Width="360"
+                           TextAlignment="Center"
+                            Text="Уровень развития навыка:" FontSize="18"/>
+                <ProgressBar Height="17" Canvas.Left="300" Canvas.Top="550" Width="754" HorizontalAlignment="Center" VerticalAlignment="Top"
+                             Value="{Binding Selected_skill_score}"
+                             Minimum="{Binding Selected_skill_min_score}"
+                             Maximum="{Binding Selected_skill_max_score}"/>
+                <TextBlock Height="23" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="547" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" FontSize="16"
+                           Text="{Binding Selected_skill_min_score}"/>
+                <TextBlock Height="23" Canvas.Left="1060" TextWrapping="Wrap" Canvas.Top="547" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" FontSize="16"
+                           Text="{Binding Selected_skill_max_score}"/>
+                <Canvas Height="133" Canvas.Left="227" Canvas.Top="584" Width="522" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Height="20" Canvas.Left="5" TextWrapping="Wrap" Canvas.Top="5" Width="350"
+                               FontSize="13"
+                               Text="Текущие модификаторы и лимиты развития навыка:"/>
+                    <TextBlock Height="20" Canvas.Left="5" TextWrapping="Wrap" Canvas.Top="30" Width="170"
+                               FontSize="11"
+                               Text="Расовый бонус:"/>
+                    <TextBlock Height="20" Canvas.Left="180" TextWrapping="Wrap" Canvas.Top="30" Width="170"
+                               FontSize="11"
+                               Text="{Binding Selected_skill_race_bonus}"/>
+                    <TextBlock Height="20" Canvas.Left="5" TextWrapping="Wrap" Canvas.Top="55" Width="170"
+                               FontSize="11"
+                               Text="Лимит по рангу персонажа:"/>
+                    <TextBlock Height="20" Canvas.Left="180" TextWrapping="Wrap" Canvas.Top="55" Width="170"
+                               FontSize="11"
+                               Text="{Binding Selected_skill_range_limit}"/>
+                    <TextBlock Height="20" Canvas.Left="5" TextWrapping="Wrap" Canvas.Top="80" Width="170"
+                               FontSize="11"
+                               Text="Лимит по возрасту персонажа:"/>
+                    <TextBlock Height="20" Canvas.Left="180" TextWrapping="Wrap" Canvas.Top="80" Width="170"
+                               FontSize="11"
+                               Text="{Binding Selected_skill_age_limit}"/>
+                </Canvas>
+                <Canvas Height="133" Canvas.Left="770" Canvas.Top="584" Width="349">
+                    <Button Height="57" Canvas.Left="10" Canvas.Top="66" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Content="Уменьшить навык на 1"/>
+                    <Button Height="57" Canvas.Right="10" Canvas.Top="66" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Content="Увеличить навык на 1"/>
+
+                </Canvas>
 
             </Canvas>
 

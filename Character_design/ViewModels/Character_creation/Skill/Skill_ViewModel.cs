@@ -23,8 +23,15 @@ namespace Character_design
 
         private string selected_skill_description;
         private string skill_name;
+        private string selected_skill_title;
 
-        private int exp_points_left;
+        private int exp_points_left,
+                    selected_skill_score,
+                    selected_skill_min_score,
+                    selected_skill_max_score,
+                    selected_skill_race_bonus,
+                    selected_skill_range_limit,
+                    selected_skill_age_limit;
         public static Skill_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -118,6 +125,15 @@ namespace Character_design
                 if (selected_skill != null)
                 {
                     Selected_skill_description = selected_skill.Get_skill_description();
+                    Selected_skill_title = selected_skill.Get_skill_name();
+                    Selected_skill_score = selected_skill.Get_score();
+                    // TODO: сделать логику определения максимального значения навыка, опираясь на возраст, ранг и прочее
+                    Selected_skill_max_score = 10; 
+                    Selected_skill_race_bonus = 1;
+                    // TODO: сделать логику определения минимального значения навыка, опираясь на расовые бонусы и прочее
+                    Selected_skill_min_score = Selected_skill_race_bonus;  
+                    Selected_skill_range_limit = selected_skill.Get_range_skill_limit();
+                    selected_skill_age_limit = selected_skill.Get_age_skill_limit();
                 }
                 OnPropertyChanged("Selected_skill");
             }
@@ -156,6 +172,90 @@ namespace Character_design
             {
                 skill_name = value;
                 OnPropertyChanged("Skill_name");
+            }
+        }
+        public string Selected_skill_title
+        {
+            get
+            {
+                return selected_skill_title;
+            }
+            set
+            {
+                selected_skill_title = value;
+                OnPropertyChanged("Selected_skill_title");
+            }
+        }
+        public int Selected_skill_score
+        {
+            get
+            {
+                return selected_skill_score;
+            }
+            set
+            {
+                selected_skill_score = value;
+                OnPropertyChanged("Selected_skill_score");
+            }
+        }
+        public int Selected_skill_min_score
+        {
+            get
+            {
+                return selected_skill_min_score;
+            }
+            set
+            {
+                selected_skill_min_score = value;
+                OnPropertyChanged("Selected_skill_min_score");
+            }
+        }
+        public int Selected_skill_max_score
+        {
+            get
+            {
+                return selected_skill_max_score;
+            }
+            set
+            {
+                selected_skill_max_score = value;
+                OnPropertyChanged("Selected_skill_max_score");
+            }
+        }
+        public int Selected_skill_race_bonus
+        {
+            get
+            {
+                return selected_skill_race_bonus;
+            }
+            set
+            {
+                selected_skill_race_bonus = value;
+                OnPropertyChanged("Selected_skill_race_bonus");
+            }
+        }
+        public int Selected_skill_range_limit
+        {
+            get
+            {
+                return selected_skill_range_limit;
+            }
+            set
+            {
+                selected_skill_range_limit = value;
+                OnPropertyChanged("Selected_skill_range_limit");
+            }
+        }
+        public int Selected_skill_age_limit
+        {
+            get
+            {
+                return selected_skill_age_limit;
+            }
+            set
+            {
+                selected_skill_age_limit = value;
+                OnPropertyChanged("Selected_skill_age_limit");
             }
         }
     }
