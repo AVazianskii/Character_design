@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SW_Character_creation;
 using Races_libs;
+using Skills_libs;
 using Age_status_libs;
 using Attribute_libs;
 
@@ -13,7 +14,9 @@ namespace Character_design
     internal class Character : Notify
     {
         private static Character Character_instance;
+        private Skill_Class swimming;
 
+        private List<Skill_Class> skills;
 
         private Race_class character_race;
         private Age_status_class Age_status;
@@ -33,6 +36,9 @@ namespace Character_design
         public Character()
         {
             Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            Swimming = Main_model.GetInstance().Skill_Manager.Get_Swimming();
+            skills = new List<Skill_Class>();
+            skills.Add(swimming);
             Forceuser = false;
             Experience = 180;
             //Set_Character_Race(Main_model.GetInstance().Race_Manager.Get_Empty_race());
@@ -52,6 +58,10 @@ namespace Character_design
             //Set_Character_Intelligence(Attribute_Manager.Get_intelligence());
             //Set_Character_Charm(Attribute_Manager.Get_charm());
             //Set_Character_Willpower(Attribute_Manager.Get_willpower());
+        }
+        public List<Skill_Class> Get_skills()
+        {
+            return skills;
         }
         public static Character GetInstance()
         {
@@ -87,10 +97,10 @@ namespace Character_design
             get { return experience; }
             set { experience = value; OnPropertyChanged("Experience"); }
         }
-        public byte Swimming_skill_score
+        public Skill_Class Swimming
         {
-            get { return swimming_skill_score; }
-            set { swimming_skill_score = value; OnPropertyChanged("Swimming_skill_score"); }
+            get { return swimming; }
+            set { swimming = value; OnPropertyChanged("Swimming"); }
         }
 
         //public void Set_Character_Race(Race_class Choosen_race)

@@ -92,12 +92,32 @@ namespace Character_design
             Show_tech_skills = new Command(o => _Show_tech_skills());
             Show_specific_skills = new Command(o => _Show_specific_skills());
 
-            Decrease_skill_score = new Command(o => selected_skill.Decrease_score(ref exp_points_left,
-                                                                                  ref selected_skill_score,
-                                                                                  Selected_skill_cost));
-            Increase_skill_score = new Command(o => selected_skill.Increase_score(ref exp_points_left,
-                                                                                  ref selected_skill_score,
-                                                                                  Selected_skill_cost));
+            //Decrease_skill_score = new Command(o => selected_skill.Decrease_score(ref exp_points_left,
+            //                                                                      ref selected_skill_score,
+            //                                                                      Selected_skill_cost));
+            Increase_skill_score = new Command(o =>
+            {
+                Skill_Class skill = o as Skill_Class;
+                if (skill != null)
+                {
+                    skill.Increase_score();
+                    Selected_skill_score = skill.Get_score();
+                }
+            });
+            //Character.GetInstance().Swimming.Increase_score(Character.GetInstance().Experience,
+            //Character.GetInstance().Swimming
+        }
+        private void Increase_selected_skill()
+        {
+            foreach(Skill_Class Skill in Character.GetInstance().Get_skills())
+            {
+                if(Skill.Get_skill_name() == selected_skill.Get_skill_name())
+                {
+                    Skill.Increase_score();
+                    Test = Skill.Get_score();
+                    //OnPropertyChanged("Selected_skill");
+                }
+            }
         }
         private void _Show_combat_skills()
         {
@@ -298,7 +318,8 @@ namespace Character_design
         }
         public int Test
         {
-            get { test = Character.GetInstance().Swimming_skill_score; return test; }
+            get { //test = Character.GetInstance().Swimming.Get_score(); 
+                  return test; }
             set { test = value; OnPropertyChanged("Test"); }
         }
     }
