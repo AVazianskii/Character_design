@@ -97,11 +97,20 @@ namespace Character_design
             //                                                                      Selected_skill_cost));
             Increase_skill_score = new Command(o =>
             {
+                //TODO: оформить в виде отдельного метода
                 Skill_Class skill = o as Skill_Class;
                 if (skill != null)
                 {
-                    skill.Increase_score();
-                    Selected_skill_score = skill.Get_score();
+                    foreach(Skill_Class Character_skill in Character.GetInstance().Get_skills())
+                    {
+                        if (skill.Get_skill_name() == Character_skill.Get_skill_name())
+                        {
+                            Character_skill.Increase_score();
+                            Selected_skill_score = Character_skill.Get_score();
+                            break;
+                        }
+                    }
+                    Test = Character.GetInstance().Swimming.Get_score();
                 }
             });
             //Character.GetInstance().Swimming.Increase_score(Character.GetInstance().Experience,
