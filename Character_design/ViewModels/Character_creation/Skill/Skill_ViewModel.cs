@@ -116,18 +116,6 @@ namespace Character_design
             //Character.GetInstance().Swimming.Increase_score(Character.GetInstance().Experience,
             //Character.GetInstance().Swimming
         }
-        private void Increase_selected_skill()
-        {
-            foreach(Skill_Class Skill in Character.GetInstance().Get_skills())
-            {
-                if(Skill.Get_skill_name() == selected_skill.Get_skill_name())
-                {
-                    Skill.Increase_score();
-                    Test = Skill.Get_score();
-                    //OnPropertyChanged("Selected_skill");
-                }
-            }
-        }
         private void _Show_combat_skills()
         {
             Skill_group = combat_skills;
@@ -195,141 +183,58 @@ namespace Character_design
         }
         public List<Skill_Class> Skill_group
         {
-            get
-            {
-                return skill_group;
-            }
-            set
-            {
-                skill_group = value;
-                OnPropertyChanged("Skill_group");
-            }
+            get { return skill_group; }
+            set { skill_group = value; OnPropertyChanged("Skill_group"); }
         }
         public string Selected_skill_description
         {
-            get
-            {
-                return selected_skill_description;
-            }
-            set
-            {
-                selected_skill_description = value;
-                OnPropertyChanged("Selected_skill_description");
-            }
+            get { return selected_skill_description; }
+            set { selected_skill_description = value; OnPropertyChanged("Selected_skill_description"); }
         }
         public string Skill_name
         {
-            get
-            {
-                return skill_name;
-            }
-            set
-            {
-                skill_name = value;
-                OnPropertyChanged("Skill_name");
-            }
+            get { return skill_name; }
+            set { skill_name = value; OnPropertyChanged("Skill_name"); }
         }
         public string Selected_skill_title
         {
-            get
-            {
-                return selected_skill_title;
-            }
-            set
-            {
-                selected_skill_title = value;
-                OnPropertyChanged("Selected_skill_title");
-            }
+            get { return selected_skill_title; }
+            set { selected_skill_title = value; OnPropertyChanged("Selected_skill_title"); }
         }
         public int Selected_skill_score
         {
-            get
-            {
-                return selected_skill_score;
-            }
-            set
-            {
-                selected_skill_score = value;
-                OnPropertyChanged("Selected_skill_score");
-            }
+            get { return selected_skill_score; }
+            set { selected_skill_score = value; OnPropertyChanged("Selected_skill_score"); }
         }
         public int Selected_skill_min_score
         {
-            get
-            {
-                return selected_skill_min_score;
-            }
-            set
-            {
-                selected_skill_min_score = value;
-                OnPropertyChanged("Selected_skill_min_score");
-            }
+            get { return selected_skill_min_score; }
+            set { selected_skill_min_score = value; OnPropertyChanged("Selected_skill_min_score"); }
         }
         public int Selected_skill_max_score
         {
-            get
-            {
-                return selected_skill_max_score;
-            }
-            set
-            {
-                selected_skill_max_score = value;
-                OnPropertyChanged("Selected_skill_max_score");
-            }
+            get { return selected_skill_max_score; }
+            set { selected_skill_max_score = value; OnPropertyChanged("Selected_skill_max_score"); }
         }
         public int Selected_skill_race_bonus
         {
-            get
-            {
-                return selected_skill_race_bonus;
-            }
-            set
-            {
-                selected_skill_race_bonus = value;
-                OnPropertyChanged("Selected_skill_race_bonus");
-            }
+            get { return selected_skill_race_bonus; }
+            set { selected_skill_race_bonus = value; OnPropertyChanged("Selected_skill_race_bonus"); }
         }
         public int Selected_skill_range_limit
         {
-            get
-            {
-                return selected_skill_range_limit;
-            }
-            set
-            {
-                selected_skill_range_limit = value;
-                OnPropertyChanged("Selected_skill_range_limit");
-            }
+            get { return selected_skill_range_limit; }
+            set { selected_skill_range_limit = value; OnPropertyChanged("Selected_skill_range_limit"); }
         }
         public int Selected_skill_age_limit
         {
-            get
-            {
-                return selected_skill_age_limit;
-            }
-            set
-            {
-                selected_skill_age_limit = value;
-                OnPropertyChanged("Selected_skill_age_limit");
-            }
+            get { return selected_skill_age_limit; }
+            set { selected_skill_age_limit = value; OnPropertyChanged("Selected_skill_age_limit"); }
         }
         public int Selected_skill_cost
         {
-            get
-            {
-                return selected_skill_cost;
-            }
-            set
-            {
-                selected_skill_cost = value;
-                OnPropertyChanged("Selected_skill_cost");
-            }
-        }
-        public int Test
-        {
-            get { //test = Character.GetInstance().Swimming.Get_score(); 
-                  return test; }
-            set { test = value; OnPropertyChanged("Test"); }
+            get { return selected_skill_cost; }
+            set { selected_skill_cost = value; OnPropertyChanged("Selected_skill_cost"); }
         }
     }
 }

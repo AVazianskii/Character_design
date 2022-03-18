@@ -31,14 +31,17 @@ namespace Character_design
 
         private bool Is_forceuser;
         private int experience;
-        private byte swimming_skill_score;
-        
+
         public Character()
         {
             Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
             Swimming = Main_model.GetInstance().Skill_Manager.Get_Swimming();
             skills = new List<Skill_Class>();
-            skills.Add(swimming);
+            foreach(Skill_Class Skill in Main_model.GetInstance().Skill_Manager.Get_skills())
+            {
+                skills.Add(Skill);
+            }
+            
             Forceuser = false;
             Experience = 180;
             //Set_Character_Race(Main_model.GetInstance().Race_Manager.Get_Empty_race());
@@ -73,10 +76,7 @@ namespace Character_design
         }
         public Race_class Character_race
         {
-            get 
-            {
-                return character_race;
-            }
+            get { return character_race; }
             set
             {
                 character_race = value;
@@ -86,11 +86,7 @@ namespace Character_design
         public bool Forceuser
         {
             get { return Is_forceuser; }
-            set
-            { 
-                Is_forceuser = value;
-                OnPropertyChanged("Forceuser");
-            }   
+            set { Is_forceuser = value; OnPropertyChanged("Forceuser"); }   
         }
         public int Experience
         {
@@ -102,11 +98,12 @@ namespace Character_design
             get { return swimming; }
             set { swimming = value; OnPropertyChanged("Swimming"); }
         }
+        public List<Skill_Class> Skills
+        {
+            get { return skills; }
+            set { skills = value; OnPropertyChanged("Skills"); }
+        }
 
-        //public void Set_Character_Race(Race_class Choosen_race)
-        //{
-        //    Character_race = Choosen_race;
-        //}
         public void Set_Character_age_status(Age_status_class Choosen_age_status)
             {
                 Age_status = Choosen_age_status;
@@ -144,6 +141,6 @@ namespace Character_design
                 this.Willpower = Willpower;
             }
             public Race_class Get_Character_race() { return Character_race; }
-        }
+    }
 
 }
