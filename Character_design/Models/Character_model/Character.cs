@@ -14,7 +14,6 @@ namespace Character_design
     internal class Character : Notify
     {
         private static Character Character_instance;
-        private Skill_Class swimming;
 
         private List<Skill_Class> skills;
 
@@ -35,7 +34,6 @@ namespace Character_design
         public Character()
         {
             Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
-            Swimming = Main_model.GetInstance().Skill_Manager.Get_Swimming();
             skills = new List<Skill_Class>();
             foreach(Skill_Class Skill in Main_model.GetInstance().Skill_Manager.Get_skills())
             {
@@ -92,11 +90,6 @@ namespace Character_design
         {
             get { return experience; }
             set { experience = value; OnPropertyChanged("Experience"); }
-        }
-        public Skill_Class Swimming
-        {
-            get { return swimming; }
-            set { swimming = value; OnPropertyChanged("Swimming"); }
         }
         public List<Skill_Class> Skills
         {
