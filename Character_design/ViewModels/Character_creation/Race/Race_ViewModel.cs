@@ -44,6 +44,7 @@ namespace Character_design
         private string selected_race_personal_data;
         private string selected_race_physical_data;
         private string selected_race_home_world;
+        private string selected_race_name;
         private int selected_race_strength_bonus,
                     selected_race_agility_bonus,
                     selected_race_stamina_bonus,
@@ -270,6 +271,11 @@ namespace Character_design
                 OnPropertyChanged("Selected_race_feature_list");
             }
         }
+        public string Selected_race_name
+        {
+            get { return selected_race_name; }
+            set { selected_race_name = value; OnPropertyChanged("Selected_race_name"); }
+        }
 
         private void _Choose_race()
         {
@@ -291,6 +297,7 @@ namespace Character_design
             set
             {
                 selected_race = value;
+                Selected_race_name = selected_race.Get_race_name();
                 Selected_race_description = selected_race.Get_general_description();
                 Selected_race_full_img_path = selected_race.Get_img_path();
                 Selected_race_personal_data = selected_race.Get_personal_properties();

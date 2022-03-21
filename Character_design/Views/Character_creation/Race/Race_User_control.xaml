@@ -35,8 +35,11 @@
         </Canvas>
         <Image HorizontalAlignment="Left" Height="496" Margin="262,6,0,0" VerticalAlignment="Top" Width="371"
                Source="{Binding Selected_race_full_img_path}"/>
+        <TextBlock HorizontalAlignment="Left" Height="55" Margin="645,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="485"
+                   TextAlignment="Center" FontSize="27"
+                   Text="{Binding Selected_race_name}"/>
 
-        <ScrollViewer Margin="645,6,16,354" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="645,50,16,354" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -267,7 +270,7 @@
                     FontSize="17" Background="Green" Foreground="White"
                     Command="{Binding Choose_race}"/>
         </Canvas>
-
+        
 
 
 
