@@ -17,12 +17,21 @@
                     <TextBlock Text="Персонаж" FontSize="16" Foreground="Wheat"/>
                 </Button.Content>
             </Button>
-            <Button Height="50" Canvas.Left="150" Canvas.Top="40" Width="130" Background="Black"
+            <Button Height="50" Canvas.Left="150" Canvas.Top="40" Width="150" Background="Black"
                     BorderThickness="0"
                     BorderBrush="{Binding Character_skills_button_border}"
                     Command="{Binding Open_character_skills}">
                 <Button.Content>
                     <TextBlock Text="Развитые навыки персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Height="50" Canvas.Left="300" Canvas.Top="40" Width="150" Background="Black"
+                    BorderThickness="0"
+                    BorderBrush="{Binding Character_forms_button_border}"
+                    Command="{Binding Open_character_forms}">
+                <Button.Content>
+                    <TextBlock Text="Боевые формы персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
@@ -34,6 +43,9 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type local:Character_skills_ViewModel}">
                     <general_data:Character_skills/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Character_forms_ViewModel}">
+                    <general_data:Character_forms/>
                 </DataTemplate>
             </Border.Resources>
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>
