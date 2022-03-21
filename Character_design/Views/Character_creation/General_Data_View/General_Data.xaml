@@ -22,7 +22,7 @@
                     BorderBrush="{Binding Character_skills_button_border}"
                     Command="{Binding Open_character_skills}">
                 <Button.Content>
-                    <TextBlock Text="Развитые навыки персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                    <TextBlock Text="Навыки персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
@@ -53,6 +53,15 @@
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
+            <Button Height="50" Canvas.Left="750" Canvas.Top="40" Width="150" Background="Black"
+                    BorderThickness="0"
+                    BorderBrush="{Binding Character_spaceship_button_border}"
+                    Command="{Binding Open_character_spaceship}">
+                <Button.Content>
+                    <TextBlock Text="Космический корабль" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
         </Canvas>
         <Border BorderBrush="Wheat" BorderThickness="0,1,0,0" HorizontalAlignment="Center" Height="770" Margin="0,90,0,0" VerticalAlignment="Top" Width="1130">
             <Border.Resources>
@@ -70,6 +79,9 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type local:Character_equipment_ViewModel}">
                     <general_data:Character_equipment/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Character_spaceship_ViewModel}">
+                    <general_data:Character_spaceship/>
                 </DataTemplate>
             </Border.Resources>
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>
