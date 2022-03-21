@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="770" d:DesignWidth="1130">
     <Grid Background="White">
-        <Image HorizontalAlignment="Left" Height="450" Margin="720,10,0,0" VerticalAlignment="Top" Width="400"/>
+        <Image HorizontalAlignment="Left" Height="450" Margin="780,10,0,0" VerticalAlignment="Top" Width="350"/>
         <Grid HorizontalAlignment="Left" Height="400" Margin="0,80,0,0" VerticalAlignment="Top" Width="430">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -78,6 +78,35 @@
                  VerticalAlignment="Top" Width="505" TextAlignment="Center" FontSize="20"
                  BorderThickness="0,0,0,1" BorderBrush="Red"
                  Text="{Binding Character_name, UpdateSourceTrigger=LostFocus}"/>
+        <Grid HorizontalAlignment="Left" Height="400" Margin="435,80,0,0" VerticalAlignment="Top" Width="345">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0"
+                       Text="Атрибуты:" FontSize="17" TextAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14"
+                       Text="{Binding Min_character_strength, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Сила" TextAlignment="Center" FontSize="14"/>
+            <ProgressBar Grid.Row="2" Grid.Column="1"
+                         Minimum="{Binding Min_character_strength, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Max_character_strength, UpdateSourceTrigger=PropertyChanged}"
+                         Value="{Binding Character_strength, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" TextAlignment="Center" FontSize="14"
+                       Text="{Binding Max_character_strength, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </Grid>
 
     </Grid>
 </UserControl>

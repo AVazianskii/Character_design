@@ -15,7 +15,11 @@ namespace Character_design
         private string character_age_status;
         private int character_age,
                     character_exp,
-                    character_atr;
+                    character_atr,
+                    min_character_strength,
+                    max_character_strength;
+        private int character_strength;
+
 
         public string Character_name
         {
@@ -46,6 +50,21 @@ namespace Character_design
         {
             get { return character_atr; }
             set { character_atr = value; OnPropertyChanged("Character_atr"); }
+        }
+        public int Min_character_strength
+        {
+            get { return min_character_strength; }
+            set { min_character_strength = value; OnPropertyChanged("Min_character_strength"); }
+        }
+        public int Max_character_strength
+        {
+            get { return max_character_strength; }
+            set { max_character_strength = value; OnPropertyChanged("Max_character_strength"); }
+        }
+        public int Character_strength
+        {
+            get { return character_strength; }
+            set { character_strength = value; OnPropertyChanged("Character_strength"); }
         }
 
         public static Character_info_ViewModel GetInstance()
