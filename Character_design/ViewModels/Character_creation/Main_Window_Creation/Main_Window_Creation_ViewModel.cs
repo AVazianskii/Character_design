@@ -41,7 +41,8 @@ namespace Character_design
             general_data = General_Data_ViewModel.GetInstance();
             race = Race_ViewModel.GetInstance();
             skill = Skill_ViewModel.GetInstance();
-            current_VM = null;
+
+            current_VM = general_data;
         }
         public Command Open_general_data_user_control { get; private set; }
         public Command Open_race_user_control { get; private set; }

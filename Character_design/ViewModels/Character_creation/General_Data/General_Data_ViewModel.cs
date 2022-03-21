@@ -63,7 +63,8 @@ namespace Character_design
             Character_equipment = Character_equipment_ViewModel.GetInstance();
             Character_spaceship = Character_spaceship_ViewModel.GetInstance();
             Character_companion = Character_companion_ViewModel.GetInstance();
-            currentViewModel = null;
+
+            currentViewModel    = Character_info;
 
             Open_character_info         = new Command(o => _Open_character_info());
             Open_character_skills       = new Command(o => _Open_character_skills());
