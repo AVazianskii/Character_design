@@ -6,7 +6,52 @@
              xmlns:local="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
              mc:Ignorable="d" 
              d:DesignHeight="770" d:DesignWidth="1130">
-    <Grid Background="Green">
-            
+    <Grid Background="White">
+        <Image HorizontalAlignment="Left" Height="450" Margin="720,10,0,0" VerticalAlignment="Top" Width="400"/>
+        <Grid HorizontalAlignment="Left" Height="400" Margin="0,80,0,0" VerticalAlignment="Top" Width="430">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="Раса" FontSize="17" TextAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="17" Text="Пол" FontSize="17" TextAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Возраст" FontSize="17" TextAlignment="Center"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="Возрастной статус" FontSize="17" TextAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" Text="Ранг" FontSize="17" TextAlignment="Center"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Margin="17" Text="Обладание силой" FontSize="17" TextAlignment="Center"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Margin="5" Text="Количество очков опыта" FontSize="17" TextAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Margin="5" Text="Количество очков атрибутов" FontSize="17" TextAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" FontSize="17" TextAlignment="Center"
+                       Text="{Binding Character_race_name, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="1" Grid.Column="1" Margin="10">
+                <Button.Content>
+                    <TextBlock Text="Man"/>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="2" Margin="10">
+                <Button.Content>
+                    <TextBlock Text="Woman"/>
+                </Button.Content>
+            </Button>
+
+        </Grid>
+        <TextBlock HorizontalAlignment="Left" Height="30" Margin="20,20,0,0" TextWrapping="Wrap" Text="Имя персонажа:" 
+                   VerticalAlignment="Top" Width="190" TextAlignment="Center" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="215,20,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="505" TextAlignment="Center" FontSize="20"
+                 BorderThickness="0,0,0,1" BorderBrush="Red"
+                 Text="{Binding Character_name, UpdateSourceTrigger=LostFocus}"/>
+
     </Grid>
 </UserControl>
