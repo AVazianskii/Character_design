@@ -101,12 +101,16 @@
     <Compile Include="Models\Main_model\Main_model.cs" />
     <Compile Include="MVVM infrastructure\Command.cs" />
     <Compile Include="MVVM infrastructure\Notify.cs" />
+    <Compile Include="ViewModels\Character_creation\General_Data\Character_info_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\General_Data\General_Data_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Main_Window_Creation\Main_Window_Creation_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Skill\Skill_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\Main_Menu_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\MainWindow_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Race\Race_ViewModel.cs" />
+    <Compile Include="Views\Character_creation\General_Data_View\Character_info.xaml.cs">
+      <DependentUpon>Character_info.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Character_creation\General_Data_View\General_Data.xaml.cs">
       <DependentUpon>General_Data.xaml</DependentUpon>
     </Compile>
@@ -134,6 +138,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Character_creation\General_Data_View\Character_info.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Character_creation\General_Data_View\General_Data.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

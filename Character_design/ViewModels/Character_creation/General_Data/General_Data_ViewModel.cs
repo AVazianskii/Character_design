@@ -8,6 +8,7 @@ namespace Character_design
     {
         private static General_Data_ViewModel _instance;
         private Notify currentViewModel;
+        private Notify Character_info;
         private SolidColorBrush character_button_border;
         private SolidColorBrush Wheat_brush;
         private SolidColorBrush Black_brush;
@@ -38,6 +39,7 @@ namespace Character_design
         private General_Data_ViewModel()
         {
             currentViewModel = null;
+            Character_info = Character_info_ViewModel.GetInstance(); 
 
             Open_character_info = new Command(o => _Open_character_info());
 
@@ -49,6 +51,7 @@ namespace Character_design
         private void _Open_character_info()
         {
             Character_button_border = Wheat_brush;
+            CurrentViewModel = Character_info;
         }
     }
 }

@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
+             xmlns:general_data="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
+             xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1130">
+             d:DesignHeight="860" d:DesignWidth="1130">
     <Grid Background="Black">
         <Canvas HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="1130">
             <Button Height="50" Canvas.Left="0" Canvas.Top="40" Width="130" Background="Black"
@@ -17,7 +18,12 @@
                 </Button.Content>
             </Button>
         </Canvas>
-        <Border BorderBrush="Wheat" BorderThickness="0,1,0,0" HorizontalAlignment="Center" Height="710" Margin="0,90,0,0" VerticalAlignment="Top" Width="1130">
+        <Border BorderBrush="Wheat" BorderThickness="0,1,0,0" HorizontalAlignment="Center" Height="770" Margin="0,90,0,0" VerticalAlignment="Top" Width="1130">
+            <Border.Resources>
+                <DataTemplate DataType="{x:Type local:Character_info_ViewModel}">
+                    <general_data:Character_info/>
+                </DataTemplate>
+            </Border.Resources>
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>
         </Border>
 
