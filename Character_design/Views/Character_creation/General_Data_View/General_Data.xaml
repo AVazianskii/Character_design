@@ -5,8 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1146">
-    <Grid Background="Green">
-            
+             d:DesignHeight="800" d:DesignWidth="1130">
+    <Grid Background="Black">
+        <Canvas HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="1130">
+            <Button Height="50" Canvas.Left="0" Canvas.Top="40" Width="130" Background="Black"
+                    BorderThickness="0"
+                    BorderBrush="{Binding Character_button_border}"
+                    Command="{Binding Open_character_info}">
+                <Button.Content>
+                    <TextBlock Text="Персонаж" FontSize="16" Foreground="Wheat"/>
+                </Button.Content>
+            </Button>
+        </Canvas>
+        <Border BorderBrush="Wheat" BorderThickness="0,1,0,0" HorizontalAlignment="Center" Height="710" Margin="0,90,0,0" VerticalAlignment="Top" Width="1130">
+            <ContentControl Content="{Binding Path=CurrentViewModel}"/>
+        </Border>
+
     </Grid>
 </UserControl>
