@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Character_design
 {
-    internal class Character_info_ViewModel : Notify
+    internal class Character_skills_ViewModel : Notify
     {
-        private static Character_info_ViewModel _instance;
-        public static Character_info_ViewModel GetInstance()
+        private static Character_skills_ViewModel _instance;
+        public static Character_skills_ViewModel GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new Character_info_ViewModel();
+                _instance = new Character_skills_ViewModel();
             }
             return _instance;
         }
 
 
-        private Character_info_ViewModel()
+        private Character_skills_ViewModel()
         {
 
         }

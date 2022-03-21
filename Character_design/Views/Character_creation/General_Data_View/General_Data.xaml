@@ -9,12 +9,21 @@
              d:DesignHeight="860" d:DesignWidth="1130">
     <Grid Background="Black">
         <Canvas HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="1130">
-            <Button Height="50" Canvas.Left="0" Canvas.Top="40" Width="130" Background="Black"
+            <Button Height="50" Canvas.Left="0" Canvas.Top="40" Width="150" Background="Black"
                     BorderThickness="0"
-                    BorderBrush="{Binding Character_button_border}"
+                    BorderBrush="{Binding Character_info_button_border}"
                     Command="{Binding Open_character_info}">
                 <Button.Content>
                     <TextBlock Text="Персонаж" FontSize="16" Foreground="Wheat"/>
+                </Button.Content>
+            </Button>
+            <Button Height="50" Canvas.Left="150" Canvas.Top="40" Width="130" Background="Black"
+                    BorderThickness="0"
+                    BorderBrush="{Binding Character_skills_button_border}"
+                    Command="{Binding Open_character_skills}">
+                <Button.Content>
+                    <TextBlock Text="Развитые навыки персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                               TextAlignment="Center"/>
                 </Button.Content>
             </Button>
         </Canvas>
@@ -22,6 +31,9 @@
             <Border.Resources>
                 <DataTemplate DataType="{x:Type local:Character_info_ViewModel}">
                     <general_data:Character_info/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Character_skills_ViewModel}">
+                    <general_data:Character_skills/>
                 </DataTemplate>
             </Border.Resources>
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>

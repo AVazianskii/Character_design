@@ -9,11 +9,14 @@ namespace Character_design
         private static General_Data_ViewModel _instance;
         private Notify currentViewModel;
         private Notify Character_info;
-        private SolidColorBrush character_button_border;
+        private Notify Character_skills;
+        private SolidColorBrush character_info_button_border;
+        private SolidColorBrush character_skills_button_border;
         private SolidColorBrush Wheat_brush;
         private SolidColorBrush Black_brush;
         
         public Command Open_character_info { get; private set; }
+        public Command Open_character_skills { get; private set; }
 
         public static General_Data_ViewModel GetInstance()
         {
@@ -30,28 +33,39 @@ namespace Character_design
             get { return currentViewModel; }
             set { currentViewModel = value; OnPropertyChanged("CurrentViewModel"); }
         }
-        public SolidColorBrush Character_button_border
+        public SolidColorBrush Character_info_button_border
         {
-            get { return character_button_border;  }
-            set { character_button_border = value; OnPropertyChanged("Character_button_border"); }
+            get { return character_info_button_border;  }
+            set { character_info_button_border = value; OnPropertyChanged("Character_button_border"); }
+        }
+        public SolidColorBrush Character_skills_button_border
+        {
+            get { return character_skills_button_border; }
+            set { character_skills_button_border = value; OnPropertyChanged("Character_skills_button_border"); }
         }
 
         private General_Data_ViewModel()
         {
+            Character_info = Character_info_ViewModel.GetInstance();
+            Character_skills = Character_skills_ViewModel.GetInstance();
             currentViewModel = null;
-            Character_info = Character_info_ViewModel.GetInstance(); 
 
             Open_character_info = new Command(o => _Open_character_info());
+            Open_character_skills = new Command(o => _Open_character_skills());
 
             Black_brush = new SolidColorBrush(Colors.Black);
             Wheat_brush = new SolidColorBrush(Colors.Wheat);
-            Character_button_border = Wheat_brush;
+            Character_info_button_border = Wheat_brush;
         }
 
         private void _Open_character_info()
         {
-            Character_button_border = Wheat_brush;
+            Character_info_button_border = Wheat_brush;
             CurrentViewModel = Character_info;
+        }
+        private void _Open_character_skills()
+        {
+            CurrentViewModel = Character_skills;
         }
     }
 }
