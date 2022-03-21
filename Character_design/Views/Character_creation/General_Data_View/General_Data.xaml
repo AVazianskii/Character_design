@@ -9,17 +9,20 @@
              d:DesignHeight="860" d:DesignWidth="1130">
     <Grid Background="Black">
         <Canvas HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="1130">
-            <Button Height="50" Canvas.Left="0" Canvas.Top="40" Width="150" Background="Black"
-                    BorderThickness="0"
-                    BorderBrush="{Binding Character_info_button_border}"
-                    Command="{Binding Open_character_info}">
-                <Button.Content>
-                    <TextBlock Text="Персонаж" FontSize="16" Foreground="Wheat"/>
-                </Button.Content>
-            </Button>
+            <Border Canvas.Left="0" Canvas.Top="34" BorderThickness="3">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="{Binding Character_info_button_border}"/>
+                </Border.BorderBrush>
+                <Button Height="50"  Width="150" Background="Black"
+                        BorderThickness="0"
+                        Command="{Binding Open_character_info}">
+                    <Button.Content>
+                        <TextBlock Text="Персонаж" FontSize="16" Foreground="Wheat"/>
+                    </Button.Content>
+                </Button>
+            </Border>
             <Button Height="50" Canvas.Left="150" Canvas.Top="40" Width="150" Background="Black"
                     BorderThickness="0"
-                    BorderBrush="{Binding Character_skills_button_border}"
                     Command="{Binding Open_character_skills}">
                 <Button.Content>
                     <TextBlock Text="Навыки персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"

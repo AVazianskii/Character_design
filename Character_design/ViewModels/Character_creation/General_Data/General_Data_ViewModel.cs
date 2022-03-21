@@ -15,10 +15,10 @@ namespace Character_design
         private Notify Character_equipment;
         private Notify Character_spaceship;
         private Notify Character_companion;
-        private SolidColorBrush character_info_button_border;
-        private SolidColorBrush character_skills_button_border;
-        private SolidColorBrush Wheat_brush;
-        private SolidColorBrush Black_brush;
+        private Color character_info_button_border;
+        private Color character_skills_button_border;
+        private Color Wheat_brush;
+        private Color Black_brush;
         
         public Command Open_character_info { get; private set; }
         public Command Open_character_skills { get; private set; }
@@ -43,12 +43,12 @@ namespace Character_design
             get { return currentViewModel; }
             set { currentViewModel = value; OnPropertyChanged("CurrentViewModel"); }
         }
-        public SolidColorBrush Character_info_button_border
+        public Color Character_info_button_border
         {
             get { return character_info_button_border;  }
-            set { character_info_button_border = value; OnPropertyChanged("Character_button_border"); }
+            set { character_info_button_border = value; OnPropertyChanged("Character_info_button_border"); }
         }
-        public SolidColorBrush Character_skills_button_border
+        public Color Character_skills_button_border
         {
             get { return character_skills_button_border; }
             set { character_skills_button_border = value; OnPropertyChanged("Character_skills_button_border"); }
@@ -73,9 +73,9 @@ namespace Character_design
             Open_character_spaceship    = new Command(o => _Open_character_spaceship());
             Open_character_companion    = new Command(o => _Open_character_companion());
 
-            Black_brush = new SolidColorBrush(Colors.Black);
-            Wheat_brush = new SolidColorBrush(Colors.Wheat);
-            Character_info_button_border = Wheat_brush;
+            Black_brush = Colors.Black;//new Color().;
+            Wheat_brush = Colors.Wheat;//new Color(Colors.Wheat);
+            Character_info_button_border = Black_brush;
         }
 
         private void _Open_character_info()
