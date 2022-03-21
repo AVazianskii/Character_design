@@ -26,8 +26,9 @@ namespace Character_design
         {
             Race_Manager = Race_manager.GetInstance();
             Skill_Manager = Skill_manager.GetInstance();
-            //Load_async(Race_Manager);
-            Load_all_from(Race_Manager);
+            Load_async(Race_Manager);
+            //Load_async(Skill_Manager);
+            //Load_all_from(Race_Manager);
             Load_all_from(Skill_Manager);
         }
 
@@ -43,9 +44,9 @@ namespace Character_design
         {
             Manager.Run_download_and_upload_process();
         }
-        private async void Load_async(Abstract_manager _Manager)
+        private async void Load_async(Abstract_manager _Manager_1)
         {
-            await Task.Run(() => Load_all_from(_Manager));
+            await Task.Run(() => Load_all_from(_Manager_1));
         }
     }
 }
