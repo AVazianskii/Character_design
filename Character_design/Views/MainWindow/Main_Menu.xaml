@@ -27,11 +27,11 @@
 
         </Canvas>
         <Image HorizontalAlignment="Left" Height="756" Margin="50,68,0,0" VerticalAlignment="Top" Width="482"
-               Source="D:\STAR WARS Saga\Character_creation\Character_design\Character_design\Pictures\Main_menu\vader_1.jpg"/>
+               Source="{Binding Left_picture_source}"/>
         <Image HorizontalAlignment="Left" Height="547" Margin="943,144,0,0" VerticalAlignment="Top" Width="557"
-               Source="D:\STAR WARS Saga\Character_creation\Character_design\Character_design\Pictures\Main_menu\death_star_1.jpg"/>
+               Source="{Binding Right_picture_source}"/>
         <Image HorizontalAlignment="Center" Height="146" Margin="0,34,0,0" VerticalAlignment="Top" Width="306"
-               Source="D:\STAR WARS Saga\Character_creation\Character_design\Character_design\Pictures\Main_menu\логотип_1.jpg"/>
+               Source="{Binding Central_picture_source}"/>
         <ContentControl Content="{Binding Path=CurrentViewModel}"/>
     </Grid>
 </UserControl>
