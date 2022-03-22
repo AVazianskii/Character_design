@@ -78,33 +78,215 @@
                  VerticalAlignment="Top" Width="505" TextAlignment="Center" FontSize="20"
                  BorderThickness="0,0,0,1" BorderBrush="Red"
                  Text="{Binding Character_name, UpdateSourceTrigger=LostFocus}"/>
-        <Grid HorizontalAlignment="Left" Height="400" Margin="400,80,0,0" VerticalAlignment="Top" Width="345">
+        <Grid HorizontalAlignment="Left" Height="420" Margin="370,60,0,0" VerticalAlignment="Top" Width="300">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0"
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="0"
                        Text="Атрибуты:" FontSize="17" TextAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Min_character_strength, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="Сила" TextAlignment="Center" FontSize="14"/>
-            <ProgressBar Grid.Row="2" Grid.Column="1" Height="10"
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Сила" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Character_strength, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="10"
                          Minimum="{Binding Min_character_strength, UpdateSourceTrigger=PropertyChanged}"
                          Maximum="{Binding Max_character_strength, UpdateSourceTrigger=PropertyChanged}"
                          Value="{Binding Character_strength, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                <TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Max_character_strength, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Min_character_agility, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Ловкость" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Character_agility, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="10"
+                         Minimum="{Binding Min_character_agility, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Max_character_agility, UpdateSourceTrigger=PropertyChanged}"
+                         Value="{Binding Character_agility, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Max_character_agility, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Row="3" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Min_character_stamina, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Выносливость" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Character_stamina, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="10"
+                         Minimum="{Binding Min_character_stamina, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Max_character_stamina, UpdateSourceTrigger=PropertyChanged}"
+                         Value="{Binding Character_stamina, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Max_character_stamina, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Row="4" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Min_character_quickness, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Проворство" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Character_quickness, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="10"
+                         Minimum="{Binding Min_character_quickness, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Max_character_quickness, UpdateSourceTrigger=PropertyChanged}"
+                         Value="{Binding Character_quickness, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Max_character_quickness, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Row="5" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Min_character_perception, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Восприятие" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Character_perception, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="10"
+                         Minimum="{Binding Min_character_perception, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Max_character_perception, UpdateSourceTrigger=PropertyChanged}"
+                         Value="{Binding Character_perception, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Max_character_perception, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Row="6" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Min_character_intelligence, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Интеллект" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Character_intelligence, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="10"
+                         Minimum="{Binding Min_character_intelligence, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Max_character_intelligence, UpdateSourceTrigger=PropertyChanged}"
+                         Value="{Binding Character_intelligence, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Max_character_intelligence, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Row="7" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Min_character_charm, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Обаяние" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Character_charm, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="10"
+                         Minimum="{Binding Min_character_charm, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Max_character_charm, UpdateSourceTrigger=PropertyChanged}"
+                         Value="{Binding Character_charm, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Max_character_charm, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Row="8" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Min_character_willpower, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Сила воли" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Character_willpower, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="10"
+                         Minimum="{Binding Min_character_willpower, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Max_character_willpower, UpdateSourceTrigger=PropertyChanged}"
+                         Value="{Binding Character_willpower, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
+                       Text="{Binding Max_character_willpower, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
 
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="345" Margin="750,425,0,0" VerticalAlignment="Top" Width="380">
@@ -114,7 +296,7 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="285" Margin="0,485,0,0" VerticalAlignment="Top" Width="370">
             <TextBlock Margin="20,10,20,205" Text="Окно подсказок при выборе ранга или возраста" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="285" Margin="0,485,0,0" VerticalAlignment="Top" Width="382">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="285" Margin="0,485,0,0" VerticalAlignment="Top" Width="380">
             <TextBlock Margin="20,10,20,205" Text="Боевые параметры" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"/>
         </Border>
 

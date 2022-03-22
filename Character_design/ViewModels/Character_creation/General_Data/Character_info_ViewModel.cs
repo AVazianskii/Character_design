@@ -17,8 +17,29 @@ namespace Character_design
                     character_exp,
                     character_atr,
                     min_character_strength,
-                    max_character_strength;
-        private int character_strength;
+                    max_character_strength,
+                    min_character_agility,
+                    max_character_agility,
+                    min_character_stamina,
+                    max_character_stamina,
+                    min_character_quickness,
+                    max_character_quickness,
+                    min_character_perception,
+                    max_character_perception,
+                    min_character_intelligence,
+                    max_character_intelligence,
+                    min_character_charm,
+                    max_character_charm,
+                    min_character_willpower,
+                    max_character_willpower;
+        private int character_strength,
+                    character_agility,
+                    character_stamina,
+                    character_quickness,
+                    character_perception,
+                    character_intelligence,
+                    character_charm,
+                    character_willpower;
 
 
         public string Character_name
@@ -65,6 +86,111 @@ namespace Character_design
         {
             get { return character_strength; }
             set { character_strength = value; OnPropertyChanged("Character_strength"); }
+        }
+        public int Min_character_agility
+        {
+            get { return min_character_agility; }
+            set { min_character_agility = value; OnPropertyChanged("Min_character_agility"); }
+        }
+        public int Max_character_agility
+        {
+            get { return max_character_agility; }
+            set { max_character_agility = value; OnPropertyChanged("Max_character_agility"); }
+        }
+        public int Character_agility
+        {
+            get { return character_agility; }
+            set { character_agility = value; OnPropertyChanged("Character_agility"); }
+        }
+        public int Min_character_stamina
+        {
+            get { return min_character_stamina; }
+            set { min_character_stamina = value; OnPropertyChanged("Min_character_stamina"); }
+        }
+        public int Max_character_stamina
+        {
+            get { return max_character_stamina; }
+            set { max_character_stamina = value; OnPropertyChanged("Max_character_stamina"); }
+        }
+        public int Character_stamina
+        {
+            get { return character_stamina; }
+            set { character_stamina = value; OnPropertyChanged("Character_stamina"); }
+        }
+        public int Min_character_quickness
+        {
+            get { return min_character_quickness; }
+            set { min_character_quickness = value; OnPropertyChanged("Min_character_quickness"); }
+        }
+        public int Max_character_quickness
+        {
+            get { return max_character_quickness; }
+            set { max_character_quickness = value; OnPropertyChanged("Max_character_quickness"); }
+        }
+        public int Character_quickness
+        {
+            get { return character_quickness; }
+            set { character_quickness = value; OnPropertyChanged("Character_quickness"); }
+        }
+        public int Min_character_perception
+        {
+            get { return min_character_perception; }
+            set { min_character_perception = value; OnPropertyChanged("Min_character_perception"); }
+        }
+        public int Max_character_perception
+        {
+            get { return max_character_perception; }
+            set { max_character_perception = value; OnPropertyChanged("Max_character_perception"); }
+        }
+        public int Character_perception
+        {
+            get { return character_perception; }
+            set { character_perception = value; OnPropertyChanged("Character_perception"); }
+        }
+        public int Min_character_intelligence
+        {
+            get { return min_character_intelligence; }
+            set { min_character_intelligence = value; OnPropertyChanged("Min_character_intelligence"); }
+        }
+        public int Max_character_intelligence
+        {
+            get { return max_character_intelligence; }
+            set { max_character_intelligence = value; OnPropertyChanged("Max_character_intelligence"); }
+        }
+        public int Character_intelligence
+        {
+            get { return character_intelligence; }
+            set { character_intelligence = value; OnPropertyChanged("Character_intelligence"); }
+        }
+        public int Min_character_charm
+        {
+            get { return min_character_charm; }
+            set { min_character_charm = value; OnPropertyChanged("Min_character_charm"); }
+        }
+        public int Max_character_charm
+        {
+            get { return max_character_charm; }
+            set { max_character_charm = value; OnPropertyChanged("Max_character_charm"); }
+        }
+        public int Character_charm
+        {
+            get { return character_charm; }
+            set { character_charm = value; OnPropertyChanged("Character_charm"); }
+        }
+        public int Min_character_willpower
+        {
+            get { return min_character_willpower; }
+            set { min_character_willpower = value; OnPropertyChanged("Min_character_willpower"); }
+        }
+        public int Max_character_willpower
+        {
+            get { return max_character_willpower; }
+            set { max_character_willpower = value; OnPropertyChanged("Max_character_willpower"); }
+        }
+        public int Character_willpower
+        {
+            get { return character_willpower; }
+            set { character_willpower = value; OnPropertyChanged("Character_willpower"); }
         }
 
         public static Character_info_ViewModel GetInstance()
