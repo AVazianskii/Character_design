@@ -15,10 +15,16 @@ namespace Character_design
         private Notify Character_equipment;
         private Notify Character_spaceship;
         private Notify Character_companion;
-        private Color character_info_button_border;
-        private Color character_skills_button_border;
-        private Color Wheat_brush;
-        private Color Black_brush;
+        private SolidColorBrush character_info_button_border;
+        private SolidColorBrush character_skills_button_border;
+        private SolidColorBrush character_forms_button_border;
+        private SolidColorBrush character_features_button_border;
+        private SolidColorBrush character_equipment_button_border;
+        private SolidColorBrush character_spaceship_button_border;
+        private SolidColorBrush character_companion_button_border;
+        private Color Chosen_border_color;
+        private Color Unchoosen_border_color;
+        
         
         public Command Open_character_info { get; private set; }
         public Command Open_character_skills { get; private set; }
@@ -43,16 +49,43 @@ namespace Character_design
             get { return currentViewModel; }
             set { currentViewModel = value; OnPropertyChanged("CurrentViewModel"); }
         }
-        public Color Character_info_button_border
+        public SolidColorBrush Character_info_button_border
         {
             get { return character_info_button_border;  }
             set { character_info_button_border = value; OnPropertyChanged("Character_info_button_border"); }
         }
-        public Color Character_skills_button_border
+        public SolidColorBrush Character_skills_button_border
         {
             get { return character_skills_button_border; }
             set { character_skills_button_border = value; OnPropertyChanged("Character_skills_button_border"); }
         }
+        public SolidColorBrush Character_forms_button_border
+        {
+            get { return character_forms_button_border; }
+            set { character_forms_button_border = value; OnPropertyChanged("Character_forms_button_border"); }
+        }
+        public SolidColorBrush Character_features_button_border
+        {
+            get { return character_features_button_border; }
+            set { character_features_button_border = value; OnPropertyChanged("Character_features_button_border"); }
+        }
+        public SolidColorBrush Character_equipment_button_border
+        {
+            get { return character_equipment_button_border; }
+            set { character_equipment_button_border = value; OnPropertyChanged("Character_equipment_button_border"); }
+        }
+        public SolidColorBrush Character_spaceship_button_border
+        {
+            get { return character_spaceship_button_border; }
+            set { character_spaceship_button_border = value; OnPropertyChanged("Character_spaceship_button_border"); }
+        }
+        public SolidColorBrush Character_companion_button_border
+        {
+            get { return character_companion_button_border; }
+            set { character_companion_button_border = value; OnPropertyChanged("Character_companion_button_border"); }
+        }
+
+
 
         private General_Data_ViewModel()
         {
@@ -74,38 +107,108 @@ namespace Character_design
             Open_character_spaceship    = new Command(o => _Open_character_spaceship());
             Open_character_companion    = new Command(o => _Open_character_companion());
 
-            Black_brush = Colors.Black;//new Color().;
-            Wheat_brush = Colors.Wheat;//new Color(Colors.Wheat);
-            Character_info_button_border = Black_brush;
+            Unchoosen_border_color  = Colors.Black;
+            Chosen_border_color     = Colors.Wheat;
+
+            Character_info_button_border        = new SolidColorBrush();
+            Character_skills_button_border      = new SolidColorBrush();
+            Character_forms_button_border       = new SolidColorBrush();
+            Character_features_button_border    = new SolidColorBrush();
+            Character_equipment_button_border   = new SolidColorBrush();
+            Character_spaceship_button_border   = new SolidColorBrush();
+            Character_companion_button_border   = new SolidColorBrush();
+
+            Character_info_button_border.Color      = Chosen_border_color;
+            Character_skills_button_border.Color    = Unchoosen_border_color;
+            Character_forms_button_border.Color     = Unchoosen_border_color;
+            Character_features_button_border.Color  = Unchoosen_border_color;
+            Character_equipment_button_border.Color = Unchoosen_border_color;
+            Character_spaceship_button_border.Color = Unchoosen_border_color;
+            Character_companion_button_border.Color = Unchoosen_border_color;
         }
 
         private void _Open_character_info()
         {
-            Character_info_button_border = Wheat_brush;
+            Character_info_button_border.Color      = Chosen_border_color;
+            Character_skills_button_border.Color    = Unchoosen_border_color;
+            Character_forms_button_border.Color     = Unchoosen_border_color;
+            Character_features_button_border.Color  = Unchoosen_border_color;
+            Character_equipment_button_border.Color = Unchoosen_border_color;
+            Character_spaceship_button_border.Color = Unchoosen_border_color;
+            Character_companion_button_border.Color = Unchoosen_border_color;
+
             CurrentViewModel = Character_info;
         }
         private void _Open_character_skills()
         {
+            Character_info_button_border.Color      = Unchoosen_border_color;
+            Character_skills_button_border.Color    = Chosen_border_color;
+            Character_forms_button_border.Color     = Unchoosen_border_color;
+            Character_features_button_border.Color  = Unchoosen_border_color;
+            Character_equipment_button_border.Color = Unchoosen_border_color;
+            Character_spaceship_button_border.Color = Unchoosen_border_color;
+            Character_companion_button_border.Color = Unchoosen_border_color;
+
             CurrentViewModel = Character_skills;
         }
         private void _Open_character_forms()
         {
+            Character_forms_button_border.Color     = Chosen_border_color;
+            Character_info_button_border.Color      = Unchoosen_border_color;
+            Character_skills_button_border.Color    = Unchoosen_border_color;
+            Character_features_button_border.Color  = Unchoosen_border_color;
+            Character_equipment_button_border.Color = Unchoosen_border_color;
+            Character_spaceship_button_border.Color = Unchoosen_border_color;
+            Character_companion_button_border.Color = Unchoosen_border_color;
+
             CurrentViewModel = Character_forms;
         }
         private void _Open_character_features()
         {
+            Character_info_button_border.Color      = Unchoosen_border_color;
+            Character_skills_button_border.Color    = Unchoosen_border_color;
+            Character_forms_button_border.Color     = Unchoosen_border_color;
+            Character_features_button_border.Color  = Chosen_border_color;
+            Character_equipment_button_border.Color = Unchoosen_border_color;
+            Character_spaceship_button_border.Color = Unchoosen_border_color;
+            Character_companion_button_border.Color = Unchoosen_border_color;
+
             CurrentViewModel = Character_features;
         }
         private void _Open_character_equipment()
         {
+            Character_info_button_border.Color      = Unchoosen_border_color;
+            Character_skills_button_border.Color    = Unchoosen_border_color;
+            Character_forms_button_border.Color     = Unchoosen_border_color;
+            Character_features_button_border.Color  = Unchoosen_border_color;
+            Character_equipment_button_border.Color = Chosen_border_color;
+            Character_spaceship_button_border.Color = Unchoosen_border_color;
+            Character_companion_button_border.Color = Unchoosen_border_color;
+
             CurrentViewModel = Character_equipment;
         }
         private void _Open_character_spaceship()
         {
+            Character_info_button_border.Color      = Unchoosen_border_color;
+            Character_skills_button_border.Color    = Unchoosen_border_color;
+            Character_forms_button_border.Color     = Unchoosen_border_color;
+            Character_features_button_border.Color  = Unchoosen_border_color;
+            Character_equipment_button_border.Color = Unchoosen_border_color;
+            Character_spaceship_button_border.Color = Chosen_border_color;
+            Character_companion_button_border.Color = Unchoosen_border_color;
+
             CurrentViewModel = Character_spaceship;
         }
         private void _Open_character_companion()
         {
+            Character_info_button_border.Color      = Unchoosen_border_color;
+            Character_skills_button_border.Color    = Unchoosen_border_color;
+            Character_forms_button_border.Color     = Unchoosen_border_color;
+            Character_features_button_border.Color  = Unchoosen_border_color;
+            Character_equipment_button_border.Color = Unchoosen_border_color;
+            Character_spaceship_button_border.Color = Unchoosen_border_color;
+            Character_companion_button_border.Color = Chosen_border_color;
+
             CurrentViewModel = Character_companion;
         }
     }

@@ -9,28 +9,27 @@
              d:DesignHeight="860" d:DesignWidth="1130">
     <Grid Background="Black">
         <Canvas HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="1130">
-            <Border Canvas.Left="0" Canvas.Top="34" BorderThickness="3">
-                <Border.BorderBrush>
-                    <SolidColorBrush Color="{Binding Character_info_button_border}"/>
-                </Border.BorderBrush>
-                <Button Height="50"  Width="150" Background="Black"
-                        BorderThickness="0"
-                        Command="{Binding Open_character_info}">
-                    <Button.Content>
+
+
+            <Button Height="50"  Width="150" Background="Black" Canvas.Left="0" Canvas.Top="40"
+                        BorderThickness="3"
+                        Command="{Binding Open_character_info}"
+                        BorderBrush="{Binding Character_info_button_border, UpdateSourceTrigger=PropertyChanged}">
+                <Button.Content>
                         <TextBlock Text="Персонаж" FontSize="16" Foreground="Wheat"/>
                     </Button.Content>
                 </Button>
-            </Border>
             <Button Height="50" Canvas.Left="150" Canvas.Top="40" Width="150" Background="Black"
-                    BorderThickness="0"
-                    Command="{Binding Open_character_skills}">
+                    BorderThickness="3"
+                    Command="{Binding Open_character_skills}"
+                    BorderBrush="{Binding Character_skills_button_border, UpdateSourceTrigger=PropertyChanged}">
                 <Button.Content>
                     <TextBlock Text="Навыки персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
             <Button Height="50" Canvas.Left="300" Canvas.Top="40" Width="150" Background="Black"
-                    BorderThickness="0"
+                    BorderThickness="3"
                     BorderBrush="{Binding Character_forms_button_border}"
                     Command="{Binding Open_character_forms}">
                 <Button.Content>
@@ -39,7 +38,7 @@
                 </Button.Content>
             </Button>
             <Button Height="50" Canvas.Left="450" Canvas.Top="40" Width="150" Background="Black"
-                    BorderThickness="0"
+                    BorderThickness="3"
                     BorderBrush="{Binding Character_features_button_border}"
                     Command="{Binding Open_character_features}">
                 <Button.Content>
@@ -48,7 +47,7 @@
                 </Button.Content>
             </Button>
             <Button Height="50" Canvas.Left="600" Canvas.Top="40" Width="150" Background="Black"
-                    BorderThickness="0"
+                    BorderThickness="3"
                     BorderBrush="{Binding Character_equipment_button_border}"
                     Command="{Binding Open_character_equipment}">
                 <Button.Content>
@@ -57,7 +56,7 @@
                 </Button.Content>
             </Button>
             <Button Height="50" Canvas.Left="750" Canvas.Top="40" Width="150" Background="Black"
-                    BorderThickness="0"
+                    BorderThickness="3"
                     BorderBrush="{Binding Character_spaceship_button_border}"
                     Command="{Binding Open_character_spaceship}">
                 <Button.Content>
@@ -66,7 +65,7 @@
                 </Button.Content>
             </Button>
             <Button Height="50" Canvas.Left="900" Canvas.Top="40" Width="150" Background="Black"
-                    BorderThickness="0"
+                    BorderThickness="3"
                     BorderBrush="{Binding Character_companion_button_border}"
                     Command="{Binding Open_character_companion}">
                 <Button.Content>
