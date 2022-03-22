@@ -293,12 +293,29 @@
             <TextBlock Margin="20,10,20,250" Text="Аналитика разваития персонажа Сюда вставить ползунок кармы" TextAlignment="Center" FontSize="20"
                        TextWrapping="Wrap"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="285" Margin="0,485,0,0" VerticalAlignment="Top" Width="370">
-            <TextBlock Margin="20,10,20,205" Text="Окно подсказок при выборе ранга или возраста" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"/>
-        </Border>
+
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="285" Margin="0,485,0,0" VerticalAlignment="Top" Width="380">
             <TextBlock Margin="20,10,20,205" Text="Боевые параметры" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"/>
         </Border>
+
+        <Grid Margin="0,485,780,0" Height="285" Width="350" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+        </Grid>
 
     </Grid>
 </UserControl>
