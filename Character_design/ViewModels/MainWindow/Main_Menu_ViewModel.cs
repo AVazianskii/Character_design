@@ -2,10 +2,10 @@
 
 namespace Character_design
 {
-    internal class Main_Menu_ViewModel : Notify
+    internal class Main_Menu_ViewModel : BaseViewModel
     {
         private static Main_Menu_ViewModel _instance;
-        private Notify current_VM;
+        private BaseViewModel current_VM;
         private Main_Window_Creation_ViewModel main_window_creation;
 
         public string left_picture_source,
@@ -19,7 +19,7 @@ namespace Character_design
             }
             return _instance;
         }
-        public Notify CurrentViewModel
+        public BaseViewModel CurrentViewModel
         {
             get
             {

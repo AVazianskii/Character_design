@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Character_design
 {
-    internal class Character_info_ViewModel : Notify
+    internal class Character_info_ViewModel : BaseViewModel
     {
         private static Character_info_ViewModel _instance;
 
@@ -50,12 +50,7 @@ namespace Character_design
         public string Character_race_name
         {
             get { character_race_name = Character.GetInstance().Character_race.Race_name; return character_race_name; }
-            set { 
-                character_race_name = value; 
-                OnPropertyChanged("Character_race_name");
-                OnPropertyChanged("Child_min_age");
-                OnPropertyChanged("Child_max_age");
-            }
+            set { character_race_name = value; OnPropertyChanged("Character_race_name"); }
         }
         public int Character_age
         {

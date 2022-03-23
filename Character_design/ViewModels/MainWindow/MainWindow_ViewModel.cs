@@ -9,12 +9,12 @@ using SW_Character_creation;
 
 namespace Character_design
 {
-    public class MainWindow_ViewModel : Notify
+    public class MainWindow_ViewModel : BaseViewModel
     {
-        private Notify current_VM;
+        private BaseViewModel current_VM;
         private Main_Menu_ViewModel Main_menu;
         //private 
-        public Notify CurrentViewModel
+        public BaseViewModel CurrentViewModel
         {
             get
             {

@@ -12,7 +12,7 @@ using Skills_libs;
 
 namespace Character_design
 {
-    internal class Main_model : Notify
+    internal class Main_model : BaseViewModel
     {
         private static Main_model instance;
 

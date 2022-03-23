@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace Character_design
 {
-    public class Notify : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

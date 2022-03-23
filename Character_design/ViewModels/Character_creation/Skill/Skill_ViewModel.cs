@@ -8,10 +8,10 @@ using Skills_libs;
 
 namespace Character_design
 {
-    internal class Skill_ViewModel : Notify
+    internal class Skill_ViewModel : BaseViewModel
     {
         private static Skill_ViewModel _instance;
-        private Notify current_VM;
+        private BaseViewModel current_VM;
 
         private Skill_Class selected_skill;
         private List<Skill_Class> skill_group;
@@ -70,7 +70,7 @@ namespace Character_design
             }
             return _instance;
         }
-        public Notify CurrentViewModel
+        public BaseViewModel CurrentViewModel
         {
             get
             {

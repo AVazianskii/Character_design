@@ -4,17 +4,17 @@ using System.Windows.Media;
 
 namespace Character_design
 {
-    internal class General_Data_ViewModel : Notify
+    internal class General_Data_ViewModel : BaseViewModel
     {
         private static General_Data_ViewModel _instance;
-        private Notify currentViewModel;
-        private Notify Character_info;
-        private Notify Character_skills;
-        private Notify Character_forms;
-        private Notify Character_features;
-        private Notify Character_equipment;
-        private Notify Character_spaceship;
-        private Notify Character_companion;
+        private BaseViewModel currentViewModel;
+        private BaseViewModel Character_info;
+        private BaseViewModel Character_skills;
+        private BaseViewModel Character_forms;
+        private BaseViewModel Character_features;
+        private BaseViewModel Character_equipment;
+        private BaseViewModel Character_spaceship;
+        private BaseViewModel Character_companion;
         private SolidColorBrush character_info_button_border;
         private SolidColorBrush character_skills_button_border;
         private SolidColorBrush character_forms_button_border;
@@ -45,7 +45,7 @@ namespace Character_design
         }
 
 
-        public Notify CurrentViewModel
+        public BaseViewModel CurrentViewModel
         {
             get { return currentViewModel; }
             set { currentViewModel = value; OnPropertyChanged("CurrentViewModel"); }

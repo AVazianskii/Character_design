@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Character_design
 {
-    internal class Character_forms_ViewModel : Notify
+    internal class Character_forms_ViewModel : BaseViewModel
     {
         private static Character_forms_ViewModel _instance;
         public static Character_forms_ViewModel GetInstance()

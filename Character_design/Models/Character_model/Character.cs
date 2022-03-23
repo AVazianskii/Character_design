@@ -11,7 +11,7 @@ using Attribute_libs;
 
 namespace Character_design
 {
-    internal class Character : Notify
+    internal class Character : BaseViewModel
     {
         private static Character Character_instance;
 

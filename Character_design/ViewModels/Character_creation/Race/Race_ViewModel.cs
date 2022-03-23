@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace Character_design
 {
-    internal class Race_ViewModel : Notify
+    internal class Race_ViewModel : BaseViewModel
     {
         List<Race_class> destination_race_list = new List<Race_class>();
         
@@ -38,7 +38,7 @@ namespace Character_design
         }
 
         private static Race_ViewModel _instance;
-        private Notify current_VM;
+        private BaseViewModel current_VM;
         private string selected_race_description;
         private string selected_race_full_img_path;
         private string selected_race_personal_data;
@@ -69,7 +69,7 @@ namespace Character_design
             }
             return _instance;
         }
-        public Notify CurrentViewModel
+        public BaseViewModel CurrentViewModel
         {
             get
             {

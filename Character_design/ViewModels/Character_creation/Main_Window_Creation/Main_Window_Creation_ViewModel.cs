@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Character_design
 {
-    internal class Main_Window_Creation_ViewModel : Notify
+    internal class Main_Window_Creation_ViewModel : BaseViewModel
     {
         private static Main_Window_Creation_ViewModel _instance;
-        private Notify current_VM;
+        private BaseViewModel current_VM;
         private General_Data_ViewModel general_data;
         private Race_ViewModel race;
         private Skill_ViewModel skill;
@@ -21,7 +21,7 @@ namespace Character_design
             }
             return _instance;
         }
-        public Notify CurrentViewModel
+        public BaseViewModel CurrentViewModel
         {
             get
             {
