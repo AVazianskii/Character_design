@@ -128,13 +128,7 @@ namespace Character_design
             SolidBrushes.Add(Character_spaceship_button_border);
             SolidBrushes.Add(Character_companion_button_border);
 
-            Character_info_button_border.Color      = Chosen_border_color;
-            Character_skills_button_border.Color    = Unchoosen_border_color;
-            Character_forms_button_border.Color     = Unchoosen_border_color;
-            Character_features_button_border.Color  = Unchoosen_border_color;
-            Character_equipment_button_border.Color = Unchoosen_border_color;
-            Character_spaceship_button_border.Color = Unchoosen_border_color;
-            Character_companion_button_border.Color = Unchoosen_border_color;
+            Set_colors_for_chosen_item(SolidBrushes, Character_info_button_border, Chosen_border_color, Unchoosen_border_color);
         }
 
         private void _Open_character_info()
