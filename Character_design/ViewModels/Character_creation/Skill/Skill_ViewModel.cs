@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SW_Character_creation;
 using Skills_libs;
+using System.Windows.Media;
 
 namespace Character_design
 {
@@ -20,6 +18,17 @@ namespace Character_design
         private List<Skill_Class> charming_skills;
         private List<Skill_Class> tech_skills;
         private List<Skill_Class> specific_skills;
+
+        private SolidColorBrush combat_skills_button_border,
+                                surviving_skills_button_border,
+                                charming_skills_button_border,
+                                tech_skills_button_border,
+                                specific_skills_button_border;
+
+        private List<SolidColorBrush> Button_borders;
+
+        private Color Chosen_color,
+                      Unchosen_color;
 
         private string selected_skill_description;
         private string skill_name;
@@ -70,18 +79,42 @@ namespace Character_design
             }
             return _instance;
         }
+
+
+
         public BaseViewModel CurrentViewModel
         {
-            get
-            {
-                return current_VM;
-            }
-            set
-            {
-                current_VM = value;
-                OnPropertyChanged("CurrentViewModel");
-            }
+            get { return current_VM; }
+            set { current_VM = value; OnPropertyChanged("CurrentViewModel"); }
         }
+        public SolidColorBrush Combat_skills_button_border
+        {
+            get { return combat_skills_button_border; }
+            set { combat_skills_button_border = value; OnPropertyChanged("Combat_skills_button_border"); }
+        }
+        public SolidColorBrush Surviving_skills_button_border
+        {
+            get { return surviving_skills_button_border; }
+            set { surviving_skills_button_border = value; OnPropertyChanged("Survivng_skills_button_border"); }
+        }
+        public SolidColorBrush Charming_skills_button_border
+        {
+            get { return charming_skills_button_border; }
+            set { charming_skills_button_border = value; OnPropertyChanged("Charming_skills_button_border"); }
+        }
+        public SolidColorBrush Tech_skills_button_border
+        {
+            get { return tech_skills_button_border; }
+            set { tech_skills_button_border = value; OnPropertyChanged("Tech_skills_button_border"); }
+        }
+        public SolidColorBrush Specific_skills_button_border
+        {
+            get { return specific_skills_button_border; }
+            set { specific_skills_button_border = value; OnPropertyChanged("Specific_skills_button_border"); }
+        }
+
+
+
         public Command Show_combat_skills { get; private set; }
         public Command Show_surviving_skills { get; private set; }
         public Command Show_charming_skills { get; private set; }
@@ -89,6 +122,8 @@ namespace Character_design
         public Command Show_specific_skills { get; private set; }
         public Command Decrease_skill_score { get; private set; }
         public Command Increase_skill_score { get; private set; }
+
+
 
         private Skill_ViewModel()
         {
@@ -109,31 +144,60 @@ namespace Character_design
 
             Decrease_skill_score = new Command(o => _Decrease_skill_score(o), o => selected_skill.Get_counter() < 0);
             Increase_skill_score = new Command(o => _Increase_skill_score(o), o => selected_skill.Get_counter() > Selected_skill_limit);
+
+            Combat_skills_button_border     = new SolidColorBrush();
+            Surviving_skills_button_border  = new SolidColorBrush();
+            Charming_skills_button_border   = new SolidColorBrush();
+            Tech_skills_button_border       = new SolidColorBrush();
+            Specific_skills_button_border   = new SolidColorBrush();
+
+            Button_borders = new List<SolidColorBrush>();
+
+            Button_borders.Add(Combat_skills_button_border);
+            Button_borders.Add(Surviving_skills_button_border);
+            Button_borders.Add(Charming_skills_button_border);
+            Button_borders.Add(Tech_skills_button_border);
+            Button_borders.Add(Specific_skills_button_border);
+
+            Chosen_color = Colors.Wheat;
+            Unchosen_color = Colors.Black;
+
+            Set_colors_for_chosen_item(Button_borders,Combat_skills_button_border,Chosen_color,Unchosen_color);
         }
         private void _Show_combat_skills()
         {
             Skill_group = combat_skills;
             Selected_skill = Skill_group[0];
+
+            Set_colors_for_chosen_item(Button_borders, Combat_skills_button_border, Chosen_color, Unchosen_color);
         }
         private void _Show_surviving_skills()
         {
             Skill_group = surviving_skills;
             Selected_skill = Skill_group[0];
+
+            Set_colors_for_chosen_item(Button_borders, Surviving_skills_button_border, Chosen_color, Unchosen_color);
         }
         private void _Show_charming_skills()
         {
             Skill_group = charming_skills;
             Selected_skill = Skill_group[0];
+
+            Set_colors_for_chosen_item(Button_borders, Charming_skills_button_border, Chosen_color, Unchosen_color);
         }
         private void _Show_tech_skills()
         {
             Skill_group = tech_skills;
             Selected_skill = Skill_group[0];
+
+            Set_colors_for_chosen_item(Button_borders, Tech_skills_button_border, Chosen_color, Unchosen_color);
         }
         private void _Show_specific_skills()
         {
             Skill_group = specific_skills;
             Selected_skill = Skill_group[0];
+
+            Set_colors_for_chosen_item(Button_borders, Specific_skills_button_border, Chosen_color, Unchosen_color);
         }
         private void _Increase_skill_score(object o)
         {
