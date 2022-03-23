@@ -12,7 +12,7 @@
                            Text="Доступные навыки для развития:" Background="Black"
                            Foreground="Wheat" FontSize="20" TextAlignment="Center" />
             <Button Height="73" Canvas.Top="60" Canvas.Right="744" Width="186"
-                    Background="Black" BorderThickness="0"
+                    Background="Black" BorderThickness="3"
                     Command="{Binding Show_combat_skills}"
                     BorderBrush="{Binding Combat_skills_button_border}">
                 <Button.Content>
@@ -21,16 +21,16 @@
                 </Button.Content>
             </Button>
             <Button Height="73" Canvas.Top="60" Canvas.Right="558" Width="186"
-                    Background="Black" BorderThickness="0"
+                    Background="Black" BorderThickness="3"
                     Command="{Binding Show_surviving_skills}"
-                    BorderBrush="{Binding Survivng_skills_button_border}">
+                    BorderBrush="{Binding Surviving_skills_button_border}">
                 <Button.Content>
                     <TextBlock Text="Навыки  выживания" Foreground="Wheat" FontSize="20"
                                TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button.Content>
             </Button>
             <Button Height="73" Canvas.Top="60" Canvas.Right="372" Width="186"
-                    Background="Black" BorderThickness="0"
+                    Background="Black" BorderThickness="3"
                     Command="{Binding Show_charming_skills}"
                     BorderBrush="{Binding Charming_skills_button_border}">
                 <Button.Content>
@@ -39,7 +39,7 @@
                 </Button.Content>
             </Button>
             <Button Height="73" Canvas.Top="60" Canvas.Right="186" Width="186"
-                    Background="Black" BorderThickness="0"
+                    Background="Black" BorderThickness="3"
                     Command="{Binding Show_tech_skills}"
                     BorderBrush="{Binding Tech_skills_button_border}">
                 <Button.Content>
@@ -48,7 +48,7 @@
                 </Button.Content>
             </Button>
             <Button Height="73" Canvas.Top="60" Canvas.Right="0" Width="186"
-                    Background="Black" BorderThickness="0"
+                    Background="Black" BorderThickness="3"
                     Command="{Binding Show_specific_skills}"
                     BorderBrush="{Binding Specific_skills_button_border}">
                 <Button.Content>
