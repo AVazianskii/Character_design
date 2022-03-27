@@ -8,6 +8,7 @@ using Races_libs;
 using Skills_libs;
 using Age_status_libs;
 using Attribute_libs;
+using Range_libs;
 
 namespace Character_design
 {
@@ -27,9 +28,12 @@ namespace Character_design
         private Atribute_class Intelligence;
         private Atribute_class Charm;
         private Atribute_class Willpower;
+        private Range_Class range;
 
         private bool Is_forceuser;
         private int experience;
+
+
 
         public Character()
         {
@@ -42,24 +46,11 @@ namespace Character_design
             
             Forceuser = false;
             Experience = 180;
-            //Set_Character_Race(Main_model.GetInstance().Race_Manager.Get_Empty_race());
 
-            //Load_all_from(Age_status_Manager);
-            //Load_all_from(Attribute_Manager);
-
-            //Set_Character_Race(Race_Manager.Get_Empty_race());
-
-            //Set_Character_age_status(Age_status_Manager.Get_Unknown_age_status());
-
-            //Set_Character_Strength      (Attribute_Manager.Get_strength());
-            //Set_Character_Agility(Attribute_Manager.Get_agility());
-            //Set_Character_Stamina(Attribute_Manager.Get_stamina());
-            //Set_Character_Perception(Attribute_Manager.Get_perception());
-            //Set_Character_Quickness(Attribute_Manager.Get_quickness());
-            //Set_Character_Intelligence(Attribute_Manager.Get_intelligence());
-            //Set_Character_Charm(Attribute_Manager.Get_charm());
-            //Set_Character_Willpower(Attribute_Manager.Get_willpower());
         }
+
+
+
         public List<Skill_Class> Get_skills()
         {
             return skills;
@@ -71,6 +62,14 @@ namespace Character_design
                 Character_instance = new Character();
             }
             return Character_instance;
+        }
+
+
+
+        public Range_Class Range
+        {
+            get { return range; }
+            set { range = value; OnPropertyChanged("Range"); }
         }
         public Race_class Character_race
         {

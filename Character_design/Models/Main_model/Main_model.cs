@@ -20,16 +20,19 @@ namespace Character_design
         internal Age_status_manager Age_status_Manager;
         internal Attribute_manager Attribute_Manager;
         internal Skill_manager Skill_Manager;
+        internal Range_manager Range_Manager;
 
 
         private Main_model()
         {
             Race_Manager = Race_manager.GetInstance();
             Skill_Manager = Skill_manager.GetInstance();
+            Range_Manager = Range_manager.GetInstance();
             Load_async(Race_Manager);
             //Load_async(Skill_Manager);
             //Load_all_from(Race_Manager);
             Load_all_from(Skill_Manager);
+            Load_all_from(Range_Manager);
         }
 
         public static Main_model GetInstance()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Range_libs;
 
 namespace Character_design
 {
@@ -41,7 +42,25 @@ namespace Character_design
                     character_charm,
                     character_willpower;
 
+        private string _character_exp;
 
+        private Range_Class character_current_range;
+
+
+        public List<Range_Class> Character_ranges
+        {
+            get { return Main_model.GetInstance().Range_Manager.Ranges(); }
+        }
+        public Range_Class Character_current_range
+        {
+            get { return character_current_range; }
+            set 
+            { 
+                character_current_range = value;
+                Character.GetInstance().Range = character_current_range;
+                OnPropertyChanged("Character_current_range"); 
+            }
+        }
         public string Character_name
         {
             get { return character_name; }
@@ -236,7 +255,11 @@ namespace Character_design
         {
             get { return Character.GetInstance().Character_race.Get_min_eldery_age(); }
         }
-
+        public string _Character_exp
+        {
+            get { return _character_exp; }
+            set { _character_exp = value; OnPropertyChanged("_Character_exp"); }
+        }
 
 
         public static Character_info_ViewModel GetInstance()
@@ -252,6 +275,8 @@ namespace Character_design
         private Character_info_ViewModel()
         {
             Character_name = "Дарт Сидиус";
+            _Character_exp = "Сколько назначил Мастер?";
+            Character_current_range = Character_ranges[0];
         }
     }
 }

@@ -54,7 +54,17 @@
             <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
                       Background="White" BorderThickness="0,0,0,1" BorderBrush="Red"/>
             <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
-                      Background="White" BorderThickness="0,0,0,1" BorderBrush="Red"/>
+                      Background="White" BorderThickness="0,0,0,1" BorderBrush="Red"
+                      HorizontalContentAlignment="Center"
+                      ItemsSource="{Binding Character_ranges}"
+                      SelectedItem="{Binding Character_current_range, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Margin="5" FontSize="12" TextAlignment="Center"
+                                   Text="{Binding Path=Range_name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button Grid.Row="5" Grid.Column="1" Margin="10">
                 <Button.Content>
                     <TextBlock Text="Yes"/>
@@ -65,11 +75,11 @@
                     <TextBlock Text="No"/>
                 </Button.Content>
             </Button>
-            <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="15"
-                     FontSize="17" TextAlignment="Center" 
+            <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
+                     FontSize="14" TextAlignment="Center" 
                      BorderThickness="0,0,0,1" BorderBrush="Red"
-                     Text="{Binding Character_exp, UpdateSourceTrigger=LostFocus}"/>
-            <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="15"
+                     Text="{Binding _Character_exp, UpdateSourceTrigger=LostFocus}"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
                      FontSize="17" TextAlignment="Center" 
                      BorderThickness="0,0,0,1" BorderBrush="Red"
                      Text="{Binding Character_atr, UpdateSourceTrigger=LostFocus}"/>
