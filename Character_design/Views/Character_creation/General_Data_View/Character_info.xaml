@@ -8,11 +8,12 @@
              d:DesignHeight="770" d:DesignWidth="1130">
     <Grid Background="White">
         <Image HorizontalAlignment="Left" Height="410" Margin="756,10,0,0" VerticalAlignment="Top" Width="374"/>
-        <Grid HorizontalAlignment="Left" Height="360" Margin="20,80,0,0" VerticalAlignment="Top" Width="350">
+        <Grid HorizontalAlignment="Left" Height="360" Margin="20,80,0,0" VerticalAlignment="Top" Width="380">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
@@ -83,6 +84,13 @@
                      FontSize="17" TextAlignment="Center" 
                      BorderThickness="0,0,0,1" BorderBrush="Red"
                      Text="{Binding Character_atr, UpdateSourceTrigger=LostFocus}"/>
+            <Image Grid.Row="4" Grid.Column="3" Margin="3"
+                   Source="{Binding Question_sign}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Character_range_description}"/>
+                </Image.ToolTip>
+            </Image>
         </Grid>
         <TextBlock HorizontalAlignment="Left" Height="30" Margin="20,20,0,0" TextWrapping="Wrap" Text="Имя персонажа:" 
                    VerticalAlignment="Top" Width="190" TextAlignment="Left" FontSize="20"/>
@@ -90,7 +98,7 @@
                  VerticalAlignment="Top" Width="505" TextAlignment="Center" FontSize="20"
                  BorderThickness="0,0,0,1" BorderBrush="Red"
                  Text="{Binding Character_name, UpdateSourceTrigger=LostFocus}"/>
-        <Grid HorizontalAlignment="Left" Height="420" Margin="370,60,0,0" VerticalAlignment="Top" Width="300">
+        <Grid HorizontalAlignment="Left" Height="420" Margin="420,60,0,0" VerticalAlignment="Top" Width="300">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>

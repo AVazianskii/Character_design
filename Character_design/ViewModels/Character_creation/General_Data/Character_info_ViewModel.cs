@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using Range_libs;
 
 namespace Character_design
@@ -43,6 +42,7 @@ namespace Character_design
                     character_willpower;
 
         private string _character_exp;
+        private string character_range_description;
 
         private Range_Class character_current_range;
 
@@ -58,8 +58,18 @@ namespace Character_design
             { 
                 character_current_range = value;
                 Character.GetInstance().Range = character_current_range;
+                Character_range_description = Character.GetInstance().Range.Get_range_descr();
                 OnPropertyChanged("Character_current_range"); 
             }
+        }
+        public string Question_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Tool_tip.jpg"; }
+        }
+        public string Character_range_description
+        {
+            get { return character_range_description; }
+            set { character_range_description = value; OnPropertyChanged("Character_range_description"); }
         }
         public string Character_name
         {
