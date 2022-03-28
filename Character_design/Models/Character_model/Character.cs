@@ -19,7 +19,6 @@ namespace Character_design
         private List<Skill_Class> skills;
 
         private Race_class character_race;
-        private Age_status_class Age_status;
         private Atribute_class Strength;
         private Atribute_class Agility;
         private Atribute_class Stamina;
@@ -29,6 +28,7 @@ namespace Character_design
         private Atribute_class Charm;
         private Atribute_class Willpower;
         private Range_Class range;
+        private Age_status_class age_status;
 
         private bool Is_forceuser;
         private int experience;
@@ -66,6 +66,11 @@ namespace Character_design
 
 
 
+        public Age_status_class Age_status 
+        {
+            get { return age_status; }
+            set { age_status = value; OnPropertyChanged("Age_status"); }
+        }
         public Range_Class Range
         {
             get { return range; }
@@ -96,10 +101,6 @@ namespace Character_design
             set { skills = value; OnPropertyChanged("Skills"); }
         }
 
-        public void Set_Character_age_status(Age_status_class Choosen_age_status)
-            {
-                Age_status = Choosen_age_status;
-            }
             public void Set_Character_Strength(Atribute_class Strength)
             {
                 this.Strength = Strength;
