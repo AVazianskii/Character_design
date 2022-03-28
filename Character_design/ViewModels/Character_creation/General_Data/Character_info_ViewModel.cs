@@ -43,8 +43,10 @@ namespace Character_design
 
         private string _character_exp;
         private string character_range_description;
+        private string character_age_status_description;
 
         private Range_Class character_current_range;
+
 
 
         public List<Range_Class> Character_ranges
@@ -64,12 +66,25 @@ namespace Character_design
         }
         public string Question_sign
         {
-            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Tool_tip.jpg"; }
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Tool_tip.png"; }
+        }
+        public string Female_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\female.jpg"; }
+        }
+        public string Male_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\male.jpg"; }
         }
         public string Character_range_description
         {
             get { return character_range_description; }
             set { character_range_description = value; OnPropertyChanged("Character_range_description"); }
+        }
+        public string Character_age_status_description
+        {
+            get { return character_age_status_description; }
+            set { character_age_status_description = value; OnPropertyChanged("Character_age_status_description"); }
         }
         public string Character_name
         {
