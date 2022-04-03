@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using Range_libs;
+using System.Windows;
 
 namespace Character_design
 {
@@ -13,8 +14,7 @@ namespace Character_design
         private string character_name;
         private string character_race_name;
         private string character_age_status;
-        private int character_age,
-                    character_exp,
+        private int character_exp,
                     character_atr,
                     min_character_strength,
                     max_character_strength,
@@ -40,6 +40,7 @@ namespace Character_design
                     character_intelligence,
                     character_charm,
                     character_willpower;
+        private string character_age;
 
         private string _character_exp;
         private string character_range_description;
@@ -96,10 +97,23 @@ namespace Character_design
             get { character_race_name = Character.GetInstance().Character_race.Race_name; return character_race_name; }
             set { character_race_name = value; OnPropertyChanged("Character_race_name"); }
         }
-        public int Character_age
+        public string Character_age
         {
             get { return character_age; }
-            set { character_age = value; OnPropertyChanged("Character_age"); }
+            set 
+            { 
+                character_age = value; 
+                if(Int32.TryParse(character_age, out int result))
+                {
+                    Character.GetInstance().Age = result;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка, пробуй еще раз", "Error",MessageBoxButton.OK);
+                    character_age = "";
+                }
+                OnPropertyChanged("Character_age"); 
+            }
         }
         public string Character_age_status
         {
@@ -302,6 +316,23 @@ namespace Character_design
             Character_name = "Дарт Сидиус";
             _Character_exp = "Сколько назначил Мастер?";
             Character_current_range = Character_ranges[0];
+
+
+        }
+
+        private string Set_Character_age_text (Age_status_libs.Age_status_class character_age_status, Races_libs.Race_class character_race)
+        {
+            string local_text = "";
+            switch (character_age_status.Get_age_status_code())
+            {
+                case 0: local_text = $"Введите число от 0 до 0"; break;
+                case 1: local_text = $"от {character_race.Get_min_child_age()} до {character_race.Get_max_child_age()}"; break;
+                case 2: local_text = $"от {character_race.Get_min_teen_age()} до {character_race.Get_max_teen_age()}"; break;
+                case 3: local_text = $"от 7 до 8"; break;
+                case 4: local_text = $"от 9 до 10"; break;
+                case 5: local_text = $"от 11 до 12"; break;
+            }
+            return local_text;
         }
     }
 }

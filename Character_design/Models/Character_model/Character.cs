@@ -32,12 +32,14 @@ namespace Character_design
 
         private bool Is_forceuser;
         private int experience;
+        private int age;
 
 
 
         public Character()
         {
             Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            //Range = Main_model.GetInstance().Range_Manager.G
             skills = new List<Skill_Class>();
             foreach(Skill_Class Skill in Main_model.GetInstance().Skill_Manager.Get_skills())
             {
@@ -99,6 +101,11 @@ namespace Character_design
         {
             get { return skills; }
             set { skills = value; OnPropertyChanged("Skills"); }
+        }
+        public int Age
+        {
+            get { return age; }
+            set { age = value; OnPropertyChanged("Age"); }
         }
 
             public void Set_Character_Strength(Atribute_class Strength)
