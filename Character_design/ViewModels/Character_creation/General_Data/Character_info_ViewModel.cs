@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using Range_libs;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Character_design
 {
@@ -40,16 +41,35 @@ namespace Character_design
                     character_intelligence,
                     character_charm,
                     character_willpower;
-        private string character_age;
 
+        private int help_text_fontsize,
+                    usual_text_fontsize,
+                    current_age_text_fontsize;
+
+        private string character_age;
         private string _character_exp;
         private string character_range_description;
         private string character_age_status_description;
 
         private Range_Class character_current_range;
 
+        private SolidColorBrush age_text_color;
+
+        private Color Help_text_color;
+        private Color Usual_text_color;
 
 
+
+        public int Current_age_text_fontsize
+        {
+            get { return current_age_text_fontsize; }
+            set { current_age_text_fontsize = value; OnPropertyChanged("Current_age_text_fontsize"); }
+        }
+        public SolidColorBrush Age_text_color
+        {
+            get { return age_text_color; }
+            set { age_text_color = value; OnPropertyChanged("Age_text_color"); }
+        }
         public List<Range_Class> Character_ranges
         {
             get { return Main_model.GetInstance().Range_Manager.Ranges(); }
@@ -106,11 +126,16 @@ namespace Character_design
                 if(Int32.TryParse(character_age, out int result))
                 {
                     Character.GetInstance().Age = result;
+                    Current_age_text_fontsize = usual_text_fontsize;
+                    Age_text_color.Color = Usual_text_color;
                 }
                 else
                 {
                     MessageBox.Show("Ошибка, пробуй еще раз", "Error",MessageBoxButton.OK);
-                    character_age = "";
+                    character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                               Character.GetInstance().Character_race);
+                    Current_age_text_fontsize = help_text_fontsize;
+                    Age_text_color.Color = Help_text_color;
                 }
                 OnPropertyChanged("Character_age"); 
             }
@@ -317,15 +342,27 @@ namespace Character_design
             _Character_exp = "Сколько назначил Мастер?";
             Character_current_range = Character_ranges[0];
 
+            Help_text_color = Colors.Gray;
+            Usual_text_color = Colors.Black;
 
+            Age_text_color = new SolidColorBrush();
+
+            help_text_fontsize = 10;
+            usual_text_fontsize = 14;
+
+            Current_age_text_fontsize = help_text_fontsize;
+            Age_text_color.Color = Help_text_color;
+
+            Character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                       Character.GetInstance().Character_race);
         }
 
-        private string Set_Character_age_text (Age_status_libs.Age_status_class character_age_status, Races_libs.Race_class character_race)
+        private string Default_Character_age_text (Age_status_libs.Age_status_class character_age_status, Races_libs.Race_class character_race)
         {
             string local_text = "";
-            switch (character_age_status.Get_age_status_code())
+            switch (0) //character_age_status.Get_age_status_code()
             {
-                case 0: local_text = $"Введите число от 0 до 0"; break;
+                case 0: local_text = $"Введите число от {character_race.Get_min_child_age()} до {character_race.Get_max_child_age()}"; break;
                 case 1: local_text = $"от {character_race.Get_min_child_age()} до {character_race.Get_max_child_age()}"; break;
                 case 2: local_text = $"от {character_race.Get_min_teen_age()} до {character_race.Get_max_teen_age()}"; break;
                 case 3: local_text = $"от 7 до 8"; break;

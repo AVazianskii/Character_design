@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
              mc:Ignorable="d" 
-             d:DesignHeight="770" d:DesignWidth="1130">
+             d:DesignHeight="770" d:DesignWidth="1130" >
     <Grid Background="White">
-        <Image HorizontalAlignment="Left" Height="410" Margin="756,10,0,0" VerticalAlignment="Top" Width="374"/>
-        <Grid HorizontalAlignment="Left" Height="360" Margin="20,80,0,0" VerticalAlignment="Top" Width="380">
+        <Image HorizontalAlignment="Left" Height="410" Margin="380,60,0,0" VerticalAlignment="Top" Width="374"/>
+        <Grid HorizontalAlignment="Left" Height="360" Margin="20,80,0,0" VerticalAlignment="Top" Width="340">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160"></ColumnDefinition>
+                <ColumnDefinition Width="130"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="30"></ColumnDefinition>
@@ -50,9 +50,12 @@
                 </Button.Content>
             </Button>
             <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
-                     FontSize="17" TextAlignment="Center" 
+                     VerticalAlignment="Bottom"
+                     TextAlignment="Center" 
                      BorderThickness="0,0,0,1" BorderBrush="Red"
-                     Text="{Binding Character_age, UpdateSourceTrigger=LostFocus}"/>
+                     FontSize="{Binding Current_age_text_fontsize}"
+                     Text="{Binding Character_age, UpdateSourceTrigger=LostFocus}"
+                     Foreground="{Binding Age_text_color}"/>
             <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
                       Background="White" BorderThickness="0,0,0,1" BorderBrush="Red"/>
             <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
@@ -106,7 +109,7 @@
                  VerticalAlignment="Top" Width="505" TextAlignment="Center" FontSize="20"
                  BorderThickness="0,0,0,1" BorderBrush="Red"
                  Text="{Binding Character_name, UpdateSourceTrigger=LostFocus}"/>
-        <Grid HorizontalAlignment="Left" Height="420" Margin="420,60,0,0" VerticalAlignment="Top" Width="300">
+        <Grid HorizontalAlignment="Left" Height="420" Margin="806,60,0,0" VerticalAlignment="Top" Width="300">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -317,8 +320,8 @@
             </Grid>
 
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="345" Margin="750,425,0,0" VerticalAlignment="Top" Width="380">
-            <TextBlock Margin="20,10,20,250" Text="Аналитика разваития персонажа Сюда вставить ползунок кармы" TextAlignment="Center" FontSize="20"
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="245" Margin="750,525,0,0" VerticalAlignment="Top" Width="380">
+            <TextBlock Margin="20,10,20,150" Text="Аналитика разваития персонажа Сюда вставить ползунок кармы" TextAlignment="Center" FontSize="20"
                        TextWrapping="Wrap"/>
         </Border>
 
