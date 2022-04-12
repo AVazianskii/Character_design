@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:character_creation="clr-namespace:Character_design.Views.Character_creation.Main_Window_Creation_View"
+             xmlns:main_window="clr-namespace:Character_design.Views.MainWindow"
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1500">
@@ -14,24 +15,27 @@
             </DataTemplate>
         </Grid.Resources>
         
-        <Canvas HorizontalAlignment="Center" Height="548" VerticalAlignment="Center" Width="388">
-            <TextBlock Canvas.Left="104" TextWrapping="Wrap" Text="МЕНЮ" Canvas.Top="78" Height="40" Width="180"
-                       TextAlignment="Center" Foreground="Wheat" FontSize="28"/>
-            <Button Content="Создать нового персонажа" Canvas.Left="56" Canvas.Top="222" Height="34" Width="284"
-                    Background="Black" Foreground="Wheat" FontSize="20"
-                    BorderThickness="0"
-                    Command="{Binding Open_main_window_creation_user_control}"/>
-            <Button Content="Библиотека персонажей" Canvas.Left="56" Canvas.Top="302" Height="34" Width="284"
-                    Background="Black" Foreground="Wheat" FontSize="20"
-                    BorderThickness="0"/>
-
-        </Canvas>
         <Image HorizontalAlignment="Left" Height="756" Margin="50,68,0,0" VerticalAlignment="Top" Width="482"
                Source="{Binding Left_picture_source}"/>
         <Image HorizontalAlignment="Left" Height="547" Margin="943,144,0,0" VerticalAlignment="Top" Width="557"
                Source="{Binding Right_picture_source}"/>
         <Image HorizontalAlignment="Center" Height="146" Margin="0,34,0,0" VerticalAlignment="Top" Width="306"
                Source="{Binding Central_picture_source}"/>
+        <Border Width="400" Margin="550,260,550,0">
+            <Border.Resources>
+                <DataTemplate DataType="{x:Type local:Common_menu_ViewModel}">
+                    <main_window:Common_menu/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Player_menu_ViewModel}">
+                    <main_window:Player_menu/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Master_menu_ViewModel}">
+                    <main_window:Master_menu/>
+                </DataTemplate>
+            </Border.Resources>
+            <ContentControl Content="{Binding Path=Current_Menu_ViewModel}" />
+        </Border>
         <ContentControl Content="{Binding Path=CurrentViewModel}"/>
+        
     </Grid>
 </UserControl>

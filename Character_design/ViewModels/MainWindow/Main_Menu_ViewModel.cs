@@ -6,11 +6,19 @@ namespace Character_design
     {
         private static Main_Menu_ViewModel _instance;
         private BaseViewModel current_VM;
+        private BaseViewModel current_Menu_ViewModel;
         private Main_Window_Creation_ViewModel main_window_creation;
+        private Common_menu_ViewModel common_menu;
+        private Player_menu_ViewModel player_menu;
+        private Master_menu_ViewModel master_menu;
 
         public string left_picture_source,
                       right_picture_source,
                       central_picture_source;
+
+              
+
+
         public static Main_Menu_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -19,17 +27,34 @@ namespace Character_design
             }
             return _instance;
         }
+        public void _Open_Player_Menu()
+        {
+            Current_Menu_ViewModel = player_menu;
+        }
+        public void _Open_Master_Menu()
+        {
+            Current_Menu_ViewModel = master_menu;
+        }
+        public void _Open_Common_Menu()
+        {
+            Current_Menu_ViewModel = common_menu;
+        }
+        public void _Open_main_window_creation_user_control()
+        {
+            CurrentViewModel = main_window_creation;
+        }
+
+
+
         public BaseViewModel CurrentViewModel
         {
-            get
-            {
-                return current_VM;
-            }
-            set
-            {
-                current_VM = value;
-                OnPropertyChanged("CurrentViewModel");
-            }
+            get { return current_VM; }
+            set { current_VM = value; OnPropertyChanged("CurrentViewModel"); }
+        }
+        public BaseViewModel Current_Menu_ViewModel
+        {
+            get { return current_Menu_ViewModel; }
+            set { current_Menu_ViewModel = value; OnPropertyChanged("Current_Menu_ViewModel"); }
         }
         public string Left_picture_source
         {
@@ -47,20 +72,30 @@ namespace Character_design
             set { central_picture_source = value; OnPropertyChanged("Central_picture_source"); }
         }
 
+
+
+
         private Main_Menu_ViewModel()
         {
             current_VM = null;
-            main_window_creation = Main_Window_Creation_ViewModel.GetInstance();
-            Open_main_window_creation_user_control = new Command(o => _Open_main_window_creation_user_control());
+            Current_Menu_ViewModel = new BaseViewModel();
 
+            main_window_creation = Main_Window_Creation_ViewModel.GetInstance();
+            common_menu = Common_menu_ViewModel.GetInstance();
+            player_menu = Player_menu_ViewModel.GetInstance();
+            master_menu = Master_menu_ViewModel.GetInstance();
+
+            Current_Menu_ViewModel = common_menu;
+
+            
             Left_picture_source     = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Left_picture.jpg";
             Right_picture_source    = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Right_picture.jpg";
             Central_picture_source  = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Central_picture.jpg";
         }
-        public Command Open_main_window_creation_user_control { get; private set; }
-        private void _Open_main_window_creation_user_control()
-        {
-            CurrentViewModel = main_window_creation;
-        }
+
+
+
+        
+
     }
 }

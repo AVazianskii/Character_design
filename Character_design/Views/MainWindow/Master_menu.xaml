@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="Character_design.Views.MainWindow.Master_menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Character_design.Views.MainWindow"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="400">
+    <Grid Background="Black">
+        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" 
+                   TextWrapping="Wrap" VerticalAlignment="Top" Height="40" Width="400"
+                   Text="Меню Мастера"
+                   Foreground="Wheat"
+                   FontSize="22" TextAlignment="Center"/>
+        <Button HorizontalAlignment="Left" Height="45" Margin="75,500,0,0" 
+                VerticalAlignment="Top" Width="250"
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Common_Menu}">
+            <Button.Content>
+                <TextBlock FontSize="20" Foreground="Wheat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Назад"/>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>

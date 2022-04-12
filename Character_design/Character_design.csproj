@@ -111,9 +111,12 @@
     <Compile Include="ViewModels\Character_creation\General_Data\General_Data_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Main_Window_Creation\Main_Window_Creation_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Skill\Skill_ViewModel.cs" />
+    <Compile Include="ViewModels\MainWindow\Common_menu_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\Main_Menu_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\MainWindow_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Race\Race_ViewModel.cs" />
+    <Compile Include="ViewModels\MainWindow\Master_menu_ViewModel.cs" />
+    <Compile Include="ViewModels\MainWindow\Player_menu_ViewModel.cs" />
     <Compile Include="Views\Character_creation\General_Data_View\Character_companion.xaml.cs">
       <DependentUpon>Character_companion.xaml</DependentUpon>
     </Compile>
@@ -144,11 +147,20 @@
     <Compile Include="Views\Character_creation\Skill_View\Skill.xaml.cs">
       <DependentUpon>Skill.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainWindow\Common_menu.xaml.cs">
+      <DependentUpon>Common_menu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow\Main_Menu.xaml.cs">
       <DependentUpon>Main_Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Character_creation\Race\Race_User_control.xaml.cs">
       <DependentUpon>Race_User_control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow\Master_menu.xaml.cs">
+      <DependentUpon>Master_menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow\Player_menu.xaml.cs">
+      <DependentUpon>Player_menu.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -202,11 +214,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MainWindow\Common_menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow\Main_Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Character_creation\Race\Race_User_control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow\Master_menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow\Player_menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -115,11 +115,18 @@ namespace Character_design
         public string Character_race_name
         {
             get { character_race_name = Character.GetInstance().Character_race.Race_name; return character_race_name; }
-            set { character_race_name = value; OnPropertyChanged("Character_race_name"); }
+            set 
+            { 
+                character_race_name = value;
+                OnPropertyChanged("Character_race_name"); 
+            }
         }
         public string Character_age
         {
-            get { return character_age; }
+            get 
+            {
+                return character_age; 
+            }
             set 
             { 
                 character_age = value; 
@@ -131,11 +138,21 @@ namespace Character_design
                 }
                 else
                 {
-                    MessageBox.Show("Ошибка, пробуй еще раз", "Error",MessageBoxButton.OK);
-                    character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                               Character.GetInstance().Character_race);
-                    Current_age_text_fontsize = help_text_fontsize;
-                    Age_text_color.Color = Help_text_color;
+                    if (character_age == string.Empty)
+                    {
+                        character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                                   Character.GetInstance().Character_race);
+                        Current_age_text_fontsize = help_text_fontsize;
+                        Age_text_color.Color = Help_text_color;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
+                        character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                                   Character.GetInstance().Character_race);
+                        Current_age_text_fontsize = help_text_fontsize;
+                        Age_text_color.Color = Help_text_color;
+                    }
                 }
                 OnPropertyChanged("Character_age"); 
             }
@@ -353,8 +370,6 @@ namespace Character_design
             Current_age_text_fontsize = help_text_fontsize;
             Age_text_color.Color = Help_text_color;
 
-            Character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                       Character.GetInstance().Character_race);
         }
 
         private string Default_Character_age_text (Age_status_libs.Age_status_class character_age_status, Races_libs.Race_class character_race)
