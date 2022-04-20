@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using Range_libs;
+using Age_status_libs;
 using System.Windows;
 using System.Windows.Media;
 
@@ -53,6 +54,8 @@ namespace Character_design
 
         private Range_Class character_current_range;
 
+        private Age_status_class character_current_age_status;
+
         private SolidColorBrush age_text_color;
 
         private Color Help_text_color;
@@ -83,6 +86,21 @@ namespace Character_design
                 Character.GetInstance().Range = character_current_range;
                 Character_range_description = Character.GetInstance().Range.Get_range_descr();
                 OnPropertyChanged("Character_current_range"); 
+            }
+        }
+        public List<Age_status_class> Character_ages
+        {
+            get{ return Main_model.GetInstance().Age_status_Manager.Age_Statuses(); }
+        }
+        public Age_status_class Character_current_age_status
+        {
+            get { return character_current_age_status; }
+            set 
+            { 
+                character_current_age_status = value;
+                Character.GetInstance().Age_status = character_current_age_status;
+                Character_age_status_description = Character.GetInstance().Age_status.Get_age_status_descr();
+                OnPropertyChanged("Character_current_age_status"); 
             }
         }
         public string Question_sign
@@ -358,8 +376,9 @@ namespace Character_design
             Character_name = "Дарт Сидиус";
             _Character_exp = "Сколько назначил Мастер?";
             Character_current_range = Character_ranges[0];
+            Character_current_age_status = Character_ages[0];
 
-            Help_text_color = Colors.Gray;
+             Help_text_color = Colors.Gray;
             Usual_text_color = Colors.Black;
 
             Age_text_color = new SolidColorBrush();
