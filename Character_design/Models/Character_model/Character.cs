@@ -31,27 +31,9 @@ namespace Character_design
         private Age_status_class age_status;
 
         private bool Is_forceuser;
-        private int experience;
+        private int experience,
+                    attributes;
         private int age;
-
-
-
-        public Character()
-        {
-            Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
-            Age_status = Main_model.GetInstance().Age_status_Manager.Age_Statuses()[0]; // устанавливаем возрастной статус "Неизвестно" персонажу
-            Range = Main_model.GetInstance().Range_Manager.Ranges()[0]; // устанавливаем ранг "Рядовой" персонажу
-            //Range = Main_model.GetInstance().Range_Manager.G
-            skills = new List<Skill_Class>();
-            foreach(Skill_Class Skill in Main_model.GetInstance().Skill_Manager.Get_skills())
-            {
-                skills.Add(Skill);
-            }
-            
-            Forceuser = false;
-            Experience = 180;
-
-        }
 
 
 
@@ -70,7 +52,7 @@ namespace Character_design
 
 
 
-        public Age_status_class Age_status 
+        public Age_status_class Age_status
         {
             get { return age_status; }
             set { age_status = value; OnPropertyChanged("Age_status"); }
@@ -83,21 +65,22 @@ namespace Character_design
         public Race_class Character_race
         {
             get { return character_race; }
-            set
-            {
-                character_race = value;
-                OnPropertyChanged("Character_race");
-            }
+            set { character_race = value; OnPropertyChanged("Character_race"); }
         }
         public bool Forceuser
         {
             get { return Is_forceuser; }
-            set { Is_forceuser = value; OnPropertyChanged("Forceuser"); }   
+            set { Is_forceuser = value; OnPropertyChanged("Forceuser"); }
         }
         public int Experience
         {
             get { return experience; }
             set { experience = value; OnPropertyChanged("Experience"); }
+        }
+        public int Attributes
+        {
+            get { return attributes; }
+            set { attributes = value; OnPropertyChanged("Attributes"); }
         }
         public List<Skill_Class> Skills
         {
@@ -110,39 +93,55 @@ namespace Character_design
             set { age = value; OnPropertyChanged("Age"); }
         }
 
-            public void Set_Character_Strength(Atribute_class Strength)
-            {
-                this.Strength = Strength;
-            }
-            public void Set_Character_Agility(Atribute_class Agility)
-            {
-                this.Agility = Agility;
-            }
-            public void Set_Character_Stamina(Atribute_class Stamina)
-            {
-                this.Stamina = Stamina;
-            }
-            public void Set_Character_Perception(Atribute_class Perception)
-            {
-                this.Perception = Perception;
-            }
-            public void Set_Character_Quickness(Atribute_class Quickness)
-            {
-                this.Quickness = Quickness;
-            }
-            public void Set_Character_Intelligence(Atribute_class Intelligence)
-            {
-                this.Intelligence = Intelligence;
-            }
-            public void Set_Character_Charm(Atribute_class Charm)
-            {
-                this.Charm = Charm;
-            }
-            public void Set_Character_Willpower(Atribute_class Willpower)
-            {
-                this.Willpower = Willpower;
-            }
-            public Race_class Get_Character_race() { return Character_race; }
-    }
+        public void Set_Character_Strength(Atribute_class Strength)
+        {
+            this.Strength = Strength;
+        }
+        public void Set_Character_Agility(Atribute_class Agility)
+        {
+            this.Agility = Agility;
+        }
+        public void Set_Character_Stamina(Atribute_class Stamina)
+        {
+            this.Stamina = Stamina;
+        }
+        public void Set_Character_Perception(Atribute_class Perception)
+        {
+            this.Perception = Perception;
+        }
+        public void Set_Character_Quickness(Atribute_class Quickness)
+        {
+            this.Quickness = Quickness;
+        }
+        public void Set_Character_Intelligence(Atribute_class Intelligence)
+        {
+            this.Intelligence = Intelligence;
+        }
+        public void Set_Character_Charm(Atribute_class Charm)
+        {
+            this.Charm = Charm;
+        }
+        public void Set_Character_Willpower(Atribute_class Willpower)
+        {
+            this.Willpower = Willpower;
+        }
+        public Race_class Get_Character_race() { return Character_race; }
 
+
+
+        public Character()
+        {
+            Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            Age_status = Main_model.GetInstance().Age_status_Manager.Age_Statuses()[0]; // устанавливаем возрастной статус "Неизвестно" персонажу
+            Range = Main_model.GetInstance().Range_Manager.Ranges()[0]; // устанавливаем ранг "Рядовой" персонажу
+
+            skills = new List<Skill_Class>();
+            foreach(Skill_Class Skill in Main_model.GetInstance().Skill_Manager.Get_skills())
+            {
+                skills.Add(Skill);
+            }
+            
+            Forceuser = false;
+        }       
+    }
 }

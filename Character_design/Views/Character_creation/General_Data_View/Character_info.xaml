@@ -91,12 +91,18 @@
                 </Button.Content>
             </Button>
             <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
-                     FontSize="14" TextAlignment="Center" 
+                     TextAlignment="Center" 
+                     VerticalAlignment="Bottom"
                      BorderThickness="0,0,0,1" BorderBrush="Red"
-                     Text="{Binding _Character_exp, UpdateSourceTrigger=LostFocus}"/>
+                     FontSize="{Binding Current_exp_points_fontsize}"
+                     Foreground="{Binding Exp_text_color}"
+                     Text="{Binding Character_exp, UpdateSourceTrigger=LostFocus}"/>
             <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
-                     FontSize="17" TextAlignment="Center" 
+                     TextAlignment="Center" 
+                     VerticalAlignment="Bottom"
                      BorderThickness="0,0,0,1" BorderBrush="Red"
+                     FontSize="{Binding Current_atr_points_fontsize}"
+                     Foreground="{Binding Atr_text_color}"
                      Text="{Binding Character_atr, UpdateSourceTrigger=LostFocus}"/>
             <Image Grid.Row="4" Grid.Column="3" Margin="3"
                    Source="{Binding Question_sign}">

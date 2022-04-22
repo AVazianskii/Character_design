@@ -16,9 +16,8 @@ namespace Character_design
         private string character_name;
         private string character_race_name;
         private string character_age_status;
-        private int character_exp,
-                    character_atr,
-                    min_character_strength,
+
+        private int min_character_strength,
                     max_character_strength,
                     min_character_agility,
                     max_character_agility,
@@ -45,18 +44,24 @@ namespace Character_design
 
         private int help_text_fontsize,
                     usual_text_fontsize,
-                    current_age_text_fontsize;
+                    current_age_text_fontsize,
+                    current_exp_points_fontsize,
+                    current_atr_points_fontsize;
 
         private string character_age;
-        private string _character_exp;
+        private string character_exp;
+        private string character_atr;
         private string character_range_description;
         private string character_age_status_description;
+        private string default_question;
 
         private Range_Class character_current_range;
 
         private Age_status_class character_current_age_status;
 
         private SolidColorBrush age_text_color;
+        private SolidColorBrush exp_text_color;
+        private SolidColorBrush atr_text_color;
 
         private Color Help_text_color;
         private Color Usual_text_color;
@@ -67,6 +72,26 @@ namespace Character_design
         {
             get { return current_age_text_fontsize; }
             set { current_age_text_fontsize = value; OnPropertyChanged("Current_age_text_fontsize"); }
+        }
+        public int Current_exp_points_fontsize
+        {
+            get { return current_exp_points_fontsize; }
+            set { current_exp_points_fontsize = value; OnPropertyChanged("Current_exp_points_fontsize"); }
+        }
+        public int Current_atr_points_fontsize
+        {
+            get { return current_atr_points_fontsize; }
+            set { current_atr_points_fontsize = value; OnPropertyChanged("Current_atr_points_fontsize"); }
+        }
+        public SolidColorBrush Atr_text_color
+        {
+            get { return atr_text_color; }
+            set { atr_text_color = value; OnPropertyChanged("Atr_text_color"); }
+        }
+        public SolidColorBrush Exp_text_color
+        {
+            get { return exp_text_color; }
+            set { exp_text_color = value; OnPropertyChanged("Exp_text_color"); }
         }
         public SolidColorBrush Age_text_color
         {
@@ -100,6 +125,7 @@ namespace Character_design
                 character_current_age_status = value;
                 Character.GetInstance().Age_status = character_current_age_status;
                 Character_age_status_description = Character.GetInstance().Age_status.Get_age_status_descr();
+                OnPropertyChanged("Character_age");
                 OnPropertyChanged("Character_current_age_status"); 
             }
         }
@@ -136,6 +162,7 @@ namespace Character_design
             set 
             { 
                 character_race_name = value;
+                OnPropertyChanged("Character_age");
                 OnPropertyChanged("Character_race_name"); 
             }
         }
@@ -143,34 +170,33 @@ namespace Character_design
         {
             get 
             {
+                character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                           Character.GetInstance().Character_race);
                 return character_age; 
             }
             set 
-            { 
-                character_age = value; 
-                if(Int32.TryParse(character_age, out int result))
+            {
+                if (Int32.TryParse(value, out int result))
                 {
+                    character_age = value;
                     Character.GetInstance().Age = result;
                     Current_age_text_fontsize = usual_text_fontsize;
                     Age_text_color.Color = Usual_text_color;
                 }
+                else if (value == "")
+                {
+                    character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                               Character.GetInstance().Character_race);
+                    Current_age_text_fontsize = help_text_fontsize;
+                    Age_text_color.Color = Help_text_color;
+                }
                 else
                 {
-                    if (character_age == string.Empty)
-                    {
-                        character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                                   Character.GetInstance().Character_race);
-                        Current_age_text_fontsize = help_text_fontsize;
-                        Age_text_color.Color = Help_text_color;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
-                        character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                                   Character.GetInstance().Character_race);
-                        Current_age_text_fontsize = help_text_fontsize;
-                        Age_text_color.Color = Help_text_color;
-                    }
+                    MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
+                    character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                               Character.GetInstance().Character_race);
+                    Current_age_text_fontsize = help_text_fontsize;
+                    Age_text_color.Color = Help_text_color;
                 }
                 OnPropertyChanged("Character_age"); 
             }
@@ -180,15 +206,61 @@ namespace Character_design
             get { return character_age_status; }
             set { character_age_status = value; OnPropertyChanged("Character_age_status"); }
         }
-        public int Character_exp
+        public string Character_exp
         {
             get { return character_exp; }
-            set { character_exp = value; OnPropertyChanged("Character_exp"); }
+            set 
+            { 
+                if(Int32.TryParse(value, out int result))
+                {
+                    character_exp = value;
+                    Character.GetInstance().Experience = result;
+                    Current_exp_points_fontsize = usual_text_fontsize;
+                    Exp_text_color.Color = Usual_text_color;
+                }
+                else if (value == "")
+                {
+                    character_exp = default_question;
+                    Current_exp_points_fontsize = help_text_fontsize;
+                    Exp_text_color.Color = Help_text_color;
+                }
+                else 
+                {
+                    MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
+                    character_exp = default_question;
+                    Current_exp_points_fontsize = help_text_fontsize;
+                    Exp_text_color.Color = Help_text_color;
+                }
+                OnPropertyChanged("Character_exp"); 
+            }
         }
-        public int Character_atr
+        public string Character_atr
         {
             get { return character_atr; }
-            set { character_atr = value; OnPropertyChanged("Character_atr"); }
+            set 
+            {
+                if (Int32.TryParse(value, out int result))
+                {
+                    character_atr = value;
+                    Character.GetInstance().Attributes = result;
+                    Current_atr_points_fontsize = usual_text_fontsize;
+                    Atr_text_color.Color = Usual_text_color;
+                }
+                else if (value == "")
+                {
+                    character_atr = default_question;
+                    Current_atr_points_fontsize = help_text_fontsize;
+                    Atr_text_color.Color = Help_text_color;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
+                    character_atr = default_question;
+                    Current_atr_points_fontsize = help_text_fontsize;
+                    Atr_text_color.Color = Help_text_color;
+                }
+                OnPropertyChanged("Character_atr"); 
+            }
         }
         public int Min_character_strength
         {
@@ -354,11 +426,7 @@ namespace Character_design
         {
             get { return Character.GetInstance().Character_race.Get_min_eldery_age(); }
         }
-        public string _Character_exp
-        {
-            get { return _character_exp; }
-            set { _character_exp = value; OnPropertyChanged("_Character_exp"); }
-        }
+
 
 
         public static Character_info_ViewModel GetInstance()
@@ -371,37 +439,51 @@ namespace Character_design
         }
 
 
+
         private Character_info_ViewModel()
         {
             Character_name = "Дарт Сидиус";
-            _Character_exp = "Сколько назначил Мастер?";
+            default_question = "Сколько назначил Мастер?";
+
             Character_current_range = Character_ranges[0];
             Character_current_age_status = Character_ages[0];
 
-             Help_text_color = Colors.Gray;
+            Help_text_color  = Colors.Gray;
             Usual_text_color = Colors.Black;
 
             Age_text_color = new SolidColorBrush();
+            Exp_text_color = new SolidColorBrush();
+            Atr_text_color = new SolidColorBrush();
 
             help_text_fontsize = 10;
             usual_text_fontsize = 14;
 
             Current_age_text_fontsize = help_text_fontsize;
+            Current_exp_points_fontsize = help_text_fontsize;
+            Current_atr_points_fontsize = help_text_fontsize;
             Age_text_color.Color = Help_text_color;
+            Exp_text_color.Color = Help_text_color;
+            Atr_text_color.Color = Help_text_color;
 
+            Character_age = "";
+            Character_exp = "";
+            Character_atr = "";
         }
+
+
 
         private string Default_Character_age_text (Age_status_libs.Age_status_class character_age_status, Races_libs.Race_class character_race)
         {
             string local_text = "";
-            switch (0) //character_age_status.Get_age_status_code()
+            switch (character_age_status.Get_age_status_code()) //character_age_status.Get_age_status_code()
             {
-                case 0: local_text = $"Введите число от {character_race.Get_min_child_age()} до {character_race.Get_max_child_age()}"; break;
-                case 1: local_text = $"от {character_race.Get_min_child_age()} до {character_race.Get_max_child_age()}"; break;
-                case 2: local_text = $"от {character_race.Get_min_teen_age()} до {character_race.Get_max_teen_age()}"; break;
-                case 3: local_text = $"от 7 до 8"; break;
-                case 4: local_text = $"от 9 до 10"; break;
-                case 5: local_text = $"от 11 до 12"; break;
+                case 0: local_text = $"Возрастной статус не выбран!"; break;
+                case 1: local_text = $"Введите число от {character_race.Get_min_child_age()} до {character_race.Get_max_child_age()}"; break;
+                case 2: local_text = $"Введите число от {character_race.Get_min_teen_age()} до {character_race.Get_max_teen_age()}"; break;
+                case 3: local_text = $"Введите число от {character_race.Get_min_adult_age()} до {character_race.Get_max_adult_age()}"; break;
+                case 4: local_text = $"Введите число от {character_race.Get_min_middle_age()} до {character_race.Get_max_middle_age()}"; break;
+                case 5: local_text = $"Введите число от {character_race.Get_min_old_age()} до {character_race.Get_max_old_age()}"; break;
+                case 6: local_text = $"Введите число от {character_race.Get_min_eldery_age()} "; break;
             }
             return local_text;
         }
