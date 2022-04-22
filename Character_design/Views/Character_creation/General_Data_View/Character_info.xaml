@@ -341,7 +341,7 @@
                        TextWrapping="Wrap"/>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="285" Margin="0,485,0,0" VerticalAlignment="Top" Width="380">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="285" Margin="10,485,0,0" VerticalAlignment="Top" Width="380">
             <TextBlock Margin="20,10,20,205" Text="Боевые параметры" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"/>
         </Border>
 
