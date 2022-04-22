@@ -400,51 +400,7 @@ namespace Character_design
             get { return character_willpower; }
             set { character_willpower = value; OnPropertyChanged("Character_willpower"); }
         }
-        public int Child_min_age
-        {
-            get { return Character.GetInstance().Character_race.Get_min_child_age(); }
-        }
-        public int Child_max_age
-        {
-            get { return Character.GetInstance().Character_race.Get_max_child_age(); }
-        }
-        public int Teen_min_age
-        {
-            get { return Character.GetInstance().Character_race.Get_min_teen_age(); }
-        }
-        public int Teen_max_age
-        {
-            get { return Character.GetInstance().Character_race.Get_max_teen_age(); }
-        }
-        public int Adult_min_age
-        {
-            get { return Character.GetInstance().Character_race.Get_min_adult_age(); }
-        }
-        public int Adult_max_age
-        {
-            get { return Character.GetInstance().Character_race.Get_max_adult_age(); }
-        }
-        public int Middle_min_age
-        {
-            get { return Character.GetInstance().Character_race.Get_min_middle_age(); }
-        }
-        public int Middle_max_age
-        {
-            get { return Character.GetInstance().Character_race.Get_max_middle_age(); }
-        }
-        public int Old_min_age
-        {
-            get { return Character.GetInstance().Character_race.Get_min_old_age(); }
-        }
-        public int Old_max_age
-        {
-            get { return Character.GetInstance().Character_race.Get_max_old_age(); }
-        }
-        public int Eldery_min_age
-        {
-            get { return Character.GetInstance().Character_race.Get_min_eldery_age(); }
-        }
-
+        
 
 
         public static Character_info_ViewModel GetInstance()
