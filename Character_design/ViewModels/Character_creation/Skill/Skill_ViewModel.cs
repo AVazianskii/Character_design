@@ -56,20 +56,33 @@ namespace Character_design
                 return skill.Get_Non_force_user_cost();
             }
         }
-        private int Return_skill_limit(Skill_Class skill)
+        private int Return_skill_limit(Skill_Class skill, Age_status_libs.Age_status_class age_status, Range_libs.Range_Class range)
         {
-            if(skill.Get_range_skill_limit() >= skill.Get_age_skill_limit())
+            int result = 0;
+            switch (skill.Skill_type)
             {
-                return skill.Get_range_skill_limit();
+                case 1:
+                    if(age_status.Skill_limit <= range.Combat_skill_limit) { result = age_status.Skill_limit; }
+                    else { result = range.Combat_skill_limit; }
+                    break;
+                case 2:
+                    if (age_status.Skill_limit <= range.Surviving_skill_limit) { result = age_status.Skill_limit; }
+                    else { result = range.Surviving_skill_limit; }
+                    break;
+                case 3:
+                    if (age_status.Skill_limit <= range.Charming_skill_limit) { result = age_status.Skill_limit; }
+                    else { result = range.Charming_skill_limit; }
+                    break;
+                case 4:
+                    if (age_status.Skill_limit <= range.Tech_skill_limit) { result = age_status.Skill_limit; }
+                    else { result = range.Tech_skill_limit; }
+                    break;
+                case 5:
+                    if (age_status.Skill_limit <= range.Specific_skill_limit) { result = age_status.Skill_limit; }
+                    else { result = range.Specific_skill_limit; }
+                    break;
             }
-            else if(skill.Get_range_skill_limit() < skill.Get_age_skill_limit())
-            {
-                return skill.Get_age_skill_limit();
-            }
-            else
-            {
-                return skill.Get_range_skill_limit();
-            }
+            return result;
         }
         public static Skill_ViewModel GetInstance()
         {
@@ -264,7 +277,7 @@ namespace Character_design
                     Selected_skill_range_limit = selected_skill.Get_range_skill_limit();
                     selected_skill_age_limit = selected_skill.Get_age_skill_limit();
                     Selected_skill_cost = Return_skill_cost(selected_skill);
-                    Selected_skill_limit = Return_skill_limit(selected_skill);
+                    Selected_skill_limit = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
                 }
                 OnPropertyChanged("Selected_skill");
             }

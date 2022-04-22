@@ -76,10 +76,10 @@
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="50" ></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Column="0" Grid.Row="0" Height="46" TextWrapping="Wrap" Width="180" Foreground="Wheat" 
-                                       TextAlignment="Center" FontSize="16" VerticalAlignment="Stretch"
+                                       TextAlignment="Center" FontSize="16" VerticalAlignment="Center"
                                        Text="{Binding Path=Skill_name}" />
                             </Grid>
                         </DataTemplate>
