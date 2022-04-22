@@ -170,18 +170,36 @@ namespace Character_design
         {
             get 
             {
-                character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                           Character.GetInstance().Character_race);
+                Current_age_text_fontsize = usual_text_fontsize;
+                Age_text_color.Color = Usual_text_color;
+                if (!(Int32.TryParse(character_age, out int result)))
+                {
+                    character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                               Character.GetInstance().Character_race);
+                    Current_age_text_fontsize = help_text_fontsize;
+                    Age_text_color.Color = Help_text_color;
+                }
                 return character_age; 
             }
             set 
             {
                 if (Int32.TryParse(value, out int result))
                 {
-                    character_age = value;
-                    Character.GetInstance().Age = result;
-                    Current_age_text_fontsize = usual_text_fontsize;
-                    Age_text_color.Color = Usual_text_color;
+                    if (Check_age_limits(Convert.ToInt32(value), Character.GetInstance().Age_status, Character.GetInstance().Character_race))
+                    {
+                        character_age = value;
+                        Character.GetInstance().Age = result;
+                        Current_age_text_fontsize = usual_text_fontsize;
+                        Age_text_color.Color = Usual_text_color;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
+                        character_age = Default_Character_age_text(Character.GetInstance().Age_status,
+                                                                   Character.GetInstance().Character_race);
+                        Current_age_text_fontsize = help_text_fontsize;
+                        Age_text_color.Color = Help_text_color;
+                    }
                 }
                 else if (value == "")
                 {
@@ -486,6 +504,60 @@ namespace Character_design
                 case 6: local_text = $"Введите число от {character_race.Get_min_eldery_age()} "; break;
             }
             return local_text;
+        }
+
+        private bool Check_age_limits(int input_age, Age_status_libs.Age_status_class character_age_status, Races_libs.Race_class character_race)
+        {
+            bool limits_comfirmed = false;
+            switch (character_age_status.Get_age_status_code()) //character_age_status.Get_age_status_code()
+            {
+                case 0: limits_comfirmed = false; break;
+                case 1: 
+                    if (input_age >= character_race.Get_min_child_age())
+                    {
+                        if (input_age <= character_race.Get_max_child_age()) { limits_comfirmed = true; }
+                        else { limits_comfirmed = false; }
+                    }
+                    else { limits_comfirmed = false; }
+                    break;
+                case 2:
+                    if (input_age >= character_race.Get_min_teen_age())
+                    {
+                        if (input_age <= character_race.Get_max_teen_age()) { limits_comfirmed = true; }
+                        else { limits_comfirmed = false; }
+                    }
+                    else { limits_comfirmed = false; }
+                    break;
+                case 3:
+                    if (input_age >= character_race.Get_min_adult_age())
+                    {
+                        if (input_age <= character_race.Get_max_adult_age()) { limits_comfirmed = true; }
+                        else { limits_comfirmed = false; }
+                    }
+                    else { limits_comfirmed = false; }
+                    break;
+                case 4:
+                    if (input_age >= character_race.Get_min_middle_age())
+                    {
+                        if (input_age <= character_race.Get_max_middle_age()) { limits_comfirmed = true; }
+                        else { limits_comfirmed = false; }
+                    }
+                    else { limits_comfirmed = false; }
+                    break;
+                case 5:
+                    if (input_age >= character_race.Get_min_old_age())
+                    {
+                        if (input_age <= character_race.Get_max_old_age()) { limits_comfirmed = true; }
+                        else { limits_comfirmed = false; }
+                    }
+                    else { limits_comfirmed = false; }
+                    break;
+                case 6:
+                    if (input_age >= character_race.Get_min_eldery_age()) { limits_comfirmed = true; }
+                    else { limits_comfirmed = false; }
+                    break;
+            }
+            return limits_comfirmed;
         }
     }
 }
