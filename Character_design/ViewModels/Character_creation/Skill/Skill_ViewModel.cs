@@ -98,16 +98,7 @@ namespace Character_design
         }
         public int Exp_points_left
         {
-            get
-            {
-                exp_points_left = Character.GetInstance().Experience;
-                return exp_points_left;
-            }
-            set
-            {
-                exp_points_left = value;
-                OnPropertyChanged("Exp_points_left");
-            }
+            get { return Character.GetInstance().Experience_left; }
         }
         public Skill_Class Selected_skill
         {
@@ -121,8 +112,8 @@ namespace Character_design
                     Selected_skill_title = selected_skill.Get_skill_name();
                     Selected_skill_race_bonus = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
                     Selected_skill_min_score = Selected_skill_race_bonus;
-                    Selected_skill_range_limit = selected_skill.Get_range_skill_limit();
-                    selected_skill_age_limit = selected_skill.Get_age_skill_limit();
+                    Selected_skill_range_limit = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
+                    Selected_skill_age_limit = Return_age_skill_limit(Character.GetInstance().Age_status);
                     Selected_skill_cost = Return_skill_cost(selected_skill);
                     Selected_skill_limit = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
                     Selected_skill_score = selected_skill.Get_score();
@@ -221,8 +212,14 @@ namespace Character_design
             Show_tech_skills        = new Command(o => _Show_tech_skills());
             Show_specific_skills    = new Command(o => _Show_specific_skills());
 
-            Decrease_skill_score = new Command(o => _Decrease_skill_score(o), o => selected_skill.Get_counter() > 0);
-            Increase_skill_score = new Command(o => _Increase_skill_score(o), o => selected_skill.Get_counter() < Selected_skill_limit);
+            Decrease_skill_score = new Command(o => _Decrease_skill_score(o), 
+                                               o => selected_skill.Get_counter() > 0);
+
+            Increase_skill_score = new Command(o => _Increase_skill_score(o), 
+                                               o => Increase_is_possible(selected_skill, 
+                                                                         Selected_skill_cost, 
+                                                                         Selected_skill_limit,
+                                                                         Character.GetInstance().Experience_left));
 
             Combat_skills_button_border     = new SolidColorBrush();
             Surviving_skills_button_border  = new SolidColorBrush();
@@ -331,6 +328,8 @@ namespace Character_design
                     {
                         Character_skill.Increase_score();
                         Selected_skill_score = Character_skill.Get_score();
+                        Character.GetInstance().Spend_exp_points(Selected_skill_cost);
+                        OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_skill_counter");
                         break;
                     }
@@ -348,6 +347,8 @@ namespace Character_design
                     {
                         Character_skill.Decrease_score();
                         Selected_skill_score = Character_skill.Get_score();
+                        Character.GetInstance().Refund_exp_points(Selected_skill_cost);
+                        OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_skill_counter");
                         break;
                     }
@@ -365,6 +366,38 @@ namespace Character_design
                 }
             }
             return race_skill_bonus;
+        }
+        private int Return_age_skill_limit(Age_status_libs.Age_status_class age_status)
+        {
+            return age_status.Skill_limit;
+        }
+        private int Return_range_skill_limit(Skill_Class skill, Range_libs.Range_Class range)
+        {
+            int limit = 0;
+            switch(skill.Skill_type)
+            {
+                case 1: limit = range.Combat_skill_limit; break;
+                case 2: limit = range.Surviving_skill_limit; break;
+                case 3: limit = range.Charming_skill_limit; break;
+                case 4: limit = range.Tech_skill_limit; break;
+                case 5: limit = range.Specific_skill_limit; break;
+            }
+            return limit;
+        }
+        private bool Increase_is_possible (Skill_Class skill,int cost, int limit, int exp_points_left)
+        {
+            bool result = false;
+            if (Character.GetInstance().Character_race != Race_manager.GetInstance().Get_Race_list()[0])
+            {
+                if (skill.Get_counter() < limit)
+                {
+                    if (exp_points_left >= cost)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

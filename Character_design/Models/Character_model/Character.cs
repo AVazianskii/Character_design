@@ -30,9 +30,14 @@ namespace Character_design
         private Range_Class range;
         private Age_status_class age_status;
 
+
         private bool Is_forceuser;
         private int experience,
-                    attributes;
+                    experience_left,
+                    experience_sold,
+                    attributes,
+                    attributes_left,
+                    attributes_sold;
         private int age;
 
 
@@ -49,7 +54,16 @@ namespace Character_design
             }
             return Character_instance;
         }
-
+        public void Spend_exp_points(int cost)
+        {
+            Experience_sold = Experience_sold + cost;
+            Experience_left = Experience - Experience_sold;
+        }
+        public void Refund_exp_points (int cost)
+        {
+            Experience_sold = Experience_sold - cost;
+            Experience_left = Experience - Experience_sold;
+        }
 
 
         public Age_status_class Age_status
@@ -75,7 +89,22 @@ namespace Character_design
         public int Experience
         {
             get { return experience; }
-            set { experience = value; OnPropertyChanged("Experience"); }
+            set 
+            { 
+                experience = value;
+                Spend_exp_points(0);
+                OnPropertyChanged("Experience"); 
+            }
+        }
+        public int Experience_left
+        {
+            get { return experience_left; }
+            set { experience_left = value; OnPropertyChanged("Experience_left"); }
+        }
+        public int Experience_sold
+        {
+            get { return experience_sold; }
+            set { experience_sold = value; OnPropertyChanged("Experience_sold"); }
         }
         public int Attributes
         {
