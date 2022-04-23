@@ -108,16 +108,16 @@ namespace Character_design
                 selected_skill = value;
                 if (selected_skill != null)
                 {
-                    Selected_skill_description = selected_skill.Get_skill_description();
-                    Selected_skill_title = selected_skill.Get_skill_name();
-                    Selected_skill_race_bonus = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
-                    Selected_skill_min_score = Selected_skill_race_bonus;
-                    Selected_skill_range_limit = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
-                    Selected_skill_age_limit = Return_age_skill_limit(Character.GetInstance().Age_status);
-                    Selected_skill_cost = Return_skill_cost(selected_skill);
-                    Selected_skill_limit = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
-                    Selected_skill_score = selected_skill.Get_score();
-                    Selected_skill_max_score = Selected_skill_min_score + Selected_skill_limit;
+                    Selected_skill_description  = selected_skill.Get_skill_description();
+                    Selected_skill_title        = selected_skill.Get_skill_name();
+                    Selected_skill_race_bonus   = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
+                    Selected_skill_min_score    = Selected_skill_race_bonus;
+                    Selected_skill_range_limit  = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
+                    Selected_skill_age_limit    = Return_age_skill_limit(Character.GetInstance().Age_status);
+                    Selected_skill_cost         = Return_skill_cost(selected_skill);
+                    Selected_skill_limit        = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
+                    Selected_skill_score        = selected_skill.Get_score();
+                    Selected_skill_max_score    = Selected_skill_min_score + Selected_skill_limit;
                 }
                 OnPropertyChanged("Selected_skill_counter");
                 OnPropertyChanged("Selected_skill");

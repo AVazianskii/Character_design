@@ -66,6 +66,7 @@ namespace Character_design
         }
 
 
+
         public Age_status_class Age_status
         {
             get { return age_status; }
