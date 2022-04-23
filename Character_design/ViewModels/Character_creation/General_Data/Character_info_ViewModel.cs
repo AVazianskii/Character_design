@@ -110,6 +110,7 @@ namespace Character_design
                 character_current_range = value;
                 Character.GetInstance().Range = character_current_range;
                 Character_range_description = Character.GetInstance().Range.Get_range_descr();
+                Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Character_current_range"); 
             }
         }
@@ -125,6 +126,7 @@ namespace Character_design
                 character_current_age_status = value;
                 Character.GetInstance().Age_status = character_current_age_status;
                 Character_age_status_description = Character.GetInstance().Age_status.Get_age_status_descr();
+                Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Character_age");
                 OnPropertyChanged("Character_current_age_status"); 
             }

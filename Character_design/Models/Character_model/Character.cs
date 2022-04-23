@@ -70,22 +70,38 @@ namespace Character_design
         public Age_status_class Age_status
         {
             get { return age_status; }
-            set { age_status = value; OnPropertyChanged("Age_status"); }
+            set 
+            { 
+                age_status = value;
+                OnPropertyChanged("Age_status");
+            }
         }
         public Range_Class Range
         {
             get { return range; }
-            set { range = value; OnPropertyChanged("Range"); }
+            set 
+            { 
+                range = value;
+                OnPropertyChanged("Range");
+            }
         }
         public Race_class Character_race
         {
             get { return character_race; }
-            set { character_race = value; OnPropertyChanged("Character_race"); }
+            set 
+            { 
+                character_race = value;
+                OnPropertyChanged("Character_race");
+            }
         }
         public bool Forceuser
         {
             get { return Is_forceuser; }
-            set { Is_forceuser = value; OnPropertyChanged("Forceuser"); }
+            set
+            { 
+                Is_forceuser = value;
+                OnPropertyChanged("Forceuser");
+            }
         }
         public int Experience
         {

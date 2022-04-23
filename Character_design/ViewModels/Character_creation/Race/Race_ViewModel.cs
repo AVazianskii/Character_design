@@ -208,11 +208,13 @@ namespace Character_design
         private void _Choose_race()
         {
             Character.GetInstance().Character_race = Selected_race;
+            Skill_ViewModel.GetInstance().Refresh_fields();
             race_chosen = true;
         }
         private void _Unchoose_race()
         {
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            Skill_ViewModel.GetInstance().Refresh_fields();
             race_chosen = false;
         }
     }

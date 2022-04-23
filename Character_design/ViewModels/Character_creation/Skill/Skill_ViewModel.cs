@@ -53,6 +53,22 @@ namespace Character_design
             if (_instance == null) { _instance = new Skill_ViewModel(); }
             return _instance;
         }
+        public void Refresh_fields()
+        {
+            if(Selected_skill != null)
+            {
+                Selected_skill_description  = Selected_skill.Get_skill_description();
+                Selected_skill_title        = Selected_skill.Get_skill_name();
+                Selected_skill_race_bonus   = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
+                Selected_skill_min_score    = Selected_skill_race_bonus;
+                Selected_skill_range_limit  = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
+                Selected_skill_age_limit    = Return_age_skill_limit(Character.GetInstance().Age_status);
+                Selected_skill_cost         = Return_skill_cost(selected_skill);
+                Selected_skill_limit        = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
+                Selected_skill_score        = Selected_skill.Get_score();
+                Selected_skill_max_score    = Selected_skill_min_score + Selected_skill_limit;
+            }
+        }
 
 
 
@@ -130,7 +146,7 @@ namespace Character_design
         }
         public string Selected_skill_description
         {
-            get { return selected_skill_description; }
+            get { return selected_skill_description;  }
             set { selected_skill_description = value; OnPropertyChanged("Selected_skill_description"); }
         }
         public string Skill_name
