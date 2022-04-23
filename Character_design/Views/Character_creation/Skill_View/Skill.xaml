@@ -101,9 +101,12 @@
                            Text="{Binding Selected_skill_cost}"/>
                 <TextBlock Height="34" Canvas.Left="910" TextWrapping="Wrap" Canvas.Top="360" Width="150"
                             Text="оч. опыта" FontSize="18"/>
-                <TextBlock Height="34" Canvas.Left="490" TextWrapping="Wrap" Canvas.Top="520" Width="360"
+                <TextBlock Height="34" Canvas.Left="530" TextWrapping="Wrap" Canvas.Top="520" Width="240"
                            TextAlignment="Center"
                             Text="Уровень развития навыка:" FontSize="18"/>
+                <TextBlock Height="34" Canvas.Left="770" TextWrapping="Wrap" Canvas.Top="520" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" FontSize="18"
+                           Text="{Binding Selected_skill_score}"/>
                 <ProgressBar Height="17" Canvas.Left="300" Canvas.Top="550" Width="754" HorizontalAlignment="Center" VerticalAlignment="Top"
                              Value="{Binding Selected_skill_score}"
                              Minimum="{Binding Selected_skill_min_score}"
