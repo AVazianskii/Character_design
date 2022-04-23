@@ -155,8 +155,8 @@ namespace Character_design
             Show_tech_skills        = new Command(o => _Show_tech_skills());
             Show_specific_skills    = new Command(o => _Show_specific_skills());
 
-            Decrease_skill_score = new Command(o => _Decrease_skill_score(o), o => selected_skill.Get_counter() < 0);
-            Increase_skill_score = new Command(o => _Increase_skill_score(o), o => selected_skill.Get_counter() > Selected_skill_limit);
+            Decrease_skill_score = new Command(o => _Decrease_skill_score(o), o => selected_skill.Get_counter() > 0);
+            Increase_skill_score = new Command(o => _Increase_skill_score(o), o => selected_skill.Get_counter() < Selected_skill_limit);
 
             Combat_skills_button_border     = new SolidColorBrush();
             Surviving_skills_button_border  = new SolidColorBrush();
