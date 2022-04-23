@@ -14,29 +14,6 @@ namespace Character_design
     {
         List<Race_class> destination_race_list = new List<Race_class>();
         
-        private void Initial_load_race_list(List<Race_class> _destination_race_list)
-        {
-            foreach (Race_class race in Main_model.GetInstance().Race_Manager.Get_Race_list())
-            {
-                _destination_race_list.Add(race);
-            }
-            _destination_race_list.RemoveAt(0);
-        }
-        private void Setup_race_features(string feature_1, string feature_2, string feature_3,
-                                         string feature_4, string feature_5, string feature_6, string feature_7, 
-                                         ref string out_text)
-        {
-            out_text = "";
-            if (feature_1 != "") { out_text = out_text + feature_1 + "\n" + "\n"; }
-            if (feature_2 != "") { out_text = out_text + feature_2 + "\n" + "\n"; }
-            if (feature_3 != "") { out_text = out_text + feature_3 + "\n" + "\n"; }
-            if (feature_4 != "") { out_text = out_text + feature_4 + "\n" + "\n"; }
-            if (feature_5 != "") { out_text = out_text + feature_5 + "\n" + "\n"; }
-            if (feature_6 != "") { out_text = out_text + feature_6 + "\n" + "\n"; }
-            if (feature_7 != "") { out_text = out_text + feature_7; }
-
-        }
-
         private static Race_ViewModel _instance;
         private BaseViewModel current_VM;
         private string selected_race_description;
@@ -59,240 +36,108 @@ namespace Character_design
         private string selected_race_feature_list;
         private Race_class selected_race;
 
+
+
         public Command Choose_race { get; private set; }
         public Command Unchoose_race { get; private set; }
+
+
+
         public static Race_ViewModel GetInstance()
         {
-            if (_instance == null)
-            {
-                _instance = new Race_ViewModel();
-            }
+            if (_instance == null) { _instance = new Race_ViewModel(); }
             return _instance;
         }
+
+
+
         public BaseViewModel CurrentViewModel
         {
-            get
-            {
-                return current_VM;
-            }
-            set
-            {
-                current_VM = value;
-                OnPropertyChanged("CurrentViewModel");
-            }
-        }
-
-        private Race_ViewModel()
-        {
-            Initial_load_race_list(destination_race_list);
-            Selected_race = destination_race_list[0];
-
-            race_chosen = false;
-            Choose_race = new Command(o => _Choose_race(),
-                                      o => race_chosen == false);
-            Unchoose_race = new Command(o => _Unchoose_race(),
-                                        o => race_chosen == true);
-
+            get { return current_VM; }
+            set { current_VM = value; OnPropertyChanged("CurrentViewModel"); }
         }
         public List<Race_class> Races
         {
-            get
-            {
-                return destination_race_list;
-            }
+            get { return destination_race_list; }
         }
         public string Selected_race_description
         {
-            get
-            {
-                return selected_race_description;
-            }
-            set
-            {
-                selected_race_description = value;
-                OnPropertyChanged("Selected_race_description");
-            }
+            get { return selected_race_description; }
+            set { selected_race_description = value; OnPropertyChanged("Selected_race_description"); }
         }
         public string Selected_race_full_img_path
         {
-            get
-            {
-                return selected_race_full_img_path; 
-            }
-            set
-            {
-                selected_race_full_img_path = value;
-                OnPropertyChanged("Selected_race_full_img_path");
-            }
+            get { return selected_race_full_img_path; }
+            set { selected_race_full_img_path = value; OnPropertyChanged("Selected_race_full_img_path"); }
         }
         public string Selected_race_personal_data
         {
-            get
-            {
-                return selected_race_personal_data;
-            }
-            set
-            {
-                selected_race_personal_data = value;
-                OnPropertyChanged("Selected_race_personal_data");
-            }
+            get { return selected_race_personal_data; }
+            set { selected_race_personal_data = value; OnPropertyChanged("Selected_race_personal_data"); }
         }
         public string Selected_race_physical_data
         {
-            get
-            {
-                return selected_race_physical_data;
-            }
-            set
-            {
-                selected_race_physical_data = value;
-                OnPropertyChanged("Selected_race_physical_data");
-            }
+            get { return selected_race_physical_data; }
+            set { selected_race_physical_data = value; OnPropertyChanged("Selected_race_physical_data"); }
         }
         public string Selected_race_home_world
         {
-            get
-            {
-                return selected_race_home_world;
-            }
-            set
-            {
-                selected_race_home_world = value;
-
-                OnPropertyChanged("Selected_race_home_world");
-            }
+            get { return selected_race_home_world; }
+            set { selected_race_home_world = value; OnPropertyChanged("Selected_race_home_world"); }
         }
         public int Selected_race_strength_bonus
         {
-            get
-            {
-                return selected_race_strength_bonus;
-            }
-            set
-            {
-                selected_race_strength_bonus = value;
-                OnPropertyChanged("Selected_race_strength_bonus");
-            }
+            get { return selected_race_strength_bonus; }
+            set { selected_race_strength_bonus = value; OnPropertyChanged("Selected_race_strength_bonus"); }
         }
         public int Selected_race_agility_bonus
         {
-            get
-            {
-                return selected_race_agility_bonus;
-            }
-            set
-            {
-                selected_race_agility_bonus = value;
-                OnPropertyChanged("Selected_race_agility_bonus");
-            }
+            get { return selected_race_agility_bonus; }
+            set { selected_race_agility_bonus = value; OnPropertyChanged("Selected_race_agility_bonus"); }
         }
         public int Selected_race_stamina_bonus
         {
-            get
-            {
-                return selected_race_stamina_bonus;
-            }
-            set
-            {
-                selected_race_stamina_bonus = value;
-                OnPropertyChanged("Selected_race_stamina_bonus");
-            }
+            get { return selected_race_stamina_bonus; }
+            set { selected_race_stamina_bonus = value; OnPropertyChanged("Selected_race_stamina_bonus"); }
         }
         public int Selected_race_quickness_bonus
         {
-            get
-            {
-                return selected_race_quickness_bonus;
-            }
-            set
-            {
-                selected_race_quickness_bonus = value;
-                OnPropertyChanged("Selected_race_quickness_bonus");
-            }
+            get { return selected_race_quickness_bonus; }
+            set { selected_race_quickness_bonus = value; OnPropertyChanged("Selected_race_quickness_bonus"); }
         }
         public int Selected_race_perception_bonus
         {
-            get
-            {
-                return selected_race_perception_bonus;
-            }
-            set
-            {
-                selected_race_perception_bonus = value;
-                OnPropertyChanged("Selected_race_perception_bonus");
-            }
+            get { return selected_race_perception_bonus; }
+            set { selected_race_perception_bonus = value; OnPropertyChanged("Selected_race_perception_bonus"); }
         }
         public int Selected_race_intelligence_bonus
         {
-            get
-            {
-                return selected_race_intelligence_bonus;
-            }
-            set
-            {
-                selected_race_intelligence_bonus = value;
-                OnPropertyChanged("Selected_race_intelligence_bonus");
-            }
+            get { return selected_race_intelligence_bonus; }
+            set { selected_race_intelligence_bonus = value; OnPropertyChanged("Selected_race_intelligence_bonus"); }
         }
         public int Selected_race_charm_bonus
         {
-            get
-            {
-                return selected_race_charm_bonus;
-            }
-            set
-            {
-                selected_race_charm_bonus = value;
-                OnPropertyChanged("Selected_race_charm_bonus");
-            }
+            get { return selected_race_charm_bonus; }
+            set { selected_race_charm_bonus = value; OnPropertyChanged("Selected_race_charm_bonus"); }
         }
         public int Selected_race_will_power_bonus
         {
-            get
-            {
-                return selected_race_will_power_bonus;
-            }
-            set
-            {
-                selected_race_will_power_bonus = value;
-                OnPropertyChanged("Selected_race_will_power_bonus");
-            }
+            get { return selected_race_will_power_bonus; }
+            set { selected_race_will_power_bonus = value; OnPropertyChanged("Selected_race_will_power_bonus"); }
         }
         public string Selected_race_feature_list
         {
-            get
-            {
-                return selected_race_feature_list;
-            }
-            set
-            {
-                selected_race_feature_list = value;
-                OnPropertyChanged("Selected_race_feature_list");
-            }
+            get { return selected_race_feature_list; }
+            set { selected_race_feature_list = value; OnPropertyChanged("Selected_race_feature_list"); }
         }
         public string Selected_race_name
         {
             get { return selected_race_name; }
             set { selected_race_name = value; OnPropertyChanged("Selected_race_name"); }
         }
-
-        private void _Choose_race()
-        {
-            Character.GetInstance().Character_race = Selected_race;
-            race_chosen = true;    
-        }
-        private void _Unchoose_race()
-        {
-            Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
-            race_chosen = false;
-        }
-
         public Race_class Selected_race
         {
-            get
-            {
-                return selected_race;
-            }
+            get { return selected_race; }
             set
             {
                 selected_race = value;
@@ -324,8 +169,51 @@ namespace Character_design
 
 
 
+        private Race_ViewModel()
+        {
+            Initial_load_race_list(destination_race_list);
+            Selected_race = destination_race_list[0];
+
+            race_chosen = false;
+            Choose_race = new Command(o => _Choose_race(),
+                                      o => race_chosen == false);
+            Unchoose_race = new Command(o => _Unchoose_race(),
+                                        o => race_chosen == true);
+
+        }
 
 
 
+        private void Initial_load_race_list(List<Race_class> _destination_race_list)
+        {
+            foreach (Race_class race in Main_model.GetInstance().Race_Manager.Get_Race_list())
+            {
+                _destination_race_list.Add(race);
+            }
+            _destination_race_list.RemoveAt(0);
+        }
+        private void Setup_race_features(string feature_1, string feature_2, string feature_3,
+                                         string feature_4, string feature_5, string feature_6, string feature_7,
+                                         ref string out_text)
+        {
+            out_text = "";
+            if (feature_1 != "") { out_text = out_text + feature_1 + "\n" + "\n"; }
+            if (feature_2 != "") { out_text = out_text + feature_2 + "\n" + "\n"; }
+            if (feature_3 != "") { out_text = out_text + feature_3 + "\n" + "\n"; }
+            if (feature_4 != "") { out_text = out_text + feature_4 + "\n" + "\n"; }
+            if (feature_5 != "") { out_text = out_text + feature_5 + "\n" + "\n"; }
+            if (feature_6 != "") { out_text = out_text + feature_6 + "\n" + "\n"; }
+            if (feature_7 != "") { out_text = out_text + feature_7; }
+        }
+        private void _Choose_race()
+        {
+            Character.GetInstance().Character_race = Selected_race;
+            race_chosen = true;
+        }
+        private void _Unchoose_race()
+        {
+            Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            race_chosen = false;
+        }
     }
 }
