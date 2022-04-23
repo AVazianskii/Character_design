@@ -268,7 +268,7 @@ namespace Character_design
         }
         public int Character_strength
         {
-            get { return character_strength; }
+            get { character_strength = Character.GetInstance().Strength.Get_atribute_score(); return character_strength; }
             set { character_strength = value; OnPropertyChanged("Character_strength"); }
         }
         public int Character_agility

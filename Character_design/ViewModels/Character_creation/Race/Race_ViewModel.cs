@@ -208,14 +208,38 @@ namespace Character_design
         private void _Choose_race()
         {
             Character.GetInstance().Character_race = Selected_race;
+            Apply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
             Skill_ViewModel.GetInstance().Refresh_fields();
             race_chosen = true;
         }
         private void _Unchoose_race()
         {
+            UnApply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
             Skill_ViewModel.GetInstance().Refresh_fields();
             race_chosen = false;
+        }
+        private void Apply_race_atr_bonus (Character character, Race_class race)
+        {
+            character.Strength.Increase_atr     (race.Get_race_bonus_strength());
+            character.Agility.Increase_atr      (race.Get_race_bonus_agility());
+            character.Stamina.Increase_atr      (race.Get_race_bonus_stamina());
+            character.Quickness.Increase_atr    (race.Get_race_bonus_quickness());
+            character.Perception.Increase_atr   (race.Get_race_bonus_perception());
+            character.Intelligence.Increase_atr (race.Get_race_bonus_intelligence());
+            character.Charm.Increase_atr        (race.Get_race_bonus_charm());
+            character.Willpower.Increase_atr    (race.Get_race_bonus_willpower());
+        }
+        private void UnApply_race_atr_bonus(Character character, Race_class race)
+        {
+            character.Strength.Decrease_atr     (race.Get_race_bonus_strength());
+            character.Agility.Decrease_atr      (race.Get_race_bonus_agility());
+            character.Stamina.Decrease_atr      (race.Get_race_bonus_stamina());
+            character.Quickness.Decrease_atr    (race.Get_race_bonus_quickness());
+            character.Perception.Decrease_atr   (race.Get_race_bonus_perception());
+            character.Intelligence.Decrease_atr (race.Get_race_bonus_intelligence());
+            character.Charm.Decrease_atr        (race.Get_race_bonus_charm());
+            character.Willpower.Decrease_atr    (race.Get_race_bonus_willpower());
         }
     }
 }

@@ -29,10 +29,13 @@ namespace Character_design
             Skill_Manager = Skill_manager.GetInstance();
             Range_Manager = Range_manager.GetInstance();
             Age_status_Manager = Age_status_manager.GetInstance();
+            Attribute_Manager = Attribute_manager.GetInstance();
             Load_async(Race_Manager);
             Load_all_from(Skill_Manager);
+            Load_async(Attribute_Manager);
             Load_all_from(Range_Manager);
             Load_all_from(Age_status_Manager);
+            
         }
 
         public static Main_model GetInstance()

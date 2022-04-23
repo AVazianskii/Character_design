@@ -171,6 +171,15 @@ namespace Character_design
             Age_status = Main_model.GetInstance().Age_status_Manager.Age_Statuses()[0]; // устанавливаем возрастной статус "Неизвестно" персонажу
             Range = Main_model.GetInstance().Range_Manager.Ranges()[0]; // устанавливаем ранг "Рядовой" персонажу
 
+            Strength        = Main_model.GetInstance().Attribute_Manager.Get_strength();
+            Agility         = Main_model.GetInstance().Attribute_Manager.Get_agility();
+            Stamina         = Main_model.GetInstance().Attribute_Manager.Get_stamina();
+            Quickness       = Main_model.GetInstance().Attribute_Manager.Get_quickness();
+            Perception      = Main_model.GetInstance().Attribute_Manager.Get_perception();
+            Intelligence    = Main_model.GetInstance().Attribute_Manager.Get_intelligence();
+            Charm           = Main_model.GetInstance().Attribute_Manager.Get_charm();
+            Willpower       = Main_model.GetInstance().Attribute_Manager.Get_willpower();
+
             skills = new List<Skill_Class>();
             foreach(Skill_Class Skill in Main_model.GetInstance().Skill_Manager.Get_skills())
             {
