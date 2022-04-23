@@ -106,11 +106,11 @@
                             Text="Уровень развития навыка:" FontSize="18"/>
                 <TextBlock Height="34" Canvas.Left="770" TextWrapping="Wrap" Canvas.Top="520" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
                            TextAlignment="Center" FontSize="18"
-                           Text="{Binding Selected_skill_score}"/>
+                           Text="{Binding Selected_skill_counter}"/>
                 <ProgressBar Height="17" Canvas.Left="300" Canvas.Top="550" Width="754" HorizontalAlignment="Center" VerticalAlignment="Top"
-                             Value="{Binding Selected_skill_score}"
-                             Minimum="{Binding Selected_skill_min_score}"
-                             Maximum="{Binding Selected_skill_max_score}"/>
+                             Value="{Binding Selected_skill_counter}"
+                             Minimum="{Binding Selected_skill_min_score, Mode=OneWay}"
+                             Maximum="{Binding Selected_skill_max_score, Mode=OneWay}"/>
                 <TextBlock Height="23" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="547" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
                            TextAlignment="Center" FontSize="16"
                            Text="{Binding Selected_skill_min_score}"/>

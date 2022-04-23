@@ -41,7 +41,8 @@ namespace Character_design
                     selected_skill_race_bonus,
                     selected_skill_range_limit,
                     selected_skill_age_limit,
-                    selected_skill_cost;
+                    selected_skill_cost,
+                    selected_skill_counter;
 
         private int selected_skill_limit;
 
@@ -118,17 +119,16 @@ namespace Character_design
                 {
                     Selected_skill_description = selected_skill.Get_skill_description();
                     Selected_skill_title = selected_skill.Get_skill_name();
-                    Selected_skill_score = selected_skill.Get_score();
-                    // TODO: сделать логику определения максимального значения навыка, опираясь на возраст, ранг и прочее
-                    Selected_skill_max_score = 10;
-                    Selected_skill_race_bonus = 0;
-                    // TODO: сделать логику определения минимального значения навыка, опираясь на расовые бонусы и прочее
+                    Selected_skill_race_bonus = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
                     Selected_skill_min_score = Selected_skill_race_bonus;
                     Selected_skill_range_limit = selected_skill.Get_range_skill_limit();
                     selected_skill_age_limit = selected_skill.Get_age_skill_limit();
                     Selected_skill_cost = Return_skill_cost(selected_skill);
                     Selected_skill_limit = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
+                    Selected_skill_score = selected_skill.Get_score();
+                    Selected_skill_max_score = Selected_skill_min_score + Selected_skill_limit;
                 }
+                OnPropertyChanged("Selected_skill_counter");
                 OnPropertyChanged("Selected_skill");
             }
         }
@@ -156,6 +156,15 @@ namespace Character_design
         {
             get { return selected_skill_score; }
             set { selected_skill_score = value; OnPropertyChanged("Selected_skill_score"); }
+        }
+        public int Selected_skill_counter
+        {
+            get 
+            {
+                selected_skill_counter = Selected_skill_score + Selected_skill_min_score;
+                return selected_skill_counter; 
+            }
+            set { selected_skill_counter = value; OnPropertyChanged("Selected_skill_counter"); }
         }
         public int Selected_skill_min_score
         {
@@ -322,6 +331,7 @@ namespace Character_design
                     {
                         Character_skill.Increase_score();
                         Selected_skill_score = Character_skill.Get_score();
+                        OnPropertyChanged("Selected_skill_counter");
                         break;
                     }
                 }
@@ -338,10 +348,23 @@ namespace Character_design
                     {
                         Character_skill.Decrease_score();
                         Selected_skill_score = Character_skill.Get_score();
+                        OnPropertyChanged("Selected_skill_counter");
                         break;
                     }
                 }
             }
+        }
+        private int Return_race_skill_bonus(Skill_Class skill, Races_libs.Race_class race)
+        {
+            int race_skill_bonus = 0;
+            foreach(int bonus in race.Race_skill_bonus)
+            {
+                if ((skill.Get_skill_code() - 1) == race.Race_skill_bonus.IndexOf(bonus))
+                {
+                    race_skill_bonus = bonus;
+                }
+            }
+            return race_skill_bonus;
         }
     }
 }
