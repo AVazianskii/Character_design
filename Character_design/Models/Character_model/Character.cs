@@ -19,14 +19,14 @@ namespace Character_design
         private List<Skill_Class> skills;
 
         private Race_class character_race;
-        private Atribute_class Strength;
-        private Atribute_class Agility;
-        private Atribute_class Stamina;
-        private Atribute_class Perception;
-        private Atribute_class Quickness;
-        private Atribute_class Intelligence;
-        private Atribute_class Charm;
-        private Atribute_class Willpower;
+        private Atribute_class strength;
+        private Atribute_class agility;
+        private Atribute_class stamina;
+        private Atribute_class perception;
+        private Atribute_class quickness;
+        private Atribute_class intelligence;
+        private Atribute_class charm;
+        private Atribute_class willpower;
         private Range_Class range;
         private Age_status_class age_status;
 
@@ -67,41 +67,65 @@ namespace Character_design
 
 
 
+        public Atribute_class Strength
+        {
+            get { return strength; }
+            set { strength = value; OnPropertyChanged("Strength"); }
+        }
+        public Atribute_class Agility
+        {
+            get { return agility; }
+            set { agility = value; OnPropertyChanged("Agility"); }
+        }
+        public Atribute_class Stamina
+        {
+            get { return stamina; }
+            set { stamina = value; OnPropertyChanged("Stamina"); }
+        }
+        public Atribute_class Perception
+        {
+            get { return perception; }
+            set { perception = value; OnPropertyChanged("Perception"); }
+        }
+        public Atribute_class Quickness
+        {
+            get { return quickness; }
+            set { quickness = value; OnPropertyChanged("Quickness"); }
+        }
+        public Atribute_class Intelligence
+        {
+            get { return intelligence; }
+            set { intelligence = value; OnPropertyChanged("Intelligence"); }
+        }
+        public Atribute_class Charm
+        {
+            get { return charm; }
+            set { charm = value; OnPropertyChanged("Charm"); }
+        }
+        public Atribute_class Willpower
+        {
+            get { return willpower; }
+            set { willpower = value; OnPropertyChanged("Willpower"); }
+        }
         public Age_status_class Age_status
         {
             get { return age_status; }
-            set 
-            { 
-                age_status = value;
-                OnPropertyChanged("Age_status");
-            }
+            set { age_status = value; OnPropertyChanged("Age_status"); }
         }
         public Range_Class Range
         {
             get { return range; }
-            set 
-            { 
-                range = value;
-                OnPropertyChanged("Range");
-            }
+            set { range = value; OnPropertyChanged("Range"); }
         }
         public Race_class Character_race
         {
             get { return character_race; }
-            set 
-            { 
-                character_race = value;
-                OnPropertyChanged("Character_race");
-            }
+            set { character_race = value; OnPropertyChanged("Character_race"); }
         }
         public bool Forceuser
         {
             get { return Is_forceuser; }
-            set
-            { 
-                Is_forceuser = value;
-                OnPropertyChanged("Forceuser");
-            }
+            set { Is_forceuser = value; OnPropertyChanged("Forceuser"); }
         }
         public int Experience
         {
@@ -139,40 +163,6 @@ namespace Character_design
             set { age = value; OnPropertyChanged("Age"); }
         }
 
-        public void Set_Character_Strength(Atribute_class Strength)
-        {
-            this.Strength = Strength;
-        }
-        public void Set_Character_Agility(Atribute_class Agility)
-        {
-            this.Agility = Agility;
-        }
-        public void Set_Character_Stamina(Atribute_class Stamina)
-        {
-            this.Stamina = Stamina;
-        }
-        public void Set_Character_Perception(Atribute_class Perception)
-        {
-            this.Perception = Perception;
-        }
-        public void Set_Character_Quickness(Atribute_class Quickness)
-        {
-            this.Quickness = Quickness;
-        }
-        public void Set_Character_Intelligence(Atribute_class Intelligence)
-        {
-            this.Intelligence = Intelligence;
-        }
-        public void Set_Character_Charm(Atribute_class Charm)
-        {
-            this.Charm = Charm;
-        }
-        public void Set_Character_Willpower(Atribute_class Willpower)
-        {
-            this.Willpower = Willpower;
-        }
-        public Race_class Get_Character_race() { return Character_race; }
-
 
 
         public Character()
@@ -191,3 +181,4 @@ namespace Character_design
         }       
     }
 }
+ 
