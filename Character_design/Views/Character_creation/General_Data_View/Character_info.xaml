@@ -154,6 +154,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
+                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                       Source="{Binding Question_sign}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Strength_description}"/>
+                    </Image.ToolTip>
+                </Image>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Сила" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_strength, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
@@ -174,6 +181,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
+                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                       Source="{Binding Question_sign}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Agility_description}"/>
+                    </Image.ToolTip>
+                </Image>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Ловкость" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_agility, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
@@ -194,6 +208,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
+                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                       Source="{Binding Question_sign}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Stamina_description}"/>
+                    </Image.ToolTip>
+                </Image>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Выносливость" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_stamina, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
@@ -214,6 +235,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
+                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                       Source="{Binding Question_sign}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Quickness_description}"/>
+                    </Image.ToolTip>
+                </Image>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Проворство" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_quickness, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
@@ -234,6 +262,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
+                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                       Source="{Binding Question_sign}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Perception_description}"/>
+                    </Image.ToolTip>
+                </Image>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Восприятие" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_perception, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
@@ -254,6 +289,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
+                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                       Source="{Binding Question_sign}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Intelligence_description}"/>
+                    </Image.ToolTip>
+                </Image>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Интеллект" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_intelligence, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
@@ -274,6 +316,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
+                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                       Source="{Binding Question_sign}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Charm_description}"/>
+                    </Image.ToolTip>
+                </Image>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Обаяние" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_charm, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
@@ -294,6 +343,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
+                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                       Source="{Binding Question_sign}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Willpower_description}"/>
+                    </Image.ToolTip>
+                </Image>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Сила воли" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_willpower, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>

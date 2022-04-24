@@ -427,6 +427,38 @@ namespace Character_design
                                                                                                             Character.GetInstance().Range.Willpower_limit);
             }
         }
+        public string Strength_description
+        {
+            get { return Character.GetInstance().Strength.Get_description(); }
+        }
+        public string Agility_description
+        {
+            get { return Character.GetInstance().Agility.Get_description(); }
+        }
+        public string Stamina_description
+        {
+            get { return Character.GetInstance().Stamina.Get_description(); }
+        }
+        public string Quickness_description
+        {
+            get { return Character.GetInstance().Quickness.Get_description(); }
+        }
+        public string Perception_description
+        {
+            get { return Character.GetInstance().Perception.Get_description(); }
+        }
+        public string Intelligence_description
+        {
+            get { return Character.GetInstance().Intelligence.Get_description(); }
+        }
+        public string Charm_description
+        {
+            get { return Character.GetInstance().Charm.Get_description(); }
+        }
+        public string Willpower_description
+        {
+            get { return Character.GetInstance().Willpower.Get_description(); }
+        }
 
 
 

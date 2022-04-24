@@ -373,15 +373,7 @@ namespace Character_design
         }
         private int Return_race_skill_bonus(Skill_Class skill, Races_libs.Race_class race)
         {
-            int race_skill_bonus = 0;
-            foreach(int bonus in race.Race_skill_bonus)
-            {
-                if ((skill.Get_skill_code() - 1) == race.Race_skill_bonus.IndexOf(bonus))
-                {
-                    race_skill_bonus = bonus;
-                }
-            }
-            return race_skill_bonus;
+            return race.Race_skill_bonus[skill.Get_skill_code() - 1];
         }
         private int Return_age_skill_limit(Age_status_libs.Age_status_class age_status)
         {
