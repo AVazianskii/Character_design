@@ -111,8 +111,11 @@ namespace Character_design
                 character_current_range = value;
                 Character.GetInstance().Range = character_current_range;
                 Character_range_description = Character.GetInstance().Range.Get_range_descr();
+                OnPropertyChanged("Character_current_range");
+
                 Skill_ViewModel.GetInstance().Refresh_fields();
-                OnPropertyChanged("Character_current_range"); 
+
+                Refresh_atr_fields();
             }
         }
         public List<Age_status_class> Character_ages
@@ -127,9 +130,12 @@ namespace Character_design
                 character_current_age_status = value;
                 Character.GetInstance().Age_status = character_current_age_status;
                 Character_age_status_description = Character.GetInstance().Age_status.Get_age_status_descr();
-                Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Character_age");
-                OnPropertyChanged("Character_current_age_status"); 
+                OnPropertyChanged("Character_current_age_status");
+
+                Skill_ViewModel.GetInstance().Refresh_fields();
+
+                Refresh_atr_fields();
             }
         }
         public string Question_sign
@@ -166,7 +172,10 @@ namespace Character_design
             { 
                 character_race_name = value;
                 OnPropertyChanged("Character_age");
-                OnPropertyChanged("Character_race_name"); 
+                OnPropertyChanged("Character_race_name");
+
+                Refresh_atr_fields();
+
             }
         }
         public string Character_age
@@ -225,7 +234,11 @@ namespace Character_design
         public string Character_age_status
         {
             get { return character_age_status; }
-            set { character_age_status = value; OnPropertyChanged("Character_age_status"); }
+            set 
+            { 
+                character_age_status = value;
+                OnPropertyChanged("Character_age_status"); 
+            }
         }
         public string Character_exp
         {
@@ -285,8 +298,7 @@ namespace Character_design
         }
         public int Character_strength
         {
-            get { character_strength = Character.GetInstance().Strength.Get_atribute_score(); return character_strength; }
-            set { character_strength = value; OnPropertyChanged("Character_strength"); }
+            get { return Character.GetInstance().Strength.Get_atribute_score(); }
         }
         public int Min_character_strength
         {
@@ -295,13 +307,15 @@ namespace Character_design
         }
         public int Max_character_strength
         {
-            get { return max_character_strength; }
-            set { max_character_strength = value; OnPropertyChanged("Max_character_strength"); }
+            get 
+            { 
+                return Character.GetInstance().Character_race.Get_race_bonus_strength() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_strength_limit,
+                                                                                                           Character.GetInstance().Range.Strength_limit); 
+            }
         }
         public int Character_agility
         {
-            get { return character_agility; }
-            set { character_agility = value; OnPropertyChanged("Character_agility"); }
+            get { return Character.GetInstance().Agility.Get_atribute_score(); }
         }
         public int Min_character_agility
         {
@@ -310,13 +324,15 @@ namespace Character_design
         }
         public int Max_character_agility
         {
-            get { return max_character_agility; }
-            set { max_character_agility = value; OnPropertyChanged("Max_character_agility"); }
+            get 
+            { 
+                return Character.GetInstance().Character_race.Get_race_bonus_agility() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_agility_limit,
+                                                                                                          Character.GetInstance().Range.Agility_limit);
+            }
         }
         public int Character_stamina
         {
-            get { return character_stamina; }
-            set { character_stamina = value; OnPropertyChanged("Character_stamina"); }
+            get { return Character.GetInstance().Stamina.Get_atribute_score(); }
         }
         public int Min_character_stamina
         {
@@ -325,13 +341,15 @@ namespace Character_design
         }
         public int Max_character_stamina
         {
-            get { return max_character_stamina; }
-            set { max_character_stamina = value; OnPropertyChanged("Max_character_stamina"); }
+            get
+            {
+                return Character.GetInstance().Character_race.Get_race_bonus_stamina() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_stamina_limit,
+                                                                                                          Character.GetInstance().Range.Stamina_limit);
+            }
         }
         public int Character_quickness
         {
-            get { return character_quickness; }
-            set { character_quickness = value; OnPropertyChanged("Character_quickness"); }
+            get { return Character.GetInstance().Quickness.Get_atribute_score(); }
         }
         public int Min_character_quickness
         {
@@ -340,13 +358,15 @@ namespace Character_design
         }
         public int Max_character_quickness
         {
-            get { return max_character_quickness; }
-            set { max_character_quickness = value; OnPropertyChanged("Max_character_quickness"); }
+            get
+            {
+                return Character.GetInstance().Character_race.Get_race_bonus_quickness() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_quickness_limit,
+                                                                                                            Character.GetInstance().Range.Quickness_limit);
+            }
         }
         public int Character_perception
         {
-            get { return character_perception; }
-            set { character_perception = value; OnPropertyChanged("Character_perception"); }
+            get { return Character.GetInstance().Perception.Get_atribute_score(); }
         }
         public int Min_character_perception
         {
@@ -355,13 +375,15 @@ namespace Character_design
         }
         public int Max_character_perception
         {
-            get { return max_character_perception; }
-            set { max_character_perception = value; OnPropertyChanged("Max_character_perception"); }
+            get
+            {
+                return Character.GetInstance().Character_race.Get_race_bonus_perception() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_perception_limit,
+                                                                                                             Character.GetInstance().Range.Perception_limit);
+            }
         }
         public int Character_intelligence
         {
-            get { return character_intelligence; }
-            set { character_intelligence = value; OnPropertyChanged("Character_intelligence"); }
+            get { return Character.GetInstance().Intelligence.Get_atribute_score(); }
         }
         public int Min_character_intelligence
         {
@@ -370,13 +392,15 @@ namespace Character_design
         }
         public int Max_character_intelligence
         {
-            get { return max_character_intelligence; }
-            set { max_character_intelligence = value; OnPropertyChanged("Max_character_intelligence"); }
+            get
+            {
+                return Character.GetInstance().Character_race.Get_race_bonus_intelligence() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_intelligence_limit,
+                                                                                                              Character.GetInstance().Range.Intelligence_limit);
+            }
         }
         public int Character_charm
         {
-            get { return character_charm; }
-            set { character_charm = value; OnPropertyChanged("Character_charm"); }
+            get { return Character.GetInstance().Charm.Get_atribute_score(); }
         }
         public int Min_character_charm
         {
@@ -385,13 +409,15 @@ namespace Character_design
         }
         public int Max_character_charm
         {
-            get { return max_character_charm; }
-            set { max_character_charm = value; OnPropertyChanged("Max_character_charm"); }
+            get
+            {
+                return Character.GetInstance().Character_race.Get_race_bonus_charm() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_charm_limit,
+                                                                                                        Character.GetInstance().Range.Charm_limit);
+            }
         }
         public int Character_willpower
         {
-            get { return character_willpower; }
-            set { character_willpower = value; OnPropertyChanged("Character_willpower"); }
+            get { return Character.GetInstance().Willpower.Get_atribute_score(); }
         }
         public int Min_character_willpower
         {
@@ -400,8 +426,11 @@ namespace Character_design
         }
         public int Max_character_willpower
         {
-            get { return max_character_willpower; }
-            set { max_character_willpower = value; OnPropertyChanged("Max_character_willpower"); }
+            get
+            {
+                return Character.GetInstance().Character_race.Get_race_bonus_willpower() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_willpower_limit,
+                                                                                                            Character.GetInstance().Range.Willpower_limit);
+            }
         }
 
 
@@ -424,6 +453,15 @@ namespace Character_design
 
             Character_current_range = Character_ranges[0];
             Character_current_age_status = Character_ages[0];
+
+            Min_character_strength = 0;
+            Min_character_agility = 0;
+            Min_character_stamina = 0;
+            Min_character_perception = 0;
+            Min_character_quickness = 0;
+            Min_character_intelligence = 0;
+            Min_character_charm = 0;
+            Min_character_willpower = 0;
 
             Help_text_color  = Colors.Gray;
             Usual_text_color = Colors.Black;
@@ -517,6 +555,44 @@ namespace Character_design
                     break;
             }
             return limits_comfirmed;
+        }
+
+        private int Return_atr_limit(int age_status_limit, int range_limit)
+        {
+            int result = 0;
+            if (age_status_limit <= range_limit)
+            {
+                result = age_status_limit;
+            }
+            else { result = range_limit; }
+            return result;
+        }
+        private void Refresh_atr_fields()
+        {
+            OnPropertyChanged("Max_character_strength");
+            OnPropertyChanged("Min_character_strength");
+            OnPropertyChanged("Character_strength");
+            OnPropertyChanged("Max_character_agility");
+            OnPropertyChanged("Min_character_agility");
+            OnPropertyChanged("Character_agility");
+            OnPropertyChanged("Max_character_stamina");
+            OnPropertyChanged("Min_character_stamina");
+            OnPropertyChanged("Character_stamina");
+            OnPropertyChanged("Max_character_quickness");
+            OnPropertyChanged("Min_character_quickness");
+            OnPropertyChanged("Character_quickness");
+            OnPropertyChanged("Max_character_perception");
+            OnPropertyChanged("Min_character_perception");
+            OnPropertyChanged("Character_perception");
+            OnPropertyChanged("Max_character_intelligence");
+            OnPropertyChanged("Min_character_intelligence");
+            OnPropertyChanged("Character_intelligence");
+            OnPropertyChanged("Max_character_charm");
+            OnPropertyChanged("Min_character_charm");
+            OnPropertyChanged("Character_charm");
+            OnPropertyChanged("Max_character_willpower");
+            OnPropertyChanged("Min_character_willpower");
+            OnPropertyChanged("Character_willpower");
         }
     }
 }
