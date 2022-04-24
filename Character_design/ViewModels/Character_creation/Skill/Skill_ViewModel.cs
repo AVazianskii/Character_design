@@ -34,8 +34,7 @@ namespace Character_design
         private string skill_name;
         private string selected_skill_title;
 
-        private int exp_points_left,
-                    selected_skill_score,
+        private int selected_skill_score,
                     selected_skill_min_score,
                     selected_skill_max_score,
                     selected_skill_race_bonus,

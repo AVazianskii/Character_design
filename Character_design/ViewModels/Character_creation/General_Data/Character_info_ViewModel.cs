@@ -17,32 +17,6 @@ namespace Character_design
         private string character_race_name;
         private string character_age_status;
 
-        private int character_strength,
-                    character_agility,
-                    character_stamina,
-                    character_quickness,
-                    character_perception,
-                    character_intelligence,
-                    character_charm,
-                    character_willpower;
-
-        private int min_character_strength,
-            max_character_strength,
-            min_character_agility,
-            max_character_agility,
-            min_character_stamina,
-            max_character_stamina,
-            min_character_quickness,
-            max_character_quickness,
-            min_character_perception,
-            max_character_perception,
-            min_character_intelligence,
-            max_character_intelligence,
-            min_character_charm,
-            max_character_charm,
-            min_character_willpower,
-            max_character_willpower;
-
         private int help_text_fontsize,
                     usual_text_fontsize,
                     current_age_text_fontsize,

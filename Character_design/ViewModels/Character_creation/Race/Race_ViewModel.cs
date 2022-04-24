@@ -15,13 +15,16 @@ namespace Character_design
         List<Race_class> destination_race_list = new List<Race_class>();
         
         private static Race_ViewModel _instance;
+
         private BaseViewModel current_VM;
+
         private string selected_race_description;
         private string selected_race_full_img_path;
         private string selected_race_personal_data;
         private string selected_race_physical_data;
         private string selected_race_home_world;
         private string selected_race_name;
+
         private int selected_race_strength_bonus,
                     selected_race_agility_bonus,
                     selected_race_stamina_bonus,
