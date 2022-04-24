@@ -126,7 +126,9 @@ namespace Character_design
         {
             get { return character_current_age_status; }
             set 
-            { 
+            {
+                UnApply_age_status_atr_bonus(Character.GetInstance()); // Снимаем бонусы от возратсного статуса при смене этого статуса
+
                 character_current_age_status = value;
                 Character.GetInstance().Age_status = character_current_age_status;
                 Character_age_status_description = Character.GetInstance().Age_status.Get_age_status_descr();
@@ -135,6 +137,7 @@ namespace Character_design
 
                 Skill_ViewModel.GetInstance().Refresh_fields();
 
+                Apply_age_status_atr_bonus(Character.GetInstance()); // Устанавливаем бонусы от возратсного статуса при смене этого статуса
                 Refresh_atr_fields();
             }
         }
@@ -302,8 +305,7 @@ namespace Character_design
         }
         public int Min_character_strength
         {
-            get { return min_character_strength; }
-            set { min_character_strength = value; OnPropertyChanged("Min_character_strength"); }
+            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_strength(), Character.GetInstance().Age_status.Get_age_status_strength_bonus()); }
         }
         public int Max_character_strength
         {
@@ -319,8 +321,7 @@ namespace Character_design
         }
         public int Min_character_agility
         {
-            get { return min_character_agility; }
-            set { min_character_agility = value; OnPropertyChanged("Min_character_agility"); }
+            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_agility(), Character.GetInstance().Age_status.Get_age_status_agility_bonus()); }
         }
         public int Max_character_agility
         {
@@ -336,8 +337,7 @@ namespace Character_design
         }
         public int Min_character_stamina
         {
-            get { return min_character_stamina; }
-            set { min_character_stamina = value; OnPropertyChanged("Min_character_stamina"); }
+            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_stamina(), Character.GetInstance().Age_status.Get_age_status_stamina_bonus()); }
         }
         public int Max_character_stamina
         {
@@ -353,8 +353,7 @@ namespace Character_design
         }
         public int Min_character_quickness
         {
-            get { return min_character_quickness; }
-            set { min_character_quickness = value; OnPropertyChanged("Min_character_quickness"); }
+            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_quickness(), Character.GetInstance().Age_status.Get_age_status_quickness_bonus()); }
         }
         public int Max_character_quickness
         {
@@ -370,8 +369,7 @@ namespace Character_design
         }
         public int Min_character_perception
         {
-            get { return min_character_perception; }
-            set { min_character_perception = value; OnPropertyChanged("Min_character_perception"); }
+            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_perception(), Character.GetInstance().Age_status.Get_age_status_perception_bonus()); }
         }
         public int Max_character_perception
         {
@@ -387,8 +385,7 @@ namespace Character_design
         }
         public int Min_character_intelligence
         {
-            get { return min_character_intelligence; }
-            set { min_character_intelligence = value; OnPropertyChanged("Min_character_intelligence"); }
+            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_intelligence(), Character.GetInstance().Age_status.Get_age_status_intelligence_bonus()); }
         }
         public int Max_character_intelligence
         {
@@ -404,8 +401,7 @@ namespace Character_design
         }
         public int Min_character_charm
         {
-            get { return min_character_charm; }
-            set { min_character_charm = value; OnPropertyChanged("Min_character_charm"); }
+            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_charm(), Character.GetInstance().Age_status.Get_age_status_charm_bonus()); }
         }
         public int Max_character_charm
         {
@@ -421,8 +417,7 @@ namespace Character_design
         }
         public int Min_character_willpower
         {
-            get { return min_character_willpower; }
-            set { min_character_willpower = value; OnPropertyChanged("Min_character_willpower"); }
+            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_willpower(), Character.GetInstance().Age_status.Get_age_status_willpower_bonus()); }
         }
         public int Max_character_willpower
         {
@@ -453,15 +448,6 @@ namespace Character_design
 
             Character_current_range = Character_ranges[0];
             Character_current_age_status = Character_ages[0];
-
-            Min_character_strength = 0;
-            Min_character_agility = 0;
-            Min_character_stamina = 0;
-            Min_character_perception = 0;
-            Min_character_quickness = 0;
-            Min_character_intelligence = 0;
-            Min_character_charm = 0;
-            Min_character_willpower = 0;
 
             Help_text_color  = Colors.Gray;
             Usual_text_color = Colors.Black;
@@ -593,6 +579,41 @@ namespace Character_design
             OnPropertyChanged("Max_character_willpower");
             OnPropertyChanged("Min_character_willpower");
             OnPropertyChanged("Character_willpower");
+        }
+        private void Apply_age_status_atr_bonus(Character character)
+        {
+            character.Strength.Increase_atr     (character.Age_status.Get_age_status_strength_bonus());
+            character.Agility.Increase_atr      (character.Age_status.Get_age_status_agility_bonus());
+            character.Stamina.Increase_atr      (character.Age_status.Get_age_status_stamina_bonus());
+            character.Perception.Increase_atr   (character.Age_status.Get_age_status_perception_bonus());
+            character.Quickness.Increase_atr    (character.Age_status.Get_age_status_quickness_bonus());
+            character.Intelligence.Increase_atr (character.Age_status.Get_age_status_intelligence_bonus());
+            character.Charm.Increase_atr        (character.Age_status.Get_age_status_charm_bonus());
+            character.Willpower.Increase_atr    (character.Age_status.Get_age_status_willpower_bonus());
+        }
+        private void UnApply_age_status_atr_bonus(Character character)
+        {
+            character.Strength.Decrease_atr     (character.Age_status.Get_age_status_strength_bonus());
+            character.Agility.Decrease_atr      (character.Age_status.Get_age_status_agility_bonus());
+            character.Stamina.Decrease_atr      (character.Age_status.Get_age_status_stamina_bonus());
+            character.Perception.Decrease_atr   (character.Age_status.Get_age_status_perception_bonus());
+            character.Quickness.Decrease_atr    (character.Age_status.Get_age_status_quickness_bonus());
+            character.Intelligence.Decrease_atr (character.Age_status.Get_age_status_intelligence_bonus());
+            character.Charm.Decrease_atr        (character.Age_status.Get_age_status_charm_bonus());
+            character.Willpower.Decrease_atr    (character.Age_status.Get_age_status_willpower_bonus());
+        }
+        private int Return_atr_min(int race_atr_min, int age_status_atr_min)
+        {
+            int result = 0;
+            if(age_status_atr_min + race_atr_min < 0)
+            {
+                result = age_status_atr_min + race_atr_min;
+            }
+            else
+            {
+                result = 0;
+            }
+            return result;
         }
     }
 }
