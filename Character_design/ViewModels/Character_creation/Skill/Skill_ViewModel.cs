@@ -34,6 +34,7 @@ namespace Character_design
         private string selected_skill_description;
         private string skill_name;
         private string selected_skill_title;
+        private string skill_choose_warning;
 
         private int selected_skill_score,
                     selected_skill_min_score,
@@ -68,6 +69,7 @@ namespace Character_design
                 Selected_skill_score        = Selected_skill.Get_score();
                 Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
                 OnPropertyChanged("Skill_base_text");
+                OnPropertyChanged("Skill_choose_warning");
             }
         }
 
@@ -137,6 +139,7 @@ namespace Character_design
                     Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
                 }
                 OnPropertyChanged("Skill_base_text");
+                OnPropertyChanged("Skill_choose_warning");
                 OnPropertyChanged("Selected_skill_counter");
                 OnPropertyChanged("Selected_skill");
             }
@@ -221,6 +224,11 @@ namespace Character_design
         public string Question_sign
         {
             get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Tool_tip.png"; }
+        }
+        public string Skill_choose_warning
+        {
+            get { return skill_choose_warning; }
+            set { skill_choose_warning = value; OnPropertyChanged("Skill_choose_warning"); }
         }
 
 
@@ -411,14 +419,18 @@ namespace Character_design
             bool result = false;
             if (Character.GetInstance().Character_race != Race_manager.GetInstance().Get_Race_list()[0])
             {
-                if (skill.Get_counter() < limit)
+                if (exp_points_left >= cost)
                 {
-                    if (exp_points_left >= cost)
+                    if (skill.Get_counter() < limit)
                     {
                         result = true;
+                        Skill_choose_warning = "";
                     }
+                    else { Skill_choose_warning = "Не выбран ранг и возрастной статус персонажа!"; }
                 }
+                else { Skill_choose_warning = "Недостаточно опыта для развития навыка!"; }
             }
+            else { Skill_choose_warning = "Раса персонажа не выбрана!"; }
             return result;
         }
         private string _Skill_base_text(Skill_Class skill)

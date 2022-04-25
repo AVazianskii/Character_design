@@ -149,7 +149,10 @@
                             Content="Увеличить навык на 1"
                             Command="{Binding Increase_skill_score}"
                             CommandParameter="{Binding Selected_skill}"/>
-
+                    <TextBlock Canvas.Left="10" Canvas.Top="10" Width="320" Height="30"
+                               TextWrapping="Wrap" FontSize="14"
+                               Foreground="Red"
+                               Text="{Binding Skill_choose_warning}"/>
                 </Canvas>
                 <Grid Height="70" Canvas.Left="590" Canvas.Top="400" Width="483">
                     <Grid.ColumnDefinitions>
