@@ -151,6 +151,26 @@
                             CommandParameter="{Binding Selected_skill}"/>
 
                 </Canvas>
+                <Grid Height="70" Canvas.Left="590" Canvas.Top="400" Width="483">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="165"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Margin="10"
+                        Source="{Binding Question_sign}">
+                        <Image.ToolTip>
+                            <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                                       Text="{Binding Skill_base_description}"/>
+                        </Image.ToolTip>
+                    </Image>
+                    <TextBlock Grid.Column="1" Margin="5,20,5,20" TextAlignment="Center"
+                               FontSize="18"
+                               Text="Атрибут - основа:"/>
+                    <TextBlock Grid.Column="2" Margin="5,20,5,20" TextAlignment="Center"
+                               FontSize="18"
+                               Text="{Binding Skill_base_text}"/>
+                </Grid>
             </Canvas>
         </Border>
     </Grid>

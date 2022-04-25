@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SW_Character_creation;
 using Skills_libs;
 using System.Windows.Media;
+using System.IO;
 
 namespace Character_design
 {
@@ -66,6 +67,7 @@ namespace Character_design
                 Selected_skill_limit        = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
                 Selected_skill_score        = Selected_skill.Get_score();
                 Selected_skill_max_score    = Selected_skill_min_score + Selected_skill_limit;
+                OnPropertyChanged("Skill_base_text");
             }
         }
 
@@ -134,6 +136,7 @@ namespace Character_design
                     Selected_skill_score        = selected_skill.Get_score();
                     Selected_skill_max_score    = Selected_skill_min_score + Selected_skill_limit;
                 }
+                OnPropertyChanged("Skill_base_text");
                 OnPropertyChanged("Selected_skill_counter");
                 OnPropertyChanged("Selected_skill");
             }
@@ -206,6 +209,18 @@ namespace Character_design
         {
             get { return selected_skill_limit; }
             set { selected_skill_limit = value; OnPropertyChanged("Selected_skill_limit"); }
+        }
+        public string Skill_base_text
+        {
+            get { return _Skill_base_text(Selected_skill); }
+        }
+        public string Skill_base_description
+        {
+            get { return "Значение атрибута - основы прибавляется к результату проверки навыка"; }
+        }
+        public string Question_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Tool_tip.png"; }
         }
 
 
@@ -402,6 +417,19 @@ namespace Character_design
                     {
                         result = true;
                     }
+                }
+            }
+            return result;
+        }
+        private string _Skill_base_text(Skill_Class skill)
+        {
+            string result = "";
+            if (skill != null)
+            {
+                result = skill.Get_skill_base_1();
+                if (skill.Get_skill_base_2() != "")
+                {
+                    result = result + " / " + skill.Get_skill_base_2();
                 }
             }
             return result;
