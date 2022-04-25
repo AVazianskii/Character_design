@@ -43,6 +43,22 @@ namespace Character_design
 
 
 
+        public Command Increase_strength { get; private set; }
+        public Command Decrease_strength { get; private set; }
+        public Command Increase_agility { get; private set; }
+        public Command Decrease_agility { get; private set; }
+        public Command Increase_stamina { get; private set; }
+        public Command Decrease_stamina { get; private set; }
+        public Command Increase_perception { get; private set; }
+        public Command Decrease_perception { get; private set; }
+        public Command Increase_quickness { get; private set; }
+        public Command Decrease_quickness { get; private set; }
+        public Command Increase_intelligence { get; private set; }
+        public Command Decrease_intelligence { get; private set; }
+        public Command Increase_charm { get; private set; }
+        public Command Decrease_charm { get; private set; }
+        public Command Increase_willpower { get; private set; }
+        public Command Decrease_willpower { get; private set; }
         public int Current_age_text_fontsize
         {
             get { return current_age_text_fontsize; }
@@ -242,7 +258,9 @@ namespace Character_design
                     Current_exp_points_fontsize = help_text_fontsize;
                     Exp_text_color.Color = Help_text_color;
                 }
-                OnPropertyChanged("Character_exp"); 
+                OnPropertyChanged("Character_exp");
+                OnPropertyChanged("Exp_points_left");
+                OnPropertyChanged("Exp_points_for_atr");
             }
         }
         public string Character_atr
@@ -270,6 +288,8 @@ namespace Character_design
                     Current_atr_points_fontsize = help_text_fontsize;
                     Atr_text_color.Color = Help_text_color;
                 }
+                OnPropertyChanged("Atr_points_for_atr");
+                OnPropertyChanged("Atr_points_left");
                 OnPropertyChanged("Character_atr"); 
             }
         }
@@ -433,6 +453,42 @@ namespace Character_design
         {
             get { return Character.GetInstance().Willpower.Get_description(); }
         }
+        public string Atr_price_description
+        {
+            get { return "Атрибуты можно развить за 1 очко атрибутов или за 8 очков опыта"; }
+        }
+        public int Exp_points_left
+        {
+            get { return Character.GetInstance().Experience_left; }
+        }
+        public int Atr_points_left
+        {
+            get { return Character.GetInstance().Attributes_left; }
+        }
+        public int Exp_points_for_atr
+        {
+            get
+            {
+                int res = 0;
+                if (Int32.TryParse(Character_exp, out int result))
+                {
+                    res = result;
+                }
+                return res;
+            }
+        }
+        public int Atr_points_for_atr
+        {
+            get
+            {
+                int res = 0;
+                if (Int32.TryParse(Character_atr, out int result))
+                {
+                    res = result;
+                }
+                return res;
+            }
+        }
 
 
 
@@ -475,6 +531,11 @@ namespace Character_design
             Character_age = "";
             Character_exp = "";
             Character_atr = "";
+
+            Increase_strength = new Command(o => _Increase_atr(Character.GetInstance().Strength),
+                                            o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Strength));
+            Decrease_strength = new Command(o => _Decrease_atr(Character.GetInstance().Strength),
+                                            o => Decrease_atr_is_allowed(Character.GetInstance().Strength));
         }
 
 
@@ -620,6 +681,54 @@ namespace Character_design
                 result = 0;
             }
             return result;
+        }
+        private bool Increase_atr_is_allowed(Character character, Attribute_libs.Atribute_class attribute)
+        {
+            bool result = false;
+            if (character.Attributes_left >= attribute.Get_attribute_cost_for_atr())
+            {
+                result = true;
+            }
+            else if(character.Experience_left >= attribute.Get_attribute_cost_for_exp())
+            {
+                result = true;
+            }
+            return result;
+        }
+        private bool Decrease_atr_is_allowed(Attribute_libs.Atribute_class attribute)
+        {
+            bool result = false;
+            if (attribute.Get_atr_for_atr() > 0 || attribute.Get_atr_for_exp() > 0)
+            {
+                result = true;
+            }
+            return result;
+        }
+        private void _Increase_atr (Attribute_libs.Atribute_class attribute)
+        {
+            Character.GetInstance().Increase_atr(attribute);
+            Refresh_atr_exp_points(attribute);
+        }
+        private void _Decrease_atr(Attribute_libs.Atribute_class attribute)
+        {
+            Character.GetInstance().Decrease_atr(attribute);
+            Refresh_atr_exp_points(attribute);
+        }
+        private void Refresh_atr_exp_points(Attribute_libs.Atribute_class attribute)
+        {
+            OnPropertyChanged("Atr_points_left");
+            OnPropertyChanged("Exp_points_left");
+            switch (attribute.Get_atribute_code())
+            {
+                case 1: OnPropertyChanged("Character_strength"); break;
+                case 2: OnPropertyChanged("Character_agility"); break;
+                case 3: OnPropertyChanged("Character_stamina"); break;
+                case 4: OnPropertyChanged("Character_perception"); break;
+                case 5: OnPropertyChanged("Character_quickness"); break;
+                case 6: OnPropertyChanged("Character_intelligence"); break;
+                case 7: OnPropertyChanged("Character_charm"); break;
+                case 8: OnPropertyChanged("Character_willpower"); break;
+            }
         }
     }
 }

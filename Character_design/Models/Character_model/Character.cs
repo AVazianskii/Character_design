@@ -59,10 +59,42 @@ namespace Character_design
             Experience_sold = Experience_sold + cost;
             Experience_left = Experience - Experience_sold;
         }
-        public void Refund_exp_points (int cost)
+        public void Refund_exp_points(int cost)
         {
             Experience_sold = Experience_sold - cost;
             Experience_left = Experience - Experience_sold;
+        }
+        public void Increase_atr(Attribute_libs.Atribute_class attribute)
+        {
+            if (Attributes_left >= attribute.Get_attribute_cost_for_atr())
+            {
+                Spend_atr_points(attribute.Get_attribute_cost_for_atr());
+                attribute.Increase_atr(1);
+                attribute.Increase_atr_for_atr();
+                OnPropertyChanged("Attributes_left");
+            }
+            else
+            {
+                Spend_exp_points(attribute.Get_attribute_cost_for_exp());
+                attribute.Increase_atr_for_exp();
+                attribute.Increase_atr(1);
+                OnPropertyChanged("Experience_left");
+            }
+        }
+        public void Decrease_atr(Attribute_libs.Atribute_class attribute)
+        {
+            if (attribute.Get_atr_for_exp() > 0)
+            {
+                Refund_exp_points(attribute.Get_attribute_cost_for_exp());
+                attribute.Decrease_atr(1);
+                OnPropertyChanged("Experience_left");
+            }
+            else
+            {
+                Refund_atr_points(attribute.Get_attribute_cost_for_atr());
+                attribute.Decrease_atr(1);
+                OnPropertyChanged("Attributes_left");
+            }
         }
 
 
@@ -150,7 +182,22 @@ namespace Character_design
         public int Attributes
         {
             get { return attributes; }
-            set { attributes = value; OnPropertyChanged("Attributes"); }
+            set 
+            { 
+                attributes = value;
+                Spend_atr_points(0);
+                OnPropertyChanged("Attributes"); 
+            }
+        }
+        public int Attributes_left
+        {
+            get { return attributes_left; }
+            set { attributes_left = value; OnPropertyChanged("Attributes_left"); }
+        }
+        public int Attributes_sold
+        {
+            get { return attributes_sold; }
+            set { attributes_sold = value; OnPropertyChanged("Attributes_sold"); }
         }
         public List<Skill_Class> Skills
         {
@@ -187,7 +234,20 @@ namespace Character_design
             }
             
             Forceuser = false;
-        }       
+        }
+
+
+
+        private void Spend_atr_points(int cost)
+        {
+            Attributes_sold = Attributes_sold + cost;
+            Attributes_left = Attributes - Attributes_sold;
+        }
+        private void Refund_atr_points(int cost)
+        {
+            Attributes_sold = Attributes_sold - cost;
+            Attributes_left = Attributes - Attributes_sold;
+        }
     }
 }
  
