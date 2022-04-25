@@ -248,6 +248,20 @@
                          Minimum="{Binding Min_character_agility, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Maximum="{Binding Max_character_agility, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Value="{Binding Character_agility, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <Button Grid.Row="1" Grid.Column="3" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Decrease_agility}">
+                    <Button.Content>
+                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="4" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Increase_agility}">
+                    <Button.Content>
+                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
@@ -276,6 +290,20 @@
                          Minimum="{Binding Min_character_stamina, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Maximum="{Binding Max_character_stamina, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Value="{Binding Character_stamina, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <Button Grid.Row="1" Grid.Column="3" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Decrease_stamina}">
+                    <Button.Content>
+                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="4" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Increase_stamina}">
+                    <Button.Content>
+                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
@@ -304,6 +332,20 @@
                          Minimum="{Binding Min_character_quickness, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Maximum="{Binding Max_character_quickness, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Value="{Binding Character_quickness, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <Button Grid.Row="1" Grid.Column="3" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Decrease_quickness}">
+                    <Button.Content>
+                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="4" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Increase_quickness}">
+                    <Button.Content>
+                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
@@ -332,6 +374,20 @@
                          Minimum="{Binding Min_character_perception, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Maximum="{Binding Max_character_perception, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Value="{Binding Character_perception, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <Button Grid.Row="1" Grid.Column="3" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Decrease_perception}">
+                    <Button.Content>
+                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="4" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Increase_perception}">
+                    <Button.Content>
+                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
@@ -360,6 +416,20 @@
                          Minimum="{Binding Min_character_intelligence, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Maximum="{Binding Max_character_intelligence, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Value="{Binding Character_intelligence, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <Button Grid.Row="1" Grid.Column="3" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Decrease_intelligence}">
+                    <Button.Content>
+                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="4" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Increase_intelligence}">
+                    <Button.Content>
+                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
@@ -388,6 +458,20 @@
                          Minimum="{Binding Min_character_charm, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Maximum="{Binding Max_character_charm, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Value="{Binding Character_charm, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <Button Grid.Row="1" Grid.Column="3" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Decrease_charm}">
+                    <Button.Content>
+                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="4" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Increase_charm}">
+                    <Button.Content>
+                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
@@ -416,6 +500,20 @@
                          Minimum="{Binding Min_character_willpower, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Maximum="{Binding Max_character_willpower, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                          Value="{Binding Character_willpower, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <Button Grid.Row="1" Grid.Column="3" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Decrease_willpower}">
+                    <Button.Content>
+                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="4" Margin="2"
+                        Background="White" BorderThickness="1"
+                        Command="{Binding Increase_willpower}">
+                    <Button.Content>
+                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
 
         </Grid>

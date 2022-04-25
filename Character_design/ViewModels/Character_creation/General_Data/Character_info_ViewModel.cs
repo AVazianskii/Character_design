@@ -533,9 +533,44 @@ namespace Character_design
             Character_atr = "";
 
             Increase_strength = new Command(o => _Increase_atr(Character.GetInstance().Strength),
-                                            o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Strength));
+                                            o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Strength, Max_character_strength));
             Decrease_strength = new Command(o => _Decrease_atr(Character.GetInstance().Strength),
-                                            o => Decrease_atr_is_allowed(Character.GetInstance().Strength));
+                                            o => Decrease_atr_is_allowed(Character.GetInstance().Strength, Min_character_strength));
+
+            Increase_agility = new Command(o => _Increase_atr(Character.GetInstance().Agility),
+                                           o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Agility, Max_character_agility));
+            Decrease_agility = new Command(o => _Decrease_atr(Character.GetInstance().Agility),
+                                           o => Decrease_atr_is_allowed(Character.GetInstance().Agility, Min_character_agility));
+
+            Increase_stamina = new Command(o => _Increase_atr(Character.GetInstance().Stamina),
+                                           o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Stamina, Max_character_stamina));
+            Decrease_stamina = new Command(o => _Decrease_atr(Character.GetInstance().Stamina),
+                                           o => Decrease_atr_is_allowed(Character.GetInstance().Stamina, Min_character_stamina));
+
+            Increase_perception = new Command(o => _Increase_atr(Character.GetInstance().Perception),
+                                              o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Perception, Max_character_perception));
+            Decrease_perception = new Command(o => _Decrease_atr(Character.GetInstance().Perception),
+                                              o => Decrease_atr_is_allowed(Character.GetInstance().Perception, Min_character_perception));
+
+            Increase_quickness = new Command(o => _Increase_atr(Character.GetInstance().Quickness),
+                                             o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Quickness, Max_character_quickness));
+            Decrease_quickness = new Command(o => _Decrease_atr(Character.GetInstance().Quickness),
+                                             o => Decrease_atr_is_allowed(Character.GetInstance().Quickness, Min_character_quickness));
+
+            Increase_intelligence = new Command(o => _Increase_atr(Character.GetInstance().Intelligence),
+                                                o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Intelligence, Max_character_intelligence));
+            Decrease_intelligence = new Command(o => _Decrease_atr(Character.GetInstance().Intelligence),
+                                                o => Decrease_atr_is_allowed(Character.GetInstance().Intelligence, Min_character_intelligence));
+
+            Increase_charm = new Command(o => _Increase_atr(Character.GetInstance().Charm),
+                                         o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Charm, Max_character_charm));
+            Decrease_charm = new Command(o => _Decrease_atr(Character.GetInstance().Charm),
+                                         o => Decrease_atr_is_allowed(Character.GetInstance().Charm, Min_character_charm));
+
+            Increase_willpower = new Command(o => _Increase_atr(Character.GetInstance().Willpower),
+                                             o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Willpower, Max_character_willpower));
+            Decrease_willpower = new Command(o => _Decrease_atr(Character.GetInstance().Willpower),
+                                             o => Decrease_atr_is_allowed(Character.GetInstance().Willpower, Min_character_willpower));
         }
 
 
@@ -682,25 +717,31 @@ namespace Character_design
             }
             return result;
         }
-        private bool Increase_atr_is_allowed(Character character, Attribute_libs.Atribute_class attribute)
+        private bool Increase_atr_is_allowed(Character character, Attribute_libs.Atribute_class attribute, int high_atr_limit)
         {
             bool result = false;
-            if (character.Attributes_left >= attribute.Get_attribute_cost_for_atr())
+            if (attribute.Get_atribute_score() < high_atr_limit)
             {
-                result = true;
-            }
-            else if(character.Experience_left >= attribute.Get_attribute_cost_for_exp())
-            {
-                result = true;
+                if (character.Attributes_left >= attribute.Get_attribute_cost_for_atr())
+                {
+                    result = true;
+                }
+                else if (character.Experience_left >= attribute.Get_attribute_cost_for_exp())
+                {
+                    result = true;
+                }
             }
             return result;
         }
-        private bool Decrease_atr_is_allowed(Attribute_libs.Atribute_class attribute)
+        private bool Decrease_atr_is_allowed(Attribute_libs.Atribute_class attribute, int low_atr_limit)
         {
             bool result = false;
-            if (attribute.Get_atr_for_atr() > 0 || attribute.Get_atr_for_exp() > 0)
+            if (attribute.Get_atribute_score() > low_atr_limit)
             {
-                result = true;
+                if (attribute.Get_atr_for_atr() > 0 || attribute.Get_atr_for_exp() > 0)
+                {
+                    result = true;
+                }
             }
             return result;
         }

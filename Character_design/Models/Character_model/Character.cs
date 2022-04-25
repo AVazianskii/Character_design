@@ -87,12 +87,14 @@ namespace Character_design
             {
                 Refund_exp_points(attribute.Get_attribute_cost_for_exp());
                 attribute.Decrease_atr(1);
+                attribute.Decrease_atr_for_exp();
                 OnPropertyChanged("Experience_left");
             }
             else
             {
                 Refund_atr_points(attribute.Get_attribute_cost_for_atr());
                 attribute.Decrease_atr(1);
+                attribute.Decrease_atr_for_atr();
                 OnPropertyChanged("Attributes_left");
             }
         }
