@@ -305,8 +305,8 @@ namespace Character_design
         {
             get 
             { 
-                return Character.GetInstance().Character_race.Get_race_bonus_strength() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_strength_limit,
-                                                                                                           Character.GetInstance().Range.Strength_limit); 
+                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_strength(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_strength_limit,
+                                                                                                                         Character.GetInstance().Range.Strength_limit)); 
             }
         }
         public int Character_agility
@@ -321,8 +321,8 @@ namespace Character_design
         {
             get 
             { 
-                return Character.GetInstance().Character_race.Get_race_bonus_agility() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_agility_limit,
-                                                                                                          Character.GetInstance().Range.Agility_limit);
+                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_agility(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_agility_limit,
+                                                                                                                        Character.GetInstance().Range.Agility_limit));
             }
         }
         public int Character_stamina
@@ -337,8 +337,8 @@ namespace Character_design
         {
             get
             {
-                return Character.GetInstance().Character_race.Get_race_bonus_stamina() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_stamina_limit,
-                                                                                                          Character.GetInstance().Range.Stamina_limit);
+                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_stamina(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_stamina_limit,
+                                                                                                                        Character.GetInstance().Range.Stamina_limit));
             }
         }
         public int Character_quickness
@@ -353,8 +353,8 @@ namespace Character_design
         {
             get
             {
-                return Character.GetInstance().Character_race.Get_race_bonus_quickness() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_quickness_limit,
-                                                                                                            Character.GetInstance().Range.Quickness_limit);
+                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_quickness(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_quickness_limit,
+                                                                                                                          Character.GetInstance().Range.Quickness_limit));
             }
         }
         public int Character_perception
@@ -369,8 +369,8 @@ namespace Character_design
         {
             get
             {
-                return Character.GetInstance().Character_race.Get_race_bonus_perception() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_perception_limit,
-                                                                                                             Character.GetInstance().Range.Perception_limit);
+                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_perception(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_perception_limit,
+                                                                                                                           Character.GetInstance().Range.Perception_limit));
             }
         }
         public int Character_intelligence
@@ -385,8 +385,8 @@ namespace Character_design
         {
             get
             {
-                return Character.GetInstance().Character_race.Get_race_bonus_intelligence() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_intelligence_limit,
-                                                                                                              Character.GetInstance().Range.Intelligence_limit);
+                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_intelligence(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_intelligence_limit,
+                                                                                                                             Character.GetInstance().Range.Intelligence_limit));
             }
         }
         public int Character_charm
@@ -401,8 +401,8 @@ namespace Character_design
         {
             get
             {
-                return Character.GetInstance().Character_race.Get_race_bonus_charm() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_charm_limit,
-                                                                                                        Character.GetInstance().Range.Charm_limit);
+                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_charm(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_charm_limit,
+                                                                                                                      Character.GetInstance().Range.Charm_limit));
             }
         }
         public int Character_willpower
@@ -417,8 +417,8 @@ namespace Character_design
         {
             get
             {
-                return Character.GetInstance().Character_race.Get_race_bonus_willpower() + Return_atr_limit(Character.GetInstance().Age_status.Age_status_willpower_limit,
-                                                                                                            Character.GetInstance().Range.Willpower_limit);
+                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_willpower(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_willpower_limit,
+                                                                                                                          Character.GetInstance().Range.Willpower_limit));
             }
         }
         public string Strength_description
@@ -714,6 +714,15 @@ namespace Character_design
             else
             {
                 result = 0;
+            }
+            return result;
+        }
+        private int Return_atr_max(int race_atr_min, int atr_limit)
+        {
+            int result = atr_limit;
+            if (race_atr_min > 0)
+            {
+                result = result + race_atr_min;
             }
             return result;
         }
