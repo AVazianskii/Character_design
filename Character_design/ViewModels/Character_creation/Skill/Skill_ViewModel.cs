@@ -60,13 +60,13 @@ namespace Character_design
                 Selected_skill_description  = Selected_skill.Get_skill_description();
                 Selected_skill_title        = Selected_skill.Get_skill_name();
                 Selected_skill_race_bonus   = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
-                Selected_skill_min_score    = Selected_skill_race_bonus;
+                Selected_skill_min_score    = 0;
                 Selected_skill_range_limit  = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
                 Selected_skill_age_limit    = Return_age_skill_limit(Character.GetInstance().Age_status);
                 Selected_skill_cost         = Return_skill_cost(selected_skill);
                 Selected_skill_limit        = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
                 Selected_skill_score        = Selected_skill.Get_score();
-                Selected_skill_max_score    = Selected_skill_min_score + Selected_skill_limit;
+                Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
                 OnPropertyChanged("Skill_base_text");
             }
         }
@@ -128,13 +128,13 @@ namespace Character_design
                     Selected_skill_description  = selected_skill.Get_skill_description();
                     Selected_skill_title        = selected_skill.Get_skill_name();
                     Selected_skill_race_bonus   = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
-                    Selected_skill_min_score    = Selected_skill_race_bonus;
+                    Selected_skill_min_score    = 0;
                     Selected_skill_range_limit  = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
                     Selected_skill_age_limit    = Return_age_skill_limit(Character.GetInstance().Age_status);
                     Selected_skill_cost         = Return_skill_cost(selected_skill);
                     Selected_skill_limit        = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
                     Selected_skill_score        = selected_skill.Get_score();
-                    Selected_skill_max_score    = Selected_skill_min_score + Selected_skill_limit;
+                    Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
                 }
                 OnPropertyChanged("Skill_base_text");
                 OnPropertyChanged("Selected_skill_counter");
@@ -170,7 +170,7 @@ namespace Character_design
         {
             get 
             {
-                selected_skill_counter = Selected_skill_score + Selected_skill_min_score;
+                selected_skill_counter = Selected_skill_score + Selected_skill_race_bonus;
                 return selected_skill_counter; 
             }
             set { selected_skill_counter = value; OnPropertyChanged("Selected_skill_counter"); }
