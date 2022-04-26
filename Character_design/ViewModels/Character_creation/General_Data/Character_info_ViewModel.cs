@@ -38,6 +38,8 @@ namespace Character_design
         private SolidColorBrush exp_text_color;
         private SolidColorBrush atr_text_color;
         private SolidColorBrush forceuser_border_color;
+        private SolidColorBrush male_sign_border_color;
+        private SolidColorBrush female_sign_border_color;
 
         private Color Help_text_color;
         private Color Usual_text_color;
@@ -46,6 +48,8 @@ namespace Character_design
 
 
 
+        public Command Choose_male { get; private set; }
+        public Command Choose_female { get; private set; }
         public Command Manage_forceuser { get; private set; }
         public Command Increase_strength { get; private set; }
         public Command Decrease_strength { get; private set; }
@@ -97,6 +101,16 @@ namespace Character_design
         {
             get { return forceuser_border_color; }
             set { forceuser_border_color = value; OnPropertyChanged("Forceuser_border_color"); }
+        }
+        public SolidColorBrush Male_sign_border_color
+        {
+            get { return male_sign_border_color; }
+            set { male_sign_border_color = value; OnPropertyChanged("Male_sign_border_color"); }
+        }
+        public SolidColorBrush Female_sign_border_color
+        {
+            get { return female_sign_border_color; }
+            set { female_sign_border_color = value; OnPropertyChanged("Female_sign_border_color"); }
         }
         public List<Range_Class> Character_ranges
         {
@@ -500,7 +514,7 @@ namespace Character_design
         }
         public string Forceuser_description
         {
-            get { return ""; }
+            get { return "Параметр показывает, обладает ли персонаж Великой Силой и умеет ли ее применять"; }
         }
 
 
@@ -533,6 +547,8 @@ namespace Character_design
             Exp_text_color = new SolidColorBrush();
             Atr_text_color = new SolidColorBrush();
             Forceuser_border_color = new SolidColorBrush();
+            Male_sign_border_color = new SolidColorBrush();
+            Female_sign_border_color = new SolidColorBrush();
 
             help_text_fontsize = 10;
             usual_text_fontsize = 14;
@@ -589,6 +605,11 @@ namespace Character_design
                                              o => Decrease_atr_is_allowed(Character.GetInstance().Willpower, Min_character_willpower));
 
             Manage_forceuser = new Command(o => _Manage_forceuser(Character.GetInstance()));
+
+            Choose_male = new Command(o => _Choose_male(Character.GetInstance()));
+            Choose_female = new Command(o => _Choose_female(Character.GetInstance()));
+
+            _Choose_male(Character.GetInstance());
         }
 
 
@@ -810,6 +831,18 @@ namespace Character_design
                 character.Forceuser = false;
                 Forceuser_border_color.Color = Unchosen_color;
             }
+        }
+        private void _Choose_male (Character character)
+        {
+            character.Sex = "Мужской";
+            Male_sign_border_color.Color = Chosen_color;
+            Female_sign_border_color.Color = Unchosen_color;
+        }
+        private void _Choose_female(Character character)
+        {
+            character.Sex = "Женский";
+            Female_sign_border_color.Color = Chosen_color;
+            Male_sign_border_color.Color = Unchosen_color;
         }
     }
 }

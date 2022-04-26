@@ -37,14 +37,18 @@
                        Text="{Binding Character_race_name, UpdateSourceTrigger=PropertyChanged}" />
             <Button Grid.Row="1" Grid.Column="1" Margin="20,0,20,0"
                     Background="White"
-                    BorderThickness="0">
+                    BorderThickness="3"
+                    BorderBrush="{Binding Male_sign_border_color}"
+                    Command="{Binding Choose_male}">
                 <Button.Content>
                     <Image Source="{Binding Male_sign}"/>
                 </Button.Content>
             </Button>
             <Button Grid.Row="1" Grid.Column="2" Margin="20,0,20,0"
                     Background="White"
-                    BorderThickness="0">
+                    BorderThickness="3"
+                    BorderBrush="{Binding Female_sign_border_color}"
+                    Command="{Binding Choose_female}">
                 <Button.Content>
                     <Image Source="{Binding Female_sign}"/>
                 </Button.Content>

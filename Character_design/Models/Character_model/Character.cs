@@ -32,6 +32,7 @@ namespace Character_design
 
 
         private bool Is_forceuser;
+
         private int experience,
                     experience_left,
                     experience_sold,
@@ -39,6 +40,8 @@ namespace Character_design
                     attributes_left,
                     attributes_sold;
         private int age;
+
+        private string sex;
 
 
 
@@ -210,6 +213,11 @@ namespace Character_design
         {
             get { return age; }
             set { age = value; OnPropertyChanged("Age"); }
+        }
+        public string Sex
+        {
+            get { return sex; }
+            set { sex = value; OnPropertyChanged("Sex"); }
         }
 
 
