@@ -37,12 +37,16 @@ namespace Character_design
         private SolidColorBrush age_text_color;
         private SolidColorBrush exp_text_color;
         private SolidColorBrush atr_text_color;
+        private SolidColorBrush forceuser_border_color;
 
         private Color Help_text_color;
         private Color Usual_text_color;
+        private Color Chosen_color;
+        private Color Unchosen_color;
 
 
 
+        public Command Manage_forceuser { get; private set; }
         public Command Increase_strength { get; private set; }
         public Command Decrease_strength { get; private set; }
         public Command Increase_agility { get; private set; }
@@ -88,6 +92,11 @@ namespace Character_design
         {
             get { return age_text_color; }
             set { age_text_color = value; OnPropertyChanged("Age_text_color"); }
+        }
+        public SolidColorBrush Forceuser_border_color
+        {
+            get { return forceuser_border_color; }
+            set { forceuser_border_color = value; OnPropertyChanged("Forceuser_border_color"); }
         }
         public List<Range_Class> Character_ranges
         {
@@ -489,6 +498,10 @@ namespace Character_design
                 return res;
             }
         }
+        public string Forceuser_description
+        {
+            get { return ""; }
+        }
 
 
 
@@ -511,12 +524,15 @@ namespace Character_design
             Character_current_range = Character_ranges[0];
             Character_current_age_status = Character_ages[0];
 
-            Help_text_color  = Colors.Gray;
-            Usual_text_color = Colors.Black;
+            Help_text_color     = Colors.Gray;
+            Usual_text_color    = Colors.Black;
+            Chosen_color        = Colors.Wheat;
+            Unchosen_color      = Colors.White;
 
             Age_text_color = new SolidColorBrush();
             Exp_text_color = new SolidColorBrush();
             Atr_text_color = new SolidColorBrush();
+            Forceuser_border_color = new SolidColorBrush();
 
             help_text_fontsize = 10;
             usual_text_fontsize = 14;
@@ -571,6 +587,8 @@ namespace Character_design
                                              o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Willpower, Max_character_willpower));
             Decrease_willpower = new Command(o => _Decrease_atr(Character.GetInstance().Willpower),
                                              o => Decrease_atr_is_allowed(Character.GetInstance().Willpower, Min_character_willpower));
+
+            Manage_forceuser = new Command(o => _Manage_forceuser(Character.GetInstance()));
         }
 
 
@@ -778,6 +796,19 @@ namespace Character_design
                 case 6: OnPropertyChanged("Character_intelligence"); break;
                 case 7: OnPropertyChanged("Character_charm"); break;
                 case 8: OnPropertyChanged("Character_willpower"); break;
+            }
+        }
+        private void _Manage_forceuser (Character character)
+        {
+            if (character.Forceuser != true)
+            {
+                character.Forceuser = true;
+                Forceuser_border_color.Color = Chosen_color;
+            }
+            else
+            {
+                character.Forceuser = false;
+                Forceuser_border_color.Color = Unchosen_color;
             }
         }
     }
