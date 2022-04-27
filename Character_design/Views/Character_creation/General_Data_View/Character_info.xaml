@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="770" d:DesignWidth="1130" >
     <Grid Background="White">
-        <Image HorizontalAlignment="Left" Height="410" Margin="380,60,0,0" VerticalAlignment="Top" Width="374"/>
-        <Grid HorizontalAlignment="Left" Height="340" Margin="20,80,0,0" VerticalAlignment="Top" Width="340">
+        <Image HorizontalAlignment="Left" Height="449" Margin="468,60,0,0" VerticalAlignment="Top" Width="326"/>
+        <Grid HorizontalAlignment="Left" Height="380" Margin="20,80,0,0" VerticalAlignment="Top" Width="340">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="130"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -24,6 +24,7 @@
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,10,10,10" Text="Раса" FontSize="14" TextAlignment="Left"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,17,17,17" Text="Пол" FontSize="14" TextAlignment="Left"/>
@@ -31,8 +32,11 @@
             <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,10,10,10" Text="Возрастной статус" FontSize="14" TextAlignment="Left"/>
             <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,10,10,10" Text="Ранг" FontSize="14" TextAlignment="Left"/>
             <TextBlock Grid.Row="5" Grid.Column="0" Margin="0,10,10,10" Text="Влияние Силы" FontSize="14" TextAlignment="Left"/>
-            <TextBlock Grid.Row="6" Grid.Column="0" Margin="5" Text="Очки опыта" FontSize="14" TextAlignment="Center" TextWrapping="Wrap"/>
-            <TextBlock Grid.Row="7" Grid.Column="0" Margin="5" Text="Очки атрибутов" FontSize="14" TextAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Margin="0,10,10,10" Text="Очки опыта" FontSize="14" TextAlignment="Left" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Margin="0,10,10,10" Text="Очки атрибутов" FontSize="14" TextAlignment="Left" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="8" Grid.Column="0" Margin="0,10,10,10" Text="Очки кармы" FontSize="14" TextAlignment="Left" TextWrapping="Wrap"
+                       Opacity="{Binding Karma_opacity}"
+                       IsEnabled="{Binding Character_is_forceuser}"/>
             <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" FontSize="17" TextAlignment="Center"
                        Text="{Binding Character_race_name, UpdateSourceTrigger=PropertyChanged}" />
             <Button Grid.Row="1" Grid.Column="1" Margin="20,0,20,0"
@@ -125,6 +129,24 @@
                 <Image.ToolTip>
                     <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
                         Text="{Binding Character_age_status_description}"/>
+                </Image.ToolTip>
+            </Image>
+            <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
+                     TextAlignment="Center" 
+                     VerticalAlignment="Bottom"
+                     BorderThickness="0,0,0,1" BorderBrush="Red"
+                     FontSize="{Binding Current_karma_points_fontsize}"
+                     Foreground="{Binding Karma_text_color}"
+                     Text="{Binding Character_karma, UpdateSourceTrigger=LostFocus}"
+                     Opacity="{Binding Karma_opacity}"
+                     IsEnabled="{Binding Character_is_forceuser}"/>
+            <Image Grid.Row="8" Grid.Column="3" Margin="3"
+                   Source="{Binding Question_sign}"
+                   Opacity="{Binding Karma_opacity}"
+                   IsEnabled="{Binding Character_is_forceuser}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Character_karma_description}"/>
                 </Image.ToolTip>
             </Image>
         </Grid>
@@ -534,6 +556,42 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="285" Margin="10,485,0,0" VerticalAlignment="Top" Width="380">
             <TextBlock Margin="20,10,20,205" Text="Боевые параметры" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"/>
         </Border>
+        <Grid Margin="380,70,0,0" Width="30" Height="400"
+              VerticalAlignment="Top" HorizontalAlignment="Left"
+              Opacity="{Binding Karma_opacity}"
+              IsEnabled="{Binding Character_is_forceuser}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ProgressBar Grid.Row="1" Grid.Column="0" 
+                     VerticalAlignment="Top" 
+                     Width="16" Height="340"
+                     Minimum="{Binding Minimum_karma}"
+                     Maximum="{Binding Maximum_karma}"
+                     Value="{Binding Current_character_karma}"
+                     Foreground="{Binding Current_karma_color}"
+                     Orientation="Vertical"/>
+            <Image Grid.Row="2" Grid.Column="0" Margin="3,0,3,0"
+                       Source="{Binding Sith_sign}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Sith_description}"/>
+                </Image.ToolTip>
+            </Image>
+            <Image Grid.Row="0" Grid.Column="0" Margin="3,0,3,0"
+                       Source="{Binding Jedi_sign}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Jedi_description}"/>
+                </Image.ToolTip>
+            </Image>
+        </Grid>
+
 
     </Grid>
 </UserControl>

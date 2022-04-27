@@ -31,14 +31,18 @@ namespace Character_design
         private Age_status_class age_status;
 
 
-        private bool Is_forceuser;
+        private bool Is_forceuser,
+                     is_sith,
+                     is_jedi,
+                     is_neutral;
 
         private int experience,
                     experience_left,
                     experience_sold,
                     attributes,
                     attributes_left,
-                    attributes_sold;
+                    attributes_sold,
+                    karma;
         private int age;
 
         private string sex;
@@ -218,6 +222,26 @@ namespace Character_design
         {
             get { return sex; }
             set { sex = value; OnPropertyChanged("Sex"); }
+        }
+        public int Karma
+        {
+            get { return karma; }
+            set { karma = value; OnPropertyChanged("Karma"); }
+        }
+        public bool Is_sith
+        {
+            get { return is_sith; }
+            set { is_sith = value; OnPropertyChanged("Is_sith"); }
+        }
+        public bool Is_jedi
+        {
+            get { return is_jedi; }
+            set { is_jedi = value; OnPropertyChanged("Is_jedi"); }
+        }
+        public bool Is_neutral
+        {
+            get { return is_neutral; }
+            set { is_neutral = value; OnPropertyChanged("Is_neutral"); }
         }
 
 

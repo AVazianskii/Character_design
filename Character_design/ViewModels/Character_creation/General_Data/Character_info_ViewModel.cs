@@ -21,7 +21,12 @@ namespace Character_design
                     usual_text_fontsize,
                     current_age_text_fontsize,
                     current_exp_points_fontsize,
-                    current_atr_points_fontsize;
+                    current_atr_points_fontsize,
+                    karma_opacity,
+                    current_character_karma,
+                    current_karma_points_fontsize,
+                    jedi_karma,
+                    sith_karma;
 
         private string character_age;
         private string character_exp;
@@ -29,6 +34,8 @@ namespace Character_design
         private string character_range_description;
         private string character_age_status_description;
         private string default_question;
+        private string default_text;
+        private string character_karma;
 
         private Range_Class character_current_range;
 
@@ -40,11 +47,16 @@ namespace Character_design
         private SolidColorBrush forceuser_border_color;
         private SolidColorBrush male_sign_border_color;
         private SolidColorBrush female_sign_border_color;
+        private SolidColorBrush current_karma_color;
+        private SolidColorBrush karma_text_color;
 
         private Color Help_text_color;
         private Color Usual_text_color;
         private Color Chosen_color;
         private Color Unchosen_color;
+        private Color Sith_color;
+        private Color Jedi_color;
+        private Color Neutral_color;
 
 
 
@@ -82,6 +94,11 @@ namespace Character_design
             get { return current_atr_points_fontsize; }
             set { current_atr_points_fontsize = value; OnPropertyChanged("Current_atr_points_fontsize"); }
         }
+        public int Current_karma_points_fontsize
+        {
+            get { return current_karma_points_fontsize; }
+            set { current_karma_points_fontsize = value; OnPropertyChanged("Current_karma_points_fontsize"); }
+        }
         public SolidColorBrush Atr_text_color
         {
             get { return atr_text_color; }
@@ -111,6 +128,16 @@ namespace Character_design
         {
             get { return female_sign_border_color; }
             set { female_sign_border_color = value; OnPropertyChanged("Female_sign_border_color"); }
+        }
+        public SolidColorBrush Current_karma_color
+        {
+            get { return current_karma_color; }
+            set { current_karma_color = value; OnPropertyChanged("Current_karma_color"); }
+        }
+        public SolidColorBrush Karma_text_color
+        {
+            get { return karma_text_color; }
+            set { karma_text_color = value; OnPropertyChanged("Karma_text_color"); }
         }
         public List<Range_Class> Character_ranges
         {
@@ -165,6 +192,14 @@ namespace Character_design
         public string Male_sign
         {
             get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\male.jpg"; }
+        }
+        public string Sith_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\sith.jpg"; }
+        }
+        public string Jedi_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\jedi.jpg"; }
         }
         public string Character_range_description
         {
@@ -516,6 +551,86 @@ namespace Character_design
         {
             get { return "Параметр показывает, обладает ли персонаж Великой Силой и умеет ли ее применять"; }
         }
+        public int Karma_opacity
+        {
+            get { return karma_opacity; }
+            set { karma_opacity = value; OnPropertyChanged("Karma_opacity"); }
+        }
+        public int Minimum_karma
+        {
+            get { return -50; }
+        }
+        public int Maximum_karma
+        {
+            get { return 50; }
+        }
+        public int Current_character_karma
+        {
+            get { return current_character_karma; }
+            set 
+            { 
+                current_character_karma = value;
+                Check_karma_range(current_character_karma, Current_karma_color, Neutral_color, Sith_color, Jedi_color);
+                Check_forceuser_status(Character.GetInstance(), current_character_karma);
+                OnPropertyChanged("Current_character_karma"); 
+            }
+        }
+        public string Character_karma
+        {
+            get { return character_karma; }
+            set 
+            {
+                if (Int32.TryParse(value, out int result))
+                {
+                    if ((Convert.ToInt32(value) >= Minimum_karma) && (Convert.ToInt32(value) <= Maximum_karma))
+                    {
+                        character_karma = value;
+                        Current_character_karma = Convert.ToInt32(value);
+                        Character.GetInstance().Karma = result;
+                        Current_karma_points_fontsize = usual_text_fontsize;
+                        Karma_text_color.Color = Usual_text_color;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
+                        character_karma = default_text;
+                        Current_karma_points_fontsize = help_text_fontsize;
+                        Karma_text_color.Color = Help_text_color;
+                    }
+                }
+                else if (value == "")
+                {
+                    character_karma = default_text;
+                    Current_karma_points_fontsize = help_text_fontsize;
+                    Karma_text_color.Color = Help_text_color;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
+                    character_karma = default_text;
+                    Current_karma_points_fontsize = help_text_fontsize;
+                    Karma_text_color.Color = Help_text_color;
+                }
+
+                OnPropertyChanged("Character_karma"); 
+            }
+        }
+        public string Character_karma_description
+        {
+            get { return "Этот параметр показывает, к какой стороне Силы тяготеет ваш персонаж"; }
+        }
+        public bool Character_is_forceuser
+        {
+            get { return Character.GetInstance().Forceuser; }
+        }
+        public string Sith_description
+        {
+            get { return "При красном цвете шкалы вашему персонажу открываются умения Темной стороны Силы"; }
+        }
+        public string Jedi_description
+        {
+            get { return "При зеленом цвете шкалы вашему персонажу открываются умения Светлой стороны Силы"; }
+        }
 
 
 
@@ -534,6 +649,7 @@ namespace Character_design
         {
             Character_name = "Дарт Сидиус";
             default_question = "Сколько назначил Мастер?";
+            default_text = $"от {Minimum_karma} до {Maximum_karma}";
 
             Character_current_range = Character_ranges[0];
             Character_current_age_status = Character_ages[0];
@@ -542,6 +658,9 @@ namespace Character_design
             Usual_text_color    = Colors.Black;
             Chosen_color        = Colors.Wheat;
             Unchosen_color      = Colors.White;
+            Sith_color          = Colors.Red;
+            Neutral_color       = Colors.Gray;
+            Jedi_color          = Colors.Green;
 
             Age_text_color = new SolidColorBrush();
             Exp_text_color = new SolidColorBrush();
@@ -549,20 +668,28 @@ namespace Character_design
             Forceuser_border_color = new SolidColorBrush();
             Male_sign_border_color = new SolidColorBrush();
             Female_sign_border_color = new SolidColorBrush();
+            Current_karma_color = new SolidColorBrush();
+            Karma_text_color = new SolidColorBrush();
 
             help_text_fontsize = 10;
             usual_text_fontsize = 14;
+            Karma_opacity = 0;
+            jedi_karma = 10;
+            sith_karma = -10;
 
             Current_age_text_fontsize = help_text_fontsize;
             Current_exp_points_fontsize = help_text_fontsize;
             Current_atr_points_fontsize = help_text_fontsize;
+            Current_karma_points_fontsize = help_text_fontsize;
             Age_text_color.Color = Help_text_color;
             Exp_text_color.Color = Help_text_color;
             Atr_text_color.Color = Help_text_color;
+            Karma_text_color.Color = Help_text_color;
 
             Character_age = "";
             Character_exp = "";
             Character_atr = "";
+            Character_karma = "";
 
             Increase_strength = new Command(o => _Increase_atr(Character.GetInstance().Strength),
                                             o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Strength, Max_character_strength));
@@ -825,11 +952,15 @@ namespace Character_design
             {
                 character.Forceuser = true;
                 Forceuser_border_color.Color = Chosen_color;
+                Show_forceuser_fields();
+                OnPropertyChanged("Character_is_forceuser");
             }
             else
             {
                 character.Forceuser = false;
                 Forceuser_border_color.Color = Unchosen_color;
+                Unshow_forceuser_fields();
+                OnPropertyChanged("Character_is_forceuser");
             }
         }
         private void _Choose_male (Character character)
@@ -843,6 +974,48 @@ namespace Character_design
             character.Sex = "Женский";
             Female_sign_border_color.Color = Chosen_color;
             Male_sign_border_color.Color = Unchosen_color;
+        }
+        private void Show_forceuser_fields ()
+        {
+            Karma_opacity = 100;
+            Check_karma_range(Current_character_karma, Current_karma_color, Neutral_color, Sith_color, Jedi_color);
+        }
+        private void Unshow_forceuser_fields()
+        {
+            Karma_opacity = 0;
+        }
+        private void Check_karma_range(int current_karma, SolidColorBrush karma_color, Color neutral, Color sith, Color jedi)
+        {
+            if (current_karma >= jedi_karma)
+            {
+                karma_color.Color = jedi;
+            }
+            else if (current_karma <= sith_karma)
+            {
+                karma_color.Color = sith;
+            }
+            else { karma_color.Color = neutral; }
+        }
+        private void Check_forceuser_status(Character character,int current_karma)
+        {
+            if (current_karma >= jedi_karma) 
+            { 
+                character.Is_jedi = true;
+                character.Is_sith = false;
+                character.Is_neutral = false;
+            }
+            else if (current_karma <= sith_karma) 
+            {
+                character.Is_sith = true;
+                character.Is_jedi = false;
+                character.Is_neutral = false;
+            }
+            else
+            {
+                character.Is_neutral = true;
+                character.Is_sith = false;
+                character.Is_jedi = false;
+            }
         }
     }
 }
