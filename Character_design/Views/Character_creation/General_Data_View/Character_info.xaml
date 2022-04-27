@@ -553,9 +553,96 @@
                        TextWrapping="Wrap"/>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="285" Margin="10,485,0,0" VerticalAlignment="Top" Width="380">
-            <TextBlock Margin="20,10,20,205" Text="Боевые параметры" FontSize="20" TextAlignment="Center" TextWrapping="Wrap"/>
-        </Border>
+        <Grid HorizontalAlignment="Left" Height="285" Margin="10,485,0,0" VerticalAlignment="Top" Width="380">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
+                       Margin="3" Text="Боевые параметры" 
+                       FontSize="20" TextAlignment="Center" 
+                       TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="Реакция"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="Броня"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="Наблюдательность"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="Скрытность"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="Сопротивление Силе"/>
+            <TextBlock Grid.Row="6" Grid.Column="1" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="Концентрация"
+                       Opacity="{Binding Karma_opacity}"/>
+            <Image Grid.Row="1" Grid.Column="3" Margin="3"
+                   Source="{Binding Question_sign}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Reaction_description}"/>
+                </Image.ToolTip>
+            </Image>
+            <Image Grid.Row="2" Grid.Column="3" Margin="3"
+                   Source="{Binding Question_sign}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Armor_description}"/>
+                </Image.ToolTip>
+            </Image>
+            <Image Grid.Row="3" Grid.Column="3" Margin="3"
+                   Source="{Binding Question_sign}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Observation_description}"/>
+                </Image.ToolTip>
+            </Image>
+            <Image Grid.Row="4" Grid.Column="3" Margin="3"
+                   Source="{Binding Question_sign}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Stealth_description}"/>
+                </Image.ToolTip>
+            </Image>
+            <Image Grid.Row="5" Grid.Column="3" Margin="3"
+                   Source="{Binding Question_sign}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Force_resistance_description}"/>
+                </Image.ToolTip>
+            </Image>
+            <Image Grid.Row="6" Grid.Column="3" Margin="3"
+                   Source="{Binding Question_sign}"
+                   Opacity="{Binding Karma_opacity}"
+                   IsEnabled="{Binding Character_is_forceuser}">
+                <Image.ToolTip>
+                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="{Binding Concetration_description}"/>
+                </Image.ToolTip>
+            </Image>
+        </Grid>
         <Grid Margin="380,70,0,0" Width="30" Height="400"
               VerticalAlignment="Top" HorizontalAlignment="Left"
               Opacity="{Binding Karma_opacity}"

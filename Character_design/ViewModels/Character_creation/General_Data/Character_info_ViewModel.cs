@@ -631,6 +631,30 @@ namespace Character_design
         {
             get { return "При зеленом цвете шкалы вашему персонажу открываются умения Светлой стороны Силы"; }
         }
+        public string Reaction_description
+        {
+            get { return "Этот суммарный параметр определяет, кто будет первым действовать в боевых сценах"; }
+        }
+        public string Armor_description
+        {
+            get { return "Этот суммарный параметр определяет, наскольно хорошо ваш персонаж противостоит получаемому урону"; }
+        }
+        public string Observation_description
+        {
+            get { return "Этот суммарный параметр определяет, насколько хорошо ваш персонаж замечает детали"; }
+        }
+        public string Stealth_description
+        {
+            get { return "Этот суммарный параметр определяет, насколько хорошо ваш персонаж скрывается"; }
+        }
+        public string Force_resistance_description
+        {
+            get { return "Этот суммарный параметр определяет, насколько хорошо ваш персонаж противостоит воздействиям Силы"; }
+        }
+        public string Concetration_description
+        {
+            get { return "Этот суммарный параметр определяет, насколько успешным будет проверка навыка 'Поток Силы'"; }
+        }
 
 
 
