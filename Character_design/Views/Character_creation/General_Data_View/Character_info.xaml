@@ -642,6 +642,9 @@
                         Text="{Binding Concetration_description}"/>
                 </Image.ToolTip>
             </Image>
+            <Image Grid.Row="1" Grid.Column="0" Margin="7"
+                   Source="{Binding Reaction_sign}">
+            </Image>
         </Grid>
         <Grid Margin="380,70,0,0" Width="30" Height="400"
               VerticalAlignment="Top" HorizontalAlignment="Left"

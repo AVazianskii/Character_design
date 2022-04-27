@@ -201,6 +201,10 @@ namespace Character_design
         {
             get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\jedi.jpg"; }
         }
+        public string Reaction_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\reaction.png"; }
+        }
         public string Character_range_description
         {
             get { return character_range_description; }
