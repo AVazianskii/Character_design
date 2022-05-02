@@ -11,9 +11,13 @@ namespace Character_design
 {
     public class MainWindow_ViewModel : BaseViewModel
     {
+        private static MainWindow_ViewModel _instance;
+
         private BaseViewModel current_VM;
         private Main_Menu_ViewModel Main_menu;
-        //private 
+        
+
+
         public BaseViewModel CurrentViewModel
         {
             get
@@ -26,11 +30,24 @@ namespace Character_design
                 OnPropertyChanged("CurrentViewModel");
             }
         }
+
+
+
+        public static MainWindow_ViewModel GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new MainWindow_ViewModel();
+            }
+            return _instance;
+        }
+
+
         public MainWindow_ViewModel()
         {
             Main_menu = Main_Menu_ViewModel.GetInstance();
             current_VM = Main_menu;
-            Main_model.GetInstance();
+            //Main_model.GetInstance();
         }
     }
 }

@@ -417,7 +417,7 @@ namespace Character_design
         private bool Increase_is_possible (Skill_Class skill,int cost, int limit, int exp_points_left)
         {
             bool result = false;
-            if (Character.GetInstance().Character_race != Race_manager.GetInstance().Get_Race_list()[0])
+            if (Character.GetInstance().Character_race != Race__manager.GetInstance().Get_Race_list()[0])
             {
                 if (exp_points_left >= cost)
                 {

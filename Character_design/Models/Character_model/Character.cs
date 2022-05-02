@@ -248,7 +248,7 @@ namespace Character_design
 
         public Character()
         {
-            Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
             Age_status = Main_model.GetInstance().Age_status_Manager.Age_Statuses()[0]; // устанавливаем возрастной статус "Неизвестно" персонажу
             Range = Main_model.GetInstance().Range_Manager.Ranges()[0]; // устанавливаем ранг "Рядовой" персонажу
 

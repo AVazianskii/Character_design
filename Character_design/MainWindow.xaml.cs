@@ -24,9 +24,7 @@ namespace Character_design
         {
             InitializeComponent();
 
-            DataContext = new MainWindow_ViewModel();
-
-            
+            DataContext = MainWindow_ViewModel.GetInstance();
         }
     }
 }

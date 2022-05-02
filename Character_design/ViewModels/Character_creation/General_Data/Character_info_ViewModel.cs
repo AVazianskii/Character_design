@@ -205,6 +205,26 @@ namespace Character_design
         {
             get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\reaction.png"; }
         }
+        public string Armor_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\armor.png"; }
+        }
+        public string Watchfulness_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\watchfullness.png"; }
+        }
+        public string Stealth_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\stealth.png"; }
+        }
+        public string Force_resistance_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\force_resistance.png"; }
+        }
+        public string Concentration_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\concentration.png"; }
+        }
         public string Character_range_description
         {
             get { return character_range_description; }

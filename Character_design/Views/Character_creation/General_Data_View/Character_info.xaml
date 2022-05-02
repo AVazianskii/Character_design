@@ -645,6 +645,23 @@
             <Image Grid.Row="1" Grid.Column="0" Margin="7"
                    Source="{Binding Reaction_sign}">
             </Image>
+            <Image Grid.Row="2" Grid.Column="0" Margin="7"
+                   Source="{Binding Armor_sign}">
+            </Image>
+            <Image Grid.Row="3" Grid.Column="0" Margin="7"
+                   Source="{Binding Watchfulness_sign}">
+            </Image>
+            <Image Grid.Row="4" Grid.Column="0" Margin="7"
+                   Source="{Binding Stealth_sign}">
+            </Image>
+            <Image Grid.Row="5" Grid.Column="0" Margin="7"
+                   Source="{Binding Force_resistance_sign}">
+            </Image>
+            <Image Grid.Row="6" Grid.Column="0" Margin="7"
+                   Source="{Binding Concentration_sign}"
+                   Opacity="{Binding Karma_opacity}"
+                   IsEnabled="{Binding Character_is_forceuser}">
+            </Image>
         </Grid>
         <Grid Margin="380,70,0,0" Width="30" Height="400"
               VerticalAlignment="Top" HorizontalAlignment="Left"

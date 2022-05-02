@@ -16,7 +16,7 @@ namespace Character_design
     {
         private static Main_model instance;
 
-        internal Race_manager Race_Manager;
+        internal Race__manager Race_Manager;
         internal Age_status_manager Age_status_Manager;
         internal Attribute_manager Attribute_Manager;
         internal Skill_manager Skill_Manager;
@@ -25,14 +25,14 @@ namespace Character_design
 
         private Main_model()
         {
-            Race_Manager = Race_manager.GetInstance();
+            Race_Manager = Race__manager.GetInstance();
             Skill_Manager = Skill_manager.GetInstance();
             Range_Manager = Range_manager.GetInstance();
             Age_status_Manager = Age_status_manager.GetInstance();
             Attribute_Manager = Attribute_manager.GetInstance();
-            Load_async(Race_Manager);
+            Load_all_from(Race_Manager);
             Load_all_from(Skill_Manager);
-            Load_async(Attribute_Manager);
+            Load_all_from(Attribute_Manager);
             Load_all_from(Range_Manager);
             Load_all_from(Age_status_Manager);
             

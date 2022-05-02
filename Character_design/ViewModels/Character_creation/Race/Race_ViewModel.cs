@@ -218,7 +218,7 @@ namespace Character_design
         private void _Unchoose_race()
         {
             UnApply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
-            Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Empty_race();
+            Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
             Skill_ViewModel.GetInstance().Refresh_fields();
             race_chosen = false;
         }
