@@ -6,6 +6,7 @@
              xmlns:general_data="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
              xmlns:race="clr-namespace:Character_design.Views.Character_creation.Race"
              xmlns:skill="clr-namespace:Character_design.Views.Character_creation.Skill_View"
+             xmlns:force_skill="clr-namespace:Character_design.Views.Character_creation.Force_skill"
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1500">
@@ -21,22 +22,29 @@
                 <DataTemplate DataType="{x:Type local:Skill_ViewModel}">
                     <skill:Skill/>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Force_skill_ViewModel}">
+                    <force_skill:Force_skill/>
+                </DataTemplate>
             </Border.Resources>
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>
         </Border>
         <Canvas HorizontalAlignment="Left" Height="860" VerticalAlignment="Center" Width="349">
-            <Button Content="Ваш персонаж" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
-                    Canvas.Left="50" Canvas.Top="25"
+            <Button Content="Ваш персонаж" Width="300" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+                    Canvas.Left="25" Canvas.Top="25"
                     Command="{Binding Open_general_data_user_control}"
                     BorderBrush="{Binding Character_button_border}"/>
-            <Button Content="Выбор расы" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
-                    Canvas.Left="50" Canvas.Top="100"
+            <Button Content="Выбор расы" Width="300" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+                    Canvas.Left="25" Canvas.Top="100"
                     Command="{Binding Open_race_user_control}"
                     BorderBrush="{Binding Race_button_border}"/>
-            <Button Content="Развитие навыков" Width="250" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
-                    Canvas.Left="50" Canvas.Top="175"
+            <Button Content="Развитие навыков" Width="300" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+                    Canvas.Left="25" Canvas.Top="175"
                     Command="{Binding Open_skill_user_control}"
                     BorderBrush="{Binding Skill_button_border}"/>
+            <Button Content="Навыки владения Силой" Width="300" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+                    Canvas.Left="25" Canvas.Top="250"
+                    Command="{Binding Open_force_skill_user_control}"
+                    BorderBrush="{Binding Force_skill_border}"/>
         </Canvas>
     </Grid>
 </UserControl>
