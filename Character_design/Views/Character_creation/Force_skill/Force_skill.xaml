@@ -7,6 +7,41 @@
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1136">
     <Grid Background="Wheat">
-            
+        <Canvas HorizontalAlignment="Center" Height="133" VerticalAlignment="Top" Width="1146" Background="Black">
+            <TextBlock Height="60" TextWrapping="Wrap" Width="216" Canvas.Top="73"
+                           Text="Доступные навыки для развития:" Background="Black"
+                           Foreground="Wheat" FontSize="20" TextAlignment="Center" />
+            <Button Height="73" Canvas.Top="60" Canvas.Right="744" Width="186"
+                    Background="Black" BorderThickness="3"
+                    Command="{Binding Show_neutral_force_skills}"
+                    BorderBrush="{Binding Neutral_force_border}">
+                <Button.Content>
+                    <TextBlock Text="Навыки нейтральной стороны Силы" Foreground="Wheat" FontSize="17"
+                               TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Height="73" Canvas.Top="60" Canvas.Right="558" Width="186"
+                    Background="Black" BorderThickness="3"
+                    Command="{Binding Show_light_force_skills}"
+                    BorderBrush="{Binding Light_force_border}">
+                <Button.Content>
+                    <TextBlock Text="Навыки Светлой стороны Силы" Foreground="Wheat" FontSize="17"
+                               TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Height="73" Canvas.Top="60" Canvas.Right="372" Width="186"
+                    Background="Black" BorderThickness="3"
+                    Command="{Binding Show_dark_force_skills}"
+                    BorderBrush="{Binding Dark_force_border}">
+                <Button.Content>
+                    <TextBlock Text="Навыки Темной стороны Силы" Foreground="Wheat" FontSize="17"
+                               TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <TextBlock Canvas.Left="700" TextWrapping="Wrap" Canvas.Top="15" Height="40" Width="300"
+                       Text="Очков опыта осталось: " Foreground="Wheat" FontSize="28"/>
+            <TextBlock Canvas.Left="1008" TextWrapping="Wrap" Canvas.Top="15" Height="40" Width="128"
+                       Text="{Binding Exp_points_left}" Foreground="Wheat" FontSize="28"/>
+        </Canvas>
     </Grid>
 </UserControl>
