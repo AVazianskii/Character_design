@@ -30,9 +30,9 @@ namespace Character_design
             Range_Manager = Range_manager.GetInstance();
             Age_status_Manager = Age_status_manager.GetInstance();
             Attribute_Manager = Attribute_manager.GetInstance();
-            Load_all_from(Race_Manager);
-            Load_all_from(Skill_Manager);
-            Load_all_from(Attribute_Manager);
+            Load_async(Race_Manager);
+            Load_async(Skill_Manager);
+            Load_async(Attribute_Manager);
             Load_all_from(Range_Manager);
             Load_all_from(Age_status_Manager);
             
