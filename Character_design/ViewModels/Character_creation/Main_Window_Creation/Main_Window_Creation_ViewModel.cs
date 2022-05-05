@@ -16,7 +16,12 @@ namespace Character_design
         private SolidColorBrush character_button_border,
                                 race_button_border,
                                 skill_button_border,
-                                force_skill_border;
+                                force_skill_border,
+                                combat_form_border,
+                                feature_border,
+                                equipment_border,
+                                spaceship_border,
+                                companion_border;
 
         private List<SolidColorBrush> Button_borders;
 
@@ -40,6 +45,11 @@ namespace Character_design
         public Command Open_race_user_control { get; private set; }
         public Command Open_skill_user_control { get; private set; }
         public Command Open_force_skill_user_control { get; private set; }
+        public Command Open_combat_forms_user_control { get; private set; }
+        public Command Open_feature_user_control { get; private set; }
+        public Command Open_equipment_user_control { get; private set; }
+        public Command Open_spaceship_user_control { get; private set; }
+        public Command Open_companion_user_control { get; private set; }
         public BaseViewModel CurrentViewModel
         {
             get { return current_VM; }
@@ -65,6 +75,31 @@ namespace Character_design
             get { return force_skill_border; }
             set { force_skill_border = value; OnPropertyChanged("Force_skill_border"); }
         }
+        public SolidColorBrush Combat_form_border
+        {
+            get { return combat_form_border; }
+            set { combat_form_border = value; OnPropertyChanged("Combat_form_border"); }
+        }
+        public SolidColorBrush Feature_border
+        {
+            get { return feature_border; }
+            set { feature_border = value; OnPropertyChanged("Feature_border"); }
+        }
+        public SolidColorBrush Equipment_border
+        {
+            get { return equipment_border; }
+            set { equipment_border = value; OnPropertyChanged("Equipment_border"); }
+        }
+        public SolidColorBrush Spaceship_border
+        {
+            get { return spaceship_border; }
+            set { spaceship_border = value; OnPropertyChanged("Spaceship_border"); }
+        }
+        public SolidColorBrush Companion_border
+        {
+            get { return companion_border; }
+            set { companion_border = value; OnPropertyChanged("Companion_border"); }
+        }
 
 
 
@@ -74,6 +109,11 @@ namespace Character_design
             Open_race_user_control          = new Command(o => _Open_Race_user_control());
             Open_skill_user_control         = new Command(o => _Open_skill_user_control());
             Open_force_skill_user_control   = new Command(o => _Open_force_skill_user_control(), o => Character.GetInstance().Forceuser);
+            Open_combat_forms_user_control  = new Command(o => _Open_combat_forms_user_control());
+            Open_feature_user_control       = new Command(o => _Open_feature_user_control());
+            Open_equipment_user_control     = new Command(o => _Open_equipment_user_control());
+            Open_spaceship_user_control     = new Command(o => _Open_spaceship_user_control());
+            Open_companion_user_control     = new Command(o => _Open_companion_user_control());
 
             general_data    = General_Data_ViewModel.GetInstance();
             race            = Race_ViewModel.GetInstance();
@@ -89,12 +129,22 @@ namespace Character_design
             Race_button_border      = new SolidColorBrush();
             Skill_button_border     = new SolidColorBrush();
             Force_skill_border      = new SolidColorBrush();
+            Combat_form_border      = new SolidColorBrush();
+            Feature_border          = new SolidColorBrush();
+            Equipment_border        = new SolidColorBrush();
+            Spaceship_border        = new SolidColorBrush();
+            Companion_border        = new SolidColorBrush();
 
             Button_borders = new List<SolidColorBrush>();
             Button_borders.Add(Character_button_border);
             Button_borders.Add(Race_button_border);
             Button_borders.Add(Skill_button_border);
             Button_borders.Add(Force_skill_border);
+            Button_borders.Add(Combat_form_border);
+            Button_borders.Add(Feature_border);
+            Button_borders.Add(Equipment_border);
+            Button_borders.Add(Spaceship_border);
+            Button_borders.Add(Companion_border);
 
             Set_colors_for_chosen_item(Button_borders, Character_button_border, Chosen_color, Unchosen_color);
         }
@@ -124,6 +174,26 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Force_skill_border, Chosen_color, Unchosen_color);
 
             CurrentViewModel = force_skill;
+        }
+        private void _Open_combat_forms_user_control()
+        {
+            Set_colors_for_chosen_item(Button_borders, Combat_form_border, Chosen_color, Unchosen_color);
+        }
+        private void _Open_feature_user_control()
+        {
+            Set_colors_for_chosen_item(Button_borders, Feature_border, Chosen_color, Unchosen_color);
+        }
+        private void _Open_equipment_user_control()
+        {
+            Set_colors_for_chosen_item(Button_borders, Equipment_border, Chosen_color, Unchosen_color);
+        }
+        private void _Open_spaceship_user_control()
+        {
+            Set_colors_for_chosen_item(Button_borders, Spaceship_border, Chosen_color, Unchosen_color);
+        }
+        private void _Open_companion_user_control()
+        {
+            Set_colors_for_chosen_item(Button_borders, Companion_border, Chosen_color, Unchosen_color);
         }
     }
 }
