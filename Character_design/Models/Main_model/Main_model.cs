@@ -21,6 +21,7 @@ namespace Character_design
         internal Attribute_manager Attribute_Manager;
         internal Skill_manager Skill_Manager;
         internal Range_manager Range_Manager;
+        internal Force_skill_manager Force_skill_Manager;
 
 
         private Main_model()
@@ -30,12 +31,15 @@ namespace Character_design
             Range_Manager = Range_manager.GetInstance();
             Age_status_Manager = Age_status_manager.GetInstance();
             Attribute_Manager = Attribute_manager.GetInstance();
+            Force_skill_Manager = Force_skill_manager.GetInstance();
             Load_async(Race_Manager);
             Load_async(Skill_Manager);
             Load_async(Attribute_Manager);
             Load_all_from(Range_Manager);
             Load_all_from(Age_status_Manager);
-            
+            Load_all_from(Force_skill_Manager);
+
+
         }
 
         public static Main_model GetInstance()
