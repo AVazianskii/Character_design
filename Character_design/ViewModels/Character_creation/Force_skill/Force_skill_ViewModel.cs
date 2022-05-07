@@ -60,8 +60,8 @@ namespace Character_design
         private Force_skill_ViewModel()
         {
             Show_neutral_force_skills   = new Command(o => _Show_neutral_force_skills());
-            Show_light_force_skills     = new Command(o => _Show_light_force_skills());
-            Show_dark_force_skills      = new Command(o => _Show_dark_force_skills());
+            Show_light_force_skills     = new Command(o => _Show_light_force_skills(), o => Character.GetInstance().Is_jedi);
+            Show_dark_force_skills      = new Command(o => _Show_dark_force_skills(),  o => Character.GetInstance().Is_sith);
 
             Neutral_force_border    = new SolidColorBrush();
             Light_force_border      = new SolidColorBrush();
