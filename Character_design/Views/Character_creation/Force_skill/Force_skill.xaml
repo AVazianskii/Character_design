@@ -22,7 +22,7 @@
             </Button>
             <Button Height="73" Canvas.Top="60" Canvas.Right="558" Width="186"
                     Background="Black" BorderThickness="3"
-                    Command="{Binding Show_light_force_skills}"
+                    Command="{Binding Show_jedi_force_skills}"
                     BorderBrush="{Binding Light_force_border}">
                 <Button.Content>
                     <TextBlock Text="Навыки Светлой стороны Силы" Foreground="Wheat" FontSize="17"
@@ -31,7 +31,7 @@
             </Button>
             <Button Height="73" Canvas.Top="60" Canvas.Right="372" Width="186"
                     Background="Black" BorderThickness="3"
-                    Command="{Binding Show_dark_force_skills}"
+                    Command="{Binding Show_sith_force_skills}"
                     BorderBrush="{Binding Dark_force_border}">
                 <Button.Content>
                     <TextBlock Text="Навыки Темной стороны Силы" Foreground="Wheat" FontSize="17"
@@ -43,5 +43,63 @@
             <TextBlock Canvas.Left="1008" TextWrapping="Wrap" Canvas.Top="15" Height="40" Width="128"
                        Text="{Binding Exp_points_left}" Foreground="Wheat" FontSize="28"/>
         </Canvas>
+        <Border BorderBrush="Wheat" BorderThickness="0,1,0,0" 
+                HorizontalAlignment="Center" Height="727" Margin="0,133,0,0" 
+                VerticalAlignment="Top" Width="1146">
+            <Canvas Height="727" Margin="0,-1,0,0" Width="1146">
+                <ListBox Height="727" Width="216" Canvas.Top="0" 
+                     Background="Black" Foreground="Wheat" BorderThickness="0" BorderBrush="Black"
+                     ItemsSource="{Binding Current_force_skill_list}"
+                     SelectedItem="{Binding Selected_force_skill}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Height="46" TextWrapping="Wrap" Width="180" Foreground="Wheat" 
+                                       TextAlignment="Center" FontSize="16" VerticalAlignment="Center"
+                                       Text="{Binding Path=Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"/>
+                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="520"
+                           FontSize="27" TextAlignment="Center"
+                           Text="{Binding Selected_force_skill_title}"/>
+                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="60" Width="360"
+                            Text="Описание навыка:" FontSize="18"/>
+                <TextBlock Height="256" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="94" Width="529"
+                           FontSize="15"
+                           Text="{Binding Selected_force_skill_description}"/>
+                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="360" Width="250"
+                            Text="Стоимость развития навыка:" FontSize="18"/>
+                <TextBlock Height="34" Canvas.Left="850" TextWrapping="Wrap" Canvas.Top="360" Width="50"
+                           FontSize="18" TextAlignment="Center"
+                           Text="{Binding Selected_force_skill_cost}"/>
+                <TextBlock Height="34" Canvas.Left="910" TextWrapping="Wrap" Canvas.Top="360" Width="150"
+                            Text="оч. опыта" FontSize="18"/>
+                <TextBlock Height="34" Canvas.Left="530" TextWrapping="Wrap" Canvas.Top="520" Width="240"
+                           TextAlignment="Center"
+                            Text="Уровень развития навыка:" FontSize="18"/>
+                <TextBlock Height="34" Canvas.Left="770" TextWrapping="Wrap" Canvas.Top="520" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" FontSize="18"
+                           Text="{Binding Selected_force_skill_counter, Mode=OneWay}"/>
+                <ProgressBar Height="17" Canvas.Left="300" Canvas.Top="550" Width="754" HorizontalAlignment="Center" VerticalAlignment="Top"
+                             Value="{Binding Selected_force_skill_counter}"
+                             Minimum="{Binding Selected_force_skill_min_score, Mode=OneWay}"
+                             Maximum="{Binding Selected_force_skill_max_score, Mode=OneWay}"/>
+                <TextBlock Height="23" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="547" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" FontSize="16"
+                           Text="{Binding Selected_force_skill_min_score, Mode=OneWay}"/>
+                <TextBlock Height="23" Canvas.Left="1060" TextWrapping="Wrap" Canvas.Top="547" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" FontSize="16"
+                           Text="{Binding Selected_force_skill_max_score, Mode=OneWay}"/>
+            </Canvas>
+        </Border>
     </Grid>
 </UserControl>
