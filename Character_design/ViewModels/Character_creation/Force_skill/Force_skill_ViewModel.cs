@@ -198,6 +198,7 @@ namespace Character_design
                         Character_skill.Increase_score();
                         Selected_force_skill_counter = Character_skill.Score;
                         Character.GetInstance().Spend_exp_points(Selected_force_skill_cost);
+                        Character.GetInstance().Increase_exp_sold_for_force_skills(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_force_skill_counter");
                         break;
@@ -217,6 +218,7 @@ namespace Character_design
                         Character_skill.Decrease_score();
                         Selected_force_skill_counter = Character_skill.Score;
                         Character.GetInstance().Refund_exp_points(Selected_force_skill_cost);
+                        Character.GetInstance().Decrease_exp_sold_for_force_skills(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_force_skill_counter");
                         break;

@@ -1007,8 +1007,10 @@ namespace Character_design
             {
                 character.Forceuser = false;
                 Forceuser_border_color.Color = Unchosen_color;
+                Character.GetInstance().Refund_if_not_forceuser(); // Возвращаем очки опыта, если игрок перехотел делать персонажа-адепта Силы
                 Unshow_forceuser_fields();
                 OnPropertyChanged("Character_is_forceuser");
+                OnPropertyChanged("Exp_points_left");
             }
         }
         private void _Choose_male (Character character)

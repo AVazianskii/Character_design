@@ -43,7 +43,8 @@ namespace Character_design
                     attributes,
                     attributes_left,
                     attributes_sold,
-                    karma;
+                    karma,
+                    experience_sold_for_force_skills;
         private int age;
 
         private string sex;
@@ -108,6 +109,24 @@ namespace Character_design
                 attribute.Decrease_atr(1);
                 attribute.Decrease_atr_for_atr();
                 OnPropertyChanged("Attributes_left");
+            }
+        }
+        public void Increase_exp_sold_for_force_skills(Force_skill_class skill)
+        {
+            experience_sold_for_force_skills = experience_sold_for_force_skills + skill.Cost;
+        }
+        public void Decrease_exp_sold_for_force_skills(Force_skill_class skill)
+        {
+            experience_sold_for_force_skills = experience_sold_for_force_skills - skill.Cost;
+        }
+        public void Refund_if_not_forceuser()
+        {
+            Refund_exp_points(experience_sold_for_force_skills);
+
+            // Если игрок передумал создавать персонажа адепта Силы, то возвращаем все очки опыта и обнуляем значения навыков
+            foreach(Force_skill_class skill in force_skills)
+            {
+                skill.Score = 0;
             }
         }
 
