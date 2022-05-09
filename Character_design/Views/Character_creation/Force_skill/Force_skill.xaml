@@ -99,6 +99,20 @@
                 <TextBlock Height="23" Canvas.Left="1060" TextWrapping="Wrap" Canvas.Top="547" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
                            TextAlignment="Center" FontSize="16"
                            Text="{Binding Selected_force_skill_max_score, Mode=OneWay}"/>
+                <Canvas Height="133" Canvas.Left="770" Canvas.Top="584" Width="349">
+                    <Button Height="57" Canvas.Left="10" Canvas.Top="66" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Content="Уменьшить навык на 1"
+                            Command="{Binding Decrease_force_skill_score}"
+                            CommandParameter="{Binding Selected_force_skill}"/>
+                    <Button Height="57" Canvas.Right="10" Canvas.Top="66" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Content="Увеличить навык на 1"
+                            Command="{Binding Increase_force_skill_score}"
+                            CommandParameter="{Binding Selected_force_skill}"/>
+                    <TextBlock Canvas.Left="10" Canvas.Top="10" Width="320" Height="50"
+                               TextWrapping="Wrap" FontSize="14"
+                               Foreground="Red"
+                               Text="{Binding Force_skill_choose_warning}"/>
+                </Canvas>
             </Canvas>
         </Border>
     </Grid>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Character_design.Views.Character_creation.Skill_View"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1136">
-    <Grid Background="White">
+    <Grid Background="Wheat">
         <Canvas HorizontalAlignment="Center" Height="133" VerticalAlignment="Top" Width="1146" Background="Black">
             <TextBlock Height="60" TextWrapping="Wrap" Width="216" Canvas.Top="73"
                            Text="Доступные навыки для развития:" Background="Black"

@@ -17,6 +17,7 @@ namespace Character_design
         private static Character Character_instance;
 
         private List<Skill_Class> skills;
+        private List<Force_skill_class> force_skills;
 
         private Race_class character_race;
         private Atribute_class strength;
@@ -52,6 +53,10 @@ namespace Character_design
         public List<Skill_Class> Get_skills()
         {
             return skills;
+        }
+        public List<Force_skill_class> Get_force_skills()
+        {
+            return force_skills;
         }
         public static Character GetInstance()
         {
@@ -265,6 +270,12 @@ namespace Character_design
             foreach(Skill_Class Skill in Main_model.GetInstance().Skill_Manager.Get_skills())
             {
                 skills.Add(Skill);
+            }
+
+            force_skills = new List<Force_skill_class>();
+            foreach(Force_skill_class force_skill in Main_model.GetInstance().Force_skill_Manager.Get_Force_Skills())
+            {
+                force_skills.Add(force_skill);
             }
             
             Forceuser = false;

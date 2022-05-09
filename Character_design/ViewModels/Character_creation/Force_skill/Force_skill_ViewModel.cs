@@ -26,6 +26,8 @@ namespace Character_design
                     selected_force_skill_max_score,
                     selected_force_skill_counter;
 
+        private string force_skill_choose_warning;
+
         private Color Chosen_color,
                       Unchosen_color;
 
@@ -34,6 +36,8 @@ namespace Character_design
         public Command Show_neutral_force_skills { get; private set; }
         public Command Show_sith_force_skills { get; private set; }
         public Command Show_jedi_force_skills { get; private set; }
+        public Command Increase_force_skill_score { get; private set; }
+        public Command Decrease_force_skill_score { get; private set; }
         public SolidColorBrush Neutral_force_border
         {
             get { return neutral_force_border; }
@@ -65,12 +69,15 @@ namespace Character_design
             {
                 selected_force_skill = value;
                 OnPropertyChanged("Selected_force_skill");
-                OnPropertyChanged("Selected_force_skill_title");
-                OnPropertyChanged("Selected_force_skill_description");
-                OnPropertyChanged("Selected_force_skill_cost");
-                OnPropertyChanged("Selected_force_skill_counter");
-                OnPropertyChanged("Selected_force_skill_min_score");
-                OnPropertyChanged("Selected_force_skill_max_score");
+                if (selected_force_skill != null)
+                {
+                    OnPropertyChanged("Selected_force_skill_title");
+                    OnPropertyChanged("Selected_force_skill_description");
+                    OnPropertyChanged("Selected_force_skill_cost");
+                    OnPropertyChanged("Selected_force_skill_counter");
+                    OnPropertyChanged("Selected_force_skill_min_score");
+                    OnPropertyChanged("Selected_force_skill_max_score");
+                }
             }
         }
         public string Selected_force_skill_title
@@ -100,6 +107,11 @@ namespace Character_design
             get { return selected_force_skill_max_score; }
             set { selected_force_skill_max_score = value; OnPropertyChanged("Selected_force_skill_max_score"); }
         }
+        public string Force_skill_choose_warning
+        {
+            get { return force_skill_choose_warning; }
+            set { force_skill_choose_warning = value; OnPropertyChanged("Force_skill_choose_warning"); }
+        }
 
 
 
@@ -126,7 +138,11 @@ namespace Character_design
 
             Show_neutral_force_skills   = new Command(o => _Show_neutral_force_skills());
             Show_jedi_force_skills      = new Command(o => _Show_jedi_force_skills(), o => Character.GetInstance().Is_jedi);
-            Show_sith_force_skills      = new Command(o => _Show_sith_force_skills(),  o => Character.GetInstance().Is_sith);
+            Show_sith_force_skills      = new Command(o => _Show_sith_force_skills(), o => Character.GetInstance().Is_sith);
+            Increase_force_skill_score  = new Command(o => _Increase_force_skill_score(Selected_force_skill),
+                                                      o => Increase_is_possible(Selected_force_skill, Selected_force_skill_max_score, Exp_points_left));
+            Decrease_force_skill_score  = new Command(o => _Decrease_force_skill_score(Selected_force_skill),
+                                                      o => Selected_force_skill.Score > 0);
 
             Neutral_force_border    = new SolidColorBrush();
             Light_force_border      = new SolidColorBrush();
@@ -140,27 +156,92 @@ namespace Character_design
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;
 
+            // TODO: Внедрить систему лимитов. См. правила
+            Selected_force_skill_min_score = 0;
+            Selected_force_skill_max_score = 10;
+
             Set_colors_for_chosen_item(Button_borders, Neutral_force_border, Chosen_color, Unchosen_color);
         }
+
 
 
         private void _Show_neutral_force_skills()
         {
             Current_force_skill_list = neutral_force_skills;
+            Selected_force_skill = Current_force_skill_list[0];
 
             Set_colors_for_chosen_item(Button_borders, Neutral_force_border, Chosen_color, Unchosen_color);
         }
         private void _Show_jedi_force_skills()
         {
             Current_force_skill_list = jedi_force_skills;
+            Selected_force_skill = Current_force_skill_list[0];
 
             Set_colors_for_chosen_item(Button_borders, Light_force_border, Chosen_color, Unchosen_color);
         }
         private void _Show_sith_force_skills()
         {
             Current_force_skill_list = sith_force_skills;
+            Selected_force_skill = Current_force_skill_list[0];
 
             Set_colors_for_chosen_item(Button_borders, Dark_force_border, Chosen_color, Unchosen_color);
+        }
+        private void _Increase_force_skill_score(object o)
+        {
+            Force_skill_class skill = o as Force_skill_class;
+            if (skill != null)
+            {
+                foreach (Force_skill_class Character_skill in Character.GetInstance().Get_force_skills())
+                {
+                    if (skill.Name == Character_skill.Name)
+                    {
+                        Character_skill.Increase_score();
+                        Selected_force_skill_counter = Character_skill.Score;
+                        Character.GetInstance().Spend_exp_points(Selected_force_skill_cost);
+                        OnPropertyChanged("Exp_points_left");
+                        OnPropertyChanged("Selected_force_skill_counter");
+                        break;
+                    }
+                }
+            }
+        }
+        private void _Decrease_force_skill_score(object o)
+        {
+            Force_skill_class skill = o as Force_skill_class;
+            if (skill != null)
+            {
+                foreach (Force_skill_class Character_skill in Character.GetInstance().Get_force_skills())
+                {
+                    if (skill.Name == Character_skill.Name)
+                    {
+                        Character_skill.Decrease_score();
+                        Selected_force_skill_counter = Character_skill.Score;
+                        Character.GetInstance().Refund_exp_points(Selected_force_skill_cost);
+                        OnPropertyChanged("Exp_points_left");
+                        OnPropertyChanged("Selected_force_skill_counter");
+                        break;
+                    }
+                }
+            }
+        }
+        private bool Increase_is_possible(Force_skill_class skill, int limit, int exp_points_left)
+        {
+            bool result = false;
+            if (Character.GetInstance().Character_race != Race__manager.GetInstance().Get_Race_list()[0])
+            {
+                if (((Character.GetInstance().Is_jedi && skill.Type == 3) || (Character.GetInstance().Is_sith && skill.Type == 2)) != true)
+                {
+                    if (exp_points_left >= skill.Cost)
+                    {
+                        if (skill.Score < limit)
+                        {
+                            result = true;
+                            Force_skill_choose_warning = "";
+                        } else { Force_skill_choose_warning = "Не выбран ранг и возрастной статус персонажа!"; }
+                    } else { Force_skill_choose_warning = "Недостаточно опыта для развития навыка!"; }
+                } else { Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!"; }
+            } else { Force_skill_choose_warning = "Раса персонажа не выбрана!"; }
+            return result;
         }
     }
 }
