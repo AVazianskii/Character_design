@@ -10,6 +10,22 @@
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1500">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="MyButton2">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Opacity" Value="100"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Opacity" Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="Black">
         <Border HorizontalAlignment="Left" Height="860" Margin="354,0,0,0" VerticalAlignment="Center" Width="1146">
             <Border.Resources>
@@ -32,45 +48,56 @@
             <Button Content="Ваш персонаж" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="25"
                     Command="{Binding Open_general_data_user_control}"
-                    BorderBrush="{Binding Character_button_border}"/>
+                    BorderBrush="{Binding Character_button_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор расы" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="100"
                     Command="{Binding Open_race_user_control}"
-                    BorderBrush="{Binding Race_button_border}"/>
+                    BorderBrush="{Binding Race_button_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Развитие навыков" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="175"
                     Command="{Binding Open_skill_user_control}"
-                    BorderBrush="{Binding Skill_button_border}"/>
+                    BorderBrush="{Binding Skill_button_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Навыки владения Силой" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="250"
                     Command="{Binding Open_force_skill_user_control}"
-                    BorderBrush="{Binding Force_skill_border}"/>
+                    BorderBrush="{Binding Force_skill_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор боевых форм" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="325"
                     Command="{Binding Open_combat_forms_user_control}"
-                    BorderBrush="{Binding Combat_form_border}"/>
+                    BorderBrush="{Binding Combat_form_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор особенностей" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="400"
                     Command="{Binding Open_feature_user_control}"
-                    BorderBrush="{Binding Feature_border}"/>
+                    BorderBrush="{Binding Feature_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор снаряжения" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="475"
                     Command="{Binding Open_equipment_user_control}"
-                    BorderBrush="{Binding Equipment_border}"/>
+                    BorderBrush="{Binding Equipment_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор космического корабля" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="550"
                     Command="{Binding Open_spaceship_user_control}"
-                    BorderBrush="{Binding Spaceship_border}"/>
+                    BorderBrush="{Binding Spaceship_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор спутника" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="625"
                     Command="{Binding Open_companion_user_control}"
-                    BorderBrush="{Binding Companion_border}"/>
+                    BorderBrush="{Binding Companion_border}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Сохранить карточку" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                     Canvas.Left="10" Canvas.Top="700"
-                    Command="{Binding Open_force_skill_user_control}"/>
+                    Command="{Binding Open_force_skill_user_control}"
+                    Style="{StaticResource MyButton2}"/>
             <Button Content="Выйти в меню" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                     Canvas.Left="10" Canvas.Top="775"
-                    Command="{Binding Open_force_skill_user_control}"/>
+                    Command="{Binding Open_force_skill_user_control}"
+                    Style="{StaticResource MyButton2}"/>
         </Canvas>
     </Grid>
 </UserControl>

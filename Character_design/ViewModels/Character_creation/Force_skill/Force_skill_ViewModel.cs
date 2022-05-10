@@ -28,8 +28,6 @@ namespace Character_design
 
         private string force_skill_choose_warning;
 
-        private bool test;
-
         private Color Chosen_color,
                       Unchosen_color;
 
@@ -119,10 +117,7 @@ namespace Character_design
         {
             get { return Selected_force_skill.Img_path; }
         }
-        public bool Test
-        {
-            get { return Character.GetInstance().Is_jedi; }
-        }
+
 
 
 
@@ -148,7 +143,7 @@ namespace Character_design
             Selected_force_skill = Current_force_skill_list[0];
 
             Show_neutral_force_skills   = new Command(o => _Show_neutral_force_skills());
-            Show_jedi_force_skills      = new Command(o => _Show_jedi_force_skills());// , o => Test    Character.GetInstance().Is_jedi
+            Show_jedi_force_skills      = new Command(o => _Show_jedi_force_skills(), o => Character.GetInstance().Is_jedi);
             Show_sith_force_skills      = new Command(o => _Show_sith_force_skills(), o => Character.GetInstance().Is_sith);
             Increase_force_skill_score  = new Command(o => _Increase_force_skill_score(Selected_force_skill),
                                                       o => Increase_is_possible(Selected_force_skill, Selected_force_skill_max_score, Exp_points_left));

@@ -11,9 +11,13 @@
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="True">
                     <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Opacity" Value="100"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Opacity" Value="0"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -47,7 +51,6 @@
                     BorderThickness="3"
                     Command="{Binding Show_jedi_force_skills}"
                     BorderBrush="{Binding Light_force_border}"
-                    IsEnabled="{Binding Test, Mode=OneWay}"
                     Style="{StaticResource MyButton2}">
                 <Button.Content>
                     <TextBlock Text="Навыки Светлой стороны Силы" FontSize="17"
