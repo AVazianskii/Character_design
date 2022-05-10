@@ -85,7 +85,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"/>
+                <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"
+                       Source="{Binding Skill_img_path}"/>
                 <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="520"
                            FontSize="27" TextAlignment="Center"
                            Text="{Binding Selected_skill_title}"/>

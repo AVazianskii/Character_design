@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Character_design
 {
@@ -13,6 +11,10 @@ namespace Character_design
 
 
         public Command Open_Common_Menu { get; private set; }
+        public string Img_path
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Content_soon.jpg"; }
+        }
 
 
 

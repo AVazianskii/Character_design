@@ -8,32 +8,20 @@
              d:DesignHeight="860" d:DesignWidth="1136">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="MyButton2">
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter x:Name="MyContentPresenter" 
-                                          Content="{TemplateBinding Content}"
-                                          HorizontalAlignment="Center" 
-                                          VerticalAlignment="Center" />
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
             <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="Black"/>
+                </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Background" Value="Black"/>
-                    <Setter Property="TextBlock.Foreground" Value="Gray"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" x:Key="Inactive_textBlock">
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Foreground" Value="Wheat"/>
-
             <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Foreground" Value="Wheat"/>
+                </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Foreground" Value="Gray"/>
                 </Trigger>
@@ -46,32 +34,34 @@
                            Text="Доступные навыки для развития:" Background="Black"
                            Foreground="Wheat" FontSize="20" TextAlignment="Center" />
             <Button Height="73" Canvas.Top="60" Canvas.Right="744" Width="186"
-                    Background="Black" BorderThickness="3"
+                    BorderThickness="3"
                     Command="{Binding Show_neutral_force_skills}"
-                    BorderBrush="{Binding Neutral_force_border}">
+                    BorderBrush="{Binding Neutral_force_border}"
+                    Style="{StaticResource MyButton2}">
                 <Button.Content>
                     <TextBlock Text="Навыки нейтральной стороны Силы" Foreground="Wheat" FontSize="17"
                                TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button.Content>
             </Button>
             <Button Height="73" Canvas.Top="60" Canvas.Right="558" Width="186"
-                    Background="Black" BorderThickness="3"
+                    BorderThickness="3"
                     Command="{Binding Show_jedi_force_skills}"
                     BorderBrush="{Binding Light_force_border}"
+                    IsEnabled="{Binding Test, Mode=OneWay}"
                     Style="{StaticResource MyButton2}">
                 <Button.Content>
-                    <TextBlock Text="Навыки Светлой стороны Силы" Foreground="Wheat" FontSize="17"
+                    <TextBlock Text="Навыки Светлой стороны Силы" FontSize="17"
                                TextWrapping="Wrap" TextAlignment="Center"
                                Style="{StaticResource Inactive_textBlock}"/>
                 </Button.Content>
             </Button>
             <Button Height="73" Canvas.Top="60" Canvas.Right="372" Width="186"
-                    Background="Black" BorderThickness="3"
+                    BorderThickness="3"
                     Command="{Binding Show_sith_force_skills}"
                     BorderBrush="{Binding Dark_force_border}"
                     Style="{StaticResource MyButton2}">
                 <Button.Content>
-                    <TextBlock Text="Навыки Темной стороны Силы" Foreground="Wheat" FontSize="17"
+                    <TextBlock Text="Навыки Темной стороны Силы" FontSize="17"
                                TextWrapping="Wrap" TextAlignment="Center"
                                Style="{StaticResource Inactive_textBlock}"/>
                 </Button.Content>
@@ -105,7 +95,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"/>
+                <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"
+                       Source="{Binding Force_skill_img_path}"/>
                 <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="520"
                            FontSize="27" TextAlignment="Center"
                            Text="{Binding Selected_force_skill_title}"/>

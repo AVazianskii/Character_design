@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
              mc:Ignorable="d" 
              d:DesignHeight="770" d:DesignWidth="1130">
-    <Grid Background="Aqua">
-            
+    <Grid Background="White">
+        <Image Source="{Binding Img_path}"/>
     </Grid>
 </UserControl>

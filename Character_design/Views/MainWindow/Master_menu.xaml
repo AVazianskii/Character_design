@@ -24,5 +24,6 @@
                            Text="Назад"/>
             </Button.Content>
         </Button>
+        <Image Source="{Binding Img_path}" Margin="30,56,30,112"/>
     </Grid>
 </UserControl>

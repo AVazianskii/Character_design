@@ -70,6 +70,7 @@ namespace Character_design
                 Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
                 OnPropertyChanged("Skill_base_text");
                 OnPropertyChanged("Skill_choose_warning");
+                OnPropertyChanged("Skill_img_path");
             }
         }
 
@@ -82,9 +83,6 @@ namespace Character_design
         public Command Show_specific_skills { get; private set; }
         public Command Decrease_skill_score { get; private set; }
         public Command Increase_skill_score { get; private set; }
-
-
-
         public BaseViewModel CurrentViewModel
         {
             get { return current_VM; }
@@ -137,6 +135,8 @@ namespace Character_design
                     Selected_skill_limit        = Return_skill_limit(selected_skill, Character.GetInstance().Age_status, Character.GetInstance().Range);
                     Selected_skill_score        = selected_skill.Get_score();
                     Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
+
+                    OnPropertyChanged("Skill_img_path");
                 }
                 OnPropertyChanged("Skill_base_text");
                 OnPropertyChanged("Skill_choose_warning");
@@ -229,6 +229,10 @@ namespace Character_design
         {
             get { return skill_choose_warning; }
             set { skill_choose_warning = value; OnPropertyChanged("Skill_choose_warning"); }
+        }
+        public string Skill_img_path
+        {
+            get { return Selected_skill.Img_path; }
         }
 
 
