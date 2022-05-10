@@ -13,6 +13,9 @@
             <DataTemplate DataType="{x:Type local:Main_Window_Creation_ViewModel}">
                 <character_creation:Main_Window_Creation/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type local:Main_Menu_ViewModel}">
+                <main_window:Main_Menu/>
+            </DataTemplate>
         </Grid.Resources>
         
         <Image HorizontalAlignment="Left" Height="756" Margin="50,68,0,0" VerticalAlignment="Top" Width="482"

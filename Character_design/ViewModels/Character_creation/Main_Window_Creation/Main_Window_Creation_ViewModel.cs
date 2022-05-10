@@ -50,6 +50,7 @@ namespace Character_design
         public Command Open_equipment_user_control { get; private set; }
         public Command Open_spaceship_user_control { get; private set; }
         public Command Open_companion_user_control { get; private set; }
+        public Command Return_back_to_Menu { get; private set; }
         public BaseViewModel CurrentViewModel
         {
             get { return current_VM; }
@@ -114,6 +115,7 @@ namespace Character_design
             Open_equipment_user_control     = new Command(o => _Open_equipment_user_control());
             Open_spaceship_user_control     = new Command(o => _Open_spaceship_user_control());
             Open_companion_user_control     = new Command(o => _Open_companion_user_control());
+            Return_back_to_Menu             = new Command(o => Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation());
 
             general_data    = General_Data_ViewModel.GetInstance();
             race            = Race_ViewModel.GetInstance();

@@ -11,6 +11,7 @@ namespace Character_design
         private Common_menu_ViewModel common_menu;
         private Player_menu_ViewModel player_menu;
         private Master_menu_ViewModel master_menu;
+        private Main_Menu_ViewModel this_window;
 
         public string left_picture_source,
                       right_picture_source,
@@ -42,6 +43,10 @@ namespace Character_design
         public void _Open_main_window_creation_user_control()
         {
             CurrentViewModel = main_window_creation;
+        }
+        public void _Return_from_exp_player_char_creation()
+        {
+            CurrentViewModel        = null;
         }
 
 
@@ -84,7 +89,7 @@ namespace Character_design
             common_menu = Common_menu_ViewModel.GetInstance();
             player_menu = Player_menu_ViewModel.GetInstance();
             master_menu = Master_menu_ViewModel.GetInstance();
-
+            
             Current_Menu_ViewModel = common_menu;
 
             

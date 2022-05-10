@@ -96,7 +96,7 @@
                     Style="{StaticResource MyButton2}"/>
             <Button Content="Выйти в меню" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                     Canvas.Left="10" Canvas.Top="775"
-                    Command="{Binding Open_force_skill_user_control}"
+                    Command="{Binding Return_back_to_Menu}"
                     Style="{StaticResource MyButton2}"/>
         </Canvas>
     </Grid>
