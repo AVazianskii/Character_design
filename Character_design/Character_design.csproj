@@ -53,15 +53,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Character, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BaseViewModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Character\Character\bin\Release\Character.dll</HintPath>
+      <HintPath>..\..\BaseViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Character, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Character.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Main_Model_2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Main_Model_2.dll</HintPath>
     </Reference>
     <Reference Include="Manager_template">
       <HintPath>..\..\Manager_template\Manager_template\bin\Release\Manager_template.dll</HintPath>
@@ -97,8 +105,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Character_model\Character.cs" />
-    <Compile Include="Models\Main_model\Main_model.cs" />
     <Compile Include="MVVM infrastructure\Command.cs" />
     <Compile Include="MVVM infrastructure\BaseViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Combat_forms\Combat_forms_ViewModel.cs" />

@@ -5,15 +5,8 @@ using System.Windows.Media;
 
 namespace Character_design
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : BaseViewModel_2
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
         public void Set_colors_for_chosen_item (List<SolidColorBrush> SolidBrushes, 
                                                 SolidColorBrush Need_brush,
                                                 Color Chosen_color,
