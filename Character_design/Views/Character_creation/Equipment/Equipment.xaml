@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Character_design.Views.Character_creation.Equipment.Equipment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Character_design.Views.Character_creation.Equipment"
+             mc:Ignorable="d" 
+             d:DesignHeight="860" d:DesignWidth="1136">
+    <Grid Background="White">
+        <Image Source="{Binding Img_path}"/>
+    </Grid>
+</UserControl>

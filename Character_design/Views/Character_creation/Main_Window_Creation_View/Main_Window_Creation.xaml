@@ -7,6 +7,11 @@
              xmlns:race="clr-namespace:Character_design.Views.Character_creation.Race"
              xmlns:skill="clr-namespace:Character_design.Views.Character_creation.Skill_View"
              xmlns:force_skill="clr-namespace:Character_design.Views.Character_creation.Force_skill"
+             xmlns:spaceship="clr-namespace:Character_design.Views.Character_creation.Spaceship"
+             xmlns:equipment="clr-namespace:Character_design.Views.Character_creation.Equipment"
+             xmlns:companion="clr-namespace:Character_design.Views.Character_creation.Companion"
+             xmlns:combat_forms="clr-namespace:Character_design.Views.Character_creation.Combat_forms"
+             xmlns:features="clr-namespace:Character_design.Views.Character_creation.Features"
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1500">
@@ -40,6 +45,21 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type local:Force_skill_ViewModel}">
                     <force_skill:Force_skill/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Combat_forms_ViewModel}">
+                    <combat_forms:Combat_forms/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Features_ViewModel}">
+                    <features:Features/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Equipment_ViewModel}">
+                    <equipment:Equipment/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Spaceship_ViewModel}">
+                    <spaceship:Spaceship/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Companion_ViewModel}">
+                    <companion:Companion/>
                 </DataTemplate>
             </Border.Resources>
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>

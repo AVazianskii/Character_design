@@ -12,6 +12,11 @@ namespace Character_design
         private Race_ViewModel race;
         private Skill_ViewModel skill;
         private Force_skill_ViewModel force_skill;
+        private Combat_forms_ViewModel combat_forms;
+        private Features_ViewModel features;
+        private Equipment_ViewModel equipment;
+        private Spaceship_ViewModel spaceship;
+        private Companion_ViewModel companion;
 
         private SolidColorBrush character_button_border,
                                 race_button_border,
@@ -121,6 +126,11 @@ namespace Character_design
             race            = Race_ViewModel.GetInstance();
             skill           = Skill_ViewModel.GetInstance();
             force_skill     = Force_skill_ViewModel.GetInstance();
+            combat_forms    = Combat_forms_ViewModel.GetInstance();
+            features        = Features_ViewModel.GetInstance();
+            equipment       = Equipment_ViewModel.GetInstance();
+            spaceship       = Spaceship_ViewModel.GetInstance();
+            companion       = Companion_ViewModel.GetInstance();
 
             current_VM = general_data;
 
@@ -180,22 +190,32 @@ namespace Character_design
         private void _Open_combat_forms_user_control()
         {
             Set_colors_for_chosen_item(Button_borders, Combat_form_border, Chosen_color, Unchosen_color);
+
+            CurrentViewModel = combat_forms;
         }
         private void _Open_feature_user_control()
         {
             Set_colors_for_chosen_item(Button_borders, Feature_border, Chosen_color, Unchosen_color);
+
+            CurrentViewModel = features;
         }
         private void _Open_equipment_user_control()
         {
             Set_colors_for_chosen_item(Button_borders, Equipment_border, Chosen_color, Unchosen_color);
+
+            CurrentViewModel = equipment;
         }
         private void _Open_spaceship_user_control()
         {
             Set_colors_for_chosen_item(Button_borders, Spaceship_border, Chosen_color, Unchosen_color);
+
+            CurrentViewModel = spaceship;
         }
         private void _Open_companion_user_control()
         {
             Set_colors_for_chosen_item(Button_borders, Companion_border, Chosen_color, Unchosen_color);
+
+            CurrentViewModel = companion;
         }
     }
 }
