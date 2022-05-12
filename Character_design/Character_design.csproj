@@ -105,6 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MVVM infrastructure\Character_changing_command.cs" />
     <Compile Include="MVVM infrastructure\Command.cs" />
     <Compile Include="MVVM infrastructure\BaseViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Combat_forms\Combat_forms_ViewModel.cs" />
