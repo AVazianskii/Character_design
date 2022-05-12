@@ -245,7 +245,7 @@ namespace Character_design
                         {
                             result = true;
                             Force_skill_choose_warning = "";
-                        } else { Force_skill_choose_warning = "Не выбран ранг и возрастной статус персонажа!"; }
+                        } else { Force_skill_choose_warning = "Достигнут лимит развития навыка!"; }
                     } else { Force_skill_choose_warning = "Недостаточно опыта для развития навыка!"; }
                 } else { Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!"; }
             } else { Force_skill_choose_warning = "Раса персонажа не выбрана!"; }

@@ -180,6 +180,7 @@ namespace Character_design
 
                 Apply_age_status_atr_bonus(Character.GetInstance()); // Устанавливаем бонусы от возратсного статуса при смене этого статуса
                 Refresh_atr_fields();
+                Character.GetInstance().Change_character_state_to_unsave();
             }
         }
         public string Question_sign
