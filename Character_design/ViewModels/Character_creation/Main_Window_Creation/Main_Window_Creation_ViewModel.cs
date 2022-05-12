@@ -123,7 +123,7 @@ namespace Character_design
             Open_spaceship_user_control     = new Command(o => _Open_spaceship_user_control());
             Open_companion_user_control     = new Command(o => _Open_companion_user_control());
             Return_back_to_Menu             = new Command(o => Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation());
-            Save_character_card             = new Command(o => Character.GetInstance().Save_character_to_excel_card(), 
+            Save_character_card             = new Command(o => Save_character_info(), 
                                                           o => Character.GetInstance().Saved_state == false);
 
             general_data    = General_Data_ViewModel.GetInstance();
@@ -220,6 +220,12 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Companion_border, Chosen_color, Unchosen_color);
 
             CurrentViewModel = companion;
+        }
+        private void  Save_character_info ()
+        {
+            Character.GetInstance().Save_character_to_excel_card();
+
+            Save_character_excel.GetInstance().Save_character_to_Excel_card(Character.GetInstance());
         }
     }
 }
