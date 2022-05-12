@@ -156,6 +156,7 @@ namespace Character_design
                 Skill_ViewModel.GetInstance().Refresh_fields();
 
                 Refresh_atr_fields();
+                Character.GetInstance().Change_character_state_to_unsave();
             }
         }
         public List<Age_status_class> Character_ages
@@ -238,7 +239,13 @@ namespace Character_design
         public string Character_name
         {
             get { return character_name; }
-            set { character_name = value; OnPropertyChanged("Character_name"); }
+            set 
+            { 
+                character_name = value; 
+                OnPropertyChanged("Character_name");
+
+                Character.GetInstance().Change_character_state_to_unsave();
+            }
         }
         public string Character_race_name
         {
@@ -251,6 +258,7 @@ namespace Character_design
 
                 Refresh_atr_fields();
 
+                Character.GetInstance().Change_character_state_to_unsave();
             }
         }
         public string Character_age
@@ -303,7 +311,9 @@ namespace Character_design
                     Current_age_text_fontsize = help_text_fontsize;
                     Age_text_color.Color = Help_text_color;
                 }
-                OnPropertyChanged("Character_age"); 
+                OnPropertyChanged("Character_age");
+
+                Character.GetInstance().Change_character_state_to_unsave();
             }
         }
         public string Character_age_status
@@ -312,7 +322,9 @@ namespace Character_design
             set 
             { 
                 character_age_status = value;
-                OnPropertyChanged("Character_age_status"); 
+                OnPropertyChanged("Character_age_status");
+
+                Character.GetInstance().Change_character_state_to_unsave();
             }
         }
         public string Character_exp
@@ -343,6 +355,8 @@ namespace Character_design
                 OnPropertyChanged("Character_exp");
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Exp_points_for_atr");
+
+                Character.GetInstance().Change_character_state_to_unsave();
             }
         }
         public string Character_atr
@@ -372,7 +386,9 @@ namespace Character_design
                 }
                 OnPropertyChanged("Atr_points_for_atr");
                 OnPropertyChanged("Atr_points_left");
-                OnPropertyChanged("Character_atr"); 
+                OnPropertyChanged("Character_atr");
+
+                Character.GetInstance().Change_character_state_to_unsave();
             }
         }
         public int Character_strength
@@ -636,7 +652,9 @@ namespace Character_design
                     Karma_text_color.Color = Help_text_color;
                 }
 
-                OnPropertyChanged("Character_karma"); 
+                OnPropertyChanged("Character_karma");
+
+                Character.GetInstance().Change_character_state_to_unsave();
             }
         }
         public string Character_karma_description
