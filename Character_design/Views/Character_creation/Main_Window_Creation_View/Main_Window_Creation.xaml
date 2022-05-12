@@ -112,7 +112,7 @@
                     Style="{StaticResource MyButton2}"/>
             <Button Content="Сохранить карточку" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                     Canvas.Left="10" Canvas.Top="700"
-                    Command="{Binding Open_force_skill_user_control}"
+                    Command="{Binding Save_character_card}"
                     Style="{StaticResource MyButton2}"/>
             <Button Content="Выйти в меню" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
                     Canvas.Left="10" Canvas.Top="775"

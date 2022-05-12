@@ -56,6 +56,7 @@ namespace Character_design
         public Command Open_spaceship_user_control { get; private set; }
         public Command Open_companion_user_control { get; private set; }
         public Command Return_back_to_Menu { get; private set; }
+        public Command Save_character_card { get; private set; }
         public BaseViewModel CurrentViewModel
         {
             get { return current_VM; }
@@ -114,13 +115,16 @@ namespace Character_design
             Open_general_data_user_control  = new Command(o => _Open_general_fata_user_control());
             Open_race_user_control          = new Command(o => _Open_Race_user_control());
             Open_skill_user_control         = new Command(o => _Open_skill_user_control());
-            Open_force_skill_user_control   = new Command(o => _Open_force_skill_user_control(), o => Character.GetInstance().Forceuser);
+            Open_force_skill_user_control   = new Command(o => _Open_force_skill_user_control(), 
+                                                          o => Character.GetInstance().Forceuser);
             Open_combat_forms_user_control  = new Command(o => _Open_combat_forms_user_control());
             Open_feature_user_control       = new Command(o => _Open_feature_user_control());
             Open_equipment_user_control     = new Command(o => _Open_equipment_user_control());
             Open_spaceship_user_control     = new Command(o => _Open_spaceship_user_control());
             Open_companion_user_control     = new Command(o => _Open_companion_user_control());
             Return_back_to_Menu             = new Command(o => Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation());
+            Save_character_card             = new Command(o => Character.GetInstance().Save_character_to_excel_card(), 
+                                                          o => Character.GetInstance().Saved_state == false);
 
             general_data    = General_Data_ViewModel.GetInstance();
             race            = Race_ViewModel.GetInstance();
