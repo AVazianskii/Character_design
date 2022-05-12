@@ -122,7 +122,7 @@ namespace Character_design
             Open_equipment_user_control     = new Command(o => _Open_equipment_user_control());
             Open_spaceship_user_control     = new Command(o => _Open_spaceship_user_control());
             Open_companion_user_control     = new Command(o => _Open_companion_user_control());
-            Return_back_to_Menu             = new Command(o => Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation());
+            Return_back_to_Menu             = new Command(o => Return_to_main_menu(Character.GetInstance()));
             Save_character_card             = new Command(o => Save_character_info(), 
                                                           o => Character.GetInstance().Saved_state == false);
 
@@ -226,6 +226,16 @@ namespace Character_design
             Character.GetInstance().Save_character_to_excel_card();
 
             Save_character_excel.GetInstance().Save_character_to_Excel_card(Character.GetInstance());
+        }
+        private void Return_to_main_menu(Character character)
+        {
+            if (character.Saved_state != true)
+            {
+                // Предупреждение, что выход без сохранения актуального состояния персонажа
+            }
+
+            // Вызов метода возврата к главному меню
+            Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation();
         }
     }
 }
