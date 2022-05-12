@@ -40,8 +40,8 @@ namespace Character_design
 
 
 
-        public Command Choose_race { get; private set; }
-        public Command Unchoose_race { get; private set; }
+        public Character_changing_command Choose_race { get; private set; }
+        public Character_changing_command Unchoose_race { get; private set; }
 
 
 
@@ -177,9 +177,9 @@ namespace Character_design
             Selected_race = destination_race_list[0];
 
             race_chosen = false;
-            Choose_race = new Command(o => _Choose_race(),
+            Choose_race = new Character_changing_command(o => _Choose_race(),
                                       o => race_chosen == false);
-            Unchoose_race = new Command(o => _Unchoose_race(),
+            Unchoose_race = new Character_changing_command(o => _Unchoose_race(),
                                         o => race_chosen == true);
 
         }

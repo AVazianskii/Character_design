@@ -36,8 +36,8 @@ namespace Character_design
         public Command Show_neutral_force_skills { get; private set; }
         public Command Show_sith_force_skills { get; private set; }
         public Command Show_jedi_force_skills { get; private set; }
-        public Command Increase_force_skill_score { get; private set; }
-        public Command Decrease_force_skill_score { get; private set; }
+        public Character_changing_command Increase_force_skill_score { get; private set; }
+        public Character_changing_command Decrease_force_skill_score { get; private set; }
         public SolidColorBrush Neutral_force_border
         {
             get { return neutral_force_border; }
@@ -145,9 +145,9 @@ namespace Character_design
             Show_neutral_force_skills   = new Command(o => _Show_neutral_force_skills());
             Show_jedi_force_skills      = new Command(o => _Show_jedi_force_skills(), o => Character.GetInstance().Is_jedi);
             Show_sith_force_skills      = new Command(o => _Show_sith_force_skills(), o => Character.GetInstance().Is_sith);
-            Increase_force_skill_score  = new Command(o => _Increase_force_skill_score(Selected_force_skill),
+            Increase_force_skill_score  = new Character_changing_command(o => _Increase_force_skill_score(Selected_force_skill),
                                                       o => Increase_is_possible(Selected_force_skill, Selected_force_skill_max_score, Exp_points_left));
-            Decrease_force_skill_score  = new Command(o => _Decrease_force_skill_score(Selected_force_skill),
+            Decrease_force_skill_score  = new Character_changing_command(o => _Decrease_force_skill_score(Selected_force_skill),
                                                       o => Selected_force_skill.Score > 0);
 
             Neutral_force_border    = new SolidColorBrush();

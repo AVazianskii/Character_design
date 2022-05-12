@@ -81,8 +81,8 @@ namespace Character_design
         public Command Show_charming_skills { get; private set; }
         public Command Show_tech_skills { get; private set; }
         public Command Show_specific_skills { get; private set; }
-        public Command Decrease_skill_score { get; private set; }
-        public Command Increase_skill_score { get; private set; }
+        public Character_changing_command Decrease_skill_score { get; private set; }
+        public Character_changing_command Increase_skill_score { get; private set; }
         public BaseViewModel CurrentViewModel
         {
             get { return current_VM; }
@@ -254,10 +254,10 @@ namespace Character_design
             Show_tech_skills        = new Command(o => _Show_tech_skills());
             Show_specific_skills    = new Command(o => _Show_specific_skills());
 
-            Decrease_skill_score = new Command(o => _Decrease_skill_score(o), 
+            Decrease_skill_score = new Character_changing_command(o => _Decrease_skill_score(o), 
                                                o => selected_skill.Get_counter() > 0);
 
-            Increase_skill_score = new Command(o => _Increase_skill_score(o), 
+            Increase_skill_score = new Character_changing_command(o => _Increase_skill_score(o), 
                                                o => Increase_is_possible(selected_skill, 
                                                                          Selected_skill_cost, 
                                                                          Selected_skill_limit,

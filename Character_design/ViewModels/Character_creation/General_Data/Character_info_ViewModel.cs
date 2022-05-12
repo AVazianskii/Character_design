@@ -60,25 +60,25 @@ namespace Character_design
 
 
 
-        public Command Choose_male { get; private set; }
-        public Command Choose_female { get; private set; }
-        public Command Manage_forceuser { get; private set; }
-        public Command Increase_strength { get; private set; }
-        public Command Decrease_strength { get; private set; }
-        public Command Increase_agility { get; private set; }
-        public Command Decrease_agility { get; private set; }
-        public Command Increase_stamina { get; private set; }
-        public Command Decrease_stamina { get; private set; }
-        public Command Increase_perception { get; private set; }
-        public Command Decrease_perception { get; private set; }
-        public Command Increase_quickness { get; private set; }
-        public Command Decrease_quickness { get; private set; }
-        public Command Increase_intelligence { get; private set; }
-        public Command Decrease_intelligence { get; private set; }
-        public Command Increase_charm { get; private set; }
-        public Command Decrease_charm { get; private set; }
-        public Command Increase_willpower { get; private set; }
-        public Command Decrease_willpower { get; private set; }
+        public Character_changing_command Choose_male { get; private set; }
+        public Character_changing_command Choose_female { get; private set; }
+        public Character_changing_command Manage_forceuser { get; private set; }
+        public Character_changing_command Increase_strength { get; private set; }
+        public Character_changing_command Decrease_strength { get; private set; }
+        public Character_changing_command Increase_agility { get; private set; }
+        public Character_changing_command Decrease_agility { get; private set; }
+        public Character_changing_command Increase_stamina { get; private set; }
+        public Character_changing_command Decrease_stamina { get; private set; }
+        public Character_changing_command Increase_perception { get; private set; }
+        public Character_changing_command Decrease_perception { get; private set; }
+        public Character_changing_command Increase_quickness { get; private set; }
+        public Character_changing_command Decrease_quickness { get; private set; }
+        public Character_changing_command Increase_intelligence { get; private set; }
+        public Character_changing_command Decrease_intelligence { get; private set; }
+        public Character_changing_command Increase_charm { get; private set; }
+        public Character_changing_command Decrease_charm { get; private set; }
+        public Character_changing_command Increase_willpower { get; private set; }
+        public Character_changing_command Decrease_willpower { get; private set; }
         public int Current_age_text_fontsize
         {
             get { return current_age_text_fontsize; }
@@ -739,50 +739,50 @@ namespace Character_design
             Character_atr = "";
             Character_karma = "";
 
-            Increase_strength = new Command(o => _Increase_atr(Character.GetInstance().Strength),
+            Increase_strength = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Strength),
                                             o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Strength, Max_character_strength));
-            Decrease_strength = new Command(o => _Decrease_atr(Character.GetInstance().Strength),
+            Decrease_strength = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Strength),
                                             o => Decrease_atr_is_allowed(Character.GetInstance().Strength, Min_character_strength));
 
-            Increase_agility = new Command(o => _Increase_atr(Character.GetInstance().Agility),
+            Increase_agility = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Agility),
                                            o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Agility, Max_character_agility));
-            Decrease_agility = new Command(o => _Decrease_atr(Character.GetInstance().Agility),
+            Decrease_agility = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Agility),
                                            o => Decrease_atr_is_allowed(Character.GetInstance().Agility, Min_character_agility));
 
-            Increase_stamina = new Command(o => _Increase_atr(Character.GetInstance().Stamina),
+            Increase_stamina = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Stamina),
                                            o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Stamina, Max_character_stamina));
-            Decrease_stamina = new Command(o => _Decrease_atr(Character.GetInstance().Stamina),
+            Decrease_stamina = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Stamina),
                                            o => Decrease_atr_is_allowed(Character.GetInstance().Stamina, Min_character_stamina));
 
-            Increase_perception = new Command(o => _Increase_atr(Character.GetInstance().Perception),
+            Increase_perception = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Perception),
                                               o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Perception, Max_character_perception));
-            Decrease_perception = new Command(o => _Decrease_atr(Character.GetInstance().Perception),
+            Decrease_perception = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Perception),
                                               o => Decrease_atr_is_allowed(Character.GetInstance().Perception, Min_character_perception));
 
-            Increase_quickness = new Command(o => _Increase_atr(Character.GetInstance().Quickness),
+            Increase_quickness = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Quickness),
                                              o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Quickness, Max_character_quickness));
-            Decrease_quickness = new Command(o => _Decrease_atr(Character.GetInstance().Quickness),
+            Decrease_quickness = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Quickness),
                                              o => Decrease_atr_is_allowed(Character.GetInstance().Quickness, Min_character_quickness));
 
-            Increase_intelligence = new Command(o => _Increase_atr(Character.GetInstance().Intelligence),
+            Increase_intelligence = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Intelligence),
                                                 o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Intelligence, Max_character_intelligence));
-            Decrease_intelligence = new Command(o => _Decrease_atr(Character.GetInstance().Intelligence),
+            Decrease_intelligence = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Intelligence),
                                                 o => Decrease_atr_is_allowed(Character.GetInstance().Intelligence, Min_character_intelligence));
 
-            Increase_charm = new Command(o => _Increase_atr(Character.GetInstance().Charm),
+            Increase_charm = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Charm),
                                          o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Charm, Max_character_charm));
-            Decrease_charm = new Command(o => _Decrease_atr(Character.GetInstance().Charm),
+            Decrease_charm = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Charm),
                                          o => Decrease_atr_is_allowed(Character.GetInstance().Charm, Min_character_charm));
 
-            Increase_willpower = new Command(o => _Increase_atr(Character.GetInstance().Willpower),
+            Increase_willpower = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Willpower),
                                              o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Willpower, Max_character_willpower));
-            Decrease_willpower = new Command(o => _Decrease_atr(Character.GetInstance().Willpower),
+            Decrease_willpower = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Willpower),
                                              o => Decrease_atr_is_allowed(Character.GetInstance().Willpower, Min_character_willpower));
 
-            Manage_forceuser = new Command(o => _Manage_forceuser(Character.GetInstance()));
+            Manage_forceuser = new Character_changing_command(o => _Manage_forceuser(Character.GetInstance()));
 
-            Choose_male = new Command(o => _Choose_male(Character.GetInstance()));
-            Choose_female = new Command(o => _Choose_female(Character.GetInstance()));
+            Choose_male = new Character_changing_command(o => _Choose_male(Character.GetInstance()));
+            Choose_female = new Character_changing_command(o => _Choose_female(Character.GetInstance()));
 
             _Choose_male(Character.GetInstance());
         }
