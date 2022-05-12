@@ -178,9 +178,9 @@ namespace Character_design
 
             race_chosen = false;
             Choose_race = new Character_changing_command(o => _Choose_race(),
-                                      o => race_chosen == false);
+                                                         o => race_chosen == false);
             Unchoose_race = new Character_changing_command(o => _Unchoose_race(),
-                                        o => race_chosen == true);
+                                                           o => race_chosen == true);
 
         }
 

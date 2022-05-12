@@ -146,9 +146,9 @@ namespace Character_design
             Show_jedi_force_skills      = new Command(o => _Show_jedi_force_skills(), o => Character.GetInstance().Is_jedi);
             Show_sith_force_skills      = new Command(o => _Show_sith_force_skills(), o => Character.GetInstance().Is_sith);
             Increase_force_skill_score  = new Character_changing_command(o => _Increase_force_skill_score(Selected_force_skill),
-                                                      o => Increase_is_possible(Selected_force_skill, Selected_force_skill_max_score, Exp_points_left));
+                                                                         o => Increase_is_possible(Selected_force_skill, Selected_force_skill_max_score, Exp_points_left));
             Decrease_force_skill_score  = new Character_changing_command(o => _Decrease_force_skill_score(Selected_force_skill),
-                                                      o => Selected_force_skill.Score > 0);
+                                                                         o => Selected_force_skill.Score > 0);
 
             Neutral_force_border    = new SolidColorBrush();
             Light_force_border      = new SolidColorBrush();

@@ -255,13 +255,13 @@ namespace Character_design
             Show_specific_skills    = new Command(o => _Show_specific_skills());
 
             Decrease_skill_score = new Character_changing_command(o => _Decrease_skill_score(o), 
-                                               o => selected_skill.Get_counter() > 0);
+                                                                  o => selected_skill.Get_counter() > 0);
 
             Increase_skill_score = new Character_changing_command(o => _Increase_skill_score(o), 
-                                               o => Increase_is_possible(selected_skill, 
-                                                                         Selected_skill_cost, 
-                                                                         Selected_skill_limit,
-                                                                         Character.GetInstance().Experience_left));
+                                                                  o => Increase_is_possible(selected_skill, 
+                                                                                            Selected_skill_cost, 
+                                                                                            Selected_skill_limit,
+                                                                                            Character.GetInstance().Experience_left));
 
             Combat_skills_button_border     = new SolidColorBrush();
             Surviving_skills_button_border  = new SolidColorBrush();
