@@ -236,6 +236,8 @@ namespace Character_design
 
             // Вызов метода возврата к главному меню
             Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation();
+
+            Character.GetInstance().Delete_character();
         }
     }
 }
