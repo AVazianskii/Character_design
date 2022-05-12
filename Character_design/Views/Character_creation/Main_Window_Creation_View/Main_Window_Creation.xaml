@@ -65,56 +65,67 @@
             <ContentControl Content="{Binding Path=CurrentViewModel}"/>
         </Border>
         <Canvas HorizontalAlignment="Left" Height="860" VerticalAlignment="Center" Width="349">
-            <Button Content="Ваш персонаж" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Ваш персонаж" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="25"
                     Command="{Binding Open_general_data_user_control}"
                     BorderBrush="{Binding Character_button_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор расы" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Выбор расы" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="100"
                     Command="{Binding Open_race_user_control}"
                     BorderBrush="{Binding Race_button_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Развитие навыков" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Развитие навыков" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="175"
                     Command="{Binding Open_skill_user_control}"
                     BorderBrush="{Binding Skill_button_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Навыки владения Силой" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Навыки владения Силой" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="250"
                     Command="{Binding Open_force_skill_user_control}"
                     BorderBrush="{Binding Force_skill_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор боевых форм" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Выбор боевых форм" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="325"
                     Command="{Binding Open_combat_forms_user_control}"
                     BorderBrush="{Binding Combat_form_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор особенностей" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Выбор особенностей" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="400"
                     Command="{Binding Open_feature_user_control}"
                     BorderBrush="{Binding Feature_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор снаряжения" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Выбор снаряжения" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="475"
                     Command="{Binding Open_equipment_user_control}"
                     BorderBrush="{Binding Equipment_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор космического корабля" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Выбор космического корабля" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="550"
                     Command="{Binding Open_spaceship_user_control}"
                     BorderBrush="{Binding Spaceship_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор спутника" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="3"
+            <Button Content="Выбор спутника" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="625"
                     Command="{Binding Open_companion_user_control}"
                     BorderBrush="{Binding Companion_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Сохранить карточку" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
+            <Button Content="Сохранить карточку" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="LightGreen" BorderThickness="0"
                     Canvas.Left="10" Canvas.Top="700"
                     Command="{Binding Save_character_card}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выйти в меню" Width="330" Height="50" FontSize="22" Background="Black" Foreground="Wheat" BorderThickness="0"
+            <Button Content="Выйти в меню" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Red" BorderThickness="0"
                     Canvas.Left="10" Canvas.Top="775"
                     Command="{Binding Return_back_to_Menu}"
                     Style="{StaticResource MyButton2}"/>
