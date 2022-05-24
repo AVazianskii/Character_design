@@ -549,7 +549,7 @@
 
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="245" Margin="750,525,0,0" VerticalAlignment="Top" Width="380">
-            <TextBlock Margin="20,10,20,150" Text="Аналитика разваития персонажа Сюда вставить ползунок кармы" TextAlignment="Center" FontSize="20"
+            <TextBlock Margin="20,10,20,150" Text="Аналитика разваития персонажа " TextAlignment="Center" FontSize="20"
                        TextWrapping="Wrap"/>
         </Border>
 
