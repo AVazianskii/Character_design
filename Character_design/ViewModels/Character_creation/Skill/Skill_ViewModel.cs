@@ -79,6 +79,8 @@ namespace Character_design
             {
                 Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Set_score(
                     Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Get_score() + skill_bonus);
+
+                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)]);
             }
         }
         public void UnApply_race_skill_bonus(Races_libs.Race_class race)
@@ -87,6 +89,8 @@ namespace Character_design
             {
                 Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Set_score(
                     Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Get_score() - skill_bonus);
+
+                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)]);
             }
         }
 
@@ -387,6 +391,7 @@ namespace Character_design
                         Character_skill.Increase_score();
                         Selected_skill_score = Character_skill.Get_score();
                         Character.GetInstance().Spend_exp_points(Selected_skill_cost);
+                        Character.GetInstance().Update_character_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_skill_counter");
                         break;
@@ -406,6 +411,7 @@ namespace Character_design
                         Character_skill.Decrease_score();
                         Selected_skill_score = Character_skill.Get_score();
                         Character.GetInstance().Refund_exp_points(Selected_skill_cost);
+                        Character.GetInstance().Update_character_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_skill_counter");
                         break;
