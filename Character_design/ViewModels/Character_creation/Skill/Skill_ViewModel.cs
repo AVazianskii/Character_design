@@ -189,7 +189,7 @@ namespace Character_design
         {
             get 
             {
-                selected_skill_counter = Selected_skill_score + Selected_skill_race_bonus;
+                selected_skill_counter = Selected_skill_score;
                 return selected_skill_counter; 
             }
             set { selected_skill_counter = value; OnPropertyChanged("Selected_skill_counter"); }
