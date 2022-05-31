@@ -73,6 +73,22 @@ namespace Character_design
                 OnPropertyChanged("Skill_img_path");
             }
         }
+        public void Apply_race_skill_bonus(Races_libs.Race_class race)
+        {
+            foreach(int skill_bonus in race.Race_skill_bonus)
+            {
+                Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Set_score(
+                    Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Get_score() + skill_bonus);
+            }
+        }
+        public void UnApply_race_skill_bonus(Races_libs.Race_class race)
+        {
+            foreach (int skill_bonus in race.Race_skill_bonus)
+            {
+                Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Set_score(
+                    Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Get_score() - skill_bonus);
+            }
+        }
 
 
 

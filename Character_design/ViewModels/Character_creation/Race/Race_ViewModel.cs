@@ -212,10 +212,12 @@ namespace Character_design
             Character.GetInstance().Character_race = Selected_race;
             Apply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
             Skill_ViewModel.GetInstance().Refresh_fields();
+            Skill_ViewModel.GetInstance().Apply_race_skill_bonus(Selected_race);
             race_chosen = true;
         }
         private void _Unchoose_race()
         {
+            Skill_ViewModel.GetInstance().UnApply_race_skill_bonus(Character.GetInstance().Character_race);
             UnApply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
             Skill_ViewModel.GetInstance().Refresh_fields();
