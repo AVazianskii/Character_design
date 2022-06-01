@@ -597,7 +597,34 @@
                        Margin="7"
                        TextAlignment="Left"
                        Text="Концентрация"
-                       Opacity="{Binding Karma_opacity}"/>
+                       Opacity="{Binding Karma_opacity}"
+                       IsEnabled="{Binding Character_is_forceuser}"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="{Binding Character_reaction}"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="{Binding Character_armor}"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="{Binding Character_watchfulness}"/>
+            <TextBlock Grid.Row="4" Grid.Column="2" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="{Binding Character_hideness}"/>
+            <TextBlock Grid.Row="5" Grid.Column="2" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="{Binding Character_force_resistance}"/>
+            <TextBlock Grid.Row="6" Grid.Column="2" FontSize="16"
+                       Margin="7"
+                       TextAlignment="Left"
+                       Text="{Binding Character_concentration}"
+                       Opacity="{Binding Karma_opacity}"
+                       IsEnabled="{Binding Character_is_forceuser}"/>
             <Image Grid.Row="1" Grid.Column="3" Margin="3"
                    Source="{Binding Question_sign}">
                 <Image.ToolTip>
