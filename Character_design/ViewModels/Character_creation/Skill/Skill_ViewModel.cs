@@ -75,22 +75,24 @@ namespace Character_design
         }
         public void Apply_race_skill_bonus(Races_libs.Race_class race)
         {
+            int i = 0;
             foreach(int skill_bonus in race.Race_skill_bonus)
             {
-                Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Set_score(
-                    Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Get_score() + skill_bonus);
+                Character.GetInstance().Skills[i].Set_score(Character.GetInstance().Skills[i].Get_score() + skill_bonus);
 
-                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)]);
+                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
+                i = i + 1;
             }
         }
         public void UnApply_race_skill_bonus(Races_libs.Race_class race)
         {
+            int i = 0;
             foreach (int skill_bonus in race.Race_skill_bonus)
             {
-                Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Set_score(
-                    Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)].Get_score() - skill_bonus);
+                Character.GetInstance().Skills[i].Set_score(Character.GetInstance().Skills[i].Get_score() - skill_bonus);
 
-                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[race.Race_skill_bonus.IndexOf(skill_bonus)]);
+                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
+                i = i + 1;
             }
         }
 
