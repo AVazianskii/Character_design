@@ -704,6 +704,30 @@ namespace Character_design
         {
             get { return "Этот суммарный параметр определяет, насколько успешным будет проверка навыка 'Поток Силы'"; }
         }
+        public int Character_reaction
+        {
+            get { return Character.GetInstance().Reaction; }
+        }
+        public int Character_armor
+        {
+            get { return Character.GetInstance().Armor; }
+        }
+        public int Character_watchfullness
+        {
+            get { return Character.GetInstance().Watchfullness; }
+        }
+        public int Character_hideness
+        {
+            get { return Character.GetInstance().Hideness; }
+        }
+        public int Character_force_resistance
+        {
+            get { return Character.GetInstance().Force_resistance; }
+        }
+        public int Character_concentration
+        {
+            get { return Character.GetInstance().Concentration; }
+        }
 
 
 

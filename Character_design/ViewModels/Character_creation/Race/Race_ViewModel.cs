@@ -210,15 +210,32 @@ namespace Character_design
         private void _Choose_race()
         {
             Character.GetInstance().Character_race = Selected_race;
+            Character.GetInstance().Calculate_reaction          (Selected_race.Get_race_reaction_bonus());
+            Character.GetInstance().Calculate_armor             (Selected_race.Get_race_armor_bonus());
+            Character.GetInstance().Calculate_hideness          (Selected_race.Get_race_stealthiness_combat_bonus());
+            Character.GetInstance().Calculate_watchfullness     (Selected_race.Get_race_watchfulness_combat_bonus());
+            Character.GetInstance().Calculate_force_resistance  (Selected_race.Get_race_force_resist_bonus());
+            Character.GetInstance().Calculate_concentration     (Selected_race.Get_race_flow_control_bonus());
+
             Apply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
+
             Skill_ViewModel.GetInstance().Apply_race_skill_bonus(Selected_race);
             Skill_ViewModel.GetInstance().Refresh_fields();
+
             race_chosen = true;
         }
         private void _Unchoose_race()
         {
             Skill_ViewModel.GetInstance().UnApply_race_skill_bonus(Character.GetInstance().Character_race);
             UnApply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
+
+            Character.GetInstance().Calculate_reaction          (-Character.GetInstance().Character_race.Get_race_reaction_bonus());
+            Character.GetInstance().Calculate_armor             (-Character.GetInstance().Character_race.Get_race_armor_bonus());
+            Character.GetInstance().Calculate_hideness          (-Character.GetInstance().Character_race.Get_race_stealthiness_combat_bonus());
+            Character.GetInstance().Calculate_watchfullness     (-Character.GetInstance().Character_race.Get_race_watchfulness_combat_bonus());
+            Character.GetInstance().Calculate_force_resistance  (-Character.GetInstance().Character_race.Get_race_force_resist_bonus());
+            Character.GetInstance().Calculate_concentration     (-Character.GetInstance().Character_race.Get_race_flow_control_bonus());
+
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
             Skill_ViewModel.GetInstance().Refresh_fields();
             race_chosen = false;
