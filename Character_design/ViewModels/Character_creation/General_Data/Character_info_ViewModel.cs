@@ -1015,11 +1015,13 @@ namespace Character_design
         {
             Character.GetInstance().Increase_atr(attribute);
             Refresh_atr_exp_points(attribute);
+            Update_combat_parameters(attribute, 1);
         }
         private void _Decrease_atr(Attribute_libs.Atribute_class attribute)
         {
             Character.GetInstance().Decrease_atr(attribute);
             Refresh_atr_exp_points(attribute);
+            Update_combat_parameters(attribute, -1);
         }
         private void Refresh_atr_exp_points(Attribute_libs.Atribute_class attribute)
         {
@@ -1035,6 +1037,20 @@ namespace Character_design
                 case 6: OnPropertyChanged("Character_intelligence"); break;
                 case 7: OnPropertyChanged("Character_charm"); break;
                 case 8: OnPropertyChanged("Character_willpower"); break;
+            }
+        }
+        private void Update_combat_parameters (Attribute_libs.Atribute_class attribute, int bonus)
+        {
+            switch (attribute.Get_atribute_code())
+            {
+                case 1: break;
+                case 2: Character.GetInstance().Calculate_reaction(bonus); OnPropertyChanged("Character_reaction"); break;
+                case 3: break;
+                case 4: Character.GetInstance().Calculate_reaction(bonus); OnPropertyChanged("Character_reaction"); break;
+                case 5: Character.GetInstance().Calculate_reaction(bonus); OnPropertyChanged("Character_reaction"); break;
+                case 6: Character.GetInstance().Calculate_reaction(bonus); OnPropertyChanged("Character_reaction"); break;
+                case 7: break;
+                case 8: break;
             }
         }
         private void _Manage_forceuser (Character character)
