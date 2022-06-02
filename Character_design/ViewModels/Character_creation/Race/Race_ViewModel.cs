@@ -217,6 +217,17 @@ namespace Character_design
             Character.GetInstance().Calculate_force_resistance  (Selected_race.Get_race_force_resist_bonus());
             Character.GetInstance().Calculate_concentration     (Selected_race.Get_race_flow_control_bonus());
 
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Strength,      Selected_race.Get_race_bonus_strength());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Agility,       Selected_race.Get_race_bonus_agility());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Stamina,       Selected_race.Get_race_bonus_stamina());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Perception,    Selected_race.Get_race_bonus_perception());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Quickness,     Selected_race.Get_race_bonus_quickness());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Intelligence,  Selected_race.Get_race_bonus_intelligence());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Charm,         Selected_race.Get_race_bonus_charm());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Willpower,     Selected_race.Get_race_bonus_willpower());
+
+
+
             Apply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
 
             Skill_ViewModel.GetInstance().Apply_race_skill_bonus(Selected_race);
@@ -235,6 +246,15 @@ namespace Character_design
             Character.GetInstance().Calculate_watchfullness     (-Character.GetInstance().Character_race.Get_race_watchfulness_combat_bonus());
             Character.GetInstance().Calculate_force_resistance  (-Character.GetInstance().Character_race.Get_race_force_resist_bonus());
             Character.GetInstance().Calculate_concentration     (-Character.GetInstance().Character_race.Get_race_flow_control_bonus());
+
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Strength,      -Character.GetInstance().Character_race.Get_race_bonus_strength());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Agility,       -Character.GetInstance().Character_race.Get_race_bonus_agility());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Stamina,       -Character.GetInstance().Character_race.Get_race_bonus_stamina());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Perception,    -Character.GetInstance().Character_race.Get_race_bonus_perception());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Quickness,     -Character.GetInstance().Character_race.Get_race_bonus_quickness());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Intelligence,  -Character.GetInstance().Character_race.Get_race_bonus_intelligence());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Charm,         -Character.GetInstance().Character_race.Get_race_bonus_charm());
+            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Willpower,     -Character.GetInstance().Character_race.Get_race_bonus_willpower());
 
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
             Skill_ViewModel.GetInstance().Refresh_fields();
