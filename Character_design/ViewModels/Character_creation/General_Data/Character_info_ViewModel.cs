@@ -1095,13 +1095,13 @@ namespace Character_design
             { 
                 character.Is_jedi = true;
                 character.Is_sith = false;
-                character.Is_neutral = false;
+                character.Is_neutral = true;
             }
             else if (current_karma <= sith_karma) 
             {
                 character.Is_sith = true;
                 character.Is_jedi = false;
-                character.Is_neutral = false;
+                character.Is_neutral = true;
             }
             else
             {
