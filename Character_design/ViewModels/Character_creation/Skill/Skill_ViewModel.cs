@@ -396,6 +396,18 @@ namespace Character_design
                         Character.GetInstance().Update_character_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_skill_counter");
+                        
+                        switch (skill.Get_skill_name())
+                        {
+                            case "Наблюдательность": Character.GetInstance().Calculate_watchfullness(1); break;
+                            case "Скрытность": Character.GetInstance().Calculate_hideness(1); break;
+                            case "Сопротивление": 
+                                if (Character.GetInstance().Forceuser == false)
+                                {
+                                    Character.GetInstance().Calculate_force_resistance(1);
+                                }
+                                break;
+                        }
                         break;
                     }
                 }

@@ -1044,13 +1044,25 @@ namespace Character_design
             switch (attribute.Get_atribute_code())
             {
                 case 1: break;
-                case 2: Character.GetInstance().Calculate_reaction(bonus); OnPropertyChanged("Character_reaction"); break;
+                case 2: 
+                    Character.GetInstance().Calculate_reaction(bonus);
+                    Character.GetInstance().Calculate_hideness(bonus);
+                    OnPropertyChanged("Character_reaction");
+                    OnPropertyChanged("Character_hideness");
+                    break;
+
                 case 3: break;
-                case 4: Character.GetInstance().Calculate_reaction(bonus); OnPropertyChanged("Character_reaction"); break;
+                case 4: 
+                    Character.GetInstance().Calculate_reaction(bonus);
+                    Character.GetInstance().Calculate_watchfullness(bonus);
+                    OnPropertyChanged("Character_reaction");
+                    OnPropertyChanged("Character_watchfullness");
+                    break;
+
                 case 5: Character.GetInstance().Calculate_reaction(bonus); OnPropertyChanged("Character_reaction"); break;
                 case 6: Character.GetInstance().Calculate_reaction(bonus); OnPropertyChanged("Character_reaction"); break;
                 case 7: break;
-                case 8: break;
+                case 8: Character.GetInstance().Calculate_force_resistance(bonus); OnPropertyChanged("Character_force_resistance"); break;
             }
         }
         private void _Manage_forceuser (Character character)
