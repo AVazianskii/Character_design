@@ -26,13 +26,7 @@ namespace Character_design
                     current_character_karma,
                     current_karma_points_fontsize,
                     jedi_karma,
-                    sith_karma,
-                    character_reaction,
-                    character_armor,
-                    character_watchfulness,
-                    character_hideness,
-                    character_force_resistance,
-                    character_concentration;
+                    sith_karma;
 
         private string character_age;
         private string character_exp;

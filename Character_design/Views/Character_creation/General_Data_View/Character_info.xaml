@@ -610,7 +610,7 @@
             <TextBlock Grid.Row="3" Grid.Column="2" FontSize="16"
                        Margin="7"
                        TextAlignment="Left"
-                       Text="{Binding Character_watchfulness}"/>
+                       Text="{Binding Character_watchfullness}"/>
             <TextBlock Grid.Row="4" Grid.Column="2" FontSize="16"
                        Margin="7"
                        TextAlignment="Left"
