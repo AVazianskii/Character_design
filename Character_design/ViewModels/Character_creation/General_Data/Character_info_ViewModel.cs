@@ -949,6 +949,15 @@ namespace Character_design
             character.Intelligence.Increase_atr (character.Age_status.Get_age_status_intelligence_bonus());
             character.Charm.Increase_atr        (character.Age_status.Get_age_status_charm_bonus());
             character.Willpower.Increase_atr    (character.Age_status.Get_age_status_willpower_bonus());
+
+            Update_combat_parameters(character.Strength,        character.Age_status.Get_age_status_strength_bonus());
+            Update_combat_parameters(character.Agility,         character.Age_status.Get_age_status_agility_bonus());
+            Update_combat_parameters(character.Stamina,         character.Age_status.Get_age_status_stamina_bonus());
+            Update_combat_parameters(character.Perception,      character.Age_status.Get_age_status_perception_bonus());
+            Update_combat_parameters(character.Quickness,       character.Age_status.Get_age_status_quickness_bonus());
+            Update_combat_parameters(character.Intelligence,    character.Age_status.Get_age_status_intelligence_bonus());
+            Update_combat_parameters(character.Charm,           character.Age_status.Get_age_status_charm_bonus());
+            Update_combat_parameters(character.Willpower,       character.Age_status.Get_age_status_willpower_bonus());
         }
         private void UnApply_age_status_atr_bonus(Character character)
         {
@@ -960,6 +969,15 @@ namespace Character_design
             character.Intelligence.Decrease_atr (character.Age_status.Get_age_status_intelligence_bonus());
             character.Charm.Decrease_atr        (character.Age_status.Get_age_status_charm_bonus());
             character.Willpower.Decrease_atr    (character.Age_status.Get_age_status_willpower_bonus());
+
+            Update_combat_parameters(character.Strength,        -character.Age_status.Get_age_status_strength_bonus());
+            Update_combat_parameters(character.Agility,         -character.Age_status.Get_age_status_agility_bonus());
+            Update_combat_parameters(character.Stamina,         -character.Age_status.Get_age_status_stamina_bonus());
+            Update_combat_parameters(character.Perception,      -character.Age_status.Get_age_status_perception_bonus());
+            Update_combat_parameters(character.Quickness,       -character.Age_status.Get_age_status_quickness_bonus());
+            Update_combat_parameters(character.Intelligence,    -character.Age_status.Get_age_status_intelligence_bonus());
+            Update_combat_parameters(character.Charm,           -character.Age_status.Get_age_status_charm_bonus());
+            Update_combat_parameters(character.Willpower,       -character.Age_status.Get_age_status_willpower_bonus());
         }
         private int Return_atr_min(int race_atr_min, int age_status_atr_min)
         {
