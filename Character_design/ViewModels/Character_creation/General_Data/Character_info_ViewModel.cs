@@ -969,14 +969,14 @@ namespace Character_design
             character.Charm.Increase_atr        (character.Age_status.Get_age_status_charm_bonus());
             character.Willpower.Increase_atr    (character.Age_status.Get_age_status_willpower_bonus());
 
-            Character.GetInstance().Update_combat_parameters(character.Strength,        character.Age_status.Get_age_status_strength_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Agility,         character.Age_status.Get_age_status_agility_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Stamina,         character.Age_status.Get_age_status_stamina_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Perception,      character.Age_status.Get_age_status_perception_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Quickness,       character.Age_status.Get_age_status_quickness_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Intelligence,    character.Age_status.Get_age_status_intelligence_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Charm,           character.Age_status.Get_age_status_charm_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Willpower,       character.Age_status.Get_age_status_willpower_bonus());
+            character.Update_combat_parameters(character.Strength,        character.Age_status.Get_age_status_strength_bonus());
+            character.Update_combat_parameters(character.Agility,         character.Age_status.Get_age_status_agility_bonus());
+            character.Update_combat_parameters(character.Stamina,         character.Age_status.Get_age_status_stamina_bonus());
+            character.Update_combat_parameters(character.Perception,      character.Age_status.Get_age_status_perception_bonus());
+            character.Update_combat_parameters(character.Quickness,       character.Age_status.Get_age_status_quickness_bonus());
+            character.Update_combat_parameters(character.Intelligence,    character.Age_status.Get_age_status_intelligence_bonus());
+            character.Update_combat_parameters(character.Charm,           character.Age_status.Get_age_status_charm_bonus());
+            character.Update_combat_parameters(character.Willpower,       character.Age_status.Get_age_status_willpower_bonus());
 
             Refresh_atr_score(character.Strength);
             Refresh_atr_score(character.Agility);
@@ -986,6 +986,8 @@ namespace Character_design
             Refresh_atr_score(character.Intelligence);
             Refresh_atr_score(character.Charm);
             Refresh_atr_score(character.Willpower);
+
+            Refresh_combat_parameters();
         }
         private void UnApply_age_status_atr_bonus(Character character)
         {
@@ -998,14 +1000,14 @@ namespace Character_design
             character.Charm.Decrease_atr        (character.Age_status.Get_age_status_charm_bonus());
             character.Willpower.Decrease_atr    (character.Age_status.Get_age_status_willpower_bonus());
 
-            Character.GetInstance().Update_combat_parameters(character.Strength,        -character.Age_status.Get_age_status_strength_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Agility,         -character.Age_status.Get_age_status_agility_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Stamina,         -character.Age_status.Get_age_status_stamina_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Perception,      -character.Age_status.Get_age_status_perception_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Quickness,       -character.Age_status.Get_age_status_quickness_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Intelligence,    -character.Age_status.Get_age_status_intelligence_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Charm,           -character.Age_status.Get_age_status_charm_bonus());
-            Character.GetInstance().Update_combat_parameters(character.Willpower,       -character.Age_status.Get_age_status_willpower_bonus());
+            character.Update_combat_parameters(character.Strength,        -character.Age_status.Get_age_status_strength_bonus());
+            character.Update_combat_parameters(character.Agility,         -character.Age_status.Get_age_status_agility_bonus());
+            character.Update_combat_parameters(character.Stamina,         -character.Age_status.Get_age_status_stamina_bonus());
+            character.Update_combat_parameters(character.Perception,      -character.Age_status.Get_age_status_perception_bonus());
+            character.Update_combat_parameters(character.Quickness,       -character.Age_status.Get_age_status_quickness_bonus());
+            character.Update_combat_parameters(character.Intelligence,    -character.Age_status.Get_age_status_intelligence_bonus());
+            character.Update_combat_parameters(character.Charm,           -character.Age_status.Get_age_status_charm_bonus());
+            character.Update_combat_parameters(character.Willpower,       -character.Age_status.Get_age_status_willpower_bonus());
 
             Refresh_atr_score(character.Strength);
             Refresh_atr_score(character.Agility);
@@ -1015,6 +1017,8 @@ namespace Character_design
             Refresh_atr_score(character.Intelligence);
             Refresh_atr_score(character.Charm);
             Refresh_atr_score(character.Willpower);
+
+            Refresh_combat_parameters();
         }
         private int Return_atr_min(int race_atr_min, int age_status_atr_min)
         {
@@ -1072,6 +1076,7 @@ namespace Character_design
             Refresh_atr_exp_points();
             Refresh_atr_score(attribute);
             Character.GetInstance().Update_combat_parameters(attribute, 1);
+            Refresh_combat_parameters();
         }
         private void _Decrease_atr(Attribute_libs.Atribute_class attribute)
         {
@@ -1079,6 +1084,7 @@ namespace Character_design
             Refresh_atr_exp_points();
             Refresh_atr_score(attribute);
             Character.GetInstance().Update_combat_parameters(attribute, -1);
+            Refresh_combat_parameters();
         }
         
         private void _Manage_forceuser (Character character)
@@ -1153,6 +1159,15 @@ namespace Character_design
                 character.Is_sith = false;
                 character.Is_jedi = false;
             }
+        }
+        private void Refresh_combat_parameters()
+        {
+            OnPropertyChanged("Character_reaction");
+            OnPropertyChanged("Character_armor");
+            OnPropertyChanged("Character_watchfullness");
+            OnPropertyChanged("Character_hideness");
+            OnPropertyChanged("Character_force_resistance");
+            OnPropertyChanged("Character_concentration");
         }
     }
 }
