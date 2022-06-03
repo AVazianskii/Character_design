@@ -207,6 +207,8 @@ namespace Character_design
                         Character.GetInstance().Increase_exp_sold_for_force_skills(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_force_skill_counter");
+
+                        Character.GetInstance().Update_combat_parameters(Character_skill, 1);
                         break;
                     }
                 }
@@ -227,6 +229,8 @@ namespace Character_design
                         Character.GetInstance().Decrease_exp_sold_for_force_skills(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_force_skill_counter");
+
+                        Character.GetInstance().Update_combat_parameters(Character_skill, -1);
                         break;
                     }
                 }
