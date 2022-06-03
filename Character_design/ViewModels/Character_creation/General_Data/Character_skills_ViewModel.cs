@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Skills_libs;
+using SW_Character_creation;
 
 namespace Character_design
 {
     internal class Character_skills_ViewModel : BaseViewModel
     {
         private static Character_skills_ViewModel _instance;
+
+        private List<Skill_Class> skill_group;
+
+
         public static Character_skills_ViewModel GetInstance()
         {
             if (_instance == null)

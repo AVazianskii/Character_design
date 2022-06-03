@@ -23,6 +23,7 @@ namespace Character_design.Views.Character_creation.General_Data_View
         public Character_skills()
         {
             InitializeComponent();
+            DataContext = Character_skills_ViewModel.GetInstance();
         }
     }
 }
