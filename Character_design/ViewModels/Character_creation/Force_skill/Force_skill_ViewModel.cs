@@ -208,8 +208,8 @@ namespace Character_design
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_force_skill_counter");
 
-                        Character.GetInstance().Update_combat_parameters(Character_skill, 1);
-                        break;
+                        Character.GetInstance().Update_combat_parameters_due_ForceSkill(Character_skill, 1);
+                        break;                  
                     }
                 }
             }
@@ -230,7 +230,7 @@ namespace Character_design
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Selected_force_skill_counter");
 
-                        Character.GetInstance().Update_combat_parameters(Character_skill, -1);
+                        Character.GetInstance().Update_combat_parameters_due_ForceSkill(Character_skill, -1);
                         break;
                     }
                 }
