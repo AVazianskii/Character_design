@@ -8,12 +8,12 @@
              d:DesignHeight="770" d:DesignWidth="1130">
     <Grid Background="Wheat">
         <Canvas HorizontalAlignment="Left" 
-                Height="90" 
+                Height="70" 
                 VerticalAlignment="Top" 
                 Width="1130"
                 Background="Black">
             <Button Background="Black"
-                    Canvas.Top="35"
+                    Canvas.Top="15"
                     Canvas.Left="0"
                     Height="55"
                     Width="175"
@@ -31,7 +31,7 @@
                 </Button.Content>
             </Button>
             <Button Background="Black"
-                    Canvas.Top="35"
+                    Canvas.Top="15"
                     Canvas.Left="175"
                     Height="55"
                     Width="175"
@@ -48,20 +48,12 @@
                                FontSize="18"/>
                 </Button.Content>
             </Button>
-            <TextBlock Canvas.Left="800"
-                       Canvas.Top="20"
-                       Width="300"
-                       Height="50"
-                       Text="Навыки персонажа"
-                       Foreground="Wheat"
-                       TextAlignment="Center"
-                       FontSize="32"/>
         </Canvas>
         <ListBox HorizontalAlignment="Left" 
-                 Height="680" 
-                 Margin="0,90,0,0" 
+                 Height="700" 
+                 Margin="0,70,0,0" 
                  VerticalAlignment="Top" 
-                 Width="465"
+                 Width="405"
                  Background="Black"
                  Foreground="Wheat"
                  BorderThickness="0"
@@ -71,31 +63,32 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="20"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="30"/> 
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="10"/> 
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="2" 
                                    Grid.Row="0" 
-                                   Height="46" 
+                                   Height="36" 
                                    TextWrapping="Wrap" 
                                    Width="180" 
                                    Foreground="Wheat" 
-                                   TextAlignment="Center"
+                                   TextAlignment="Left"
                                    FontSize="16"
-                                   VerticalAlignment="Center"
+                                   VerticalAlignment="Bottom"
                                    Text="{Binding Path=Skill_name}"/>
                         <TextBlock Grid.Column="1"
                                    Grid.Row="0"
-                                   Height="46"
+                                   Height="36"
+                                   Width="20"
                                    Foreground="Wheat"
                                    TextAlignment="Center"
                                    FontSize="16"
-                                   VerticalAlignment="Center"
+                                   VerticalAlignment="Bottom"
                                    Text="{Binding Path=Score}"/>
                         <Image Grid.Column="0"
                                Grid.Row="0"
@@ -106,6 +99,8 @@
                         <ProgressBar Grid.Row="1"
                                      Grid.Column="1"
                                      Grid.ColumnSpan="2"
+                                     Height="10"
+                                     Width="300"
                                      Minimum="0"
                                      Maximum="{Binding Skill_max_score}"
                                      Value="{Binding Path=Score}"/>
