@@ -458,7 +458,7 @@ namespace Character_design
                         result = true;
                         Skill_choose_warning = "";
                     }
-                    else { Skill_choose_warning = "Не выбран ранг и возрастной статус персонажа!"; }
+                    else { Skill_choose_warning = "Достигнут лимит развития навыка!"; }
                 }
                 else { Skill_choose_warning = "Недостаточно опыта для развития навыка!"; }
             }

@@ -61,11 +61,11 @@
                  SelectedItem="{Binding Selected_skill}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Width="390">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="20"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="260"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
@@ -86,7 +86,7 @@
                                    Height="36"
                                    Width="20"
                                    Foreground="Wheat"
-                                   TextAlignment="Center"
+                                   TextAlignment="Right"
                                    FontSize="16"
                                    VerticalAlignment="Bottom"
                                    Text="{Binding Path=Score}"/>
@@ -101,6 +101,7 @@
                                      Grid.ColumnSpan="2"
                                      Height="10"
                                      Width="300"
+                                     Margin="10,0,0,0"
                                      Minimum="0"
                                      Maximum="{Binding Skill_max_score}"
                                      Value="{Binding Path=Score}"/>
