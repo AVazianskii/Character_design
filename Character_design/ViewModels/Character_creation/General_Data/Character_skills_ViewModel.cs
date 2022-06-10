@@ -32,6 +32,7 @@ namespace Character_design
         public object Skill_group
         {
             get { return skill_group; }
+            set { skill_group = value; OnPropertyChanged("Skill_group"); }
         }
         public object Selected_skill
         {
@@ -71,7 +72,8 @@ namespace Character_design
         {
             skill_group = new object();
             usual_skills_group = Character.GetInstance().Skills_with_points;
-            //force_skills_group = Character.GetInstance().Force_skills_with_points;
+            force_skills_group = Character.GetInstance().Force_skills_with_points;
+            Skill_group = usual_skills_group;
 
             Skills_border       = new SolidColorBrush();
             Force_skills_border = new SolidColorBrush();
@@ -101,7 +103,7 @@ namespace Character_design
         }
         private void _Show_force_skills()
         {
-            //skill_group = force_skills_group;
+            skill_group = force_skills_group;
 
             Set_colors_for_chosen_item(Button_borders, Force_skills_border, Chosen_color, Unchosen_color);
         }
