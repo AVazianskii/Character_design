@@ -97,13 +97,13 @@ namespace Character_design
 
         private void _Show_skills()
         {
-            skill_group = usual_skills_group;
+            Skill_group = usual_skills_group;
 
             Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
         }
         private void _Show_force_skills()
         {
-            skill_group = force_skills_group;
+            Skill_group = force_skills_group;
 
             Set_colors_for_chosen_item(Button_borders, Force_skills_border, Chosen_color, Unchosen_color);
         }

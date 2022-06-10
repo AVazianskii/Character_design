@@ -80,7 +80,7 @@
                                    TextAlignment="Left"
                                    FontSize="16"
                                    VerticalAlignment="Bottom"
-                                   Text="{Binding Path=Skill_name}"/>
+                                   Text="{Binding Path=Name}"/>
                         <TextBlock Grid.Column="1"
                                    Grid.Row="0"
                                    Height="36"

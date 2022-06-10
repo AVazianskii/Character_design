@@ -757,7 +757,7 @@ namespace Character_design
 
         private Character_info_ViewModel()
         {
-            //Character_name = "Дарт Сидиус";
+            Character_name = "Дарт Сидиус";
             default_question = "Сколько назначил Мастер?";
             default_text = $"от {Minimum_karma} до {Maximum_karma}";
 
