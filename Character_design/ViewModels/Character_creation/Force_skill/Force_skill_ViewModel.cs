@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SW_Character_creation;
 using System.Windows.Media;
+using System.IO;
 
 namespace Character_design
 { 
@@ -78,6 +79,7 @@ namespace Character_design
                     OnPropertyChanged("Selected_force_skill_min_score");
                     OnPropertyChanged("Selected_force_skill_max_score");
                     OnPropertyChanged("Force_skill_img_path");
+                    OnPropertyChanged("Skill_base_text");
                 }
             }
         }
@@ -117,7 +119,18 @@ namespace Character_design
         {
             get { return Selected_force_skill.Img_path; }
         }
-
+        public string Question_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Tool_tip.png"; }
+        }
+        public string Skill_base_description
+        {
+            get { return "Значение атрибута - основы прибавляется к результату проверки навыка"; }
+        }
+        public string Skill_base_text
+        {
+            get { return Selected_force_skill.Skill_base; }
+        }
 
 
 
