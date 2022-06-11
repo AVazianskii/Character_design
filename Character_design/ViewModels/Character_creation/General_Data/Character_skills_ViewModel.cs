@@ -54,6 +54,23 @@ namespace Character_design
             get { return force_skills_border; }
             set { force_skills_border = value; OnPropertyChanged("Force_skills_border"); }
         }
+        public bool Character_forceuser
+        {
+            get 
+            {
+                Skill_group = usual_skills_group;
+                Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
+                if (Character.GetInstance().Forceuser)
+                {
+                    Button_opacity = 100;
+                }
+                else
+                {
+                    Button_opacity = 0;
+                }
+                return Character.GetInstance().Forceuser; 
+            }
+        }
 
 
 
@@ -87,8 +104,6 @@ namespace Character_design
 
             Chosen_color    = Colors.Wheat;
             Unchosen_color  = Colors.Black;
-
-            Button_opacity = 100;
 
             Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
         }

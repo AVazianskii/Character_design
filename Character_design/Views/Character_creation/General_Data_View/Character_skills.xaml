@@ -10,7 +10,7 @@
         <Canvas HorizontalAlignment="Left" 
                 Height="70" 
                 VerticalAlignment="Top" 
-                Width="1130"
+                Width="405"
                 Background="Black">
             <Button Background="Black"
                     Canvas.Top="15"
@@ -19,9 +19,7 @@
                     Width="175"
                     BorderThickness="3"
                     BorderBrush="{Binding Skills_border}"
-                    Command="{Binding Show_skills}"
-                    Opacity="{Binding Button_opacity}"
-                    IsEnabled="{Binding Character_forceuser}">
+                    Command="{Binding Show_skills}">
                 <Button.Content>
                     <TextBlock Text="Обычные навыки"
                                TextAlignment="Center"
@@ -51,7 +49,7 @@
         </Canvas>
         <ListBox HorizontalAlignment="Left" 
                  Height="700" 
-                 Margin="0,70,0,0" 
+                 Margin="0,69,0,0" 
                  VerticalAlignment="Top" 
                  Width="405"
                  Background="Black"
@@ -61,7 +59,7 @@
                  SelectedItem="{Binding Selected_skill}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="390">
+                    <Grid Width="370">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60"/>
                             <ColumnDefinition Width="40"/>
@@ -78,7 +76,7 @@
                                    Width="180" 
                                    Foreground="Wheat" 
                                    TextAlignment="Left"
-                                   FontSize="16"
+                                   FontSize="14"
                                    VerticalAlignment="Bottom"
                                    Text="{Binding Path=Name}"/>
                         <TextBlock Grid.Column="1"
