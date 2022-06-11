@@ -11,10 +11,10 @@ namespace Character_design
     {
         private static Character_skills_ViewModel _instance;
 
-        private object skill_group;
-        private object selected_skill;
-        private List<Skill_Class> usual_skills_group;
-        private List<Force_skill_class> force_skills_group;
+        private List<All_skill_template> skill_group;
+        private All_skill_template selected_skill;
+        private List<All_skill_template> usual_skills_group;
+        private List<All_skill_template> force_skills_group;
 
         private SolidColorBrush skills_border,
                                 force_skills_border;
@@ -30,15 +30,26 @@ namespace Character_design
 
         public Command Show_skills { get; private set; }
         public Command Show_force_skills { get; private set; }
-        public object Skill_group
+        public List<All_skill_template> Skill_group
         {
             get { return skill_group; }
             set { skill_group = value; OnPropertyChanged("Skill_group"); }
         }
-        public object Selected_skill
+        public All_skill_template Selected_skill
         {
             get { return selected_skill; }
-            set { selected_skill = value; OnPropertyChanged("Selected_skill"); }
+            set 
+            { 
+                selected_skill = value; 
+                if (selected_skill != null)
+                {
+                    OnPropertyChanged("Skill_base");
+                    OnPropertyChanged("Selected_skill_name");
+                    OnPropertyChanged("Selected_skill_img_path");
+                    OnPropertyChanged("Skill_description");
+                }
+                OnPropertyChanged("Selected_skill"); 
+            }
         }
         public int Button_opacity
         {
@@ -87,8 +98,8 @@ namespace Character_design
                 string result = "";
                 if (Skill_group == usual_skills_group)
                 {
-                    Skill_Class skill = Selected_skill as Skill_Class;
-                    if (skill != null)
+                    Skill_Class skill = (Skill_Class)Selected_skill;
+                    if (Selected_skill != null)
                     {
                         if (skill.Get_skill_base_2() != "")
                         {
@@ -102,14 +113,25 @@ namespace Character_design
                 }
                 else
                 {
-                    Force_skill_class skill = Selected_skill as Force_skill_class;
-                    if (skill != null)
+                    if (Selected_skill != null)
                     {
-                        result = skill.Skill_base;
+                        result = Selected_skill.Skill_base;
                     }
                 }
                 return result;
             }
+        }
+        public string Selected_skill_name
+        {
+            get { return Selected_skill.Name; }
+        }
+        public string Selected_skill_img_path
+        {
+            get { return Selected_skill.Img_path; }
+        }
+        public string Skill_description
+        {
+            get { return Selected_skill.Description; }
         }
 
 
@@ -127,11 +149,13 @@ namespace Character_design
 
         private Character_skills_ViewModel()
         {
-            skill_group = new object();
+            skill_group = new List<All_skill_template>();
             usual_skills_group = Character.GetInstance().Skills_with_points;
             force_skills_group = Character.GetInstance().Force_skills_with_points;
             Skill_group = usual_skills_group;
 
+            selected_skill = new All_skill_template();
+            
             Skills_border       = new SolidColorBrush();
             Force_skills_border = new SolidColorBrush();
 
