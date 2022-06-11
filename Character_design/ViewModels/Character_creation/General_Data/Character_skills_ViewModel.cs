@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Skills_libs;
 using SW_Character_creation;
 using System.Windows.Media;
+using System.IO;
 
 namespace Character_design
 {
@@ -69,6 +70,45 @@ namespace Character_design
                     Button_opacity = 0;
                 }
                 return Character.GetInstance().Forceuser; 
+            }
+        }
+        public string Question_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Tool_tip.png"; }
+        }
+        public string Skill_base_description
+        {
+            get { return "Значение атрибута - основы прибавляется к результату проверки навыка"; }
+        }
+        public string Skill_base
+        {
+            get 
+            {
+                string result = "";
+                if (Skill_group == usual_skills_group)
+                {
+                    Skill_Class skill = Selected_skill as Skill_Class;
+                    if (skill != null)
+                    {
+                        if (skill.Get_skill_base_2() != "")
+                        {
+                            result = skill.Get_skill_base_1() + "/" + skill.Get_skill_base_2();
+                        }
+                        else
+                        {
+                            result = skill.Get_skill_base_1();
+                        }
+                    }
+                }
+                else
+                {
+                    Force_skill_class skill = Selected_skill as Force_skill_class;
+                    if (skill != null)
+                    {
+                        result = skill.Skill_base;
+                    }
+                }
+                return result;
             }
         }
 
