@@ -58,8 +58,8 @@ namespace Character_design
         {
             if(Selected_skill != null)
             {
-                Selected_skill_description  = Selected_skill.Get_skill_description();
-                Selected_skill_title        = Selected_skill.Get_skill_name();
+                Selected_skill_description  = Selected_skill.Description;
+                Selected_skill_title        = Selected_skill.Name;
                 Selected_skill_race_bonus   = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
                 Selected_skill_min_score    = 0;
                 Selected_skill_range_limit  = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
@@ -147,8 +147,8 @@ namespace Character_design
                 selected_skill = value;
                 if (selected_skill != null)
                 {
-                    Selected_skill_description  = selected_skill.Get_skill_description();
-                    Selected_skill_title        = selected_skill.Get_skill_name();
+                    Selected_skill_description  = selected_skill.Description;
+                    Selected_skill_title        = selected_skill.Name;
                     Selected_skill_race_bonus   = Return_race_skill_bonus(selected_skill, Character.GetInstance().Character_race);
                     Selected_skill_min_score    = 0;
                     Selected_skill_range_limit  = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
@@ -388,7 +388,7 @@ namespace Character_design
             {
                 foreach (Skill_Class Character_skill in Character.GetInstance().Get_skills())
                 {
-                    if (skill.Get_skill_name() == Character_skill.Get_skill_name())
+                    if (skill.Name == Character_skill.Name)
                     {
                         Character_skill.Increase_score();
                         Selected_skill_score = Character_skill.Get_score();
@@ -410,7 +410,7 @@ namespace Character_design
             {
                 foreach (Skill_Class Character_skill in Character.GetInstance().Get_skills())
                 {
-                    if (skill.Get_skill_name() == Character_skill.Get_skill_name())
+                    if (skill.Name == Character_skill.Name)
                     {
                         Character_skill.Decrease_score();
                         Selected_skill_score = Character_skill.Get_score();
@@ -470,10 +470,10 @@ namespace Character_design
             string result = "";
             if (skill != null)
             {
-                result = skill.Get_skill_base_1();
-                if (skill.Get_skill_base_2() != "")
+                result = skill.Skill_base_1;
+                if (skill.Skill_base_2 != "")
                 {
-                    result = result + " / " + skill.Get_skill_base_2();
+                    result = result + " / " + skill.Skill_base_2;
                 }
             }
             return result;

@@ -129,7 +129,7 @@ namespace Character_design
         }
         public string Skill_base_text
         {
-            get { return Selected_force_skill.Skill_base; }
+            get { return Selected_force_skill.Skill_base_1; }
         }
 
 
