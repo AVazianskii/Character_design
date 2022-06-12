@@ -98,16 +98,15 @@ namespace Character_design
                 string result = "";
                 if (Skill_group == usual_skills_group)
                 {
-                    Skill_Class skill = (Skill_Class)Selected_skill;
                     if (Selected_skill != null)
                     {
-                        if (skill.Skill_base_2 != "")
+                        if (Selected_skill.Skill_base_2 != "")
                         {
-                            result = skill.Skill_base_1 + "/" + skill.Skill_base_2;
+                            result = Selected_skill.Skill_base_1 + "/" + Selected_skill.Skill_base_2;
                         }
                         else
                         {
-                            result = skill.Skill_base_1;
+                            result = Selected_skill.Skill_base_1;
                         }
                     }
                 }
