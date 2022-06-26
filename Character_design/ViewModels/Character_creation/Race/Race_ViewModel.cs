@@ -232,6 +232,7 @@ namespace Character_design
 
             Skill_ViewModel.GetInstance().Apply_race_skill_bonus(Selected_race);
             Skill_ViewModel.GetInstance().Refresh_fields();
+            
 
             race_chosen = true;
         }
@@ -258,6 +259,7 @@ namespace Character_design
 
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
             Skill_ViewModel.GetInstance().Refresh_fields();
+            
             race_chosen = false;
         }
         private void Apply_race_atr_bonus (Character character, Race_class race)

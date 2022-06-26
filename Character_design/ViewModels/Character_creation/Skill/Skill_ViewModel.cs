@@ -157,6 +157,7 @@ namespace Character_design
                     Selected_skill_limit        = Character.GetInstance().Return_skill_limit(selected_skill);
                     Selected_skill_score        = selected_skill.Get_score();
                     Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
+                    
 
                     OnPropertyChanged("Skill_img_path");
                 }
@@ -385,6 +386,7 @@ namespace Character_design
                     if (skill.Name == Character_skill.Name)
                     {
                         Character_skill.Decrease_score();
+                        Character_skill.Skill_max_score = Selected_skill_max_score;
                         Selected_skill_score = Character_skill.Get_score();
                         Character.GetInstance().Refund_exp_points(Selected_skill_cost);
                         Character.GetInstance().Update_character_skills_list(Character_skill);

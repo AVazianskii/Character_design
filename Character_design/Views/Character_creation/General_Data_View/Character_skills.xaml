@@ -102,7 +102,7 @@
                                      Margin="10,0,0,0"
                                      Minimum="0"
                                      Maximum="{Binding Skill_max_score}"
-                                     Value="{Binding Path=Score}"/>
+                                     Value="{Binding Score}"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
