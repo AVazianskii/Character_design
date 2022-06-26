@@ -154,7 +154,9 @@ namespace Character_design
                 OnPropertyChanged("Character_current_range");
 
                 Skill_ViewModel.GetInstance().Refresh_fields();
-                
+                Character.GetInstance().Refresh_fields();
+                Character_skills_ViewModel.GetInstance().Refresh_fields();
+
                 Refresh_atr_fields();
                 Character.GetInstance().Change_character_state_to_unsave();
             }
@@ -177,7 +179,9 @@ namespace Character_design
                 OnPropertyChanged("Character_current_age_status");
 
                 Skill_ViewModel.GetInstance().Refresh_fields();
-                
+                Character.GetInstance().Refresh_fields();
+                Character_skills_ViewModel.GetInstance().Refresh_fields();
+
                 Apply_age_status_atr_bonus(Character.GetInstance()); // Устанавливаем бонусы от возратсного статуса при смене этого статуса
                 Refresh_atr_fields();
                 Character.GetInstance().Change_character_state_to_unsave();
