@@ -107,8 +107,7 @@ namespace Character_design
         }
         public int Selected_force_skill_max_score
         {
-            get { return selected_force_skill_max_score; }
-            set { selected_force_skill_max_score = value; OnPropertyChanged("Selected_force_skill_max_score"); }
+            get { return Character.GetInstance().Age_status.Force_skill_limit; }
         }
         public string Force_skill_choose_warning
         {
@@ -177,8 +176,7 @@ namespace Character_design
 
             // TODO: Внедрить систему лимитов. См. правила
             Selected_force_skill_min_score = 0;
-            Selected_force_skill_max_score = 10;
-
+            
             Set_colors_for_chosen_item(Button_borders, Neutral_force_border, Chosen_color, Unchosen_color);
         }
 
@@ -256,17 +254,20 @@ namespace Character_design
             bool result = false;
             if (Character.GetInstance().Character_race != Race__manager.GetInstance().Get_Race_list()[0])
             {
-                if (((Character.GetInstance().Is_jedi && skill.Type == 3) || (Character.GetInstance().Is_sith && skill.Type == 2)) != true)
+                if (Character.GetInstance().Age_status != Age_status_manager.GetInstance().Get_Unknown_age_status())
                 {
-                    if (exp_points_left >= skill.Cost)
+                    if (((Character.GetInstance().Is_jedi && skill.Type == 3) || (Character.GetInstance().Is_sith && skill.Type == 2)) != true)
                     {
-                        if (skill.Score < limit)
+                        if (exp_points_left >= skill.Cost)
                         {
-                            result = true;
-                            Force_skill_choose_warning = "";
-                        } else { Force_skill_choose_warning = "Достигнут лимит развития навыка!"; }
-                    } else { Force_skill_choose_warning = "Недостаточно опыта для развития навыка!"; }
-                } else { Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!"; }
+                            if (skill.Score < limit)
+                            {
+                                result = true;
+                                Force_skill_choose_warning = "";
+                            } else { Force_skill_choose_warning = "Достигнут лимит развития навыка!"; }
+                        } else { Force_skill_choose_warning = "Недостаточно опыта для развития навыка!"; }
+                    } else { Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!"; }
+                } else { Force_skill_choose_warning = "Возрастной стаус персонажа не выбран!"; }
             } else { Force_skill_choose_warning = "Раса персонажа не выбрана!"; }
             return result;
         }

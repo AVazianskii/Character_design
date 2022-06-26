@@ -13,8 +13,6 @@ namespace Character_design
 
         private List<All_skill_template> skill_group;
         private All_skill_template selected_skill;
-        private List<All_skill_template> usual_skills_group;
-        private List<All_skill_template> force_skills_group;
 
         private SolidColorBrush skills_border,
                                 force_skills_border;
@@ -44,7 +42,8 @@ namespace Character_design
             get { return selected_skill; }
             set 
             { 
-                selected_skill = value; 
+                selected_skill = value;
+                OnPropertyChanged("Selected_skill");
                 if (Selected_skill != null)
                 {
                     OnPropertyChanged("Skill_base");
@@ -53,7 +52,7 @@ namespace Character_design
                     OnPropertyChanged("Skill_description");
                     OnPropertyChanged("Skill_max_score");
                 }
-                OnPropertyChanged("Selected_skill"); 
+                
             }
         }
         public int Button_opacity
@@ -168,16 +167,9 @@ namespace Character_design
         private Character_skills_ViewModel()
         {
             skill_group = new List<All_skill_template>();
-            //usual_skills_group = Character.GetInstance().Skills_with_points;
-            //force_skills_group = Character.GetInstance().Force_skills_with_points;
             Skill_group = Usual_skills_group;
 
             selected_skill = new All_skill_template();
-            
-            if (Skill_group.Count > 0)
-            {
-                Selected_skill = Skill_group[0];
-            }
             
             Skills_border       = new SolidColorBrush();
             Force_skills_border = new SolidColorBrush();
@@ -201,21 +193,11 @@ namespace Character_design
         {
             Skill_group = Usual_skills_group;
             
-            if (Usual_skills_group.Count > 0)
-            {
-                Selected_skill = Usual_skills_group[0];
-            }
-            
             Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
         }
         private void _Show_force_skills()
         {
             Skill_group = Force_skills_group;
-            
-            if (Force_skills_group.Count > 0)
-            {
-                Selected_skill = Force_skills_group[0];
-            }
             
             Set_colors_for_chosen_item(Button_borders, Force_skills_border, Chosen_color, Unchosen_color);
         }
