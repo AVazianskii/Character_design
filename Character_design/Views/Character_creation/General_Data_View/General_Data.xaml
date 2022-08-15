@@ -57,15 +57,6 @@
             </Button>
             <Button Height="50" Canvas.Left="750" Canvas.Top="40" Width="150" Background="Black"
                     BorderThickness="3"
-                    BorderBrush="{Binding Character_spaceship_button_border}"
-                    Command="{Binding Open_character_spaceship}">
-                <Button.Content>
-                    <TextBlock Text="Космический корабль" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
-                               TextAlignment="Center"/>
-                </Button.Content>
-            </Button>
-            <Button Height="50" Canvas.Left="900" Canvas.Top="40" Width="150" Background="Black"
-                    BorderThickness="3"
                     BorderBrush="{Binding Character_companion_button_border}"
                     Command="{Binding Open_character_companion}">
                 <Button.Content>
@@ -90,9 +81,6 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type local:Character_equipment_ViewModel}">
                     <general_data:Character_equipment/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type local:Character_spaceship_ViewModel}">
-                    <general_data:Character_spaceship/>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type local:Character_companion_ViewModel}">
                     <general_data:Character_companion/>

@@ -15,7 +15,6 @@ namespace Character_design
         private Combat_forms_ViewModel combat_forms;
         private Features_ViewModel features;
         private Equipment_ViewModel equipment;
-        private Spaceship_ViewModel spaceship;
         private Companion_ViewModel companion;
 
         private SolidColorBrush character_button_border,
@@ -25,7 +24,6 @@ namespace Character_design
                                 combat_form_border,
                                 feature_border,
                                 equipment_border,
-                                spaceship_border,
                                 companion_border;
 
         private List<SolidColorBrush> Button_borders;
@@ -53,7 +51,6 @@ namespace Character_design
         public Command Open_combat_forms_user_control { get; private set; }
         public Command Open_feature_user_control { get; private set; }
         public Command Open_equipment_user_control { get; private set; }
-        public Command Open_spaceship_user_control { get; private set; }
         public Command Open_companion_user_control { get; private set; }
         public Command Return_back_to_Menu { get; private set; }
         public Command Save_character_card { get; private set; }
@@ -97,11 +94,6 @@ namespace Character_design
             get { return equipment_border; }
             set { equipment_border = value; OnPropertyChanged("Equipment_border"); }
         }
-        public SolidColorBrush Spaceship_border
-        {
-            get { return spaceship_border; }
-            set { spaceship_border = value; OnPropertyChanged("Spaceship_border"); }
-        }
         public SolidColorBrush Companion_border
         {
             get { return companion_border; }
@@ -120,7 +112,6 @@ namespace Character_design
             Open_combat_forms_user_control  = new Command(o => _Open_combat_forms_user_control());
             Open_feature_user_control       = new Command(o => _Open_feature_user_control());
             Open_equipment_user_control     = new Command(o => _Open_equipment_user_control());
-            Open_spaceship_user_control     = new Command(o => _Open_spaceship_user_control());
             Open_companion_user_control     = new Command(o => _Open_companion_user_control());
             Return_back_to_Menu             = new Command(o => Return_to_main_menu(Character.GetInstance()));
             Save_character_card             = new Command(o => Save_character_info(), 
@@ -133,7 +124,6 @@ namespace Character_design
             combat_forms    = Combat_forms_ViewModel.GetInstance();
             features        = Features_ViewModel.GetInstance();
             equipment       = Equipment_ViewModel.GetInstance();
-            spaceship       = Spaceship_ViewModel.GetInstance();
             companion       = Companion_ViewModel.GetInstance();
 
             current_VM = general_data;
@@ -148,7 +138,6 @@ namespace Character_design
             Combat_form_border      = new SolidColorBrush();
             Feature_border          = new SolidColorBrush();
             Equipment_border        = new SolidColorBrush();
-            Spaceship_border        = new SolidColorBrush();
             Companion_border        = new SolidColorBrush();
 
             Button_borders = new List<SolidColorBrush>();
@@ -159,7 +148,6 @@ namespace Character_design
             Button_borders.Add(Combat_form_border);
             Button_borders.Add(Feature_border);
             Button_borders.Add(Equipment_border);
-            Button_borders.Add(Spaceship_border);
             Button_borders.Add(Companion_border);
 
             Set_colors_for_chosen_item(Button_borders, Character_button_border, Chosen_color, Unchosen_color);
@@ -208,12 +196,6 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Equipment_border, Chosen_color, Unchosen_color);
 
             CurrentViewModel = equipment;
-        }
-        private void _Open_spaceship_user_control()
-        {
-            Set_colors_for_chosen_item(Button_borders, Spaceship_border, Chosen_color, Unchosen_color);
-
-            CurrentViewModel = spaceship;
         }
         private void _Open_companion_user_control()
         {

@@ -123,7 +123,6 @@
     <Compile Include="ViewModels\Character_creation\General_Data\Character_forms_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\General_Data\Character_info_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\General_Data\Character_skills_ViewModel.cs" />
-    <Compile Include="ViewModels\Character_creation\General_Data\Character_spaceship_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\General_Data\General_Data_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Main_Window_Creation\Main_Window_Creation_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Skill\Skill_ViewModel.cs" />
@@ -166,9 +165,6 @@
     </Compile>
     <Compile Include="Views\Character_creation\General_Data_View\Character_skills.xaml.cs">
       <DependentUpon>Character_skills.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Character_creation\General_Data_View\Character_spaceship.xaml.cs">
-      <DependentUpon>Character_spaceship.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Character_creation\General_Data_View\General_Data.xaml.cs">
       <DependentUpon>General_Data.xaml</DependentUpon>
@@ -250,10 +246,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Character_creation\General_Data_View\Character_skills.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Character_creation\General_Data_View\Character_spaceship.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -55,9 +55,6 @@
                 <DataTemplate DataType="{x:Type local:Equipment_ViewModel}">
                     <equipment:Equipment/>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type local:Spaceship_ViewModel}">
-                    <spaceship:Spaceship/>
-                </DataTemplate>
                 <DataTemplate DataType="{x:Type local:Companion_ViewModel}">
                     <companion:Companion/>
                 </DataTemplate>
@@ -89,29 +86,29 @@
                     Command="{Binding Open_force_skill_user_control}"
                     BorderBrush="{Binding Force_skill_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор боевых форм" Width="330" Height="50" FontSize="22" 
+            <Button Content="Выбор боевых стилей" Width="330" Height="50" FontSize="22" 
                     Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="325"
                     Command="{Binding Open_combat_forms_user_control}"
                     BorderBrush="{Binding Combat_form_border}"
                     Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор особенностей" Width="330" Height="50" FontSize="22" 
+            <Button Content="Стили светового боя" Width="330" Height="50" FontSize="22" 
                     Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="400"
+                    Command="{Binding Open_combat_forms_user_control}"
+                    BorderBrush="{Binding Combat_form_border}"
+                    Style="{StaticResource MyButton2}"/>
+            <Button Content="Выбор особенностей" Width="330" Height="50" FontSize="22" 
+                    Background="Black" Foreground="Wheat" BorderThickness="3"
+                    Canvas.Left="10" Canvas.Top="475"
                     Command="{Binding Open_feature_user_control}"
                     BorderBrush="{Binding Feature_border}"
                     Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор снаряжения" Width="330" Height="50" FontSize="22" 
                     Background="Black" Foreground="Wheat" BorderThickness="3"
-                    Canvas.Left="10" Canvas.Top="475"
+                    Canvas.Left="10" Canvas.Top="550"
                     Command="{Binding Open_equipment_user_control}"
                     BorderBrush="{Binding Equipment_border}"
-                    Style="{StaticResource MyButton2}"/>
-            <Button Content="Выбор космического корабля" Width="330" Height="50" FontSize="22" 
-                    Background="Black" Foreground="Wheat" BorderThickness="3"
-                    Canvas.Left="10" Canvas.Top="550"
-                    Command="{Binding Open_spaceship_user_control}"
-                    BorderBrush="{Binding Spaceship_border}"
                     Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор спутника" Width="330" Height="50" FontSize="22" 
                     Background="Black" Foreground="Wheat" BorderThickness="3"
