@@ -7,7 +7,6 @@
              xmlns:race="clr-namespace:Character_design.Views.Character_creation.Race"
              xmlns:skill="clr-namespace:Character_design.Views.Character_creation.Skill_View"
              xmlns:force_skill="clr-namespace:Character_design.Views.Character_creation.Force_skill"
-             xmlns:spaceship="clr-namespace:Character_design.Views.Character_creation.Spaceship"
              xmlns:equipment="clr-namespace:Character_design.Views.Character_creation.Equipment"
              xmlns:companion="clr-namespace:Character_design.Views.Character_creation.Companion"
              xmlns:combat_forms="clr-namespace:Character_design.Views.Character_creation.Combat_forms"
