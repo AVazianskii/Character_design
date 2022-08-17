@@ -13,6 +13,7 @@ namespace Character_design
         private Skill_ViewModel skill;
         private Force_skill_ViewModel force_skill;
         private Combat_forms_ViewModel combat_forms;
+        private Force_forms_ViewModel force_forms;
         private Features_ViewModel features;
         private Equipment_ViewModel equipment;
         private Companion_ViewModel companion;
@@ -22,6 +23,7 @@ namespace Character_design
                                 skill_button_border,
                                 force_skill_border,
                                 combat_form_border,
+                                force_form_border,
                                 feature_border,
                                 equipment_border,
                                 companion_border;
@@ -49,6 +51,7 @@ namespace Character_design
         public Command Open_skill_user_control { get; private set; }
         public Command Open_force_skill_user_control { get; private set; }
         public Command Open_combat_forms_user_control { get; private set; }
+        public Command Open_force_forms_user_control { get; private set; }
         public Command Open_feature_user_control { get; private set; }
         public Command Open_equipment_user_control { get; private set; }
         public Command Open_companion_user_control { get; private set; }
@@ -99,6 +102,11 @@ namespace Character_design
             get { return companion_border; }
             set { companion_border = value; OnPropertyChanged("Companion_border"); }
         }
+        public SolidColorBrush Force_form_border
+        {
+            get { return force_form_border; }
+            set { force_form_border = value; OnPropertyChanged("Force_form_border"); }
+        }
 
 
 
@@ -110,6 +118,8 @@ namespace Character_design
             Open_force_skill_user_control   = new Command(o => _Open_force_skill_user_control(), 
                                                           o => Character.GetInstance().Forceuser);
             Open_combat_forms_user_control  = new Command(o => _Open_combat_forms_user_control());
+            Open_force_forms_user_control   = new Command(o => _Open_force_forms_user_control(),
+                                                          o => Character.GetInstance().Forceuser);
             Open_feature_user_control       = new Command(o => _Open_feature_user_control());
             Open_equipment_user_control     = new Command(o => _Open_equipment_user_control());
             Open_companion_user_control     = new Command(o => _Open_companion_user_control());
@@ -122,6 +132,7 @@ namespace Character_design
             skill           = Skill_ViewModel.GetInstance();
             force_skill     = Force_skill_ViewModel.GetInstance();
             combat_forms    = Combat_forms_ViewModel.GetInstance();
+            force_forms     = Force_forms_ViewModel.GetInstance();
             features        = Features_ViewModel.GetInstance();
             equipment       = Equipment_ViewModel.GetInstance();
             companion       = Companion_ViewModel.GetInstance();
@@ -136,6 +147,7 @@ namespace Character_design
             Skill_button_border     = new SolidColorBrush();
             Force_skill_border      = new SolidColorBrush();
             Combat_form_border      = new SolidColorBrush();
+            Force_form_border       = new SolidColorBrush();
             Feature_border          = new SolidColorBrush();
             Equipment_border        = new SolidColorBrush();
             Companion_border        = new SolidColorBrush();
@@ -146,6 +158,7 @@ namespace Character_design
             Button_borders.Add(Skill_button_border);
             Button_borders.Add(Force_skill_border);
             Button_borders.Add(Combat_form_border);
+            Button_borders.Add(Force_form_border);
             Button_borders.Add(Feature_border);
             Button_borders.Add(Equipment_border);
             Button_borders.Add(Companion_border);
@@ -184,6 +197,12 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Combat_form_border, Chosen_color, Unchosen_color);
 
             CurrentViewModel = combat_forms;
+        }
+        private void _Open_force_forms_user_control()
+        {
+            Set_colors_for_chosen_item(Button_borders, Force_form_border, Chosen_color, Unchosen_color);
+
+            CurrentViewModel = force_forms;
         }
         private void _Open_feature_user_control()
         {

@@ -10,6 +10,7 @@
              xmlns:equipment="clr-namespace:Character_design.Views.Character_creation.Equipment"
              xmlns:companion="clr-namespace:Character_design.Views.Character_creation.Companion"
              xmlns:combat_forms="clr-namespace:Character_design.Views.Character_creation.Combat_forms"
+             xmlns:force_forms="clr-namespace:Character_design.Views.Character_creation.Force_forms"
              xmlns:features="clr-namespace:Character_design.Views.Character_creation.Features"
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
@@ -47,6 +48,9 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type local:Combat_forms_ViewModel}">
                     <combat_forms:Combat_forms/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:Force_forms_ViewModel}">
+                    <force_forms:Force_forms/>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type local:Features_ViewModel}">
                     <features:Features/>
@@ -94,8 +98,8 @@
             <Button Content="Стили светового боя" Width="330" Height="50" FontSize="22" 
                     Background="Black" Foreground="Wheat" BorderThickness="3"
                     Canvas.Left="10" Canvas.Top="400"
-                    Command="{Binding Open_combat_forms_user_control}"
-                    BorderBrush="{Binding Combat_form_border}"
+                    Command="{Binding Open_force_forms_user_control}"
+                    BorderBrush="{Binding Force_form_border}"
                     Style="{StaticResource MyButton2}"/>
             <Button Content="Выбор особенностей" Width="330" Height="50" FontSize="22" 
                     Background="Black" Foreground="Wheat" BorderThickness="3"
