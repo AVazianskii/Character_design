@@ -7,8 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="770" d:DesignWidth="1130" >
     <Grid Background="White">
-        <Image HorizontalAlignment="Left" Height="449" Margin="468,60,0,0" VerticalAlignment="Top" Width="326"/>
-        <Grid HorizontalAlignment="Left" Height="380" Margin="20,80,0,0" VerticalAlignment="Top" Width="340">
+        <Image HorizontalAlignment="Left" 
+               Height="449" 
+               Margin="468,60,0,0" 
+               VerticalAlignment="Top" 
+               Width="326"/>
+        <Grid HorizontalAlignment="Left" 
+              Height="380" 
+              Margin="20,80,0,0" 
+              VerticalAlignment="Top" 
+              Width="340">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="130"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -26,20 +34,76 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,10,10,10" Text="Раса" FontSize="14" TextAlignment="Left"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,17,17,17" Text="Пол" FontSize="14" TextAlignment="Left"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,10,10,10" Text="Возраст" FontSize="14" TextAlignment="Left"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,10,10,10" Text="Возрастной статус" FontSize="14" TextAlignment="Left"/>
-            <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,10,10,10" Text="Ранг" FontSize="14" TextAlignment="Left"/>
-            <TextBlock Grid.Row="5" Grid.Column="0" Margin="0,10,10,10" Text="Влияние Силы" FontSize="14" TextAlignment="Left"/>
-            <TextBlock Grid.Row="6" Grid.Column="0" Margin="0,10,10,10" Text="Очки опыта" FontSize="14" TextAlignment="Left" TextWrapping="Wrap"/>
-            <TextBlock Grid.Row="7" Grid.Column="0" Margin="0,10,10,10" Text="Очки атрибутов" FontSize="14" TextAlignment="Left" TextWrapping="Wrap"/>
-            <TextBlock Grid.Row="8" Grid.Column="0" Margin="0,10,10,10" Text="Очки кармы" FontSize="14" TextAlignment="Left" TextWrapping="Wrap"
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="0" 
+                       Margin="0,10,10,10" 
+                       Text="Раса" 
+                       FontSize="14" 
+                       TextAlignment="Left"/>
+            <TextBlock Grid.Row="1" 
+                       Grid.Column="0" 
+                       Margin="0,17,17,17" 
+                       Text="Пол" 
+                       FontSize="14" 
+                       TextAlignment="Left"/>
+            <TextBlock Grid.Row="2" 
+                       Grid.Column="0" 
+                       Margin="0,10,10,10" 
+                       Text="Возраст" 
+                       FontSize="14" 
+                       TextAlignment="Left"/>
+            <TextBlock Grid.Row="3" 
+                       Grid.Column="0" 
+                       Margin="0,10,10,10" 
+                       Text="Возрастной статус" 
+                       FontSize="14" 
+                       TextAlignment="Left"/>
+            <TextBlock Grid.Row="4" 
+                       Grid.Column="0" 
+                       Margin="0,10,10,10" 
+                       Text="Ранг" 
+                       FontSize="14" 
+                       TextAlignment="Left"/>
+            <TextBlock Grid.Row="5" 
+                       Grid.Column="0" 
+                       Margin="0,10,10,10" 
+                       Text="Влияние Силы" 
+                       FontSize="14" 
+                       TextAlignment="Left"/>
+            <TextBlock Grid.Row="6" 
+                       Grid.Column="0" 
+                       Margin="0,10,10,10" 
+                       Text="Очки опыта" 
+                       FontSize="14" 
+                       TextAlignment="Left" 
+                       TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="7" 
+                       Grid.Column="0" 
+                       Margin="0,10,10,10" 
+                       Text="Очки атрибутов" 
+                       FontSize="14" 
+                       TextAlignment="Left" 
+                       TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="8" 
+                       Grid.Column="0" 
+                       Margin="0,10,10,10" 
+                       Text="Очки кармы" 
+                       FontSize="14" 
+                       TextAlignment="Left" 
+                       TextWrapping="Wrap"
                        Opacity="{Binding Karma_opacity}"
                        IsEnabled="{Binding Character_is_forceuser}"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" FontSize="17" TextAlignment="Center"
-                       Text="{Binding Character_race_name, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Grid.Row="1" Grid.Column="1" Margin="20,0,20,0"
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="1" 
+                       Grid.ColumnSpan="2" 
+                       Margin="5" 
+                       FontSize="17" 
+                       TextAlignment="Center"
+                       Text="{Binding Character_race_name, 
+                                      UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="1" 
+                    Grid.Column="1" 
+                    Margin="20,0,20,0"
                     Background="White"
                     BorderThickness="3"
                     BorderBrush="{Binding Male_sign_border_color}"
@@ -48,7 +112,9 @@
                     <Image Source="{Binding Male_sign}"/>
                 </Button.Content>
             </Button>
-            <Button Grid.Row="1" Grid.Column="2" Margin="20,0,20,0"
+            <Button Grid.Row="1" 
+                    Grid.Column="2" 
+                    Margin="20,0,20,0"
                     Background="White"
                     BorderThickness="3"
                     BorderBrush="{Binding Female_sign_border_color}"
@@ -57,38 +123,59 @@
                     <Image Source="{Binding Female_sign}"/>
                 </Button.Content>
             </Button>
-            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
+            <TextBox Grid.Row="2" 
+                     Grid.Column="1" 
+                     Grid.ColumnSpan="2" 
+                     Margin="5"
                      VerticalAlignment="Bottom"
                      TextAlignment="Center" 
                      BorderThickness="0,0,0,1" BorderBrush="Red"
                      FontSize="{Binding Current_age_text_fontsize}"
-                     Text="{Binding Character_age, UpdateSourceTrigger=LostFocus}"
+                     Text="{Binding Character_age, 
+                                    UpdateSourceTrigger=LostFocus}"
                      Foreground="{Binding Age_text_color}"/>
-            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
-                      Background="White" BorderThickness="0,0,0,1" BorderBrush="Red"
+            <ComboBox Grid.Row="3" 
+                      Grid.Column="1" 
+                      Grid.ColumnSpan="2" 
+                      Margin="5"
+                      Background="White" 
+                      BorderThickness="0,0,0,1" 
+                      BorderBrush="Red"
                       HorizontalContentAlignment="Center"
                       ItemsSource="{Binding Character_ages}"
                       SelectedItem="{Binding Character_current_age_status, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Margin="5" FontSize="12" TextAlignment="Center"
+                        <TextBlock Margin="5" 
+                                   FontSize="12" 
+                                   TextAlignment="Center"
                                    Text="{Binding Path=Age_status_name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
-                      Background="White" BorderThickness="0,0,0,1" BorderBrush="Red"
+            <ComboBox Grid.Row="4" 
+                      Grid.Column="1" 
+                      Grid.ColumnSpan="2" 
+                      Margin="5"
+                      Background="White" 
+                      BorderThickness="0,0,0,1" 
+                      BorderBrush="Red"
                       HorizontalContentAlignment="Center"
                       ItemsSource="{Binding Character_ranges}"
                       SelectedItem="{Binding Character_current_range, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Margin="5" FontSize="12" TextAlignment="Center"
+                        <TextBlock Margin="5" 
+                                   FontSize="12" 
+                                   TextAlignment="Center"
                                    Text="{Binding Path=Range_name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
+            <Button Grid.Row="5" 
+                    Grid.Column="1" 
+                    Grid.ColumnSpan="2" 
+                    Margin="5"
                     BorderThickness="3"
                     BorderBrush="{Binding Forceuser_border_color}"
                     Command="{Binding Manage_forceuser}">
@@ -96,66 +183,111 @@
                     <TextBlock Text="Адепт Силы"/>
                 </Button.Content>
             </Button>
-            <Image Grid.Row="5" Grid.Column="3" Margin="3"
+            <Image Grid.Row="5" 
+                   Grid.Column="3" 
+                   Margin="3"
                    Source="{Binding Question_sign}">
                 <Image.ToolTip>
-                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                    <TextBlock FontSize="10" 
+                               TextWrapping="Wrap" 
+                               MaxWidth="150"
                         Text="{Binding Forceuser_description}"/>
                 </Image.ToolTip>
             </Image>
-            <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
+            <TextBox Grid.Row="6" 
+                     Grid.Column="1" 
+                     Grid.ColumnSpan="2" 
+                     Margin="5"
                      TextAlignment="Center" 
                      VerticalAlignment="Bottom"
                      BorderThickness="0,0,0,1" BorderBrush="Red"
                      FontSize="{Binding Current_exp_points_fontsize}"
                      Foreground="{Binding Exp_text_color}"
-                     Text="{Binding Character_exp, UpdateSourceTrigger=LostFocus}"/>
-            <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
+                     Text="{Binding Character_exp, 
+                                    UpdateSourceTrigger=LostFocus}"/>
+            <TextBox Grid.Row="7" 
+                     Grid.Column="1" 
+                     Grid.ColumnSpan="2" 
+                     Margin="5"
                      TextAlignment="Center" 
                      VerticalAlignment="Bottom"
-                     BorderThickness="0,0,0,1" BorderBrush="Red"
+                     BorderThickness="0,0,0,1" 
+                     BorderBrush="Red"
                      FontSize="{Binding Current_atr_points_fontsize}"
                      Foreground="{Binding Atr_text_color}"
-                     Text="{Binding Character_atr, UpdateSourceTrigger=LostFocus}"/>
-            <Image Grid.Row="4" Grid.Column="3" Margin="3"
+                     Text="{Binding Character_atr, 
+                                    UpdateSourceTrigger=LostFocus}"/>
+            <Image Grid.Row="4" 
+                   Grid.Column="3" 
+                   Margin="3"
                    Source="{Binding Question_sign}">
                 <Image.ToolTip>
-                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                    <TextBlock FontSize="10" 
+                               TextWrapping="Wrap" 
+                               MaxWidth="150"
                         Text="{Binding Character_range_description}"/>
                 </Image.ToolTip>
             </Image>
-            <Image Grid.Row="3" Grid.Column="3" Margin="3"
+            <Image Grid.Row="3" 
+                   Grid.Column="3" 
+                   Margin="3"
                    Source="{Binding Question_sign}">
                 <Image.ToolTip>
-                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                    <TextBlock FontSize="10" 
+                               TextWrapping="Wrap" 
+                               MaxWidth="150"
                         Text="{Binding Character_age_status_description}"/>
                 </Image.ToolTip>
             </Image>
-            <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"
+            <TextBox Grid.Row="8" 
+                     Grid.Column="1" 
+                     Grid.ColumnSpan="2" 
+                     Margin="5"
                      TextAlignment="Center" 
                      VerticalAlignment="Bottom"
-                     BorderThickness="0,0,0,1" BorderBrush="Red"
+                     BorderThickness="0,0,0,1" 
+                     BorderBrush="Red"
                      FontSize="{Binding Current_karma_points_fontsize}"
                      Foreground="{Binding Karma_text_color}"
-                     Text="{Binding Character_karma, UpdateSourceTrigger=LostFocus}"
+                     Text="{Binding Character_karma, 
+                                    UpdateSourceTrigger=LostFocus}"
                      Opacity="{Binding Karma_opacity}"
                      IsEnabled="{Binding Character_is_forceuser}"/>
-            <Image Grid.Row="8" Grid.Column="3" Margin="3"
+            <Image Grid.Row="8" 
+                   Grid.Column="3" 
+                   Margin="3"
                    Source="{Binding Question_sign}"
                    Opacity="{Binding Karma_opacity}"
                    IsEnabled="{Binding Character_is_forceuser}">
                 <Image.ToolTip>
-                    <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                    <TextBlock FontSize="10" 
+                               TextWrapping="Wrap"
+                               MaxWidth="150"
                         Text="{Binding Character_karma_description}"/>
                 </Image.ToolTip>
             </Image>
         </Grid>
-        <TextBlock HorizontalAlignment="Left" Height="30" Margin="20,20,0,0" TextWrapping="Wrap" Text="Имя персонажа:" 
-                   VerticalAlignment="Top" Width="190" TextAlignment="Left" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="30" Margin="215,20,0,0" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="505" TextAlignment="Center" FontSize="20"
-                 BorderThickness="0,0,0,1" BorderBrush="Red"
-                 Text="{Binding Character_name, UpdateSourceTrigger=LostFocus}"/>
+        <TextBlock HorizontalAlignment="Left" 
+                   Height="30" 
+                   Margin="20,20,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Имя персонажа:" 
+                   VerticalAlignment="Top" 
+                   Width="190" 
+                   TextAlignment="Left" 
+                   FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" 
+                 Height="30" 
+                 Margin="215,20,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="505" 
+                 TextAlignment="Center" 
+                 FontSize="20"
+                 BorderThickness="0,0,0,1" 
+                 BorderBrush="Red"
+                 Text="{Binding Character_name, 
+                                UpdateSourceTrigger=LostFocus}"/>
         <Grid HorizontalAlignment="Left" Height="420" Margin="806,60,0,0" VerticalAlignment="Top" Width="300">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30"/>

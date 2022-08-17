@@ -8,64 +8,113 @@
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1130">
     <Grid Background="Black">
-        <Canvas HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="1130">
-
-
-            <Button Height="50"  Width="150" Background="Black" Canvas.Left="0" Canvas.Top="40"
-                        BorderThickness="3"
-                        Command="{Binding Open_character_info}"
-                        BorderBrush="{Binding Character_info_button_border, UpdateSourceTrigger=PropertyChanged}">
+        <Canvas HorizontalAlignment="Center" 
+                Height="90" 
+                VerticalAlignment="Top" 
+                Width="1130">
+            <Button Height="50"  
+                    Width="150" 
+                    Background="Black" 
+                    Canvas.Left="0" 
+                    Canvas.Top="40"
+                    BorderThickness="3"
+                    Command="{Binding Open_character_info}"
+                    BorderBrush="{Binding Character_info_button_border, 
+                                          UpdateSourceTrigger=PropertyChanged}">
                 <Button.Content>
-                        <TextBlock Text="Персонаж" FontSize="16" Foreground="Wheat"/>
+                        <TextBlock Text="Персонаж" 
+                                   FontSize="16" 
+                                   Foreground="Wheat"/>
                     </Button.Content>
                 </Button>
-            <Button Height="50" Canvas.Left="150" Canvas.Top="40" Width="150" Background="Black"
+            <Button Height="50" 
+                    Canvas.Left="150" 
+                    Canvas.Top="40" 
+                    Width="150" 
+                    Background="Black"
                     BorderThickness="3"
                     Command="{Binding Open_character_skills}"
-                    BorderBrush="{Binding Character_skills_button_border, UpdateSourceTrigger=PropertyChanged}">
+                    BorderBrush="{Binding Character_skills_button_border, 
+                                          UpdateSourceTrigger=PropertyChanged}">
                 <Button.Content>
-                    <TextBlock Text="Навыки персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                    <TextBlock Text="Навыки персонажа" 
+                               FontSize="16" 
+                               Foreground="Wheat" 
+                               TextWrapping="Wrap"
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="50" Canvas.Left="300" Canvas.Top="40" Width="150" Background="Black"
+            <Button Height="50" 
+                    Canvas.Left="300" 
+                    Canvas.Top="40" 
+                    Width="150" 
+                    Background="Black"
                     BorderThickness="3"
                     BorderBrush="{Binding Character_forms_button_border}"
                     Command="{Binding Open_character_forms}">
                 <Button.Content>
-                    <TextBlock Text="Боевые формы персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                    <TextBlock Text="Изученные стили боя" 
+                               FontSize="16" 
+                               Foreground="Wheat" 
+                               TextWrapping="Wrap"
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="50" Canvas.Left="450" Canvas.Top="40" Width="150" Background="Black"
+            <Button Height="50" 
+                    Canvas.Left="450" 
+                    Canvas.Top="40" 
+                    Width="150" 
+                    Background="Black"
                     BorderThickness="3"
                     BorderBrush="{Binding Character_features_button_border}"
                     Command="{Binding Open_character_features}">
                 <Button.Content>
-                    <TextBlock Text="Особенности персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                    <TextBlock Text="Особенности персонажа" 
+                               FontSize="16" 
+                               Foreground="Wheat" 
+                               TextWrapping="Wrap"
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="50" Canvas.Left="600" Canvas.Top="40" Width="150" Background="Black"
+            <Button Height="50" 
+                    Canvas.Left="600" 
+                    Canvas.Top="40" 
+                    Width="150" 
+                    Background="Black"
                     BorderThickness="3"
                     BorderBrush="{Binding Character_equipment_button_border}"
                     Command="{Binding Open_character_equipment}">
                 <Button.Content>
-                    <TextBlock Text="Снаряжение и инвентарь" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                    <TextBlock Text="Снаряжение и инвентарь" 
+                               FontSize="16" 
+                               Foreground="Wheat" 
+                               TextWrapping="Wrap"
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="50" Canvas.Left="750" Canvas.Top="40" Width="150" Background="Black"
+            <Button Height="50" 
+                    Canvas.Left="750" 
+                    Canvas.Top="40" 
+                    Width="150" 
+                    Background="Black"
                     BorderThickness="3"
                     BorderBrush="{Binding Character_companion_button_border}"
                     Command="{Binding Open_character_companion}">
                 <Button.Content>
-                    <TextBlock Text="Спутник персонажа" FontSize="16" Foreground="Wheat" TextWrapping="Wrap"
+                    <TextBlock Text="Спутник персонажа" 
+                               FontSize="16" 
+                               Foreground="Wheat" 
+                               TextWrapping="Wrap"
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
         </Canvas>
-        <Border BorderBrush="Wheat" BorderThickness="0,1,0,0" HorizontalAlignment="Center" Height="770" Margin="0,90,0,0" VerticalAlignment="Top" Width="1130">
+        <Border BorderBrush="Wheat" 
+                BorderThickness="0,1,0,0" 
+                HorizontalAlignment="Center" 
+                Height="770" 
+                Margin="0,90,0,0" 
+                VerticalAlignment="Top" Width="1130">
             <Border.Resources>
                 <DataTemplate DataType="{x:Type local:Character_info_ViewModel}">
                     <general_data:Character_info/>
