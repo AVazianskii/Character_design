@@ -115,9 +115,12 @@ namespace Character_design
 
         private Combat_forms_ViewModel()
         {
-            Show_base_ability   = new Command(o => _Show_base_ability());
-            Show_adept_ability  = new Command(o => _Show_adept_ability());
-            Show_master_ability = new Command(o => _Show_master_ability());
+            Show_base_ability   = new Command(o => _Show_base_ability(),
+                                              o => _Base_exist()); 
+            Show_adept_ability  = new Command(o => _Show_adept_ability(),
+                                              o => _Adept_exist());
+            Show_master_ability = new Command(o => _Show_master_ability(),
+                                              o => _Master_exist());
 
             Base_border     = new SolidColorBrush();
             Adept_border    = new SolidColorBrush();
@@ -167,6 +170,33 @@ namespace Character_design
             Selected_combat_ability = Selected_combat_sequence.Master_ability_lvl;
 
             Set_colors_for_chosen_item(Button_borders, Master_border, Chosen_color, Unchosen_color);
+        }
+        private bool _Base_exist()
+        {
+            bool result = true;
+            if (Selected_combat_sequence.Base_ability_lvl == null)
+            {
+                result = false;
+            }
+            return result;
+        }
+        private bool _Adept_exist()
+        {
+            bool result = true;
+            if (Selected_combat_sequence.Adept_ability_lvl == null)
+            {
+                result = false;
+            }
+            return result;
+        }
+        private bool _Master_exist()
+        {
+            bool result = true;
+            if (Selected_combat_sequence.Master_ability_lvl == null)
+            {
+                result = false;
+            }
+            return result;
         }
         private void Refresh_fields()
         {
