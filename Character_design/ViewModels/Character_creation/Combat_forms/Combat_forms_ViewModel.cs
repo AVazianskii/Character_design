@@ -21,6 +21,8 @@ namespace Character_design
         private Color   Chosen_color,
                         Unchosen_color;
 
+        private string combat_ability_choose_warning;
+
 
 
         public Command Show_base_ability { get; private set; }
@@ -102,6 +104,11 @@ namespace Character_design
         {
             get {return Selected_combat_ability.Description; }
         }
+        public string Combat_ability_choose_warning
+        {
+            get { return combat_ability_choose_warning; }
+            set { combat_ability_choose_warning = value; OnPropertyChanged("Combat_ability_choose_warning"); }
+        }
 
 
 
@@ -124,8 +131,10 @@ namespace Character_design
             Show_master_ability = new Command(o => _Show_master_ability(),
                                               o => _Master_exist());
 
-            Delete_combat_ability   = new Character_changing_command(o => _Delete_combat_ability(Selected_combat_ability));
-            Learn_combat_ability    = new Character_changing_command(o => _Learn_combat_ability(Selected_combat_ability));
+            Delete_combat_ability   = new Character_changing_command(o => _Delete_combat_ability(Selected_combat_ability),
+                                                                     o => _Enable_delete_combat_ability());
+            Learn_combat_ability    = new Character_changing_command(o => _Learn_combat_ability(Selected_combat_ability),
+                                                                     o => _Enable_learn_combat_ability());
 
             Base_border     = new SolidColorBrush();
             Adept_border    = new SolidColorBrush();
@@ -209,8 +218,29 @@ namespace Character_design
             if (ability != null)
             {
                 Character.GetInstance().Delete_combat_ability(ability);
+                Selected_combat_sequence.Check_enable_state();
                 OnPropertyChanged("Exp_points_left");
             }
+        }
+        private bool _Enable_delete_combat_ability()
+        {
+            bool result = true;
+            Combat_ability_choose_warning = "";
+            if (Selected_combat_ability.Is_chosen == false)
+            {
+                result = false;
+            }
+            if ((Selected_combat_ability == Selected_combat_sequence.Base_ability_lvl) & (Selected_combat_sequence.Adept_ability_lvl.Is_chosen | Selected_combat_sequence.Master_ability_lvl.Is_chosen))
+            {
+                Combat_ability_choose_warning = "Для удаления текущего уровня стиля, удалите более высокие уровни!";
+                result = false;
+            }
+            if ((Selected_combat_ability == Selected_combat_sequence.Adept_ability_lvl) & Selected_combat_sequence.Master_ability_lvl.Is_chosen)
+            {
+                Combat_ability_choose_warning = "Для удаления текущего уровня стиля, удалите более высокие уровни!";
+                result = false;
+            }
+            return result;
         }
         private void _Learn_combat_ability(object o)
         {
@@ -218,8 +248,29 @@ namespace Character_design
             if (ability != null)
             {
                 Character.GetInstance().Learn_combat_ability(ability);
+                Selected_combat_sequence.Check_enable_state();
                 OnPropertyChanged("Exp_points_left");
             }
+        }
+        private bool _Enable_learn_combat_ability()
+        {
+            bool result = true;
+            Combat_ability_choose_warning = "";
+            if (Character.GetInstance().Experience_left < Selected_combat_ability.Cost)
+            {
+                Combat_ability_choose_warning = "Недостаточно очков опыта для изучения!";
+                result = false;
+            }
+            if(Selected_combat_ability.Is_enable == false)
+            {
+                Combat_ability_choose_warning = "Изучение данного уровня стиля недоступно!";
+                result = false;
+            }
+            if (Selected_combat_ability.Is_chosen)
+            {
+                result = false;
+            }
+            return result;
         }
         private void Refresh_fields()
         {
