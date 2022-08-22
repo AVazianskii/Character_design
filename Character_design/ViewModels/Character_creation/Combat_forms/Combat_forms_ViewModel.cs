@@ -26,6 +26,8 @@ namespace Character_design
         public Command Show_base_ability { get; private set; }
         public Command Show_adept_ability { get; private set; }
         public Command Show_master_ability { get; private set; }
+        public Character_changing_command Delete_combat_ability { get; private set; }
+        public Character_changing_command Learn_combat_ability { get; private set; }
         public SolidColorBrush Base_border
         {
             get { return base_border; }
@@ -122,6 +124,9 @@ namespace Character_design
             Show_master_ability = new Command(o => _Show_master_ability(),
                                               o => _Master_exist());
 
+            Delete_combat_ability   = new Character_changing_command(o => _Delete_combat_ability(Selected_combat_ability));
+            Learn_combat_ability    = new Character_changing_command(o => _Learn_combat_ability(Selected_combat_ability));
+
             Base_border     = new SolidColorBrush();
             Adept_border    = new SolidColorBrush();
             Master_border   = new SolidColorBrush();
@@ -197,6 +202,24 @@ namespace Character_design
                 result = false;
             }
             return result;
+        }
+        private void _Delete_combat_ability(object o)
+        {
+            All_abilities_template ability = o as All_abilities_template;
+            if (ability != null)
+            {
+                Character.GetInstance().Delete_combat_ability(ability);
+                OnPropertyChanged("Exp_points_left");
+            }
+        }
+        private void _Learn_combat_ability(object o)
+        {
+            All_abilities_template ability = o as All_abilities_template;
+            if (ability != null)
+            {
+                Character.GetInstance().Learn_combat_ability(ability);
+                OnPropertyChanged("Exp_points_left");
+            }
         }
         private void Refresh_fields()
         {
