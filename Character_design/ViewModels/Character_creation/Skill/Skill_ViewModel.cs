@@ -67,7 +67,7 @@ namespace Character_design
                 Selected_skill_cost         = Return_skill_cost(selected_skill);
                 Selected_skill_limit        = Character.GetInstance().Return_skill_limit(selected_skill);
                 Selected_skill_score        = Selected_skill.Get_score();
-                Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
+                Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit + Character.GetInstance().Return_combat_ability_skill_limit(selected_skill);
                 OnPropertyChanged("Skill_base_text");
                 OnPropertyChanged("Skill_choose_warning");
                 OnPropertyChanged("Skill_img_path");
@@ -156,8 +156,8 @@ namespace Character_design
                     Selected_skill_cost         = Return_skill_cost(selected_skill);
                     Selected_skill_limit        = Character.GetInstance().Return_skill_limit(selected_skill);
                     Selected_skill_score        = selected_skill.Get_score();
-                    Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit;
-                    
+                    Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit + Character.GetInstance().Return_combat_ability_skill_limit(selected_skill);
+
 
                     OnPropertyChanged("Skill_img_path");
                 }

@@ -1097,6 +1097,7 @@ namespace Character_design
             {
                 character.Forceuser = true;
                 Forceuser_border_color.Color = Chosen_color;
+                Skill_ViewModel.GetInstance().Refresh_fields(); // Изменяем стоимость навыков, если игрок начал делать персонажа-адепта Силы
                 Show_forceuser_fields();
                 OnPropertyChanged("Character_is_forceuser");
             }
@@ -1105,6 +1106,7 @@ namespace Character_design
                 character.Forceuser = false;
                 Forceuser_border_color.Color = Unchosen_color;
                 Character.GetInstance().Refund_if_not_forceuser(); // Возвращаем очки опыта, если игрок перехотел делать персонажа-адепта Силы
+                Skill_ViewModel.GetInstance().Refresh_fields(); // Изменяем стоимость навыков, если игрок перехотел делать персонажа-адепта Силы
                 Unshow_forceuser_fields();
                 OnPropertyChanged("Character_is_forceuser");
                 OnPropertyChanged("Exp_points_left");
