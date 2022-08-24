@@ -219,6 +219,7 @@ namespace Character_design
             {
                 Character.GetInstance().Delete_combat_ability(ability);
                 Selected_combat_sequence.Check_enable_state();
+                Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
             }
         }
@@ -249,6 +250,7 @@ namespace Character_design
             {
                 Character.GetInstance().Learn_combat_ability(ability);
                 Selected_combat_sequence.Check_enable_state();
+                Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
             }
         }
