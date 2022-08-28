@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Character_design
 {
-    internal class Force_forms_ViewModel : BaseViewModel
+    public class Force_forms_ViewModel : BaseViewModel
     {
         private static Force_forms_ViewModel _instance;
 
@@ -90,19 +90,19 @@ namespace Character_design
         {
             get { return Selected_force_sequence.Name; }
         }
-        public string Combat_ability_img_path
+        public string Force_ability_img_path
         {
             get { return Selected_force_ability.Img_path; }
         }
-        public string Combat_ability_general_description
+        public string Force_ability_general_description
         {
             get { return Selected_force_ability.General_description; }
         }
-        public int Selected_combat_ability_cost
+        public int Selected_force_ability_cost
         {
             get { return Selected_force_ability.Cost; }
         }
-        public string Combat_ability_description
+        public string Force_ability_description
         {
             get { return Selected_force_ability.Description; }
         }
@@ -122,6 +122,7 @@ namespace Character_design
             }
             return _instance;
         }
+
 
 
         private Force_forms_ViewModel()
@@ -228,21 +229,22 @@ namespace Character_design
         private bool _Enable_delete_force_ability()
         {
             bool result = true;
-            Force_ability_choose_warning = "";
-            if (Selected_force_ability.Is_chosen == false)
-            {
-                result = false;
-            }
+            
             if ((Selected_force_ability == Selected_force_sequence.Base_ability_lvl) & (Selected_force_sequence.Adept_ability_lvl.Is_chosen | Selected_force_sequence.Master_ability_lvl.Is_chosen))
             {
                 Force_ability_choose_warning = "Для удаления текущего уровня стиля, удалите более высокие уровни!";
                 result = false;
             }
-            if ((Selected_force_ability == Selected_force_sequence.Adept_ability_lvl) & Selected_force_sequence.Master_ability_lvl.Is_chosen)
+            else if ((Selected_force_ability == Selected_force_sequence.Adept_ability_lvl) & Selected_force_sequence.Master_ability_lvl.Is_chosen)
             {
                 Force_ability_choose_warning = "Для удаления текущего уровня стиля, удалите более высокие уровни!";
                 result = false;
             }
+            else if (Selected_force_ability.Is_chosen == false)
+            {
+                result = false;
+            } 
+            else { Force_ability_choose_warning = ""; }
             return result;
         }
         private void _Learn_force_ability(object o)
@@ -259,21 +261,22 @@ namespace Character_design
         private bool _Enable_learn_force_ability()
         {
             bool result = true;
-            Force_ability_choose_warning = "";
+            
             if (Character.GetInstance().Experience_left < Selected_force_ability.Cost)
             {
                 Force_ability_choose_warning = "Недостаточно очков опыта для изучения!";
                 result = false;
             }
-            if (Selected_force_ability.Is_enable == false)
+            else if (Selected_force_ability.Is_enable == false)
             {
                 Force_ability_choose_warning = "Изучение данного уровня стиля недоступно!";
                 result = false;
             }
-            if (Selected_force_ability.Is_chosen)
+            else if (Selected_force_ability.Is_chosen)
             {
                 result = false;
             }
+            else { Force_ability_choose_warning = ""; }
             return result;
         }
         private void Refresh_fields()

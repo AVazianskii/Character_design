@@ -226,21 +226,22 @@ namespace Character_design
         private bool _Enable_delete_combat_ability()
         {
             bool result = true;
-            Combat_ability_choose_warning = "";
+            
             if (Selected_combat_ability.Is_chosen == false)
             {
                 result = false;
             }
-            if ((Selected_combat_ability == Selected_combat_sequence.Base_ability_lvl) & (Selected_combat_sequence.Adept_ability_lvl.Is_chosen | Selected_combat_sequence.Master_ability_lvl.Is_chosen))
+            else if ((Selected_combat_ability == Selected_combat_sequence.Base_ability_lvl) & (Selected_combat_sequence.Adept_ability_lvl.Is_chosen | Selected_combat_sequence.Master_ability_lvl.Is_chosen))
             {
                 Combat_ability_choose_warning = "Для удаления текущего уровня стиля, удалите более высокие уровни!";
                 result = false;
             }
-            if ((Selected_combat_ability == Selected_combat_sequence.Adept_ability_lvl) & Selected_combat_sequence.Master_ability_lvl.Is_chosen)
+            else if ((Selected_combat_ability == Selected_combat_sequence.Adept_ability_lvl) & Selected_combat_sequence.Master_ability_lvl.Is_chosen)
             {
                 Combat_ability_choose_warning = "Для удаления текущего уровня стиля, удалите более высокие уровни!";
                 result = false;
             }
+            else { Combat_ability_choose_warning = ""; }
             return result;
         }
         private void _Learn_combat_ability(object o)
@@ -257,21 +258,22 @@ namespace Character_design
         private bool _Enable_learn_combat_ability()
         {
             bool result = true;
-            Combat_ability_choose_warning = "";
+            
             if (Character.GetInstance().Experience_left < Selected_combat_ability.Cost)
             {
                 Combat_ability_choose_warning = "Недостаточно очков опыта для изучения!";
                 result = false;
             }
-            if(Selected_combat_ability.Is_enable == false)
+            else if(Selected_combat_ability.Is_enable == false)
             {
                 Combat_ability_choose_warning = "Изучение данного уровня стиля недоступно!";
                 result = false;
             }
-            if (Selected_combat_ability.Is_chosen)
+            else if (Selected_combat_ability.Is_chosen)
             {
                 result = false;
             }
+            else { Combat_ability_choose_warning = ""; }
             return result;
         }
         private void Refresh_fields()
