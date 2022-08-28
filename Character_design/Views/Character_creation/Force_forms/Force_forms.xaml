@@ -6,7 +6,289 @@
              xmlns:local="clr-namespace:Character_design.Views.Character_creation.Force_forms"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1136">
-    <Grid Background="White">
-        <Image Source="{Binding Img_path}"/>
+    <UserControl.Resources>
+        <Style TargetType="Button" 
+               x:Key="MyButton2">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" 
+                         Value="True">
+                    <Setter Property="Background" 
+                            Value="LightGray"/>
+                    <Setter Property="Foreground" 
+                            Value="Black"/>
+                    <Setter Property="Opacity" 
+                            Value="100"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                         Value="False">
+                    <Setter Property="Background" 
+                            Value="Wheat"/>
+                    <Setter Property="Foreground" 
+                            Value="Wheat"/>
+                    <Setter Property="Opacity" 
+                            Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="Wheat">
+        <Canvas HorizontalAlignment="Center" 
+                Height="133" 
+                VerticalAlignment="Top" 
+                Width="1146" 
+                Background="Black">
+            <TextBlock Height="60" 
+                       TextWrapping="Wrap" 
+                       Width="216" 
+                       Canvas.Top="73"
+                       Text="Доступные стили боя для изучения:" 
+                       Background="Black"
+                       Foreground="Wheat" 
+                       FontSize="20" 
+                       TextAlignment="Center" />
+            <TextBlock Canvas.Left="700" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15" 
+                       Height="40" 
+                       Width="300"
+                       Text="Очков опыта осталось: " 
+                       Foreground="Wheat" FontSize="28"/>
+            <TextBlock Canvas.Left="1008" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15" 
+                       Height="40" 
+                       Width="128"
+                       Text="{Binding Exp_points_left}" 
+                       Foreground="Wheat" 
+                       FontSize="28"/>
+        </Canvas>
+        <Border BorderBrush="Wheat" 
+                BorderThickness="0,1,0,0" 
+                HorizontalAlignment="Center" 
+                Height="727" 
+                Margin="0,133,0,0" 
+                VerticalAlignment="Top" 
+                Width="1146">
+            <Canvas Height="727" 
+                    Margin="0,-1,0,0" 
+                    Width="1146">
+                <ListBox Height="727" 
+                         Width="216" 
+                         Canvas.Top="0" 
+                         Background="Black" 
+                         Foreground="Wheat" 
+                         BorderThickness="0" 
+                         BorderBrush="Black"
+                         ItemsSource="{Binding Current_force_sequnces}"
+                         SelectedItem="{Binding Selected_force_sequence}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           Height="46" 
+                                           TextWrapping="Wrap" 
+                                           Width="180" 
+                                           Foreground="Wheat" 
+                                           TextAlignment="Center" 
+                                           FontSize="16" 
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Path=Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Image Height="414" 
+                       Canvas.Left="230" 
+                       Canvas.Top="8" 
+                       Width="329"
+                       Source="{Binding Force_ability_img_path}"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="590" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="10" 
+                           Width="520"
+                           FontSize="27" 
+                           TextAlignment="Center"
+                           Text="{Binding Selected_force_sequence_title}"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="590" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="60" 
+                           Width="360"
+                           Text="Описание стиля:" 
+                           FontSize="18"/>
+                <ScrollViewer Canvas.Left="590" 
+                              Canvas.Top="94" 
+                              CanContentScroll="True" 
+                              VerticalScrollBarVisibility="Auto"
+                              Height="256" 
+                              Width="529">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" 
+                                   Grid.Column="0"
+                                   TextWrapping="Wrap" 
+                                   Margin="0,5,15,5"
+                                   FontSize="15"
+                                   Text="{Binding Force_ability_general_description}"/>
+                    </Grid>
+                </ScrollViewer>
+                <Canvas Height="180" 
+                        Canvas.Left="590" 
+                        Canvas.Top="370" 
+                        Width="529">
+                    <TextBlock  Height="34" 
+                                Canvas.Left="0" 
+                                TextWrapping="Wrap" 
+                                Canvas.Top="0" 
+                                Width="360"
+                                Text="Уровни владения стилем:" 
+                                FontSize="18"/>
+                    <Button Height="60" 
+                            Canvas.Top="45" 
+                            Canvas.Left="5" 
+                            Width="160"
+                            BorderThickness="3"
+                            Command="{Binding Show_base_ability}"
+                            BorderBrush="{Binding Base_border}"
+                            Style="{StaticResource MyButton2}">
+                        <Button.Content>
+                            <TextBlock  Text="Ученик" 
+                                        FontSize="20"
+                                        TextWrapping="Wrap" 
+                                        TextAlignment="Center"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Height="60" 
+                            Canvas.Top="45" 
+                            Canvas.Left="170" 
+                            Width="160"
+                            BorderThickness="3"
+                            Command="{Binding Show_adept_ability}"
+                            BorderBrush="{Binding Adept_border}"
+                            Style="{StaticResource MyButton2}">
+                        <Button.Content>
+                            <TextBlock  Text="Адепт" 
+                                        FontSize="20"
+                                        TextWrapping="Wrap" 
+                                        TextAlignment="Center"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Height="60" 
+                            Canvas.Top="45" 
+                            Canvas.Left="335" 
+                            Width="160"
+                            BorderThickness="3"
+                            Command="{Binding Show_master_ability}"
+                            BorderBrush="{Binding Master_border}"
+                            Style="{StaticResource MyButton2}">
+                        <Button.Content>
+                            <TextBlock  Text="Мастер" 
+                                        FontSize="20"
+                                        TextWrapping="Wrap" 
+                                        TextAlignment="Center"/>
+                        </Button.Content>
+                    </Button>
+                    <TextBlock Height="34" 
+                           Canvas.Left="0" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="130" 
+                           Width="370"
+                           Text="Стоимость развития данного уровня стиля:" 
+                           FontSize="18"/>
+                    <TextBlock Height="34" 
+                           Canvas.Left="370" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="130" 
+                           Width="50"
+                           FontSize="18" 
+                           TextAlignment="Center"
+                           Text="{Binding Selected_force_ability_cost}"/>
+                    <TextBlock Height="34" 
+                           Canvas.Left="430" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="130" 
+                           Width="100"
+                           Text="оч. опыта" 
+                           FontSize="18"/>
+                </Canvas>
+                <Canvas Height="253" 
+                        Canvas.Left="230" 
+                        Canvas.Top="450" 
+                        Width="329">
+                    <TextBlock Height="34" 
+                           Canvas.Left="7" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="7" 
+                           Width="280"
+                           Text="Бонус на текущем уровне стиля:" 
+                           FontSize="18"/>
+                    <ScrollViewer Canvas.Left="7" 
+                              Canvas.Top="40" 
+                              CanContentScroll="True" 
+                              VerticalScrollBarVisibility="Auto"
+                              Height="205" 
+                              Width="315">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" 
+                                   Grid.Column="0"
+                                   TextWrapping="Wrap" 
+                                   Margin="0,5,15,5"
+                                   FontSize="15"
+                                   Text="{Binding Force_ability_description}"/>
+                        </Grid>
+                    </ScrollViewer>
+                </Canvas>
+                <Canvas Height="133" 
+                        Canvas.Left="770" 
+                        Canvas.Top="584" 
+                        Width="349">
+                    <Button Height="57" 
+                            Canvas.Left="10" 
+                            Canvas.Top="66" 
+                            Width="150" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center"
+                            Content="Забыть данный стиль"
+                            Command="{Binding Delete_force_ability}"
+                            CommandParameter="{Binding Selected_force_ability}"/>
+                    <Button Height="57" 
+                            Canvas.Right="10" 
+                            Canvas.Top="66" 
+                            Width="150" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center"
+                            Content="Изучить данный стиль"
+                            Command="{Binding Learn_force_ability}"
+                            CommandParameter="{Binding Selected_force_ability}"/>
+                    <TextBlock Canvas.Left="10" 
+                               Canvas.Top="10" 
+                               Width="320" 
+                               Height="50"
+                               TextWrapping="Wrap" 
+                               FontSize="14"
+                               Foreground="Red"
+                               Text="{Binding Force_ability_choose_warning}"/>
+                </Canvas>
+            </Canvas>
+        </Border>
     </Grid>
 </UserControl>
