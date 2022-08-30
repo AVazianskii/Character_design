@@ -33,6 +33,54 @@
                            Text="Создать персонажа"/>
             </Button.Content>
         </Button>
+        <Button HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="250"
+                Height="45" 
+                Margin="75,200,0,0" 
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Character_editor}">
+            <Button.Content>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Редактировать персонажа"/>
+            </Button.Content>
+        </Button>
+        <Button HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="250"
+                Height="45" 
+                Margin="75,270,0,0" 
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Character_story_helper}">
+            <Button.Content>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Создать историю персонажа"/>
+            </Button.Content>
+        </Button>
+        <Button HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="250"
+                Height="45" 
+                Margin="75,340,0,0" 
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Game_rules}">
+            <Button.Content>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Правила игры"/>
+            </Button.Content>
+        </Button>
         <Button HorizontalAlignment="Left"  
                 VerticalAlignment="Top" 
                 Width="250"

@@ -7,23 +7,94 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
     <Grid Background="Black">
-        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Height="40" Width="400"
+        <TextBlock HorizontalAlignment="Center" 
+                   Margin="0,10,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Height="40" 
+                   Width="400"
                    Text="Меню Мастера"
                    Foreground="Wheat"
-                   FontSize="22" TextAlignment="Center"/>
-        <Button HorizontalAlignment="Left" Height="45" Margin="75,500,0,0" 
+                   FontSize="22" 
+                   TextAlignment="Center"/>
+        <Button HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="250"
+                Height="45" 
+                Margin="75,130,0,0" 
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Quest_creation}">
+            <Button.Content>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Создать квест"/>
+            </Button.Content>
+        </Button>
+        <Button HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="250"
+                Height="45" 
+                Margin="75,200,0,0" 
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Game_helper}">
+            <Button.Content>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Игровой помощник"/>
+            </Button.Content>
+        </Button>
+        <Button HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="250"
+                Height="45" 
+                Margin="75,270,0,0" 
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Generators}">
+            <Button.Content>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Генераторы"/>
+            </Button.Content>
+        </Button>
+        <Button HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="250"
+                Height="45" 
+                Margin="75,340,0,0" 
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Game_rules}">
+            <Button.Content>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Правила игры"/>
+            </Button.Content>
+        </Button>
+        <Button HorizontalAlignment="Left" 
+                Height="45" 
+                Margin="75,500,0,0" 
                 VerticalAlignment="Top" Width="250"
                 BorderThickness="0"
                 Background="Black"
                 Command="{Binding Open_Common_Menu}">
             <Button.Content>
-                <TextBlock FontSize="20" Foreground="Wheat"
+                <TextBlock FontSize="20" 
+                           Foreground="Wheat"
                            TextWrapping="Wrap"
                            TextAlignment="Center"
                            Text="Назад"/>
             </Button.Content>
         </Button>
-        <Image Source="{Binding Img_path}" Margin="30,56,30,112"/>
     </Grid>
 </UserControl>

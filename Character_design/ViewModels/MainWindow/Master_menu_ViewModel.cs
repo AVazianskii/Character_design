@@ -11,10 +11,10 @@ namespace Character_design
 
 
         public Command Open_Common_Menu { get; private set; }
-        public string Img_path
-        {
-            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Content_soon.jpg"; }
-        }
+        public Command Open_Quest_creation { get; private set; }
+        public Command Open_Game_helper { get; private set; }
+        public Command Open_Generators { get; private set; }
+        public Command Open_Game_rules { get; private set; }
 
 
 
@@ -32,6 +32,17 @@ namespace Character_design
         private Master_menu_ViewModel()
         {
             Open_Common_Menu = new Command(o => Main_Menu_ViewModel.GetInstance()._Open_Common_Menu());
+            Open_Quest_creation = new Command(o => _Test());
+            Open_Game_helper = new Command(o => _Test());
+            Open_Generators = new Command(o => _Test());
+            Open_Game_rules = new Command(o => _Test());
+        }
+
+
+
+        private void _Test()
+        {
+
         }
     }
 }
