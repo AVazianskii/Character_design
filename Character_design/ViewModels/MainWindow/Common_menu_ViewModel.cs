@@ -13,6 +13,7 @@ namespace Character_design
 
         public Command Open_Player_Menu { get; private set; }
         public Command Open_Master_Menu { get; private set; }
+        public Command Open_Game_rules { get; private set; }
 
 
 
@@ -31,6 +32,13 @@ namespace Character_design
         {
             Open_Master_Menu = new Command(o => Main_Menu_ViewModel.GetInstance()._Open_Master_Menu());
             Open_Player_Menu = new Command(o => Main_Menu_ViewModel.GetInstance()._Open_Player_Menu());
+
+            Open_Game_rules = new Command(o => _Test());
         }
+
+
+
+        private void _Test()
+        { }
     }
 }

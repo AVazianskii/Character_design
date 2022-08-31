@@ -96,11 +96,10 @@ namespace Character_design
             Left_picture_source     = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Left_picture.jpg";
             Right_picture_source    = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Right_picture.jpg";
             Central_picture_source  = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Central_picture.jpg";
+
+            
         }
 
-
-
-        
 
     }
 }

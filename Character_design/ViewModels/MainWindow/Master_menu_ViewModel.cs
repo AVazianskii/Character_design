@@ -14,8 +14,7 @@ namespace Character_design
         public Command Open_Quest_creation { get; private set; }
         public Command Open_Game_helper { get; private set; }
         public Command Open_Generators { get; private set; }
-        public Command Open_Game_rules { get; private set; }
-
+        
 
 
         public static Master_menu_ViewModel GetInstance()
@@ -35,7 +34,6 @@ namespace Character_design
             Open_Quest_creation = new Command(o => _Test());
             Open_Game_helper = new Command(o => _Test());
             Open_Generators = new Command(o => _Test());
-            Open_Game_rules = new Command(o => _Test());
         }
 
 

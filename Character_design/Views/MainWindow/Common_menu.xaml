@@ -7,29 +7,55 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
     <Grid Background="Black">
-        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Height="40" Width="400"
-                   Text="Выберете вашу роль в игре:"
+        <TextBlock HorizontalAlignment="Center" 
+                   Margin="0,10,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Height="40" Width="400"
+                   Text="Главное меню"
                    Foreground="Wheat"
-                   FontSize="22" TextAlignment="Center"/>
-        <Button HorizontalAlignment="Left" Height="45" Margin="75,130,0,0" 
-                VerticalAlignment="Top" Width="250"
+                   FontSize="22" 
+                   TextAlignment="Center"/>
+        <Button HorizontalAlignment="Left" 
+                Height="45" 
+                Margin="75,130,0,0" 
+                VerticalAlignment="Top" 
+                Width="250"
                 BorderThickness="0"
                 Background="Black"
                 Command="{Binding Open_Player_Menu}">
             <Button.Content>
-                <TextBlock FontSize="15" Foreground="Wheat"
-                            Text="Я Игрок"/>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           Text="Начать как Игрок"/>
             </Button.Content>
         </Button>
-        <Button HorizontalAlignment="Left" Height="45" Margin="75,190,0,0" 
-                VerticalAlignment="Top" Width="250"
+        <Button HorizontalAlignment="Left" 
+                Height="45" 
+                Margin="75,200,0,0" 
+                VerticalAlignment="Top" 
+                Width="250"
                 BorderThickness="0"
                 Background="Black"
                 Command="{Binding Open_Master_Menu}">
             <Button.Content>
-                <TextBlock FontSize="15" Foreground="Wheat"
-                            Text="Я Мастер"/>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                           Text="Начать как Мастер"/>
+            </Button.Content>
+        </Button>
+        <Button HorizontalAlignment="Left" 
+                Height="45" 
+                Margin="75,270,0,0" 
+                VerticalAlignment="Top" 
+                Width="250"
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Open_Game_rules}">
+            <Button.Content>
+                <TextBlock FontSize="15" 
+                           Foreground="Wheat"
+                            Text="Правила игры"/>
             </Button.Content>
         </Button>
 
