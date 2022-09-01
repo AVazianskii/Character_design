@@ -58,6 +58,21 @@
                             Text="Правила игры"/>
             </Button.Content>
         </Button>
-
+        <Button HorizontalAlignment="Left"  
+                VerticalAlignment="Top" 
+                Width="250"
+                Height="45"
+                Margin="75,500,0,0" 
+                BorderThickness="0"
+                Background="Black"
+                Command="{Binding Exit}">
+            <Button.Content>
+                <TextBlock FontSize="20" 
+                           Foreground="Red"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Text="Выход"/>
+            </Button.Content>
+        </Button>
     </Grid>
 </UserControl>
