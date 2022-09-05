@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:Character_design.Views.MainWindow"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
     <Grid Background="Black">
         <TextBlock HorizontalAlignment="Center" 
                    Margin="0,10,0,0" 
@@ -27,7 +30,8 @@
             <Button.Content>
                 <TextBlock FontSize="15" 
                            Foreground="Wheat"
-                           Text="Начать как Игрок"/>
+                           Text="Начать как Игрок"
+                           />
             </Button.Content>
         </Button>
         <Button HorizontalAlignment="Left" 
@@ -55,7 +59,7 @@
             <Button.Content>
                 <TextBlock FontSize="15" 
                            Foreground="Wheat"
-                            Text="Правила игры"/>
+                           Text="Правила игры"/>
             </Button.Content>
         </Button>
         <Button HorizontalAlignment="Left"  
