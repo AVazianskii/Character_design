@@ -228,7 +228,7 @@ namespace Character_design
             if (ability != null)
             {
                 Character.GetInstance().Delete_force_ability(ability);
-                Selected_force_sequence.Check_enable_state();
+                CheckAbilityCondition();
                 
                 OnPropertyChanged("Exp_points_left");
             }
@@ -260,7 +260,7 @@ namespace Character_design
             if (ability != null)
             {
                 Character.GetInstance().Learn_force_ability(ability);
-                Selected_force_sequence.Check_enable_state();
+                CheckAbilityCondition();
                 
                 OnPropertyChanged("Exp_points_left");
             }
@@ -304,6 +304,13 @@ namespace Character_design
                 {
                     Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Adept_ability_lvl.Name}";
                 }
+            }
+        }
+        private void CheckAbilityCondition()
+        {
+            foreach(Abilities_sequence_template sequence in Current_force_sequnces)
+            {
+                sequence.Check_enable_state();
             }
         }
         private void Refresh_fields()
