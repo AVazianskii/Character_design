@@ -21,7 +21,8 @@ namespace Character_design
         private Color   Chosen_color,
                         Unchosen_color;
 
-        private string combat_ability_choose_warning;
+        private string combat_ability_choose_warning,
+                       combat_ability_choose_advice;
 
 
 
@@ -108,6 +109,11 @@ namespace Character_design
         {
             get { return combat_ability_choose_warning; }
             set { combat_ability_choose_warning = value; OnPropertyChanged("Combat_ability_choose_warning"); }
+        }
+        public string Combat_ability_choose_advice
+        {
+            get { return combat_ability_choose_advice; }
+            set { combat_ability_choose_advice = value; OnPropertyChanged("Combat_ability_choose_advice"); }
         }
 
 
@@ -276,8 +282,29 @@ namespace Character_design
             else { Combat_ability_choose_warning = ""; }
             return result;
         }
+        private void ShowSomeAdvice()
+        {
+            Combat_ability_choose_advice = "";
+
+            if (Selected_combat_sequence.Base_ability_lvl != null)
+            {
+                if ((Selected_combat_ability == Selected_combat_sequence.Adept_ability_lvl) && (Selected_combat_sequence.Base_ability_lvl.Is_chosen == false))
+                {
+                    Combat_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_combat_sequence.Base_ability_lvl.Name}";
+                }
+            }
+
+            if (Selected_combat_sequence.Adept_ability_lvl != null)
+            {
+                if ((Selected_combat_ability == Selected_combat_sequence.Master_ability_lvl) && (Selected_combat_sequence.Adept_ability_lvl.Is_chosen == false))
+                {
+                    Combat_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_combat_sequence.Adept_ability_lvl.Name}";
+                }
+            }
+        }
         private void Refresh_fields()
         {
+            ShowSomeAdvice();
             OnPropertyChanged("Selected_combat_sequence_title");
             OnPropertyChanged("Combat_ability_general_description");
             OnPropertyChanged("Selected_combat_ability_cost");
