@@ -23,7 +23,8 @@ namespace Character_design
         private Color Chosen_color,
                       Unchosen_color;
 
-        private string force_ability_choose_warning;
+        private string force_ability_choose_warning,
+                       force_ability_choose_advice;
 
 
 
@@ -111,6 +112,11 @@ namespace Character_design
             get { return force_ability_choose_warning; }
             set { force_ability_choose_warning = value; OnPropertyChanged("Force_ability_choose_warning"); }
         }
+        public string Force_ability_choose_advice
+        {
+            get { return force_ability_choose_advice; }
+            set { force_ability_choose_advice = value; OnPropertyChanged("Force_ability_choose_advice"); }
+        }
 
 
 
@@ -165,6 +171,7 @@ namespace Character_design
                 _Show_master_ability();
             }
 
+            Refresh_fields();
             Set_colors_for_chosen_item(Button_borders, Base_border, Chosen_color, Unchosen_color);
         }
 
@@ -279,8 +286,29 @@ namespace Character_design
             else { Force_ability_choose_warning = ""; }
             return result;
         }
+        private void ShowSomeAdvice()
+        {
+            Force_ability_choose_advice = "";
+
+            if (Selected_force_sequence.Base_ability_lvl != null)
+            {
+                if ((Selected_force_ability == Selected_force_sequence.Adept_ability_lvl) && (Selected_force_sequence.Base_ability_lvl.Is_chosen == false))
+                {
+                    Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Base_ability_lvl.Name}";
+                }
+            }
+
+            if (Selected_force_sequence.Adept_ability_lvl != null)
+            {
+                if ((Selected_force_ability == Selected_force_sequence.Master_ability_lvl) && (Selected_force_sequence.Adept_ability_lvl.Is_chosen == false))
+                {
+                    Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Adept_ability_lvl.Name}";
+                }
+            }
+        }
         private void Refresh_fields()
         {
+            ShowSomeAdvice();
             OnPropertyChanged("Selected_force_sequence_title");
             OnPropertyChanged("Force_ability_general_description");
             OnPropertyChanged("Selected_force_ability_cost");

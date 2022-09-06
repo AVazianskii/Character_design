@@ -257,13 +257,13 @@
                         </Grid>
                     </ScrollViewer>
                 </Canvas>
-                <Canvas Height="133" 
+                <Canvas Height="180" 
                         Canvas.Left="770" 
-                        Canvas.Top="584" 
+                        Canvas.Top="534" 
                         Width="349">
                     <Button Height="57" 
                             Canvas.Left="10" 
-                            Canvas.Top="66" 
+                            Canvas.Top="116" 
                             Width="150" 
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center"
@@ -272,7 +272,7 @@
                             CommandParameter="{Binding Selected_force_ability}"/>
                     <Button Height="57" 
                             Canvas.Right="10" 
-                            Canvas.Top="66" 
+                            Canvas.Top="116" 
                             Width="150" 
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center"
@@ -287,6 +287,14 @@
                                FontSize="14"
                                Foreground="Red"
                                Text="{Binding Force_ability_choose_warning}"/>
+                    <TextBlock Canvas.Left="10" 
+                               Canvas.Top="60" 
+                               Width="320" 
+                               Height="50"
+                               TextWrapping="Wrap" 
+                               FontSize="14"
+                               Foreground="Black"
+                               Text="{Binding Force_ability_choose_advice}"/>
                 </Canvas>
             </Canvas>
         </Border>
