@@ -290,20 +290,14 @@ namespace Character_design
         {
             Force_ability_choose_advice = "";
 
-            if (Selected_force_sequence.Base_ability_lvl != null)
+            if ((Selected_force_ability == Selected_force_sequence.Adept_ability_lvl) && (Selected_force_ability.Is_enable == false))
             {
-                if ((Selected_force_ability == Selected_force_sequence.Adept_ability_lvl) && (Selected_force_sequence.Base_ability_lvl.Is_chosen == false))
-                {
-                    Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Base_ability_lvl.Name}";
-                }
+                Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Enable_condition_adept.Name}";
             }
 
-            if (Selected_force_sequence.Adept_ability_lvl != null)
+            if ((Selected_force_ability == Selected_force_sequence.Master_ability_lvl) && (Selected_force_ability.Is_enable == false))
             {
-                if ((Selected_force_ability == Selected_force_sequence.Master_ability_lvl) && (Selected_force_sequence.Adept_ability_lvl.Is_chosen == false))
-                {
-                    Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Adept_ability_lvl.Name}";
-                }
+                Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Enable_condition_master.Name}";
             }
         }
         private void CheckAbilityCondition()
