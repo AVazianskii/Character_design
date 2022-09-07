@@ -46,7 +46,7 @@ namespace Character_design
         private void _Exit()
         {
             
-            if(MessageBox.Show("Вы действительно хотите выйти?",
+            if(MessageBox.Show("Вы действительно хотите выйти из приложения?",
                                "Выход",
                                MessageBoxButton.YesNo,
                                MessageBoxImage.Question) == MessageBoxResult.Yes)

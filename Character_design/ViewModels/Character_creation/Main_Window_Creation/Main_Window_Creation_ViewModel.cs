@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media;
+using System.Windows;
 
 namespace Character_design
 {
@@ -230,15 +231,29 @@ namespace Character_design
         }
         private void Return_to_main_menu(Character character)
         {
+            bool flag = false;
             if (character.Saved_state != true)
             {
                 // Предупреждение, что выход без сохранения актуального состояния персонажа
+                if (MessageBox.Show("Изменения не сохранены! Вы действительно хотите выйти?",
+                                    "Выход",
+                                    MessageBoxButton.YesNo,
+                                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    flag = true;
+                }
+            }
+            else
+            {
+                flag = true;
             }
 
-            // Вызов метода возврата к главному меню
-            Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation();
-
-            Character.GetInstance().Delete_character();
+            if (flag)
+            {
+                Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation();
+                Character_info_ViewModel.GetInstance().Clear_page_fields();
+                Character.GetInstance().Delete_character();
+            }
         }
     }
 }
