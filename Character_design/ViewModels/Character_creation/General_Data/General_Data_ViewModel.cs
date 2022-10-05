@@ -14,6 +14,7 @@ namespace Character_design
         private BaseViewModel Character_features;
         private BaseViewModel Character_equipment;
         private BaseViewModel Character_companion;
+        private BaseViewModel Nothing_chosen;
         private SolidColorBrush character_info_button_border;
         private SolidColorBrush character_skills_button_border;
         private SolidColorBrush character_forms_button_border;
@@ -88,6 +89,7 @@ namespace Character_design
             Character_features  = Character_features_ViewModel.GetInstance();
             Character_equipment = Character_equipment_ViewModel.GetInstance();
             Character_companion = Character_companion_ViewModel.GetInstance();
+            Nothing_chosen      = Nothing_chosen_ViewModel.GetInstance();
 
             currentViewModel    = Character_info;
 
@@ -129,13 +131,27 @@ namespace Character_design
         {
             Set_colors_for_chosen_item(SolidBrushes, Character_skills_button_border, Chosen_border_color, Unchoosen_border_color);
 
-            CurrentViewModel = Character_skills;
+            if (Character.GetInstance().Skills_with_points.Count == 0 && Character.GetInstance().Force_skills_with_points.Count == 0)
+            {
+                CurrentViewModel = Nothing_chosen;
+            }
+            else
+            {
+                CurrentViewModel = Character_skills;
+            }
         }
         private void _Open_character_forms()
         {
             Set_colors_for_chosen_item(SolidBrushes, Character_forms_button_border, Chosen_border_color, Unchoosen_border_color);
 
-            CurrentViewModel = Character_forms;
+            if (Character.GetInstance().Combat_abilities_with_points.Count == 0 && Character.GetInstance().Force_abilities_with_points.Count == 0)
+            {
+                CurrentViewModel = Nothing_chosen;
+            }
+            else
+            {
+                CurrentViewModel = Character_forms;
+            }
         }
         private void _Open_character_features()
         {
