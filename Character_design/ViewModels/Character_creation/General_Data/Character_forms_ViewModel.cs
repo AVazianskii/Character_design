@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Media;
 
 namespace Character_design
 {
@@ -10,9 +11,29 @@ namespace Character_design
 
 
 
-        public string Img_path
+        private SolidColorBrush forms_border,
+                        force_forms_border;
+
+        private List<SolidColorBrush> Button_borders;
+
+        private Color Chosen_color,
+                      Unchosen_color;
+
+        private int button_opacity;
+
+
+
+        public Command Show_forms { get; private set; }
+        public Command Show_force_forms { get; private set; }
+        public SolidColorBrush Forms_border
         {
-            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Content_soon.jpg"; }
+            get { return forms_border; }
+            set { forms_border = value; OnPropertyChanged("Forms_border"); }
+        }
+        public SolidColorBrush Force_forms_border
+        {
+            get { return force_forms_border; }
+            set { force_forms_border = value; OnPropertyChanged("Force_forms_border"); }
         }
 
 
@@ -29,7 +50,35 @@ namespace Character_design
 
         private Character_forms_ViewModel()
         {
+            Forms_border = new SolidColorBrush();
+            Force_forms_border = new SolidColorBrush();
 
+            Button_borders = new List<SolidColorBrush>();
+            Button_borders.Add(Forms_border);
+            Button_borders.Add(Force_forms_border);
+
+            Show_forms       = new Command(o => _Show_forms());
+            Show_force_forms = new Command(o => _Show_force_forms());
+
+            Chosen_color = Colors.Wheat;
+            Unchosen_color = Colors.Black;
+
+            Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
+        }
+
+
+
+        private void _Show_forms()
+        {
+            //Skill_group = Usual_skills_group;
+
+            Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
+        }
+        private void _Show_force_forms()
+        {
+            //Skill_group = Force_skills_group;
+
+            Set_colors_for_chosen_item(Button_borders, Force_forms_border, Chosen_color, Unchosen_color);
         }
     }
 }

@@ -7,6 +7,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="770" d:DesignWidth="1130">
     <Grid Background="White">
-        <Image Source="{Binding Img_path}"/>
+        <Grid Background="Wheat">
+            <Canvas HorizontalAlignment="Left" 
+                Height="70" 
+                VerticalAlignment="Top" 
+                Width="405"
+                Background="Black">
+                <Button Background="Black"
+                    Canvas.Top="15"
+                    Canvas.Left="0"
+                    Height="55"
+                    Width="175"
+                    BorderThickness="3"
+                    BorderBrush="{Binding Forms_border}"
+                    Command="{Binding Show_forms}">
+                    <Button.Content>
+                        <TextBlock Text="Формы обычного боя"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               Foreground="Wheat"
+                               FontSize="18"/>
+                    </Button.Content>
+                </Button>
+                <Button Background="Black"
+                    Canvas.Top="15"
+                    Canvas.Left="175"
+                    Height="55"
+                    Width="175"
+                    BorderThickness="3"
+                    BorderBrush="{Binding Force_forms_border}"
+                    Command="{Binding Show_force_forms}"
+                    Opacity="{Binding Button_opacity}"
+                    IsEnabled="{Binding Character_forceuser}">
+                    <Button.Content>
+                        <TextBlock Text="Формы фехтования световым оружием"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               Foreground="Wheat"
+                               FontSize="18"/>
+                    </Button.Content>
+                </Button>
+            </Canvas>
+        </Grid>
     </Grid>
 </UserControl>
