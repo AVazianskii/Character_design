@@ -223,7 +223,7 @@ namespace Character_design
             All_abilities_template ability = o as All_abilities_template;
             if (ability != null)
             {
-                Character.GetInstance().Delete_combat_ability(ability);
+                Character.GetInstance().Delete_combat_ability(ability, Selected_combat_sequence);
                 Selected_combat_sequence.Check_enable_state();
                 Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
@@ -255,7 +255,7 @@ namespace Character_design
             All_abilities_template ability = o as All_abilities_template;
             if (ability != null)
             {
-                Character.GetInstance().Learn_combat_ability(ability);
+                Character.GetInstance().Learn_combat_ability(ability, Selected_combat_sequence);
                 Selected_combat_sequence.Check_enable_state();
                 Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Exp_points_left");

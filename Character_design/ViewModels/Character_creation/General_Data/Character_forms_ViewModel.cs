@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media;
+using SW_Character_creation;
 
 namespace Character_design
 {
@@ -10,9 +11,11 @@ namespace Character_design
         private static Character_forms_ViewModel _instance;
 
 
-
+        private List<Abilities_sequence_template> forms_group;
+        private Abilities_sequence_template selected_form;
+        private All_abilities_template current_form;
         private SolidColorBrush forms_border,
-                        force_forms_border;
+                                force_forms_border;
 
         private List<SolidColorBrush> Button_borders;
 
@@ -34,6 +37,51 @@ namespace Character_design
         {
             get { return force_forms_border; }
             set { force_forms_border = value; OnPropertyChanged("Force_forms_border"); }
+        }
+        public List<Abilities_sequence_template> Forms_group
+        {
+            get { return forms_group; }
+            set { forms_group = value; OnPropertyChanged("Forms_group"); }
+        }
+        public Abilities_sequence_template Selected_form
+        {
+            get { return selected_form; }
+            set { selected_form = value; OnPropertyChanged("Selected_form"); }
+        }
+        public All_abilities_template Current_form
+        {
+            get { return current_form; }
+            set { current_form = value; OnPropertyChanged("Current_form"); }
+        }
+        public List<Abilities_sequence_template> Usual_forms_group
+        {
+            get { return Character.GetInstance().Combat_sequences_with_points; }
+        }
+        public List<Abilities_sequence_template> Force_forms_group
+        {
+            get { return Character.GetInstance().Force_sequences_with_points; }
+        }
+        public int Button_opacity
+        {
+            get { return button_opacity; }
+            set { button_opacity = value; OnPropertyChanged("Button_opacity"); }
+        }
+        public bool Character_forceuser
+        {
+            get
+            {
+                Forms_group = Usual_forms_group;
+                Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
+                if (Character.GetInstance().Forceuser)
+                {
+                    Button_opacity = 100;
+                }
+                else
+                {
+                    Button_opacity = 0;
+                }
+                return Character.GetInstance().Forceuser;
+            }
         }
 
 
@@ -70,13 +118,13 @@ namespace Character_design
 
         private void _Show_forms()
         {
-            //Skill_group = Usual_skills_group;
+            Forms_group = Usual_forms_group;
 
             Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
         }
         private void _Show_force_forms()
         {
-            //Skill_group = Force_skills_group;
+            Forms_group = Force_forms_group;
 
             Set_colors_for_chosen_item(Button_borders, Force_forms_border, Chosen_color, Unchosen_color);
         }
