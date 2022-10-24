@@ -227,7 +227,7 @@ namespace Character_design
             All_abilities_template ability = o as All_abilities_template;
             if (ability != null)
             {
-                Character.GetInstance().Delete_force_ability(ability);
+                Character.GetInstance().Delete_force_ability(ability, Selected_force_sequence);
                 CheckAbilityCondition();
                 
                 OnPropertyChanged("Exp_points_left");
@@ -259,7 +259,7 @@ namespace Character_design
             All_abilities_template ability = o as All_abilities_template;
             if (ability != null)
             {
-                Character.GetInstance().Learn_force_ability(ability);
+                Character.GetInstance().Learn_force_ability(ability, Selected_force_sequence);
                 CheckAbilityCondition();
                 
                 OnPropertyChanged("Exp_points_left");
