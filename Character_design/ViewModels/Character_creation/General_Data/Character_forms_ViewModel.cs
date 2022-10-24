@@ -57,6 +57,12 @@ namespace Character_design
                     OnPropertyChanged("Selected_sequence_img_path");
                     OnPropertyChanged("Selected_sequence_description");
                     OnPropertyChanged("Selected_sequence_level");
+                    OnPropertyChanged("Base_exist");
+                    OnPropertyChanged("Adept_exist");
+                    OnPropertyChanged("Master_exist");
+                    OnPropertyChanged("Base_desc");
+                    OnPropertyChanged("Adept_desc");
+                    OnPropertyChanged("Master_desc");
                 }
             }
         }
@@ -118,6 +124,72 @@ namespace Character_design
         public string Selected_sequence_level
         {
             get { return Selected_form.Level; }
+        }
+        public int Base_exist
+        {
+            get 
+            {
+                if (Selected_form.Base_ability_lvl != null)
+                {
+                    return 100 * Convert.ToInt32(Selected_form.Base_ability_lvl.Is_chosen);
+                }
+                else return 0;
+            }
+        }
+        public int Adept_exist
+        {
+            get
+            {
+                if (Selected_form.Adept_ability_lvl != null)
+                {
+                    return 100 * Convert.ToInt32(Selected_form.Adept_ability_lvl.Is_chosen);
+                }
+                else return 0;
+            }
+        }
+        public int Master_exist
+        {
+            get 
+            {
+                if (Selected_form.Master_ability_lvl != null)
+                {
+                    return 100 * Convert.ToInt32(Selected_form.Master_ability_lvl.Is_chosen);
+                }
+                else return 0;
+            }
+        }
+        public string Base_desc
+        {
+            get
+            {
+                if (Selected_form.Base_ability_lvl != null)
+                {
+                    return Selected_form.Base_ability_lvl.Description;
+                }
+                else return "";
+            }
+        }
+        public string Adept_desc
+        {
+            get
+            {
+                if (Selected_form.Adept_ability_lvl != null)
+                {
+                    return Selected_form.Adept_ability_lvl.Description;
+                }
+                else return "";
+            }
+        }
+        public string Master_desc
+        {
+            get
+            {
+                if (Selected_form.Master_ability_lvl != null)
+                {
+                    return Selected_form.Master_ability_lvl.Description;
+                }
+                else return "";
+            }
         }
 
 

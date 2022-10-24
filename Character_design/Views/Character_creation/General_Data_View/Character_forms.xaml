@@ -124,13 +124,13 @@
                 <Image Canvas.Top="70"
                    Canvas.Left="20"
                    Width="325"
-                   Height="350"
+                   Height="300"
                    Source="{Binding Selected_sequence_img_path}"/>
 
                 <ScrollViewer Canvas.Top="70"
                           Canvas.Left="350"
                           Width="350"
-                          Height="350"
+                          Height="300"
                           CanContentScroll="True"
                           VerticalScrollBarVisibility="Auto">
                     <Grid Width="640">
@@ -149,10 +149,10 @@
                                    Text="{Binding Selected_sequence_description}"/>
                     </Grid>
                 </ScrollViewer>
-                <Grid Canvas.Top="450"
-                      Canvas.Left="200">
+                <Grid Canvas.Top="400"
+                      Canvas.Left="160">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -164,15 +164,111 @@
                                FontSize="14"
                                TextAlignment="Justify"
                                TextWrapping="Wrap"
-                               Text="Урвоень владения:" />
+                               Text="Текущий уровень владения:" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Margin="3"
+                               FontSize="18"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="{Binding Selected_sequence_level}" />
+                </Grid>
+                <Grid Canvas.Top="450"
+                      Canvas.Left="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="550"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Margin="5"
+                               FontSize="14"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="Уровень владения:" />
                     <TextBlock Grid.Row="0"
                                Grid.Column="1"
                                Margin="5"
                                FontSize="14"
                                TextAlignment="Center"
                                TextWrapping="Wrap"
-                               Text="{Binding Selected_sequence_level}" />
+                               Text="Описание полученных умений:" />
                 </Grid>
+                <ScrollViewer Canvas.Top="490"
+                          Canvas.Left="30"
+                          Width="670"
+                          Height="260"
+                          CanContentScroll="True"
+                          VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="550"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="250"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Margin="5"
+                               FontSize="16"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="Ученик" 
+                               Opacity="{Binding Base_exist}"/>
+                        <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Margin="5"
+                               FontSize="16"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="Адепт" 
+                               Opacity="{Binding Adept_exist}"/>
+                        <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Margin="5"
+                               FontSize="16"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="Мастер" 
+                               Opacity="{Binding Master_exist}"/>
+                        <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Margin="5"
+                               FontSize="14"
+                               TextAlignment="Justify"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="{Binding Base_desc}" 
+                               Opacity="{Binding Base_exist}"/>
+                        <TextBlock Grid.Row="1"
+                               Grid.Column="1"
+                               Margin="5"
+                               FontSize="14"
+                               TextAlignment="Justify"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="{Binding Adept_desc}" 
+                               Opacity="{Binding Adept_exist}"/>
+                        <TextBlock Grid.Row="2"
+                               Grid.Column="1"
+                               Margin="5"
+                               FontSize="14"
+                               TextAlignment="Justify"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="{Binding Master_desc}" 
+                               Opacity="{Binding Master_exist}"/>
+                    </Grid>
+                </ScrollViewer>
             </Canvas>
         </Grid>
     </Grid>
