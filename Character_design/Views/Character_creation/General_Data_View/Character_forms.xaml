@@ -17,7 +17,7 @@
                     Canvas.Top="15"
                     Canvas.Left="0"
                     Height="55"
-                    Width="175"
+                    Width="200"
                     BorderThickness="3"
                     BorderBrush="{Binding Forms_border}"
                     Command="{Binding Show_forms}">
@@ -31,9 +31,9 @@
                 </Button>
                 <Button Background="Black"
                     Canvas.Top="15"
-                    Canvas.Left="175"
+                    Canvas.Left="200"
                     Height="55"
-                    Width="175"
+                    Width="200"
                     BorderThickness="3"
                     BorderBrush="{Binding Force_forms_border}"
                     Command="{Binding Show_force_forms}"
@@ -113,6 +113,67 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <Canvas Margin="405,0,0,0">
+                <TextBlock Canvas.Top="10"
+                       Canvas.Left="40"
+                       Height="50"
+                       Width="650"
+                       FontSize="20"
+                       TextAlignment="Center"
+                       Text="{Binding Selected_sequence_name}"/>
+                <Image Canvas.Top="70"
+                   Canvas.Left="20"
+                   Width="325"
+                   Height="350"
+                   Source="{Binding Selected_sequence_img_path}"/>
+
+                <ScrollViewer Canvas.Top="70"
+                          Canvas.Left="350"
+                          Width="350"
+                          Height="350"
+                          CanContentScroll="True"
+                          VerticalScrollBarVisibility="Auto">
+                    <Grid Width="640">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="315"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Margin="10,0,0,0"
+                                   FontSize="16"
+                                   TextAlignment="Justify"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Selected_sequence_description}"/>
+                    </Grid>
+                </ScrollViewer>
+                <Grid Canvas.Top="450"
+                      Canvas.Left="200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Margin="5"
+                               FontSize="14"
+                               TextAlignment="Justify"
+                               TextWrapping="Wrap"
+                               Text="Урвоень владения:" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Margin="5"
+                               FontSize="14"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="{Binding Selected_sequence_level}" />
+                </Grid>
+            </Canvas>
         </Grid>
     </Grid>
 </UserControl>

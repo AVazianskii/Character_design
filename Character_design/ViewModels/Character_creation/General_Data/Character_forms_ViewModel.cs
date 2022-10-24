@@ -46,7 +46,19 @@ namespace Character_design
         public Abilities_sequence_template Selected_form
         {
             get { return selected_form; }
-            set { selected_form = value; OnPropertyChanged("Selected_form"); }
+            set 
+            { 
+                selected_form = value; 
+                OnPropertyChanged("Selected_form");
+                if (Selected_form != null)
+                {
+                    
+                    OnPropertyChanged("Selected_sequence_name");
+                    OnPropertyChanged("Selected_sequence_img_path");
+                    OnPropertyChanged("Selected_sequence_description");
+                    OnPropertyChanged("Selected_sequence_level");
+                }
+            }
         }
         public All_abilities_template Current_form
         {
@@ -83,6 +95,30 @@ namespace Character_design
                 return Character.GetInstance().Forceuser;
             }
         }
+        public string Selected_sequence_name
+        {
+            get { return Selected_form.Name; }
+        }
+        public string Selected_sequence_img_path
+        {
+            //TODO: дополнить класс с формами полем "Путь к изображению"
+            get { return Selected_form.Icon_path; }
+        }
+        public string Selected_sequence_description
+        {
+            get 
+            {
+                if (Selected_form.Base_ability_lvl != null)
+                {
+                    return Selected_form.Base_ability_lvl.General_description;
+                }
+                else return "";
+            }
+        }
+        public string Selected_sequence_level
+        {
+            get { return Selected_form.Level; }
+        }
 
 
 
@@ -111,6 +147,10 @@ namespace Character_design
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;
 
+            selected_form = new Abilities_sequence_template();
+
+            //Forms_group = Usual_forms_group;
+            
             Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
         }
 
@@ -119,13 +159,13 @@ namespace Character_design
         private void _Show_forms()
         {
             Forms_group = Usual_forms_group;
-
+            
             Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
         }
         private void _Show_force_forms()
         {
             Forms_group = Force_forms_group;
-
+            
             Set_colors_for_chosen_item(Button_borders, Force_forms_border, Chosen_color, Unchosen_color);
         }
     }
