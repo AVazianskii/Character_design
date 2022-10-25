@@ -103,12 +103,25 @@ namespace Character_design
         }
         public string Selected_sequence_name
         {
-            get { return Selected_form.Name; }
+            get 
+            {
+                if (Selected_form != null)
+                {
+                    return Selected_form.Name;
+                }
+                return "";
+            }
         }
         public string Selected_sequence_img_path
         {
-            //TODO: дополнить класс с формами полем "Путь к изображению"
-            get { return Selected_form.Icon_path; }
+            get 
+            {
+                if (Selected_form != null)
+                {
+                    return Selected_form.Icon_path;
+                }
+                return "";
+            }
         }
         public string Selected_sequence_description
         {
@@ -123,7 +136,14 @@ namespace Character_design
         }
         public string Selected_sequence_level
         {
-            get { return Selected_form.Level; }
+            get 
+            {
+                if (Selected_form != null)
+                {
+                    return Selected_form.Level;
+                }
+                return "";
+            }
         }
         public int Base_exist
         {
