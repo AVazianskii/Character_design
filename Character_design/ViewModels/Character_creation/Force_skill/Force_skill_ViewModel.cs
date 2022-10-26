@@ -130,6 +130,10 @@ namespace Character_design
         {
             get { return Selected_force_skill.Skill_base_1; }
         }
+        public int Num_skills_left
+        {
+            get { return Character.GetInstance().Limit_force_skills_left; }
+        }
 
 
 
@@ -218,6 +222,7 @@ namespace Character_design
                         Character.GetInstance().Increase_exp_sold_for_force_skills(Character_skill);
                         Character.GetInstance().Update_character_force_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
+                        OnPropertyChanged("Num_skills_left");
                         OnPropertyChanged("Selected_force_skill_counter");
 
                         Character.GetInstance().Update_combat_parameters_due_ForceSkill(Character_skill, 1);
@@ -241,6 +246,7 @@ namespace Character_design
                         Character.GetInstance().Decrease_exp_sold_for_force_skills(Character_skill);
                         Character.GetInstance().Update_character_force_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
+                        OnPropertyChanged("Num_skills_left");
                         OnPropertyChanged("Selected_force_skill_counter");
 
                         Character.GetInstance().Update_combat_parameters_due_ForceSkill(Character_skill, -1);
@@ -251,25 +257,40 @@ namespace Character_design
         }
         private bool Increase_is_possible(Force_skill_class skill, int limit, int exp_points_left)
         {
-            bool result = false;
-            if (Character.GetInstance().Character_race != Race__manager.GetInstance().Get_Race_list()[0])
+            
+            if (Character.GetInstance().Character_race == Race__manager.GetInstance().Get_Race_list()[0])
             {
-                if (Character.GetInstance().Age_status != Age_status_manager.GetInstance().Get_Unknown_age_status())
-                {
-                    if (((Character.GetInstance().Is_jedi && skill.Type == 3) || (Character.GetInstance().Is_sith && skill.Type == 2)) != true)
-                    {
-                        if (exp_points_left >= skill.Cost)
-                        {
-                            if (skill.Score < limit)
-                            {
-                                result = true;
-                                Force_skill_choose_warning = "";
-                            } else { Force_skill_choose_warning = "Достигнут лимит развития навыка!"; }
-                        } else { Force_skill_choose_warning = "Недостаточно опыта для развития навыка!"; }
-                    } else { Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!"; }
-                } else { Force_skill_choose_warning = "Возрастной стаус персонажа не выбран!"; }
-            } else { Force_skill_choose_warning = "Раса персонажа не выбрана!"; }
-            return result;
+                Force_skill_choose_warning = "Раса персонажа не выбрана!";
+                return false;
+            }
+            if (Character.GetInstance().Age_status == Age_status_manager.GetInstance().Get_Unknown_age_status())
+            {
+                Force_skill_choose_warning = "Возрастной стаус персонажа не выбран!";
+                return false;
+            }
+            if (((Character.GetInstance().Is_jedi && skill.Type == 3) || (Character.GetInstance().Is_sith && skill.Type == 2)) == true)
+            {
+                Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!";
+                return false;
+            }
+            if (exp_points_left < skill.Cost)
+            {
+                Force_skill_choose_warning = "Недостаточно опыта для развития навыка!";
+                return false;
+            }
+            if (skill.Score > limit)
+            {
+                Force_skill_choose_warning = "Достигнут лимит развития навыка!";
+                return false;
+            }
+            if (Character.GetInstance().Limit_force_skills_left == 0)
+            {
+                Force_skill_choose_warning = "Достигнут лимит по количеству изучаемых навыков!";
+                return false;
+            }
+
+            Force_skill_choose_warning = "";
+            return true;
         }
     }
 }
