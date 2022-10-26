@@ -56,7 +56,8 @@
                  Foreground="Wheat"
                  BorderThickness="0"
                  ItemsSource="{Binding Skill_group}"
-                 SelectedItem="{Binding Selected_skill}">
+                 SelectedItem="{Binding Selected_skill}"
+                 SelectedValue="{Binding Selected_value}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="370">

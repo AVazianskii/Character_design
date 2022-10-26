@@ -13,6 +13,7 @@ namespace Character_design
 
         private List<All_skill_template> skill_group;
         private All_skill_template selected_skill;
+        private All_skill_template selected_value;
 
         private SolidColorBrush skills_border,
                                 force_skills_border;
@@ -44,7 +45,7 @@ namespace Character_design
             { 
                 selected_skill = value;
                 OnPropertyChanged("Selected_skill");
-                if (Selected_skill != null)
+                if (selected_skill != null)
                 {
                     OnPropertyChanged("Skill_base");
                     OnPropertyChanged("Selected_skill_name");
@@ -54,6 +55,11 @@ namespace Character_design
                 }
                 
             }
+        }
+        public All_skill_template Selected_value
+        {
+            get { return selected_value; }
+            set { selected_value = value; OnPropertyChanged("Selected_value"); }
         }
         public int Button_opacity
         {
@@ -126,15 +132,36 @@ namespace Character_design
         }
         public string Selected_skill_name
         {
-            get { return Selected_skill.Name; }
+            get 
+            {   
+                if (Selected_value != null)
+                {
+                    return Selected_skill.Name;
+                }
+                return "";
+            }
         }
         public string Selected_skill_img_path
         {
-            get { return Selected_skill.Img_path; }
+            get 
+            {
+                if (Selected_value != null)
+                {
+                    return Selected_skill.Img_path;
+                }
+                return "";
+            }
         }
         public string Skill_description
         {
-            get { return Selected_skill.Description; }
+            get 
+            {
+                if (Selected_value != null)
+                {
+                    return Selected_skill.Description;
+                }
+                return "";
+            }
         }
         public List<All_skill_template> Usual_skills_group
         {
@@ -168,6 +195,8 @@ namespace Character_design
         {
             skill_group = new List<All_skill_template>();
             Skill_group = Usual_skills_group;
+            selected_skill = new All_skill_template();
+            selected_value = new All_skill_template();
 
             Skills_border       = new SolidColorBrush();
             Force_skills_border = new SolidColorBrush();
