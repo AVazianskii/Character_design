@@ -444,7 +444,7 @@ namespace Character_design
                 Skill_choose_warning = "Достигнут лимит развития навыка!";
                 return false;
             }
-            if (Character.GetInstance().Limit_skills_left == 0)
+            if (Character.GetInstance().Limit_skills_left == 0 && Character.GetInstance().Skills_with_points.Contains(skill) == false)
             {
                 Skill_choose_warning = "Достигнут лимит по количеству изучаемых навыков!";
                 return false;

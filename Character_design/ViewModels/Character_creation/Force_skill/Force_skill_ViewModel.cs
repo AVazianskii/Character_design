@@ -283,7 +283,7 @@ namespace Character_design
                 Force_skill_choose_warning = "Достигнут лимит развития навыка!";
                 return false;
             }
-            if (Character.GetInstance().Limit_force_skills_left == 0)
+            if (Character.GetInstance().Limit_force_skills_left == 0 && Character.GetInstance().Force_skills_with_points.Contains(skill) == false)
             {
                 Force_skill_choose_warning = "Достигнут лимит по количеству изучаемых навыков!";
                 return false;
