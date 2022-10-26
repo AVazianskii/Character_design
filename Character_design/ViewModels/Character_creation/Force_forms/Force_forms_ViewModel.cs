@@ -117,6 +117,10 @@ namespace Character_design
             get { return force_ability_choose_advice; }
             set { force_ability_choose_advice = value; OnPropertyChanged("Force_ability_choose_advice"); }
         }
+        public int Num_skills_left
+        {
+            get { return Character.GetInstance().Limit_all_forms_left; }
+        }
 
 
 
@@ -143,7 +147,7 @@ namespace Character_design
             Delete_force_ability = new Character_changing_command(o => _Delete_force_ability(Selected_force_ability),
                                                                   o => _Enable_delete_force_ability());
             Learn_force_ability = new Character_changing_command(o => _Learn_force_ability(Selected_force_ability),
-                                                                 o => _Enable_learn_force_ability());
+                                                                 o => _Enable_learn_force_ability(Selected_force_sequence));
 
             Base_border = new SolidColorBrush();
             Adept_border = new SolidColorBrush();
@@ -231,6 +235,7 @@ namespace Character_design
                 CheckAbilityCondition();
                 
                 OnPropertyChanged("Exp_points_left");
+                OnPropertyChanged("Num_skills_left");
             }
         }
         private bool _Enable_delete_force_ability()
@@ -263,28 +268,34 @@ namespace Character_design
                 CheckAbilityCondition();
                 
                 OnPropertyChanged("Exp_points_left");
+                OnPropertyChanged("Num_skills_left");
             }
         }
-        private bool _Enable_learn_force_ability()
+        private bool _Enable_learn_force_ability(Abilities_sequence_template sequence)
         {
-            bool result = true;
+           
             
             if (Character.GetInstance().Experience_left < Selected_force_ability.Cost)
             {
                 Force_ability_choose_warning = "Недостаточно очков опыта для изучения!";
-                result = false;
+                return false;
             }
-            else if (Selected_force_ability.Is_enable == false)
+            if (Selected_force_ability.Is_enable == false)
             {
                 Force_ability_choose_warning = "Изучение данного уровня стиля недоступно!";
-                result = false;
+                return false;
             }
-            else if (Selected_force_ability.Is_chosen)
+            if (Selected_force_ability.Is_chosen)
             {
-                result = false;
+                return false;
             }
-            else { Force_ability_choose_warning = ""; }
-            return result;
+            if(Character.GetInstance().Limit_all_forms_left == 0 && Character.GetInstance().Force_sequences_with_points.Contains(sequence) == false)
+            {
+                Force_ability_choose_warning = "Достигнут лимит по количеству изучаемых стилей!";
+                return false;
+            }
+            Force_ability_choose_warning = ""; 
+            return true;
         }
         private void ShowSomeAdvice()
         {

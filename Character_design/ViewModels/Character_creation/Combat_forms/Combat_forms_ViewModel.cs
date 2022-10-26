@@ -284,7 +284,7 @@ namespace Character_design
             {
                 return false;
             }
-            if (Character.GetInstance().Limit_force_skills_left == 0 && Character.GetInstance().Combat_sequences_with_points.Contains(sequence) == false)
+            if (Character.GetInstance().Limit_all_forms_left == 0 && Character.GetInstance().Combat_sequences_with_points.Contains(sequence) == false)
             {
                 Combat_ability_choose_warning = "Достигнут лимит по количеству изучаемых стилей!";
                 return false;
