@@ -257,6 +257,10 @@ namespace Character_design
         {
             get { return Selected_skill.Img_path; }
         }
+        public int Num_skills_left
+        {
+            get { return Character.GetInstance().Limit_skills_left; }
+        }
 
 
 
@@ -368,6 +372,7 @@ namespace Character_design
                         Character.GetInstance().Spend_exp_points(Selected_skill_cost);
                         Character.GetInstance().Update_character_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
+                        OnPropertyChanged("Num_skills_left");
                         OnPropertyChanged("Selected_skill_counter");
 
                         Character.GetInstance().Update_combat_parameters(Character_skill, 1);
@@ -391,6 +396,7 @@ namespace Character_design
                         Character.GetInstance().Refund_exp_points(Selected_skill_cost);
                         Character.GetInstance().Update_character_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
+                        OnPropertyChanged("Num_skills_left");
                         OnPropertyChanged("Selected_skill_counter");
 
                         Character.GetInstance().Update_combat_parameters(Character_skill, -1);
@@ -418,26 +424,33 @@ namespace Character_design
         }
         private bool Increase_is_possible (Skill_Class skill,int cost, int limit, int exp_points_left)
         {
-            bool result = false;
-            if (Character.GetInstance().Character_race != Race__manager.GetInstance().Get_Race_list()[0])
+            if (Character.GetInstance().Character_race == Race__manager.GetInstance().Get_Race_list()[0])
             {
-                if (exp_points_left >= cost)
-                {
-                    if (Character.GetInstance().Age_status != Age_status_manager.GetInstance().Age_Statuses()[0])
-                    {
-                        if (skill.Get_counter() < limit)
-                        {
-                            result = true;
-                            Skill_choose_warning = "";
-                        }
-                        else { Skill_choose_warning = "Достигнут лимит развития навыка!"; }
-                    }
-                    else { Skill_choose_warning = "Возрастной статус персонажа не выбран!"; }
-                }
-                else { Skill_choose_warning = "Недостаточно опыта для развития навыка!"; }
+                Skill_choose_warning = "Раса персонажа не выбрана!";
+                return false;
             }
-            else { Skill_choose_warning = "Раса персонажа не выбрана!"; }
-            return result;
+            if (exp_points_left < cost)
+            {
+                Skill_choose_warning = "Недостаточно опыта для развития навыка!";
+                return false;
+            }
+            if (Character.GetInstance().Age_status == Age_status_manager.GetInstance().Age_Statuses()[0])
+            {
+                Skill_choose_warning = "Возрастной статус персонажа не выбран!";
+                return false;
+            }
+            if (skill.Get_counter() >= limit)
+            {
+                Skill_choose_warning = "Достигнут лимит развития навыка!";
+                return false;
+            }
+            if (Character.GetInstance().Limit_skills_left == 0)
+            {
+                Skill_choose_warning = "Достигнут лимит по количеству изучаемых навыков!";
+                return false;
+            }
+            Skill_choose_warning = "";            
+            return true;
         }
         private string _Skill_base_text(Skill_Class skill)
         {
