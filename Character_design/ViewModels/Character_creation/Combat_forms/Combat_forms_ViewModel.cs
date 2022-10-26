@@ -115,6 +115,10 @@ namespace Character_design
             get { return combat_ability_choose_advice; }
             set { combat_ability_choose_advice = value; OnPropertyChanged("Combat_ability_choose_advice"); }
         }
+        public int Num_skills_left
+        {
+            get { return Character.GetInstance().Limit_all_forms_left; }
+        }
 
 
 
@@ -140,7 +144,7 @@ namespace Character_design
             Delete_combat_ability   = new Character_changing_command(o => _Delete_combat_ability(Selected_combat_ability),
                                                                      o => _Enable_delete_combat_ability());
             Learn_combat_ability    = new Character_changing_command(o => _Learn_combat_ability(Selected_combat_ability),
-                                                                     o => _Enable_learn_combat_ability());
+                                                                     o => _Enable_learn_combat_ability(Selected_combat_sequence));
 
             Base_border     = new SolidColorBrush();
             Adept_border    = new SolidColorBrush();
@@ -227,6 +231,7 @@ namespace Character_design
                 Selected_combat_sequence.Check_enable_state();
                 Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
+                OnPropertyChanged("Num_skills_left");
             }
         }
         private bool _Enable_delete_combat_ability()
@@ -259,28 +264,33 @@ namespace Character_design
                 Selected_combat_sequence.Check_enable_state();
                 Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
+                OnPropertyChanged("Num_skills_left");
             }
         }
-        private bool _Enable_learn_combat_ability()
+        private bool _Enable_learn_combat_ability(Abilities_sequence_template sequence)
         {
-            bool result = true;
             
             if (Character.GetInstance().Experience_left < Selected_combat_ability.Cost)
             {
                 Combat_ability_choose_warning = "Недостаточно очков опыта для изучения!";
-                result = false;
+                return false;
             }
-            else if(Selected_combat_ability.Is_enable == false)
+            if(Selected_combat_ability.Is_enable == false)
             {
                 Combat_ability_choose_warning = "Изучение данного уровня стиля недоступно!";
-                result = false;
+                return false;
             }
-            else if (Selected_combat_ability.Is_chosen)
+            if (Selected_combat_ability.Is_chosen)
             {
-                result = false;
+                return false;
             }
-            else { Combat_ability_choose_warning = ""; }
-            return result;
+            if (Character.GetInstance().Limit_force_skills_left == 0 && Character.GetInstance().Combat_sequences_with_points.Contains(sequence) == false)
+            {
+                Combat_ability_choose_warning = "Достигнут лимит по количеству изучаемых стилей!";
+                return false;
+            }
+            Combat_ability_choose_warning = ""; 
+            return true;
         }
         private void ShowSomeAdvice()
         {
