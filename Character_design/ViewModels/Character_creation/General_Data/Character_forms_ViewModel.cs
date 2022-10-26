@@ -13,6 +13,7 @@ namespace Character_design
 
         private List<Abilities_sequence_template> forms_group;
         private Abilities_sequence_template selected_form;
+        private Abilities_sequence_template selected_value;
         private All_abilities_template current_form;
         private SolidColorBrush forms_border,
                                 force_forms_border;
@@ -50,21 +51,36 @@ namespace Character_design
             { 
                 selected_form = value; 
                 OnPropertyChanged("Selected_form");
-                if (Selected_form != null)
+                if (selected_form != null)
                 {
                     
                     OnPropertyChanged("Selected_sequence_name");
                     OnPropertyChanged("Selected_sequence_img_path");
-                    OnPropertyChanged("Selected_sequence_description");
                     OnPropertyChanged("Selected_sequence_level");
-                    OnPropertyChanged("Base_exist");
-                    OnPropertyChanged("Adept_exist");
-                    OnPropertyChanged("Master_exist");
-                    OnPropertyChanged("Base_desc");
-                    OnPropertyChanged("Adept_desc");
-                    OnPropertyChanged("Master_desc");
+
+                    if (selected_form.Base_ability_lvl != null)
+                    {
+                        OnPropertyChanged("Selected_sequence_description");
+                        OnPropertyChanged("Base_exist");
+                        OnPropertyChanged("Base_desc");
+                    }
+                    if (selected_form.Adept_ability_lvl != null)
+                    {
+                        OnPropertyChanged("Adept_exist");
+                        OnPropertyChanged("Adept_desc");
+                    }
+                    if (selected_form.Master_ability_lvl != null)
+                    {
+                        OnPropertyChanged("Master_exist");
+                        OnPropertyChanged("Master_desc");
+                    }                   
                 }
             }
+        }
+        public Abilities_sequence_template Selected_value
+        {
+            get { return selected_value; }
+            set { selected_value = value; OnPropertyChanged("Selected_value"); }
         }
         public All_abilities_template Current_form
         {
@@ -105,7 +121,7 @@ namespace Character_design
         {
             get 
             {
-                if (Selected_form != null)
+                if (Selected_value != null)
                 {
                     return Selected_form.Name;
                 }
@@ -116,7 +132,7 @@ namespace Character_design
         {
             get 
             {
-                if (Selected_form != null)
+                if (Selected_value != null)
                 {
                     return Selected_form.Icon_path;
                 }
@@ -127,18 +143,29 @@ namespace Character_design
         {
             get 
             {
-                if (Selected_form.Base_ability_lvl != null)
+                if (Selected_value != null)
                 {
-                    return Selected_form.Base_ability_lvl.General_description;
+                    if (Selected_form.Base_ability_lvl != null)
+                    {
+                        return Selected_form.Base_ability_lvl.General_description;
+                    }
+                    if (Selected_form.Adept_ability_lvl != null)
+                    {
+                        return Selected_form.Adept_ability_lvl.General_description;
+                    }
+                    if (Selected_form.Master_ability_lvl != null)
+                    {
+                        return Selected_form.Master_ability_lvl.General_description;
+                    }
                 }
-                else return "";
+                return "";
             }
         }
         public string Selected_sequence_level
         {
             get 
             {
-                if (Selected_form != null)
+                if (Selected_value != null)
                 {
                     return Selected_form.Level;
                 }
@@ -149,66 +176,85 @@ namespace Character_design
         {
             get 
             {
-                if (Selected_form.Base_ability_lvl != null)
+                if (Selected_value != null)
                 {
-                    return 100 * Convert.ToInt32(Selected_form.Base_ability_lvl.Is_chosen);
+                    if (Selected_form.Base_ability_lvl != null)
+                    {
+                        return 100 * Convert.ToInt32(Selected_form.Base_ability_lvl.Is_chosen);
+                    }
                 }
-                else return 0;
+                return 0;
             }
         }
         public int Adept_exist
         {
             get
             {
-                if (Selected_form.Adept_ability_lvl != null)
+                if (Selected_value != null)
                 {
-                    return 100 * Convert.ToInt32(Selected_form.Adept_ability_lvl.Is_chosen);
+                    if (Selected_form.Adept_ability_lvl != null)
+                    {
+                        return 100 * Convert.ToInt32(Selected_form.Adept_ability_lvl.Is_chosen);
+                    }
                 }
-                else return 0;
+                return 0;
             }
         }
         public int Master_exist
         {
             get 
             {
-                if (Selected_form.Master_ability_lvl != null)
+                if (Selected_value != null)
                 {
-                    return 100 * Convert.ToInt32(Selected_form.Master_ability_lvl.Is_chosen);
+                    if (Selected_form.Master_ability_lvl != null)
+                    {
+                        return 100 * Convert.ToInt32(Selected_form.Master_ability_lvl.Is_chosen);
+                    }
                 }
-                else return 0;
+                return 0;
             }
         }
         public string Base_desc
         {
             get
             {
-                if (Selected_form.Base_ability_lvl != null)
+                if (Selected_value != null)
                 {
-                    return Selected_form.Base_ability_lvl.Description;
+                    if (Selected_form.Base_ability_lvl != null)
+                    {
+                        return Selected_form.Base_ability_lvl.Description;
+                    }
                 }
-                else return "";
+                return "";
             }
         }
         public string Adept_desc
         {
             get
             {
-                if (Selected_form.Adept_ability_lvl != null)
+                if (Selected_value != null)
                 {
-                    return Selected_form.Adept_ability_lvl.Description;
+                    if (Selected_form.Adept_ability_lvl != null)
+                    {
+                        return Selected_form.Adept_ability_lvl.Description;
+                    }
+
                 }
-                else return "";
+                return "";
             }
         }
         public string Master_desc
         {
             get
             {
-                if (Selected_form.Master_ability_lvl != null)
+                if (Selected_value != null)
                 {
-                    return Selected_form.Master_ability_lvl.Description;
+                    if (Selected_form.Master_ability_lvl != null)
+                    {
+                        return Selected_form.Master_ability_lvl.Description;
+                    }
                 }
-                else return "";
+                return "";
             }
         }
 
@@ -239,10 +285,17 @@ namespace Character_design
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;
 
+            Forms_group = new List<Abilities_sequence_template>();
+            Forms_group = Usual_forms_group;
             selected_form = new Abilities_sequence_template();
+            selected_value = new Abilities_sequence_template();
 
-            //Forms_group = Usual_forms_group;
-            
+            /*
+            if (Forms_group.Count != 0)
+            {
+                selected_form = Forms_group[0];
+            }*/
+
             Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
         }
 

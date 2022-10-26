@@ -169,8 +169,6 @@ namespace Character_design
             skill_group = new List<All_skill_template>();
             Skill_group = Usual_skills_group;
 
-            selected_skill = new All_skill_template();
-            
             Skills_border       = new SolidColorBrush();
             Force_skills_border = new SolidColorBrush();
 
