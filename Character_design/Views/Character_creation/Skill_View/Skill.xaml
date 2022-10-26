@@ -7,103 +7,193 @@
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1136">
     <Grid Background="Wheat">
-        <Canvas HorizontalAlignment="Center" Height="133" VerticalAlignment="Top" Width="1146" Background="Black">
-            <TextBlock Height="60" TextWrapping="Wrap" Width="216" Canvas.Top="73"
-                           Text="Доступные навыки для развития:" Background="Black"
-                           Foreground="Wheat" FontSize="20" TextAlignment="Center" />
-            <Button Height="73" Canvas.Top="60" Canvas.Right="744" Width="186"
-                    Background="Black" BorderThickness="3"
+        <Canvas HorizontalAlignment="Center" 
+                Height="133" 
+                VerticalAlignment="Top" 
+                Width="1146" 
+                Background="Black">
+            <TextBlock Height="60" 
+                       TextWrapping="Wrap" 
+                       Width="216" 
+                       Canvas.Top="73"
+                       Text="Доступные навыки для развития:" 
+                       Background="Black"
+                       Foreground="Wheat" 
+                       FontSize="20" 
+                       TextAlignment="Center" />
+            <Button Height="73" 
+                    Canvas.Top="60" 
+                    Canvas.Right="744" 
+                    Width="186"
+                    Background="Black" 
+                    BorderThickness="3"
                     Command="{Binding Show_combat_skills}"
                     BorderBrush="{Binding Combat_skills_button_border}">
                 <Button.Content>
-                    <TextBlock Text="Боевые навыки" Foreground="Wheat" FontSize="17"
+                    <TextBlock Text="Боевые навыки" 
+                               Foreground="Wheat" 
+                               FontSize="17"
                                TextWrapping="Wrap"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" Canvas.Top="60" Canvas.Right="558" Width="186"
-                    Background="Black" BorderThickness="3"
+            <Button Height="73" 
+                    Canvas.Top="60" 
+                    Canvas.Right="558" 
+                    Width="186"
+                    Background="Black" 
+                    BorderThickness="3"
                     Command="{Binding Show_surviving_skills}"
                     BorderBrush="{Binding Surviving_skills_button_border}">
                 <Button.Content>
-                    <TextBlock Text="Навыки  выживания" Foreground="Wheat" FontSize="17"
-                               TextWrapping="Wrap" TextAlignment="Center"/>
+                    <TextBlock Text="Навыки  выживания" 
+                               Foreground="Wheat" 
+                               FontSize="17"
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" Canvas.Top="60" Canvas.Right="372" Width="186"
-                    Background="Black" BorderThickness="3"
+            <Button Height="73" 
+                    Canvas.Top="60" 
+                    Canvas.Right="372" 
+                    Width="186"
+                    Background="Black" 
+                    BorderThickness="3"
                     Command="{Binding Show_charming_skills}"
                     BorderBrush="{Binding Charming_skills_button_border}">
                 <Button.Content>
-                    <TextBlock Text="Навыки взаимодействия с окружением" Foreground="Wheat" FontSize="17"
-                               TextWrapping="Wrap" TextAlignment="Center"/>
+                    <TextBlock Text="Навыки взаимодействия с окружением" 
+                               Foreground="Wheat" 
+                               FontSize="17"
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" Canvas.Top="60" Canvas.Right="186" Width="186"
-                    Background="Black" BorderThickness="3"
+            <Button Height="73" 
+                    Canvas.Top="60" 
+                    Canvas.Right="186" 
+                    Width="186"
+                    Background="Black" 
+                    BorderThickness="3"
                     Command="{Binding Show_tech_skills}"
                     BorderBrush="{Binding Tech_skills_button_border}">
                 <Button.Content>
-                    <TextBlock Text="Навыки обращения с техникой" Foreground="Wheat" FontSize="17"
-                               TextWrapping="Wrap" TextAlignment="Center"/>
+                    <TextBlock Text="Навыки обращения с техникой" 
+                               Foreground="Wheat" 
+                               FontSize="17"
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" Canvas.Top="60" Canvas.Right="0" Width="186"
-                    Background="Black" BorderThickness="3"
+            <Button Height="73" 
+                    Canvas.Top="60" 
+                    Canvas.Right="0" 
+                    Width="186"
+                    Background="Black" 
+                    BorderThickness="3"
                     Command="{Binding Show_specific_skills}"
                     BorderBrush="{Binding Specific_skills_button_border}">
                 <Button.Content>
-                    <TextBlock Text="Специфические навыки" Foreground="Wheat" FontSize="17"
-                               TextWrapping="Wrap" TextAlignment="Center"/>
+                    <TextBlock Text="Специфические навыки" 
+                               Foreground="Wheat" 
+                               FontSize="17"
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <TextBlock Canvas.Left="700" TextWrapping="Wrap" Canvas.Top="15" Height="40" Width="300"
-                       Text="Очков опыта осталось: " Foreground="Wheat" FontSize="28"/>
-            <TextBlock Canvas.Left="1008" TextWrapping="Wrap" Canvas.Top="15" Height="40" Width="128"
-                       Text="{Binding Exp_points_left}" Foreground="Wheat" FontSize="28"/>
+            <TextBlock Canvas.Left="700" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15" 
+                       Height="40" 
+                       Width="300"
+                       Text="Очков опыта осталось: " 
+                       Foreground="Wheat" 
+                       FontSize="28"/>
+            <TextBlock Canvas.Left="1008" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15" 
+                       Height="40" 
+                       Width="128"
+                       Foreground="Wheat" 
+                       FontSize="28"
+                       Text="{Binding Exp_points_left}" />
         </Canvas>
-        <Border BorderBrush="Wheat" BorderThickness="0,1,0,0" 
-                HorizontalAlignment="Center" Height="727" Margin="0,133,0,0" 
-                VerticalAlignment="Top" Width="1146">
-            <Canvas Height="727" Margin="0,-1,0,0" Width="1146">
-                <ListBox Height="727" Width="216" Canvas.Top="0" 
-                     Background="Black" Foreground="Wheat" BorderThickness="0" BorderBrush="Black"
-                     ItemsSource="{Binding Skill_group}"
-                     SelectedItem="{Binding Selected_skill}">
+        <Border BorderBrush="Wheat" 
+                BorderThickness="0,1,0,0" 
+                HorizontalAlignment="Center" 
+                Height="727" 
+                Margin="0,133,0,0" 
+                VerticalAlignment="Top" 
+                Width="1146">
+            <Canvas Height="727" 
+                    Margin="0,-1,0,0" 
+                    Width="1146">
+                <ListBox Height="727" 
+                         Width="216" 
+                         Canvas.Top="0" 
+                         Background="Black" 
+                         Foreground="Wheat" 
+                         BorderThickness="0" 
+                         BorderBrush="Black"
+                         ItemsSource="{Binding Skill_group}"
+                         SelectedItem="{Binding Selected_skill}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Height="46" TextWrapping="Wrap" Width="180" Foreground="Wheat" 
-                                       TextAlignment="Center" FontSize="16" VerticalAlignment="Center"
-                                       Text="{Binding Path=Name}" />
+                                <TextBlock Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           Height="46" 
+                                           TextWrapping="Wrap" 
+                                           Width="180" 
+                                           Foreground="Wheat" 
+                                           TextAlignment="Center" 
+                                           FontSize="16" 
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Path=Name}" />
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Image Height="414" Canvas.Left="260" Canvas.Top="8" Width="310"
+                <Image Height="414" 
+                       Canvas.Left="260" 
+                       Canvas.Top="8" 
+                       Width="310"
                        Source="{Binding Skill_img_path}"/>
-                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="10" Width="520"
-                           FontSize="27" TextAlignment="Center"
+                <TextBlock Height="34" 
+                           Canvas.Left="590" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="10" 
+                           Width="520"
+                           FontSize="27" 
+                           TextAlignment="Center"
                            Text="{Binding Selected_skill_title}"/>
-                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="60" Width="360"
-                            Text="Описание навыка:" FontSize="18"/>
-                <ScrollViewer Canvas.Left="590" Canvas.Top="94" 
+                <TextBlock Height="34" 
+                           Canvas.Left="590" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="60" 
+                           Width="360"
+                           Text="Описание навыка:" 
+                           FontSize="18"/>
+                <ScrollViewer Canvas.Left="590" 
+                              Canvas.Top="94" 
                               CanContentScroll="True" 
                               VerticalScrollBarVisibility="Auto"
-                              Height="256" Width="529">
+                              Height="256" 
+                              Width="529">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0"
+                        <TextBlock Grid.Row="0" 
+                                   Grid.Column="0"
                                    TextWrapping="Wrap" 
                                    Margin="0,5,15,5"
                                    FontSize="15"
@@ -111,83 +201,189 @@
                     </Grid>
                 </ScrollViewer>
                 
-                <TextBlock Height="34" Canvas.Left="590" TextWrapping="Wrap" Canvas.Top="360" Width="250"
-                            Text="Стоимость развития навыка:" FontSize="18"/>
-                <TextBlock Height="34" Canvas.Left="850" TextWrapping="Wrap" Canvas.Top="360" Width="50"
-                           FontSize="18" TextAlignment="Center"
-                           Text="{Binding Selected_skill_cost}"/>
-                <TextBlock Height="34" Canvas.Left="910" TextWrapping="Wrap" Canvas.Top="360" Width="150"
-                            Text="оч. опыта" FontSize="18"/>
-                <TextBlock Height="34" Canvas.Left="530" TextWrapping="Wrap" Canvas.Top="520" Width="240"
+                <TextBlock Height="34" 
+                           Canvas.Left="590" 
+                           Canvas.Top="360"
+                           TextWrapping="Wrap" 
+                           Width="250"
+                           Text="Стоимость развития навыка:" 
+                           FontSize="18"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="850" 
+                           Canvas.Top="360" 
+                           TextWrapping="Wrap" 
+                           Width="50"
+                           FontSize="18" 
                            TextAlignment="Center"
-                            Text="Уровень развития навыка:" FontSize="18"/>
-                <TextBlock Height="34" Canvas.Left="770" TextWrapping="Wrap" Canvas.Top="520" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           TextAlignment="Center" FontSize="18"
+                           Text="{Binding Selected_skill_cost}"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="910" 
+                           Canvas.Top="360" 
+                           TextWrapping="Wrap" 
+                           Width="150"
+                           Text="оч. опыта" 
+                           FontSize="18"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="530" 
+                           Canvas.Top="520" 
+                           TextWrapping="Wrap" 
+                           Width="240"
+                           TextAlignment="Center"
+                           Text="Уровень развития навыка:" 
+                           FontSize="18"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="770" 
+                           Canvas.Top="520" 
+                           TextWrapping="Wrap" 
+                           Width="62" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           TextAlignment="Center" 
+                           FontSize="18"
                            Text="{Binding Selected_skill_counter}"/>
-                <ProgressBar Height="17" Canvas.Left="300" Canvas.Top="550" Width="754" HorizontalAlignment="Center" VerticalAlignment="Top"
+                <ProgressBar Height="17" 
+                             Canvas.Left="300" 
+                             Canvas.Top="550" 
+                             Width="754" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Top"
                              Value="{Binding Selected_skill_counter}"
                              Minimum="{Binding Selected_skill_min_score, Mode=OneWay}"
                              Maximum="{Binding Selected_skill_max_score, Mode=OneWay}"/>
-                <TextBlock Height="23" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="547" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           TextAlignment="Center" FontSize="16"
+                <TextBlock Height="23" 
+                           Canvas.Left="227" 
+                           Canvas.Top="547" 
+                           TextWrapping="Wrap" 
+                           Width="62" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           TextAlignment="Center" 
+                           FontSize="16"
                            Text="{Binding Selected_skill_min_score}"/>
-                <TextBlock Height="23" Canvas.Left="1060" TextWrapping="Wrap" Canvas.Top="547" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           TextAlignment="Center" FontSize="16"
+                <TextBlock Height="23" 
+                           Canvas.Left="1060" 
+                           Canvas.Top="547" 
+                           TextWrapping="Wrap" 
+                           Width="62" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           TextAlignment="Center" 
+                           FontSize="16"
                            Text="{Binding Selected_skill_max_score}"/>
-                <Canvas Height="133" Canvas.Left="227" Canvas.Top="584" Width="522" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBlock Height="20" Canvas.Left="5" TextWrapping="Wrap" Canvas.Top="5" Width="350"
+                <Canvas Height="133" 
+                        Canvas.Left="227" 
+                        Canvas.Top="584" 
+                        Width="522" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center">
+                    <TextBlock Height="20" 
+                               Canvas.Left="5" 
+                               Canvas.Top="5" 
+                               TextWrapping="Wrap" 
+                               Width="350"
                                FontSize="13"
                                Text="Текущие модификаторы и лимиты развития навыка:"/>
-                    <TextBlock Height="20" Canvas.Left="5" TextWrapping="Wrap" Canvas.Top="30" Width="170"
+                    <TextBlock Height="20" 
+                               Canvas.Left="5" 
+                               Canvas.Top="30" 
+                               TextWrapping="Wrap" 
+                               Width="170"
                                FontSize="11"
                                Text="Расовый бонус:"/>
-                    <TextBlock Height="20" Canvas.Left="180" TextWrapping="Wrap" Canvas.Top="30" Width="170"
+                    <TextBlock Height="20" 
+                               Canvas.Left="180"
+                               Canvas.Top="30"
+                               TextWrapping="Wrap"
+                               Width="170"
                                FontSize="11"
                                Text="{Binding Selected_skill_race_bonus}"/>
-                    <TextBlock Height="20" Canvas.Left="5" TextWrapping="Wrap" Canvas.Top="55" Width="170"
+                    <TextBlock Height="20"
+                               Canvas.Left="5"
+                               Canvas.Top="55"
+                               TextWrapping="Wrap"
+                               Width="170"
                                FontSize="11"
                                Text="Лимит по рангу персонажа:"/>
-                    <TextBlock Height="20" Canvas.Left="180" TextWrapping="Wrap" Canvas.Top="55" Width="170"
+                    <TextBlock Height="20"
+                               Canvas.Left="180"
+                               Canvas.Top="55"
+                               TextWrapping="Wrap"
+                               Width="170"
                                FontSize="11"
                                Text="{Binding Selected_skill_range_limit}"/>
-                    <TextBlock Height="20" Canvas.Left="5" TextWrapping="Wrap" Canvas.Top="80" Width="170"
+                    <TextBlock Height="20"
+                               Canvas.Left="5"
+                               Canvas.Top="80"
+                               TextWrapping="Wrap"
+                               Width="170"
                                FontSize="11"
                                Text="Лимит по возрасту персонажа:"/>
-                    <TextBlock Height="20" Canvas.Left="180" TextWrapping="Wrap" Canvas.Top="80" Width="170"
+                    <TextBlock Height="20"
+                               Canvas.Left="180"
+                               Canvas.Top="80"
+                               TextWrapping="Wrap"
+                               Width="170"
                                FontSize="11"
                                Text="{Binding Selected_skill_age_limit}"/>
                 </Canvas>
-                <Canvas Height="133" Canvas.Left="770" Canvas.Top="584" Width="349">
-                    <Button Height="57" Canvas.Left="10" Canvas.Top="66" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center"
+                <Canvas Height="133" 
+                        Canvas.Left="770"
+                        Canvas.Top="584"
+                        Width="349">
+                    <Button Height="57" 
+                            Canvas.Left="10" 
+                            Canvas.Top="66"
+                            Width="150"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
                             Content="Уменьшить навык на 1"
                             Command="{Binding Decrease_skill_score}"
                             CommandParameter="{Binding Selected_skill}"/>
-                    <Button Height="57" Canvas.Right="10" Canvas.Top="66" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    <Button Height="57"
+                            Canvas.Right="10"
+                            Canvas.Top="66"
+                            Width="150"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
                             Content="Увеличить навык на 1"
                             Command="{Binding Increase_skill_score}"
                             CommandParameter="{Binding Selected_skill}"/>
-                    <TextBlock Canvas.Left="10" Canvas.Top="10" Width="320" Height="30"
-                               TextWrapping="Wrap" FontSize="14"
+                    <TextBlock Canvas.Left="10"
+                               Canvas.Top="10"
+                               Width="320"
+                               Height="30"
+                               TextWrapping="Wrap"
+                               FontSize="14"
                                Foreground="Red"
                                Text="{Binding Skill_choose_warning}"/>
                 </Canvas>
-                <Grid Height="70" Canvas.Left="590" Canvas.Top="400" Width="483">
+                <Grid Height="70"
+                      Canvas.Left="590"
+                      Canvas.Top="400"
+                      Width="483">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="165"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Margin="10"
-                        Source="{Binding Question_sign}">
+                    <Image Grid.Column="0" 
+                           Margin="10"
+                           Source="{Binding Question_sign}">
                         <Image.ToolTip>
-                            <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                            <TextBlock FontSize="10" 
+                                       TextWrapping="Wrap" 
+                                       MaxWidth="150"
                                        Text="{Binding Skill_base_description}"/>
                         </Image.ToolTip>
                     </Image>
-                    <TextBlock Grid.Column="1" Margin="5,20,5,20" TextAlignment="Center"
+                    <TextBlock Grid.Column="1" 
+                               Margin="5,20,5,20" 
+                               TextAlignment="Center"
                                FontSize="18"
                                Text="Атрибут - основа:"/>
-                    <TextBlock Grid.Column="2" Margin="5,20,5,20" TextAlignment="Center"
+                    <TextBlock Grid.Column="2" 
+                               Margin="5,20,5,20" 
+                               TextAlignment="Center"
                                FontSize="18"
                                Text="{Binding Skill_base_text}"/>
                 </Grid>
