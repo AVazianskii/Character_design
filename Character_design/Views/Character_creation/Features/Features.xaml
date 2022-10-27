@@ -6,7 +6,119 @@
              xmlns:local="clr-namespace:Character_design.Views.Character_creation.Features"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1136">
-    <Grid Background="White">
-        <Image Source="{Binding Img_path}"/>
+    <UserControl.Resources>
+        <Style TargetType="Button" 
+               x:Key="MyButton2">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" 
+                         Value="True">
+                    <Setter Property="Background" 
+                            Value="Black"/>
+                    <Setter Property="Foreground" 
+                            Value="Black"/>
+                    <Setter Property="Opacity" 
+                            Value="100"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                         Value="False">
+                    <Setter Property="Background" 
+                            Value="Black"/>
+                    <Setter Property="Foreground" 
+                            Value="Black"/>
+                    <Setter Property="Opacity" 
+                            Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="Wheat">
+        <Canvas HorizontalAlignment="Center" 
+                Height="133" 
+                VerticalAlignment="Top" 
+                Width="1146" 
+                Background="Black">
+            <TextBlock Height="60" 
+                       TextWrapping="Wrap" 
+                       Width="216" 
+                       Canvas.Top="73"
+                       Text="Доступные навыки для развития:" 
+                       Background="Black"
+                       Foreground="Wheat" 
+                       FontSize="20" 
+                       TextAlignment="Center" />
+            <Button Height="73" 
+                    Canvas.Top="60" 
+                    Canvas.Right="744" 
+                    Width="186"
+                    BorderThickness="3"
+                    Command="{Binding Show_positive_features}"
+                    BorderBrush="{Binding Positive_feature_border}"
+                    Style="{StaticResource MyButton2}">
+                <Button.Content>
+                    <TextBlock Text="Положительные особенности" 
+                               Foreground="Wheat" 
+                               FontSize="17"
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Height="73" 
+                    Canvas.Top="60" 
+                    Canvas.Right="558" 
+                    Width="186"
+                    BorderThickness="3"
+                    Command="{Binding Show_negative_features}"
+                    BorderBrush="{Binding Negative_feature_border}"
+                    Style="{StaticResource MyButton2}">
+                <Button.Content>
+                    <TextBlock Text="Отрицательные особенности" 
+                               FontSize="17"
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <TextBlock Canvas.Left="650" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15" 
+                       Height="40" 
+                       Width="350"
+                       Margin="0,5,0,0"
+                       Text="Очков особенностей осталось: " 
+                       Foreground="Wheat" FontSize="24"/>
+            <TextBlock Canvas.Left="1008" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15" 
+                       Height="40" 
+                       Width="128"
+                       Text="{Binding Exp_points_left}" 
+                       Foreground="Wheat" 
+                       FontSize="28"/>
+            <TextBlock Canvas.Left="50" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15"
+                       Margin="0,5,0,0"
+                       Height="40" 
+                       Width="270"
+                       Text="Еще можно изучить: " 
+                       Foreground="Wheat" 
+                       FontSize="24"/>
+            <TextBlock Canvas.Left="328" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15" 
+                       Height="40" 
+                       Width="88"
+                       Foreground="Wheat" 
+                       FontSize="28"
+                       Text="{Binding Num_skills_left}" />
+            <TextBlock Canvas.Left="370" 
+                       TextWrapping="Wrap" 
+                       Canvas.Top="15" 
+                       Margin="0,5,0,0"
+                       Height="40" 
+                       Width="170"
+                       Text="особенностей " 
+                       Foreground="Wheat" 
+                       FontSize="24"/>
+        </Canvas>
     </Grid>
 </UserControl>
