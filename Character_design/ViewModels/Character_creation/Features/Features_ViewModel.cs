@@ -43,6 +43,14 @@ namespace Character_design
             //TODO: сделать логику выбора особенностей персонажа
             get { return 10; }
         }
+        public string Question_sign
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Tool_tip_old.jpg"; }
+        }
+        public string Feature_description
+        {
+            get { return "Сумма очков положительны и отрицательных особенностей персонажей должна равняться 0"; }
+        }
 
 
 
