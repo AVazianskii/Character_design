@@ -165,5 +165,49 @@
                 </Image.ToolTip>
             </Image>
         </Canvas>
+        <Border BorderBrush="Wheat" 
+                BorderThickness="0,1,0,0" 
+                HorizontalAlignment="Center" 
+                Height="727" 
+                Margin="0,133,0,0" 
+                VerticalAlignment="Top" 
+                Width="1146">
+            <Canvas Height="727" 
+                    Margin="0,-1,0,0" 
+                    Width="1146">
+                <ListBox Height="727" 
+                         Width="216" 
+                         Canvas.Top="0" 
+                         Background="Black" 
+                         Foreground="Wheat" 
+                         BorderThickness="0" 
+                         BorderBrush="Black"
+                         ItemsSource="{Binding Current_feature_list}"
+                         SelectedItem="{Binding Selected_feature}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           Height="46" 
+                                           TextWrapping="Wrap" 
+                                           Width="180" 
+                                           Foreground="Wheat" 
+                                           TextAlignment="Center" 
+                                           FontSize="16" 
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Path=Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Canvas>
+        </Border>
     </Grid>
 </UserControl>

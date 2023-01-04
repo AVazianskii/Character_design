@@ -20,6 +20,8 @@ namespace Character_design
                                            negative_features,
                                            common_features;
 
+        private All_feature_template selected_feature;
+
         private int num_skills_left;
 
         private Color Chosen_color,
@@ -54,6 +56,11 @@ namespace Character_design
         {
             get { return current_feature_list; }
             set { current_feature_list = value; OnPropertyChanged("Current_feature_list"); }
+        }
+        public All_feature_template Selected_feature
+        {
+            get { return selected_feature; }
+            set { selected_feature = value; OnPropertyChanged("Selected_feature"); }
         }
         public int Exp_points_left
         {
@@ -96,7 +103,7 @@ namespace Character_design
             Button_borders.Add(Negative_feature_border);
             Button_borders.Add(Common_feature_border);
 
-            Current_feature_list    = new List<All_feature_template>();
+            current_feature_list    = new List<All_feature_template>();
             positive_features       = new List<All_feature_template>();
             negative_features       = new List<All_feature_template>();
             common_features         = new List<All_feature_template>();
@@ -106,6 +113,10 @@ namespace Character_design
             common_features     = Feature_manager.GetInstance().Get_common_features();
 
             Current_feature_list = positive_features;
+
+            selected_feature = new All_feature_template();
+
+            selected_feature = Current_feature_list[0];
 
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;
@@ -121,18 +132,25 @@ namespace Character_design
             Num_skills_left = Character.GetInstance().Limit_positive_features_left;
             Set_colors_for_chosen_item(Button_borders, Positive_feature_border, Chosen_color, Unchosen_color);
 
-
+            Current_feature_list = positive_features;
+            Selected_feature = Current_feature_list[0];
         }
         private void _Show_negative_features()
         {
             Num_skills_left = Character.GetInstance().Limit_negative_features_left;
             Set_colors_for_chosen_item(Button_borders, Negative_feature_border, Chosen_color, Unchosen_color);
+
+            Current_feature_list = negative_features;
+            Selected_feature = Current_feature_list[0];
         }
         private void _Show_common_features()
         {
             // TODO: Строка ниже под вопросом
             Num_skills_left = Character.GetInstance().Limit_negative_features_left;
             Set_colors_for_chosen_item(Button_borders, Common_feature_border, Chosen_color, Unchosen_color);
+
+            Current_feature_list = common_features;
+            Selected_feature = Current_feature_list[0];
         }
     }
 }
