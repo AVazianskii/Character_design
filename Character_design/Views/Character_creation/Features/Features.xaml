@@ -48,8 +48,8 @@
                        TextAlignment="Center" />
             <Button Height="73" 
                     Canvas.Top="60" 
-                    Canvas.Right="724" 
-                    Width="186"
+                    Canvas.Right="760" 
+                    Width="150"
                     BorderThickness="3"
                     Background="Black"
                     Command="{Binding Show_positive_features}"
@@ -64,14 +64,30 @@
             </Button>
             <Button Height="73" 
                     Canvas.Top="60" 
-                    Canvas.Right="538" 
-                    Width="186"
+                    Canvas.Right="610" 
+                    Width="150"
                     BorderThickness="3"
                     Background="Black"
                     Command="{Binding Show_negative_features}"
                     BorderBrush="{Binding Negative_feature_border}">
                 <Button.Content>
                     <TextBlock Text="Отрицательные особенности" 
+                               Foreground="Wheat"
+                               FontSize="17"
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Height="73" 
+                    Canvas.Top="60" 
+                    Canvas.Right="460" 
+                    Width="150"
+                    BorderThickness="3"
+                    Background="Black"
+                    Command="{Binding Show_common_features}"
+                    BorderBrush="{Binding Common_feature_border}">
+                <Button.Content>
+                    <TextBlock Text="Общие особенности" 
                                Foreground="Wheat"
                                FontSize="17"
                                TextWrapping="Wrap" 
@@ -120,7 +136,7 @@
                        Text="особенностей " 
                        Foreground="Wheat" 
                        FontSize="24"/>
-            <TextBlock Canvas.Left="650" 
+            <TextBlock Canvas.Left="700" 
                        TextWrapping="Wrap" 
                        Canvas.Top="70" 
                        Height="40" 
@@ -128,7 +144,7 @@
                        Margin="0,5,0,0"
                        Text="Очков особенностей надо уравнять: " 
                        Foreground="Wheat" FontSize="20"/>
-            <TextBlock Canvas.Left="1008" 
+            <TextBlock Canvas.Left="1058" 
                        TextWrapping="Wrap" 
                        Canvas.Top="72" 
                        Height="40" 
