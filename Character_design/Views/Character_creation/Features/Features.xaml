@@ -144,7 +144,7 @@
                        Margin="0,5,0,0"
                        Text="Очков особенностей надо уравнять: " 
                        Foreground="Wheat" FontSize="20"/>
-            <TextBlock Canvas.Left="1058" 
+            <TextBlock Canvas.Left="1050" 
                        TextWrapping="Wrap" 
                        Canvas.Top="72" 
                        Height="40" 
@@ -152,7 +152,7 @@
                        Text="{Binding Exp_points_left}" 
                        Foreground="Wheat" 
                        FontSize="24"/>
-            <Image Canvas.Left="1055" 
+            <Image Canvas.Left="1090" 
                    Canvas.Top="75" 
                    Height="30" 
                    Width="30"
