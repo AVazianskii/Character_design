@@ -78,22 +78,6 @@
                                TextAlignment="Center"/>
                 </Button.Content>
             </Button>
-            <Button Height="73" 
-                    Canvas.Top="60" 
-                    Canvas.Right="460" 
-                    Width="150"
-                    BorderThickness="3"
-                    Background="Black"
-                    Command="{Binding Show_common_features}"
-                    BorderBrush="{Binding Common_feature_border}">
-                <Button.Content>
-                    <TextBlock Text="Общие особенности" 
-                               Foreground="Wheat"
-                               FontSize="17"
-                               TextWrapping="Wrap" 
-                               TextAlignment="Center"/>
-                </Button.Content>
-            </Button>
             <TextBlock Canvas.Left="650" 
                        TextWrapping="Wrap" 
                        Canvas.Top="15" 

@@ -10,15 +10,13 @@ namespace Character_design
     {
         private static Features_ViewModel _instance;
         private SolidColorBrush positive_feature_border,
-                                negative_feature_border,
-                                common_feature_border;
+                                negative_feature_border;
 
         private List<SolidColorBrush> Button_borders;
 
         private List<All_feature_template> current_feature_list,
                                            positive_features,
-                                           negative_features,
-                                           common_features;
+                                           negative_features;
 
         private All_feature_template selected_feature;
 
@@ -31,7 +29,6 @@ namespace Character_design
 
         public Command Show_positive_features { get; private set; }
         public Command Show_negative_features { get; private set; }
-        public Command Show_common_features { get; private set; }
         public SolidColorBrush Positive_feature_border
         {
             get { return positive_feature_border; }
@@ -41,11 +38,6 @@ namespace Character_design
         {
             get { return negative_feature_border; }
             set { negative_feature_border = value; OnPropertyChanged("Negative_feature_border"); }
-        }
-        public SolidColorBrush Common_feature_border
-        {
-            get { return common_feature_border; }
-            set { common_feature_border = value; OnPropertyChanged("Common_feature_border"); }
         }
         public int Num_skills_left
         {
@@ -92,26 +84,21 @@ namespace Character_design
         {
             Show_positive_features = new Command(o => _Show_positive_features());
             Show_negative_features = new Command(o => _Show_negative_features());
-            Show_common_features   = new Command(o => _Show_common_features());
-
+            
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
-            Common_feature_border   = new SolidColorBrush();
-
+            
             Button_borders = new List<SolidColorBrush>();
             Button_borders.Add(Positive_feature_border);
             Button_borders.Add(Negative_feature_border);
-            Button_borders.Add(Common_feature_border);
-
+            
             current_feature_list    = new List<All_feature_template>();
             positive_features       = new List<All_feature_template>();
             negative_features       = new List<All_feature_template>();
-            common_features         = new List<All_feature_template>();
-
+            
             positive_features   = Feature_manager.GetInstance().Get_positive_features();
             negative_features   = Feature_manager.GetInstance().Get_negative_features();
-            common_features     = Feature_manager.GetInstance().Get_common_features();
-
+            
             Current_feature_list = positive_features;
 
             selected_feature = new All_feature_template();
@@ -141,15 +128,6 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Negative_feature_border, Chosen_color, Unchosen_color);
 
             Current_feature_list = negative_features;
-            Selected_feature = Current_feature_list[0];
-        }
-        private void _Show_common_features()
-        {
-            // TODO: Строка ниже под вопросом
-            Num_skills_left = Character.GetInstance().Limit_negative_features_left;
-            Set_colors_for_chosen_item(Button_borders, Common_feature_border, Chosen_color, Unchosen_color);
-
-            Current_feature_list = common_features;
             Selected_feature = Current_feature_list[0];
         }
     }
