@@ -191,6 +191,100 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <Image Height="414" 
+                       Canvas.Left="260" 
+                       Canvas.Top="8" 
+                       Width="310"
+                       Source="{Binding Selected_feature_img_path}"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="590" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="10" 
+                           Width="520"
+                           FontSize="27" 
+                           TextAlignment="Center"
+                           Text="{Binding Selected_feature_title}"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="590" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="60" 
+                           Width="360"
+                           Text="Описание навыка:" 
+                           FontSize="18"/>
+                <ScrollViewer Canvas.Left="590" 
+                              Canvas.Top="94" 
+                              CanContentScroll="True" 
+                              VerticalScrollBarVisibility="Auto"
+                              Height="256" 
+                              Width="529">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" 
+                                   Grid.Column="0"
+                                   TextWrapping="Wrap" 
+                                   Margin="0,5,15,5"
+                                   FontSize="15"
+                                   Text="{Binding Selected_feature_description}"/>
+                    </Grid>
+                </ScrollViewer>
+                <TextBlock Height="34" 
+                           Canvas.Left="590" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="360" 
+                           Width="250"
+                           Text="Стоимость развития навыка:" 
+                           FontSize="18"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="850" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="360" 
+                           Width="50"
+                           FontSize="18" 
+                           TextAlignment="Center"
+                           Text="{Binding Selected_force_skill_cost}"/>
+                <TextBlock Height="34" 
+                           Canvas.Left="910" 
+                           TextWrapping="Wrap" 
+                           Canvas.Top="360" 
+                           Width="150"
+                           Text="оч. особенностей" 
+                           FontSize="18"/>
+                <Canvas Height="133" 
+                        Canvas.Left="770" 
+                        Canvas.Top="584" 
+                        Width="349">
+                    <Button Height="57" 
+                            Canvas.Left="10" 
+                            Canvas.Top="66" 
+                            Width="150" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center"
+                            Content="Взять особенность"
+                            Command="{Binding Learn_feature}"
+                            CommandParameter="{Binding Selected_feature}"/>
+                    <Button Height="57" 
+                            Canvas.Right="10" 
+                            Canvas.Top="66" 
+                            Width="150" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center"
+                            Content="Убрать особенность"
+                            Command="{Binding Delete_feature}"
+                            CommandParameter="{Binding Selected_feature}"/>
+                    <TextBlock Canvas.Left="10" 
+                               Canvas.Top="10" 
+                               Width="320" 
+                               Height="50"
+                               TextWrapping="Wrap" 
+                               FontSize="14"
+                               Foreground="Red"
+                               Text="{Binding Feature_choose_warning}"/>
+                </Canvas>
             </Canvas>
         </Border>
     </Grid>

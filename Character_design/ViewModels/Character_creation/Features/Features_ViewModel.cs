@@ -22,6 +22,8 @@ namespace Character_design
 
         private int num_skills_left;
 
+        private string feature_choose_warning;
+
         private Color Chosen_color,
                       Unchosen_color;
 
@@ -29,6 +31,8 @@ namespace Character_design
 
         public Command Show_positive_features { get; private set; }
         public Command Show_negative_features { get; private set; }
+        public Character_changing_command Learn_feature {get; private set;}
+        public Character_changing_command Delete_feature { get; private set; }
         public SolidColorBrush Positive_feature_border
         {
             get { return positive_feature_border; }
@@ -52,7 +56,18 @@ namespace Character_design
         public All_feature_template Selected_feature
         {
             get { return selected_feature; }
-            set { selected_feature = value; OnPropertyChanged("Selected_feature"); }
+            set 
+            { 
+                selected_feature = value; 
+                OnPropertyChanged("Selected_feature"); 
+
+                if (selected_feature != null)
+                {
+                    OnPropertyChanged("Selected_feature_description");
+                    OnPropertyChanged("Selected_feature_title");
+                    OnPropertyChanged("Selected_feature_img_path");
+                }
+            }
         }
         public int Exp_points_left
         {
@@ -66,6 +81,23 @@ namespace Character_design
         public string Feature_description
         {
             get { return "Сумма очков положительны и отрицательных особенностей персонажей должна равняться 0"; }
+        }
+        public string Selected_feature_description
+        {
+            get { return Selected_feature.Description; }
+        }
+        public string Selected_feature_title
+        {
+            get { return Selected_feature.Name; }
+        }
+        public string Selected_feature_img_path
+        {
+            get { return Selected_feature.Image_path; }
+        }
+        public string Feature_choose_warning
+        {
+            get { return feature_choose_warning; }
+            set { feature_choose_warning = value; OnPropertyChanged("Feature_choose_warning"); }
         }
 
 
@@ -84,7 +116,10 @@ namespace Character_design
         {
             Show_positive_features = new Command(o => _Show_positive_features());
             Show_negative_features = new Command(o => _Show_negative_features());
-            
+
+            Learn_feature  = new Character_changing_command(o => _Learn_feature());
+            Delete_feature = new Character_changing_command(o => _Delete_feature());
+
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
             
@@ -129,6 +164,14 @@ namespace Character_design
 
             Current_feature_list = negative_features;
             Selected_feature = Current_feature_list[0];
+        }
+        private void _Learn_feature()
+        {
+
+        }
+        private void _Delete_feature()
+        {
+
         }
     }
 }
