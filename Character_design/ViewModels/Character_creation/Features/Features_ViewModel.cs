@@ -20,6 +20,8 @@ namespace Character_design
 
         private All_feature_template selected_feature;
 
+        private List<sbyte> selected_feature_cost_list;
+
         private int num_skills_left;
 
         private string feature_choose_warning;
@@ -63,9 +65,11 @@ namespace Character_design
 
                 if (selected_feature != null)
                 {
+                    selected_feature_cost_list = selected_feature.Cost;
                     OnPropertyChanged("Selected_feature_description");
                     OnPropertyChanged("Selected_feature_title");
                     OnPropertyChanged("Selected_feature_img_path");
+                    OnPropertyChanged("Selected_feature_cost_list");
                 }
             }
         }
@@ -99,6 +103,10 @@ namespace Character_design
             get { return feature_choose_warning; }
             set { feature_choose_warning = value; OnPropertyChanged("Feature_choose_warning"); }
         }
+        public List<sbyte> Selected_feature_cost_list
+        {
+            get { return selected_feature_cost_list; }
+        }
 
 
 
@@ -117,8 +125,8 @@ namespace Character_design
             Show_positive_features = new Command(o => _Show_positive_features());
             Show_negative_features = new Command(o => _Show_negative_features());
 
-            Learn_feature  = new Character_changing_command(o => _Learn_feature());
-            Delete_feature = new Character_changing_command(o => _Delete_feature());
+            Learn_feature  = new Character_changing_command(o => _Learn_feature(Selected_feature));
+            Delete_feature = new Character_changing_command(o => _Delete_feature(Selected_feature));
 
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
@@ -165,13 +173,35 @@ namespace Character_design
             Current_feature_list = negative_features;
             Selected_feature = Current_feature_list[0];
         }
-        private void _Learn_feature()
+        private void _Learn_feature(object o)
         {
-
+            All_feature_template feature = o as All_feature_template;
+            if (feature != null)
+            {
+                if(current_feature_list == positive_features)
+                {
+                    Character.GetInstance().Update_character_positive_feature_list(feature);
+                }
+                else
+                {
+                    Character.GetInstance().Update_character_negative_feature_list(feature);
+                }
+            }
         }
-        private void _Delete_feature()
+        private void _Delete_feature(object o)
         {
-
+            All_feature_template feature = o as All_feature_template;
+            if (feature != null)
+            {
+                if (current_feature_list == positive_features)
+                {
+                    Character.GetInstance().Update_character_positive_feature_list(feature);
+                }
+                else
+                {
+                    Character.GetInstance().Update_character_negative_feature_list(feature);
+                }
+            }
         }
     }
 }
