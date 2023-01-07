@@ -178,14 +178,7 @@ namespace Character_design
             All_feature_template feature = o as All_feature_template;
             if (feature != null)
             {
-                if(current_feature_list == positive_features)
-                {
-                    Character.GetInstance().Update_character_positive_feature_list(feature);
-                }
-                else
-                {
-                    Character.GetInstance().Update_character_negative_feature_list(feature);
-                }
+                Character.GetInstance().Learn_feature(feature);
             }
         }
         private void _Delete_feature(object o)
@@ -193,14 +186,7 @@ namespace Character_design
             All_feature_template feature = o as All_feature_template;
             if (feature != null)
             {
-                if (current_feature_list == positive_features)
-                {
-                    Character.GetInstance().Update_character_positive_feature_list(feature);
-                }
-                else
-                {
-                    Character.GetInstance().Update_character_negative_feature_list(feature);
-                }
+                Character.GetInstance().Delete_feature(feature);
             }
         }
     }
