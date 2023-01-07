@@ -131,10 +131,10 @@ namespace Character_design
             Show_positive_features = new Command(o => _Show_positive_features());
             Show_negative_features = new Command(o => _Show_negative_features());
 
-            Learn_feature  = new Character_changing_command(o => _Learn_feature(selected_feature),
-                                                            o => Feature_learning_is_possible(selected_feature));
-            Delete_feature = new Character_changing_command(o => _Delete_feature(selected_feature),
-                                                            o => Feature_learning_is_possible(selected_feature));
+            Learn_feature  = new Character_changing_command(o => _Learn_feature(Selected_feature),
+                                                            o => Feature_learning_is_posible(Selected_feature));
+            Delete_feature = new Character_changing_command(o => _Delete_feature(Selected_feature),
+                                                            o => Feature_deleting_is_posible(Selected_feature));
 
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
@@ -197,13 +197,30 @@ namespace Character_design
                 Character.GetInstance().Delete_feature(feature);
             }
         }
-        private bool Feature_learning_is_possible(All_feature_template feature)
+        private bool Feature_learning_is_posible(All_feature_template feature)
         {
-
+            Feature_choose_advice = "";
+            Feature_choose_warning = "";
             return true;
         }
-        private bool Feature_deleting_is_possible(All_feature_template feature)
+        private bool Feature_deleting_is_posible(All_feature_template feature)
         {
+            if (current_feature_list == positive_features)
+            {
+                if(Character.GetInstance().Positive_features_with_points.Count == 0)
+                {
+                    return false;
+                }
+            }
+            if (current_feature_list == negative_features)
+            {
+                if (Character.GetInstance().Negative_features_with_points.Count == 0)
+                {
+                    return false;
+                }
+            }
+            Feature_choose_advice = "";
+            Feature_choose_warning = "";
             return true;
         }
     }
