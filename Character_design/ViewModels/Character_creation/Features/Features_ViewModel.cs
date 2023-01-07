@@ -24,7 +24,8 @@ namespace Character_design
 
         private int num_skills_left;
 
-        private string feature_choose_warning;
+        private string feature_choose_warning,
+                       feature_choose_advice;
 
         private Color Chosen_color,
                       Unchosen_color;
@@ -103,6 +104,11 @@ namespace Character_design
             get { return feature_choose_warning; }
             set { feature_choose_warning = value; OnPropertyChanged("Feature_choose_warning"); }
         }
+        public string Feature_choose_advice
+        {
+            get { return feature_choose_advice; }
+            set { feature_choose_advice = value; OnPropertyChanged("Feature_choose_advice"); }
+        }
         public List<sbyte> Selected_feature_cost_list
         {
             get { return selected_feature_cost_list; }
@@ -125,8 +131,10 @@ namespace Character_design
             Show_positive_features = new Command(o => _Show_positive_features());
             Show_negative_features = new Command(o => _Show_negative_features());
 
-            Learn_feature  = new Character_changing_command(o => _Learn_feature(Selected_feature));
-            Delete_feature = new Character_changing_command(o => _Delete_feature(Selected_feature));
+            Learn_feature  = new Character_changing_command(o => _Learn_feature(selected_feature),
+                                                            o => Feature_learning_is_possible(selected_feature));
+            Delete_feature = new Character_changing_command(o => _Delete_feature(selected_feature),
+                                                            o => Feature_learning_is_possible(selected_feature));
 
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
@@ -188,6 +196,15 @@ namespace Character_design
             {
                 Character.GetInstance().Delete_feature(feature);
             }
+        }
+        private bool Feature_learning_is_possible(All_feature_template feature)
+        {
+
+            return true;
+        }
+        private bool Feature_deleting_is_possible(All_feature_template feature)
+        {
+            return true;
         }
     }
 }
