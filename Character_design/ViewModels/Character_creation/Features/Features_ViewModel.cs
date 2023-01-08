@@ -26,6 +26,12 @@ namespace Character_design
 
         private sbyte selected_feature_cost;
 
+        private byte comboBoxOpacity,
+                     textBlockOpacity;
+
+        private bool comboBoxEnabled,
+                     textBlockEnabled;
+
         private string feature_choose_warning,
                        feature_choose_advice;
 
@@ -70,6 +76,7 @@ namespace Character_design
                 {
                     selected_feature_cost_list = selected_feature.Cost;
                     Selected_feature_cost = selected_feature_cost_list[0];
+                    Select_show_cost(Selected_feature);
                     OnPropertyChanged("Selected_feature_description");
                     OnPropertyChanged("Selected_feature_title");
                     OnPropertyChanged("Selected_feature_img_path");
@@ -121,6 +128,26 @@ namespace Character_design
             get { return selected_feature_cost; }
             set { selected_feature_cost = value; OnPropertyChanged("Selected_feature_cost"); }
         }
+        public byte ComboBoxOpacity
+        {
+            get { return comboBoxOpacity; }
+            set { comboBoxOpacity = value; OnPropertyChanged("ComboBoxOpacity"); }
+        }
+        public byte TextBlockOpacity
+        {
+            get { return textBlockOpacity; }
+            set { textBlockOpacity = value; OnPropertyChanged("TextBlockOpacity"); }
+        }
+        public bool ComboBoxEnabled
+        {
+            get { return comboBoxEnabled; }
+            set { comboBoxEnabled = value; OnPropertyChanged("ComboBoxEnabled"); }
+        }
+        public bool TextBlockEnabled
+        {
+            get { return textBlockEnabled; }
+            set { textBlockEnabled = value; OnPropertyChanged("TextBlockEnabled"); }
+        }
 
 
 
@@ -163,6 +190,9 @@ namespace Character_design
             selected_feature = new All_feature_template();
 
             selected_feature = Current_feature_list[0];
+            Select_show_cost(Selected_feature);
+            selected_feature_cost_list = selected_feature.Cost;
+            Selected_feature_cost = selected_feature_cost_list[0];
 
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;
@@ -180,6 +210,7 @@ namespace Character_design
 
             Current_feature_list = positive_features;
             Selected_feature = Current_feature_list[0];
+            Select_show_cost(Selected_feature);
         }
         private void _Show_negative_features()
         {
@@ -188,6 +219,7 @@ namespace Character_design
 
             Current_feature_list = negative_features;
             Selected_feature = Current_feature_list[0];
+            Select_show_cost(Selected_feature);
         }
         private void _Learn_feature(object o)
         {
@@ -264,6 +296,23 @@ namespace Character_design
             Feature_choose_advice = "";
             Feature_choose_warning = "";
             return true;
+        }
+        private void Select_show_cost(All_feature_template feature)
+        {
+            if(feature.Cost.Count > 1)
+            {
+                ComboBoxOpacity = 100;
+                TextBlockOpacity = 0;
+                ComboBoxEnabled = true;
+                TextBlockEnabled = false;
+            }
+            else
+            {
+                ComboBoxOpacity = 0;
+                TextBlockOpacity = 100;
+                ComboBoxEnabled = false;
+                TextBlockEnabled = true;
+            }
         }
     }
 }
