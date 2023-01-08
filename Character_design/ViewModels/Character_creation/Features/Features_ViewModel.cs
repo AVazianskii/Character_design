@@ -24,6 +24,8 @@ namespace Character_design
 
         private int num_skills_left;
 
+        private sbyte selected_feature_cost;
+
         private string feature_choose_warning,
                        feature_choose_advice;
 
@@ -67,6 +69,7 @@ namespace Character_design
                 if (selected_feature != null)
                 {
                     selected_feature_cost_list = selected_feature.Cost;
+                    Selected_feature_cost = selected_feature_cost_list[0];
                     OnPropertyChanged("Selected_feature_description");
                     OnPropertyChanged("Selected_feature_title");
                     OnPropertyChanged("Selected_feature_img_path");
@@ -112,6 +115,11 @@ namespace Character_design
         public List<sbyte> Selected_feature_cost_list
         {
             get { return selected_feature_cost_list; }
+        }
+        public sbyte Selected_feature_cost
+        {
+            get { return selected_feature_cost; }
+            set { selected_feature_cost = value; OnPropertyChanged("Selected_feature_cost"); }
         }
 
 
@@ -199,6 +207,30 @@ namespace Character_design
         }
         private bool Feature_learning_is_posible(All_feature_template feature)
         {
+            if (current_feature_list == positive_features)
+            {
+                if (Selected_feature_cost > Character.GetInstance().Limit_positive_features_left)
+                {
+                    Feature_choose_advice = "";
+                    Feature_choose_warning = "Недостаточно очков особенностей!";
+                    return false;
+                }
+            }
+            if (current_feature_list == negative_features)
+            {
+                if (Selected_feature_cost > Character.GetInstance().Limit_negative_features_left)
+                {
+                    Feature_choose_advice = "";
+                    Feature_choose_warning = "Недостаточно очков особенностей!";
+                    return false;
+                }
+            }
+            if (feature.Is_chosen)
+            {
+                Feature_choose_advice = "";
+                Feature_choose_warning = "";
+                return false;
+            }
             Feature_choose_advice = "";
             Feature_choose_warning = "";
             return true;
@@ -209,6 +241,8 @@ namespace Character_design
             {
                 if(Character.GetInstance().Positive_features_with_points.Count == 0)
                 {
+                    Feature_choose_advice = "";
+                    Feature_choose_warning = "";
                     return false;
                 }
             }
@@ -216,8 +250,16 @@ namespace Character_design
             {
                 if (Character.GetInstance().Negative_features_with_points.Count == 0)
                 {
+                    Feature_choose_advice = "";
+                    Feature_choose_warning = "";
                     return false;
                 }
+            }
+            if(feature.Is_chosen == false)
+            {
+                Feature_choose_advice = "";
+                Feature_choose_warning = "";
+                return false;
             }
             Feature_choose_advice = "";
             Feature_choose_warning = "";

@@ -244,7 +244,8 @@
                            Canvas.Top="360" 
                            Width="60"
                            FontSize="18" 
-                           ItemsSource="{Binding Selected_feature_cost_list}"/>
+                           ItemsSource="{Binding Selected_feature_cost_list}"
+                          SelectedValue="{Binding Selected_feature_cost}"/>
                 <TextBlock Height="34" 
                            Canvas.Left="910" 
                            TextWrapping="Wrap" 
