@@ -303,7 +303,37 @@ namespace Character_design
                 }
                 return false;
             }
-            if(feature.Is_enabled == false)
+            if (feature.Is_force_usered_only && Character.GetInstance().Forceuser != true)
+            {
+                Feature_choose_advice = "";
+                Feature_choose_warning = "Особенность предназначена для адептов Силы!";
+                return false;
+            }
+            if (feature.Is_usual_usered_only && Character.GetInstance().Forceuser == true)
+            {
+                Feature_choose_advice = "";
+                Feature_choose_warning = "Особенность не предназначена для адептов Силы!";
+                return false;
+            }
+            if (Character.GetInstance().Is_sith)
+            {
+                if (feature.ID == 89 || feature.ID == 90 || feature.ID == 102)
+                {
+                    Feature_choose_advice = "";
+                    Feature_choose_warning = "Особенность предназначена для адептов Светлой стороны Силы!";
+                    return false;
+                }
+            }
+            if (Character.GetInstance().Is_jedi)
+            {
+                if (feature.ID == 91 || feature.ID == 100 || feature.ID == 101)
+                {
+                    Feature_choose_advice = "";
+                    Feature_choose_warning = "Особенность предназначена для адептов Темной стороны Силы!";
+                    return false;
+                }
+            }
+            if (feature.Is_enabled == false)
             {
                 Feature_choose_advice = "";
                 Feature_choose_warning = "";
@@ -406,6 +436,6 @@ namespace Character_design
                     ftr.Is_enabled = true;
                 }
             }
-        }
+        } 
     }
 }
