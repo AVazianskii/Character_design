@@ -31,7 +31,8 @@ namespace Character_design
                      textBlockEnabled;
 
         private string feature_choose_warning,
-                       feature_choose_advice;
+                       feature_choose_advice,
+                       charm_feature_block;
 
         private Color Chosen_color,
                       Unchosen_color;
@@ -250,11 +251,13 @@ namespace Character_design
                 {
                     Character.GetInstance().Spend_positive_feature_points(Selected_feature_cost);
                     Character.GetInstance().Learn_positive_feature(feature);
+                    Block_charm_features(feature);
                 }
                 else
                 {
                     Character.GetInstance().Spend_negative_feature_points(Selected_feature_cost);
                     Character.GetInstance().Learn_negative_feature(feature);
+                    Block_charm_features(feature);
                 }
                 feature.Chosen_cost = Selected_feature_cost;
                 OnPropertyChanged("Exp_points_left");
@@ -271,11 +274,13 @@ namespace Character_design
                 {
                     Character.GetInstance().Refund_positive_feature_points(feature.Chosen_cost);
                     Character.GetInstance().Delete_positive_feature(feature);
+                    UnBlock_charm_features(feature);
                 }
                 else
                 {
                     Character.GetInstance().Refund_negative_feature_points(feature.Chosen_cost);
                     Character.GetInstance().Delete_negative_feature(feature);
+                    UnBlock_charm_features(feature);
                 }
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
@@ -295,6 +300,16 @@ namespace Character_design
                 {
                     Feature_choose_warning = "";
                     Feature_choose_advice = "Особенность выбрана!";
+                }
+                return false;
+            }
+            if(feature.Is_enabled == false)
+            {
+                Feature_choose_advice = "";
+                Feature_choose_warning = "";
+                if (charm_feature_block != "")
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{charm_feature_block}";
                 }
                 return false;
             }
@@ -347,6 +362,49 @@ namespace Character_design
                 TextBlockOpacity = 100;
                 ComboBoxEnabled = false;
                 TextBlockEnabled = true;
+            }
+        }
+        
+        private void Block_charm_features(All_feature_template feature)
+        {
+            bool flag = false;
+            foreach(All_feature_template ftr in Character.GetInstance().Charm_features)
+            {
+                if ((ftr.ID == feature.ID) && (feature.Is_chosen))
+                {
+                    flag = true;
+                    charm_feature_block = feature.Name;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                foreach (All_feature_template ftr in Character.GetInstance().Charm_features)
+                {
+                    if (ftr.ID != feature.ID)
+                    {
+                        ftr.Is_enabled = false;
+                    }
+                }
+            }
+        }
+        private void UnBlock_charm_features(All_feature_template feature)
+        {
+            bool flag = false;
+            foreach (All_feature_template ftr in Character.GetInstance().Charm_features)
+            {
+                if (ftr.ID == feature.ID)
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                foreach (All_feature_template ftr in Character.GetInstance().Charm_features)
+                {
+                    ftr.Is_enabled = true;
+                }
             }
         }
     }
