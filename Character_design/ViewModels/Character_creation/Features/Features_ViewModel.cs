@@ -32,7 +32,10 @@ namespace Character_design
 
         private string feature_choose_warning,
                        feature_choose_advice,
-                       charm_feature_block;
+                       charm_feature_block,
+                       hero_feature_block,
+                       sleep_feature_block,
+                       alcohol_feature_block;
 
         private Color Chosen_color,
                       Unchosen_color;
@@ -222,6 +225,11 @@ namespace Character_design
             Unchosen_color = Colors.Black;
 
             Set_colors_for_chosen_item(Button_borders, Positive_feature_border, Chosen_color, Unchosen_color);
+
+            hero_feature_block = "";
+            charm_feature_block = "";
+            sleep_feature_block = "";
+            alcohol_feature_block = "";
         }
 
 
@@ -251,15 +259,17 @@ namespace Character_design
                 {
                     Character.GetInstance().Spend_positive_feature_points(Selected_feature_cost);
                     Character.GetInstance().Learn_positive_feature(feature);
-                    Block_charm_features(feature);
                 }
                 else
                 {
                     Character.GetInstance().Spend_negative_feature_points(Selected_feature_cost);
                     Character.GetInstance().Learn_negative_feature(feature);
-                    Block_charm_features(feature);
                 }
                 feature.Chosen_cost = Selected_feature_cost;
+                Block_charm_features(feature);
+                Block_hero_features(feature);
+                Block_sleep_features(feature);
+                Block_alcohol_features(feature);
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
@@ -274,14 +284,16 @@ namespace Character_design
                 {
                     Character.GetInstance().Refund_positive_feature_points(feature.Chosen_cost);
                     Character.GetInstance().Delete_positive_feature(feature);
-                    UnBlock_charm_features(feature);
                 }
                 else
                 {
                     Character.GetInstance().Refund_negative_feature_points(feature.Chosen_cost);
                     Character.GetInstance().Delete_negative_feature(feature);
-                    UnBlock_charm_features(feature);
                 }
+                UnBlock_charm_features(feature);
+                UnBlock_hero_features(feature);
+                UnBlock_sleep_features(feature);
+                UnBlock_alcohol_features(feature);
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
@@ -337,9 +349,21 @@ namespace Character_design
             {
                 Feature_choose_advice = "";
                 Feature_choose_warning = "";
+                if (hero_feature_block != "")
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{hero_feature_block}";
+                }
                 if (charm_feature_block != "")
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{charm_feature_block}";
+                }
+                if (sleep_feature_block != "")
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sleep_feature_block}";
+                }
+                if (alcohol_feature_block != "")
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{alcohol_feature_block}";
                 }
                 return false;
             }
@@ -436,6 +460,132 @@ namespace Character_design
                     ftr.Is_enabled = true;
                 }
             }
-        } 
+        }
+        private void Block_hero_features(All_feature_template feature)
+        {
+            bool flag = false;
+            foreach (All_feature_template ftr in Character.GetInstance().Hero_features)
+            {
+                if ((ftr.ID == feature.ID) && (feature.Is_chosen))
+                {
+                    flag = true;
+                    hero_feature_block = feature.Name;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                foreach (All_feature_template ftr in Character.GetInstance().Hero_features)
+                {
+                    if (ftr.ID != feature.ID)
+                    {
+                        ftr.Is_enabled = false;
+                    }
+                }
+            }
+        }
+        private void UnBlock_hero_features(All_feature_template feature)
+        {
+            bool flag = false;
+            foreach (All_feature_template ftr in Character.GetInstance().Hero_features)
+            {
+                if (ftr.ID == feature.ID)
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                foreach (All_feature_template ftr in Character.GetInstance().Hero_features)
+                {
+                    ftr.Is_enabled = true;
+                }
+            }
+        }
+        private void Block_sleep_features(All_feature_template feature)
+        {
+            bool flag = false;
+            foreach (All_feature_template ftr in Character.GetInstance().Sleep_feature)
+            {
+                if ((ftr.ID == feature.ID) && (feature.Is_chosen))
+                {
+                    flag = true;
+                    sleep_feature_block = feature.Name;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                foreach (All_feature_template ftr in Character.GetInstance().Sleep_feature)
+                {
+                    if (ftr.ID != feature.ID)
+                    {
+                        ftr.Is_enabled = false;
+                    }
+                }
+            }
+        }
+        private void UnBlock_sleep_features(All_feature_template feature)
+        {
+            bool flag = false;
+            foreach (All_feature_template ftr in Character.GetInstance().Sleep_feature)
+            {
+                if (ftr.ID == feature.ID)
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                foreach (All_feature_template ftr in Character.GetInstance().Sleep_feature)
+                {
+                    ftr.Is_enabled = true;
+                }
+            }
+        }
+        private void Block_alcohol_features(All_feature_template feature)
+        {
+            bool flag = false;
+            foreach (All_feature_template ftr in Character.GetInstance().Alcohol_feature)
+            {
+                if ((ftr.ID == feature.ID) && (feature.Is_chosen))
+                {
+                    flag = true;
+                    alcohol_feature_block = feature.Name;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                foreach (All_feature_template ftr in Character.GetInstance().Alcohol_feature)
+                {
+                    if (ftr.ID != feature.ID)
+                    {
+                        ftr.Is_enabled = false;
+                    }
+                }
+            }
+        }
+        private void UnBlock_alcohol_features(All_feature_template feature)
+        {
+            bool flag = false;
+            foreach (All_feature_template ftr in Character.GetInstance().Alcohol_feature)
+            {
+                if (ftr.ID == feature.ID)
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                foreach (All_feature_template ftr in Character.GetInstance().Alcohol_feature)
+                {
+                    ftr.Is_enabled = true;
+                }
+            }
+        }
     }
 }
