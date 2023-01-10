@@ -22,16 +22,13 @@ namespace Character_design
 
         private List<sbyte> selected_feature_cost_list;
 
-        private int num_skills_left;
-
         private sbyte selected_feature_cost;
 
         private byte comboBoxOpacity,
                      textBlockOpacity;
 
         private bool comboBoxEnabled,
-                     textBlockEnabled,
-                     negative_features_chosen;
+                     textBlockEnabled;
 
         private string feature_choose_warning,
                        feature_choose_advice;
@@ -195,7 +192,7 @@ namespace Character_design
             Learn_feature  = new Character_changing_command(o => _Learn_feature(Selected_feature),
                                                             o => Feature_learning_is_posible(Selected_feature));
             Delete_feature = new Character_changing_command(o => _Delete_feature(Selected_feature),
-                                                            o => Feature_deleting_is_posible(Selected_feature));
+                                                            o => Selected_feature.Is_chosen);
 
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
@@ -212,7 +209,6 @@ namespace Character_design
             negative_features   = Feature_manager.GetInstance().Get_negative_features();
             
             Current_feature_list = positive_features;
-            negative_features_chosen = false;
 
             selected_feature = new All_feature_template();
 
@@ -236,7 +232,6 @@ namespace Character_design
             Current_feature_list = positive_features;
             Selected_feature = Current_feature_list[0];
             Select_show_cost(Selected_feature);
-            negative_features_chosen = false;
         }
         private void _Show_negative_features()
         {
@@ -245,15 +240,13 @@ namespace Character_design
             Current_feature_list = negative_features;
             Selected_feature = Current_feature_list[0];
             Select_show_cost(Selected_feature);
-            negative_features_chosen = true;
         }
         private void _Learn_feature(object o)
         {
             All_feature_template feature = o as All_feature_template;
             if (feature != null)
             {
-                // ReferenceEquals - для сравнения ссылок на объекты
-                if (negative_features_chosen == false)
+                if (current_feature_list == positive_features)
                 {
                     Character.GetInstance().Spend_positive_feature_points(Selected_feature_cost);
                     Character.GetInstance().Learn_positive_feature(feature);
@@ -274,7 +267,7 @@ namespace Character_design
             All_feature_template feature = o as All_feature_template;
             if (feature != null)
             {
-                if (negative_features_chosen == false)
+                if (current_feature_list == positive_features)
                 {
                     Character.GetInstance().Refund_positive_feature_points(feature.Chosen_cost);
                     Character.GetInstance().Delete_positive_feature(feature);
@@ -291,8 +284,28 @@ namespace Character_design
         }
         private bool Feature_learning_is_posible(All_feature_template feature)
         {
-            if (negative_features_chosen == false)
+            if (feature.Is_chosen)
             {
+                if (feature.Cost.Count > 1)
+                {
+                    Feature_choose_warning = "";
+                    Feature_choose_advice = $"Особенность выбрана!\nСтоимость особенности: {feature.Chosen_cost}";
+                }
+                else
+                {
+                    Feature_choose_warning = "";
+                    Feature_choose_advice = "Особенность выбрана!";
+                }
+                return false;
+            }
+            if (current_feature_list == positive_features) 
+            {
+                if(Character.GetInstance().Limit_positive_features_left == 0)
+                {
+                    Feature_choose_advice = "";
+                    Feature_choose_warning = "Достигнут лимит изучения особенностей!";
+                    return false;
+                }
                 if (Selected_feature_cost > Character.GetInstance().Positive_features_points_left)
                 {
                     Feature_choose_advice = "";
@@ -300,8 +313,14 @@ namespace Character_design
                     return false;
                 }
             }
-            if (negative_features_chosen == true)
+            if (current_feature_list == negative_features)
             {
+                if (Character.GetInstance().Limit_negative_features_left == 0)
+                {
+                    Feature_choose_advice = "";
+                    Feature_choose_warning = "Достигнут лимит изучения особенностей!";
+                    return false;
+                }
                 if (Selected_feature_cost > Character.GetInstance().Negative_features_points_left)
                 {
                     Feature_choose_advice = "";
@@ -309,51 +328,8 @@ namespace Character_design
                     return false;
                 }
             }
-            if (feature.Is_chosen)
-            {
-                if (feature.Cost.Count > 1)
-                {
-                    Feature_choose_advice = $"Особенность выбрана! Стоимость особенности: {feature.Chosen_cost}";
-                }
-                else
-                {
-                    Feature_choose_advice = "Особенность выбрана!";
-                }
-                Feature_choose_warning = "";
-                return false;
-            }
-            Feature_choose_advice = "";
             Feature_choose_warning = "";
-            return true;
-        }
-        private bool Feature_deleting_is_posible(All_feature_template feature)
-        {
-            if (negative_features_chosen == false)
-            {
-                if(Character.GetInstance().Positive_features_with_points.Count == 0)
-                {
-                    Feature_choose_advice = "";
-                    Feature_choose_warning = "";
-                    return false;
-                }
-            }
-            if (negative_features_chosen == true)
-            {
-                if (Character.GetInstance().Negative_features_with_points.Count == 0)
-                {
-                    Feature_choose_advice = "";
-                    Feature_choose_warning = "";
-                    return false;
-                }
-            }
-            if(feature.Is_chosen == false)
-            {
-                Feature_choose_advice = "";
-                Feature_choose_warning = "";
-                return false;
-            }
             Feature_choose_advice = "";
-            Feature_choose_warning = "";
             return true;
         }
         private void Select_show_cost(All_feature_template feature)
