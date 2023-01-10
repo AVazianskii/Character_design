@@ -98,7 +98,6 @@ namespace Character_design
         }
         public int Exp_points_left
         {
-            //TODO: сделать логику выбора особенностей персонажа
             get 
             {   
                 if (current_feature_list == positive_features)
@@ -220,7 +219,6 @@ namespace Character_design
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;
 
-            //Num_skills_left = Character.GetInstance().Limit_positive_features_left;
             Set_colors_for_chosen_item(Button_borders, Positive_feature_border, Chosen_color, Unchosen_color);
         }
 
@@ -228,7 +226,6 @@ namespace Character_design
 
         private void _Show_positive_features()
         {
-            //Num_skills_left = Character.GetInstance().Limit_positive_features_left;
             Set_colors_for_chosen_item(Button_borders, Positive_feature_border, Chosen_color, Unchosen_color);
 
             Current_feature_list = positive_features;
@@ -238,7 +235,6 @@ namespace Character_design
         }
         private void _Show_negative_features()
         {
-            //Num_skills_left = Character.GetInstance().Limit_negative_features_left;
             Set_colors_for_chosen_item(Button_borders, Negative_feature_border, Chosen_color, Unchosen_color);
 
             Current_feature_list = negative_features;
