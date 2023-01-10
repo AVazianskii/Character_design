@@ -349,19 +349,19 @@ namespace Character_design
             {
                 Feature_choose_advice = "";
                 Feature_choose_warning = "";
-                if (hero_feature_block != "")
+                if (hero_feature_block != "" && Character.GetInstance().Hero_features.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{hero_feature_block}";
                 }
-                if (charm_feature_block != "")
+                if (charm_feature_block != "" && Character.GetInstance().Charm_features.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{charm_feature_block}";
                 }
-                if (sleep_feature_block != "")
+                if (sleep_feature_block != "" && Character.GetInstance().Sleep_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sleep_feature_block}";
                 }
-                if (alcohol_feature_block != "")
+                if (alcohol_feature_block != "" && Character.GetInstance().Alcohol_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{alcohol_feature_block}";
                 }
