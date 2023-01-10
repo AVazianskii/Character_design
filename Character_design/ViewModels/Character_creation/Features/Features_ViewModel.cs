@@ -293,7 +293,7 @@ namespace Character_design
         {
             if (negative_features_chosen == false)
             {
-                if (Selected_feature_cost > Character.GetInstance().Limit_positive_features_left)
+                if (Selected_feature_cost > Character.GetInstance().Positive_features_points_left)
                 {
                     Feature_choose_advice = "";
                     Feature_choose_warning = "Недостаточно очков особенностей!";
@@ -302,7 +302,7 @@ namespace Character_design
             }
             if (negative_features_chosen == true)
             {
-                if (Selected_feature_cost > Character.GetInstance().Limit_negative_features_left)
+                if (Selected_feature_cost > Character.GetInstance().Negative_features_points_left)
                 {
                     Feature_choose_advice = "";
                     Feature_choose_warning = "Недостаточно очков особенностей!";
@@ -311,7 +311,14 @@ namespace Character_design
             }
             if (feature.Is_chosen)
             {
-                Feature_choose_advice = "";
+                if (feature.Cost.Count > 1)
+                {
+                    Feature_choose_advice = $"Особенность выбрана! Стоимость особенности: {feature.Chosen_cost}";
+                }
+                else
+                {
+                    Feature_choose_advice = "Особенность выбрана!";
+                }
                 Feature_choose_warning = "";
                 return false;
             }
