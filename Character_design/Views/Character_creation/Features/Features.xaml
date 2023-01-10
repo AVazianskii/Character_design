@@ -133,7 +133,7 @@
                        Canvas.Top="72" 
                        Height="40" 
                        Width="70"
-                       Text="{Binding Exp_points_left}" 
+                       Text="{Binding Total_feature_score}" 
                        Foreground="Wheat" 
                        FontSize="24"/>
             <Image Canvas.Left="1090" 

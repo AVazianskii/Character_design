@@ -93,6 +93,7 @@ namespace Character_design
                     OnPropertyChanged("Selected_feature_cost_list");
                     OnPropertyChanged("Exp_points_left");
                     OnPropertyChanged("Num_skills_left");
+                    OnPropertyChanged("Total_feature_score");
                 }
             }
         }
@@ -168,6 +169,10 @@ namespace Character_design
         {
             get { return textBlockEnabled; }
             set { textBlockEnabled = value; OnPropertyChanged("TextBlockEnabled"); }
+        }
+        public int Total_feature_score
+        {
+            get { return Character.GetInstance().Return_total_feature_score(); }
         }
 
 
@@ -261,6 +266,7 @@ namespace Character_design
                 feature.Chosen_cost = Selected_feature_cost;
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
+                OnPropertyChanged("Total_feature_score");
             }
         }
         private void _Delete_feature(object o)
@@ -280,6 +286,7 @@ namespace Character_design
                 }
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
+                OnPropertyChanged("Total_feature_score");
             }
         }
         private bool Feature_learning_is_posible(All_feature_template feature)
