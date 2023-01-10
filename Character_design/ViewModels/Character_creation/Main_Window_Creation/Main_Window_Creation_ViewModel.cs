@@ -225,9 +225,19 @@ namespace Character_design
         }
         private void  Save_character_info ()
         {
-            Character.GetInstance().Save_character_to_excel_card();
+            if (Character.GetInstance().Features_balanced == false)
+            {
+                MessageBox.Show("Особенности персонажа не сбалансированы! Сохранение невозможно.",
+                                "Сохранение",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+            }
+            else
+            {
+                Character.GetInstance().Save_character_to_excel_card();
 
-            Save_character_excel.GetInstance().Save_character_to_Excel_card(Character.GetInstance());
+                Save_character_excel.GetInstance().Save_character_to_Excel_card(Character.GetInstance());
+            }
         }
         private void Return_to_main_menu(Character character)
         {
