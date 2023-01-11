@@ -742,6 +742,10 @@ namespace Character_design
             OnPropertyChanged("Atr_points_left");
             OnPropertyChanged("Exp_points_left");
         }
+        public void Refresh_karma_points()
+        {
+            OnPropertyChanged("Character_karma");
+        }
         public void Refresh_atr_score(Attribute_libs.Atribute_class attribute)
         {
             switch (attribute.Get_atribute_code())

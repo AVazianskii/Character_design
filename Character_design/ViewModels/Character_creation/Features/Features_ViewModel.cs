@@ -35,7 +35,9 @@ namespace Character_design
                        charm_feature_block,
                        hero_feature_block,
                        sleep_feature_block,
-                       alcohol_feature_block;
+                       alcohol_feature_block,
+                       sith_feature_block,
+                       jedi_feature_block;
 
         private Color Chosen_color,
                       Unchosen_color;
@@ -230,6 +232,8 @@ namespace Character_design
             charm_feature_block = "";
             sleep_feature_block = "";
             alcohol_feature_block = "";
+            sith_feature_block = "";
+            jedi_feature_block = "";
         }
 
 
@@ -270,9 +274,14 @@ namespace Character_design
                 Block_features(feature, Character.GetInstance().Hero_features,   ref hero_feature_block);
                 Block_features(feature, Character.GetInstance().Sleep_feature,   ref sleep_feature_block);
                 Block_features(feature, Character.GetInstance().Alcohol_feature, ref alcohol_feature_block);
+                Block_features(feature, Character.GetInstance().Sith_feature,    ref sith_feature_block);
+                Block_features(feature, Character.GetInstance().Jedi_feature,    ref jedi_feature_block);
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
+
+                Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
+                Character_info_ViewModel.GetInstance().Refresh_karma_points();
             }
         }
         private void _Delete_feature(object o)
@@ -294,9 +303,14 @@ namespace Character_design
                 UnBlock_features(feature, Character.GetInstance().Hero_features);
                 UnBlock_features(feature, Character.GetInstance().Sleep_feature);
                 UnBlock_features(feature, Character.GetInstance().Alcohol_feature);
+                UnBlock_features(feature, Character.GetInstance().Sith_feature);
+                UnBlock_features(feature, Character.GetInstance().Jedi_feature);
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
+
+                Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
+                Character_info_ViewModel.GetInstance().Refresh_karma_points();
             }
         }
         private bool Feature_learning_is_posible(All_feature_template feature)
@@ -364,6 +378,14 @@ namespace Character_design
                 if (alcohol_feature_block != "" && Character.GetInstance().Alcohol_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{alcohol_feature_block}";
+                }
+                if (sith_feature_block != "" && Character.GetInstance().Sith_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sith_feature_block}";
+                }
+                if (jedi_feature_block != "" && Character.GetInstance().Jedi_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{jedi_feature_block}";
                 }
                 return false;
             }
