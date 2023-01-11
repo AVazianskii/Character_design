@@ -266,10 +266,10 @@ namespace Character_design
                     Character.GetInstance().Learn_negative_feature(feature);
                 }
                 feature.Chosen_cost = Selected_feature_cost;
-                Block_charm_features(feature);
-                Block_hero_features(feature);
-                Block_sleep_features(feature);
-                Block_alcohol_features(feature);
+                Block_features(feature, Character.GetInstance().Charm_features,  ref charm_feature_block);
+                Block_features(feature, Character.GetInstance().Hero_features,   ref hero_feature_block);
+                Block_features(feature, Character.GetInstance().Sleep_feature,   ref sleep_feature_block);
+                Block_features(feature, Character.GetInstance().Alcohol_feature, ref alcohol_feature_block);
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
@@ -290,10 +290,10 @@ namespace Character_design
                     Character.GetInstance().Refund_negative_feature_points(feature.Chosen_cost);
                     Character.GetInstance().Delete_negative_feature(feature);
                 }
-                UnBlock_charm_features(feature);
-                UnBlock_hero_features(feature);
-                UnBlock_sleep_features(feature);
-                UnBlock_alcohol_features(feature);
+                UnBlock_features(feature, Character.GetInstance().Charm_features);
+                UnBlock_features(feature, Character.GetInstance().Hero_features);
+                UnBlock_features(feature, Character.GetInstance().Sleep_feature);
+                UnBlock_features(feature, Character.GetInstance().Alcohol_feature);
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
@@ -417,23 +417,22 @@ namespace Character_design
                 ComboBoxEnabled = false;
                 TextBlockEnabled = true;
             }
-        }
-        
-        private void Block_charm_features(All_feature_template feature)
+        }       
+        private void Block_features(All_feature_template feature, List<All_feature_template> feature_list, ref string status)
         {
             bool flag = false;
-            foreach(All_feature_template ftr in Character.GetInstance().Charm_features)
+            foreach (All_feature_template ftr in feature_list)
             {
                 if ((ftr.ID == feature.ID) && (feature.Is_chosen))
                 {
                     flag = true;
-                    charm_feature_block = feature.Name;
+                    status = feature.Name;
                     break;
                 }
             }
             if (flag)
             {
-                foreach (All_feature_template ftr in Character.GetInstance().Charm_features)
+                foreach (All_feature_template ftr in feature_list)
                 {
                     if (ftr.ID != feature.ID)
                     {
@@ -442,10 +441,10 @@ namespace Character_design
                 }
             }
         }
-        private void UnBlock_charm_features(All_feature_template feature)
+        private void UnBlock_features(All_feature_template feature, List<All_feature_template> feature_list)
         {
             bool flag = false;
-            foreach (All_feature_template ftr in Character.GetInstance().Charm_features)
+            foreach (All_feature_template ftr in feature_list)
             {
                 if (ftr.ID == feature.ID)
                 {
@@ -455,133 +454,7 @@ namespace Character_design
             }
             if (flag)
             {
-                foreach (All_feature_template ftr in Character.GetInstance().Charm_features)
-                {
-                    ftr.Is_enabled = true;
-                }
-            }
-        }
-        private void Block_hero_features(All_feature_template feature)
-        {
-            bool flag = false;
-            foreach (All_feature_template ftr in Character.GetInstance().Hero_features)
-            {
-                if ((ftr.ID == feature.ID) && (feature.Is_chosen))
-                {
-                    flag = true;
-                    hero_feature_block = feature.Name;
-                    break;
-                }
-            }
-            if (flag)
-            {
-                foreach (All_feature_template ftr in Character.GetInstance().Hero_features)
-                {
-                    if (ftr.ID != feature.ID)
-                    {
-                        ftr.Is_enabled = false;
-                    }
-                }
-            }
-        }
-        private void UnBlock_hero_features(All_feature_template feature)
-        {
-            bool flag = false;
-            foreach (All_feature_template ftr in Character.GetInstance().Hero_features)
-            {
-                if (ftr.ID == feature.ID)
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag)
-            {
-                foreach (All_feature_template ftr in Character.GetInstance().Hero_features)
-                {
-                    ftr.Is_enabled = true;
-                }
-            }
-        }
-        private void Block_sleep_features(All_feature_template feature)
-        {
-            bool flag = false;
-            foreach (All_feature_template ftr in Character.GetInstance().Sleep_feature)
-            {
-                if ((ftr.ID == feature.ID) && (feature.Is_chosen))
-                {
-                    flag = true;
-                    sleep_feature_block = feature.Name;
-                    break;
-                }
-            }
-            if (flag)
-            {
-                foreach (All_feature_template ftr in Character.GetInstance().Sleep_feature)
-                {
-                    if (ftr.ID != feature.ID)
-                    {
-                        ftr.Is_enabled = false;
-                    }
-                }
-            }
-        }
-        private void UnBlock_sleep_features(All_feature_template feature)
-        {
-            bool flag = false;
-            foreach (All_feature_template ftr in Character.GetInstance().Sleep_feature)
-            {
-                if (ftr.ID == feature.ID)
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag)
-            {
-                foreach (All_feature_template ftr in Character.GetInstance().Sleep_feature)
-                {
-                    ftr.Is_enabled = true;
-                }
-            }
-        }
-        private void Block_alcohol_features(All_feature_template feature)
-        {
-            bool flag = false;
-            foreach (All_feature_template ftr in Character.GetInstance().Alcohol_feature)
-            {
-                if ((ftr.ID == feature.ID) && (feature.Is_chosen))
-                {
-                    flag = true;
-                    alcohol_feature_block = feature.Name;
-                    break;
-                }
-            }
-            if (flag)
-            {
-                foreach (All_feature_template ftr in Character.GetInstance().Alcohol_feature)
-                {
-                    if (ftr.ID != feature.ID)
-                    {
-                        ftr.Is_enabled = false;
-                    }
-                }
-            }
-        }
-        private void UnBlock_alcohol_features(All_feature_template feature)
-        {
-            bool flag = false;
-            foreach (All_feature_template ftr in Character.GetInstance().Alcohol_feature)
-            {
-                if (ftr.ID == feature.ID)
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag)
-            {
-                foreach (All_feature_template ftr in Character.GetInstance().Alcohol_feature)
+                foreach (All_feature_template ftr in feature_list)
                 {
                     ftr.Is_enabled = true;
                 }
