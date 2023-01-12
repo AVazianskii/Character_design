@@ -37,7 +37,8 @@ namespace Character_design
                        sleep_feature_block,
                        alcohol_feature_block,
                        sith_feature_block,
-                       jedi_feature_block;
+                       jedi_feature_block,
+                       exp_feature_block;
 
         private Color Chosen_color,
                       Unchosen_color;
@@ -276,6 +277,7 @@ namespace Character_design
                 Block_features(feature, Character.GetInstance().Alcohol_feature, ref alcohol_feature_block);
                 Block_features(feature, Character.GetInstance().Sith_feature,    ref sith_feature_block);
                 Block_features(feature, Character.GetInstance().Jedi_feature,    ref jedi_feature_block);
+                Block_features(feature, Character.GetInstance().Exp_feature,     ref exp_feature_block);
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
@@ -305,6 +307,7 @@ namespace Character_design
                 UnBlock_features(feature, Character.GetInstance().Alcohol_feature);
                 UnBlock_features(feature, Character.GetInstance().Sith_feature);
                 UnBlock_features(feature, Character.GetInstance().Jedi_feature);
+                UnBlock_features(feature, Character.GetInstance().Exp_feature);
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
@@ -386,6 +389,10 @@ namespace Character_design
                 if (jedi_feature_block != "" && Character.GetInstance().Jedi_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{jedi_feature_block}";
+                }
+                if (exp_feature_block != "" && Character.GetInstance().Exp_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{exp_feature_block}";
                 }
                 return false;
             }
