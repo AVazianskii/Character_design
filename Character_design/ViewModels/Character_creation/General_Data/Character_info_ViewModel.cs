@@ -16,6 +16,7 @@ namespace Character_design
         private string character_name;
         private string character_race_name;
         private string character_age_status;
+        private string exp_error;
 
         private int help_text_fontsize,
                     usual_text_fontsize,
@@ -336,27 +337,14 @@ namespace Character_design
         {
             get { return character_exp; }
             set 
-            { 
-                if(Int32.TryParse(value, out int result))
+            {
+                Check_character_exp(value, out exp_error);
+
+                if (exp_error != "")
                 {
-                    character_exp = value;
-                    Character.GetInstance().Experience = result;
-                    Current_exp_points_fontsize = usual_text_fontsize;
-                    Exp_text_color.Color = Usual_text_color;
+                    MessageBox.Show(exp_error, "Error", MessageBoxButton.OK);
                 }
-                else if (value == "")
-                {
-                    character_exp = default_question;
-                    Current_exp_points_fontsize = help_text_fontsize;
-                    Exp_text_color.Color = Help_text_color;
-                }
-                else 
-                {
-                    MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
-                    character_exp = default_question;
-                    Current_exp_points_fontsize = help_text_fontsize;
-                    Exp_text_color.Color = Help_text_color;
-                }
+
                 OnPropertyChanged("Character_exp");
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Exp_points_for_atr");
@@ -794,6 +782,11 @@ namespace Character_design
             Refresh_atr_score(Character.GetInstance().Charm);
             Refresh_atr_score(Character.GetInstance().Willpower);
         }
+        public void Update_new_exp_points(int bonus)
+        {
+            character_exp = (Convert.ToInt32(character_exp) + bonus).ToString();
+            OnPropertyChanged("Character_exp");
+        }
 
 
 
@@ -1202,6 +1195,61 @@ namespace Character_design
                 character.Is_neutral = true;
                 character.Is_sith = false;
                 character.Is_jedi = false;
+            }
+        }
+        private void Check_character_exp(string Exp, out string error_state)
+        {
+            bool set_default = false;
+            bool set_usual = false;
+            error_state = "";
+            if (Int32.TryParse(Exp, out int result))
+            {
+                if (result > Character.GetInstance().Experience_sold)
+                {
+                    if (result < Character.GetInstance().Experience_sold)
+                    {
+                        if (Character.GetInstance().Experience_sold > 0)
+                        {
+                            //MessageBox.Show("Потрачено больше опыта, чем указанное число!\nИзмените значение!", "Error", MessageBoxButton.OK);
+                            error_state = "Потрачено больше опыта, чем указанное число!\nИзмените значение!";
+                            character_exp = Character.GetInstance().Experience.ToString();
+                            set_usual = true;
+                        }
+                        else if (Character.GetInstance().Experience_sold == 0)
+                        {
+                            //MessageBox.Show("Ошибка! Введено отрицательное значение!\nИзмените значение!", "Error", MessageBoxButton.OK);
+                            error_state = "Ошибка! Введено отрицательное значение!\nИзмените значение!";
+                            set_default = true;
+                        }
+                    }
+                    else
+                    {
+                        character_exp = Exp;
+                        Character.GetInstance().Experience = result;
+                        set_usual = true;
+                    }
+                }
+            }
+            else if (Exp == "")
+            {
+                set_default = true;
+            }
+            else
+            {
+                //MessageBox.Show("Введено нечисловое значение!", "Error", MessageBoxButton.OK);
+                error_state = "Введено нечисловое значение!";
+                set_default = true;
+            }
+            if (set_default)
+            {
+                character_exp = default_question;
+                Current_exp_points_fontsize = help_text_fontsize;
+                Exp_text_color.Color = Help_text_color;
+            }
+            if (set_usual)
+            {
+                Current_exp_points_fontsize = usual_text_fontsize;
+                Exp_text_color.Color = Usual_text_color;
             }
         }
         private void Refresh_combat_parameters()
