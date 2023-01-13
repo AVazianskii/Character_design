@@ -1204,30 +1204,30 @@ namespace Character_design
             error_state = "";
             if (Int32.TryParse(Exp, out int result))
             {
-                if (result > Character.GetInstance().Experience_sold)
+                if (result < Character.GetInstance().Experience_sold && Character.GetInstance().Experience_sold > 0)
                 {
-                    if (result < Character.GetInstance().Experience_sold)
+                    error_state = "Потрачено больше опыта, чем указанное число!\nИзмените значение!";
+                    character_exp = Character.GetInstance().Experience.ToString();
+                    set_usual = true;
+                }
+                else if (result < Character.GetInstance().Experience_sold && Character.GetInstance().Experience_sold == 0)
+                {
+                    if(Character.GetInstance().Experience > 0)
                     {
-                        if (Character.GetInstance().Experience_sold > 0)
-                        {
-                            //MessageBox.Show("Потрачено больше опыта, чем указанное число!\nИзмените значение!", "Error", MessageBoxButton.OK);
-                            error_state = "Потрачено больше опыта, чем указанное число!\nИзмените значение!";
-                            character_exp = Character.GetInstance().Experience.ToString();
-                            set_usual = true;
-                        }
-                        else if (Character.GetInstance().Experience_sold == 0)
-                        {
-                            //MessageBox.Show("Ошибка! Введено отрицательное значение!\nИзмените значение!", "Error", MessageBoxButton.OK);
-                            error_state = "Ошибка! Введено отрицательное значение!\nИзмените значение!";
-                            set_default = true;
-                        }
+                        character_exp = Character.GetInstance().Experience.ToString();
+                        set_usual = true;
                     }
                     else
                     {
-                        character_exp = Exp;
-                        Character.GetInstance().Experience = result;
-                        set_usual = true;
+                        set_default = true;
                     }
+                    error_state = "Ошибка! Введено отрицательное значение!\nИзмените значение!";
+                }
+                else
+                {
+                    character_exp = Exp;
+                    Character.GetInstance().Experience = result;
+                    set_usual = true;
                 }
             }
             else if (Exp == "")
