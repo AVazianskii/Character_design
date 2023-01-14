@@ -787,6 +787,22 @@ namespace Character_design
             character_exp = (Convert.ToInt32(character_exp) + bonus).ToString();
             OnPropertyChanged("Character_exp");
         }
+        public void Update_new_karma_points(int bonus)
+        {
+            if ((Convert.ToInt32(character_karma) + bonus) > 50)
+            {
+                character_karma = "50";
+            }
+            else if ((Convert.ToInt32(character_karma) + bonus) <-50)
+            {
+                character_karma = "-50";
+            }
+            else
+            {
+                character_karma = (Convert.ToInt32(character_karma) + bonus).ToString();
+            }
+            OnPropertyChanged("Character_karma");
+        }
 
 
 

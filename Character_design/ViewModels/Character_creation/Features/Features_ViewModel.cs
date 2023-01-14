@@ -285,6 +285,7 @@ namespace Character_design
                 Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
                 Character_info_ViewModel.GetInstance().Refresh_karma_points();
                 Character_info_ViewModel.GetInstance().Update_new_exp_points(feature.Exp_bonus);
+                Character_info_ViewModel.GetInstance().Update_new_karma_points(feature.Karma_bonus);
             }
         }
         private void _Delete_feature(object o)
@@ -316,6 +317,7 @@ namespace Character_design
                 Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
                 Character_info_ViewModel.GetInstance().Refresh_karma_points();
                 Character_info_ViewModel.GetInstance().Update_new_exp_points(-feature.Exp_bonus);
+                Character_info_ViewModel.GetInstance().Update_new_karma_points(-feature.Karma_bonus);
             }
         }
         private bool Feature_learning_is_posible(All_feature_template feature)
