@@ -38,7 +38,8 @@ namespace Character_design
                        alcohol_feature_block,
                        sith_feature_block,
                        jedi_feature_block,
-                       exp_feature_block;
+                       exp_feature_block,
+                       arm_feature_block;
 
         private Color Chosen_color,
                       Unchosen_color;
@@ -235,6 +236,7 @@ namespace Character_design
             alcohol_feature_block = "";
             sith_feature_block = "";
             jedi_feature_block = "";
+            arm_feature_block = "";
         }
 
 
@@ -278,6 +280,7 @@ namespace Character_design
                 Block_features(feature, Character.GetInstance().Sith_feature,    ref sith_feature_block);
                 Block_features(feature, Character.GetInstance().Jedi_feature,    ref jedi_feature_block);
                 Block_features(feature, Character.GetInstance().Exp_feature,     ref exp_feature_block);
+                Block_features(feature, Character.GetInstance().Armor_feature,   ref arm_feature_block);
                 Apply_skill_bonus(feature);
 
                 OnPropertyChanged("Exp_points_left");
@@ -311,6 +314,7 @@ namespace Character_design
                 UnBlock_features(feature, Character.GetInstance().Sith_feature);
                 UnBlock_features(feature, Character.GetInstance().Jedi_feature);
                 UnBlock_features(feature, Character.GetInstance().Exp_feature);
+                UnBlock_features(feature, Character.GetInstance().Armor_feature);
                 UnApply_skill_bonus(feature);
 
                 OnPropertyChanged("Exp_points_left");
@@ -399,6 +403,10 @@ namespace Character_design
                 if (exp_feature_block != "" && Character.GetInstance().Exp_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{exp_feature_block}";
+                }
+                if (arm_feature_block != "" && Character.GetInstance().Armor_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{arm_feature_block}";
                 }
                 return false;
             }
