@@ -613,36 +613,11 @@ namespace Character_design
             get { return character_karma; }
             set 
             {
-                if (Int32.TryParse(value, out int result))
+                Check_character_karma(value, out string karma_error);
+
+                if (karma_error != "")
                 {
-                    if ((Convert.ToInt32(value) >= Minimum_karma) && (Convert.ToInt32(value) <= Maximum_karma))
-                    {
-                        character_karma = value;
-                        Current_character_karma = Convert.ToInt32(value);
-                        Character.GetInstance().Karma = result;
-                        Current_karma_points_fontsize = usual_text_fontsize;
-                        Karma_text_color.Color = Usual_text_color;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
-                        character_karma = default_text;
-                        Current_karma_points_fontsize = help_text_fontsize;
-                        Karma_text_color.Color = Help_text_color;
-                    }
-                }
-                else if (value == "")
-                {
-                    character_karma = default_text;
-                    Current_karma_points_fontsize = help_text_fontsize;
-                    Karma_text_color.Color = Help_text_color;
-                }
-                else
-                {
-                    MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
-                    character_karma = default_text;
-                    Current_karma_points_fontsize = help_text_fontsize;
-                    Karma_text_color.Color = Help_text_color;
+                    MessageBox.Show(karma_error, "Error", MessageBoxButton.OK);
                 }
 
                 OnPropertyChanged("Character_karma");
@@ -782,24 +757,26 @@ namespace Character_design
             Refresh_atr_score(Character.GetInstance().Charm);
             Refresh_atr_score(Character.GetInstance().Willpower);
         }
-        public void Update_new_exp_points(int bonus)
-        {
-            character_exp = (Convert.ToInt32(character_exp) + bonus).ToString();
-            OnPropertyChanged("Character_exp");
-        }
         public void Update_new_karma_points(int bonus)
         {
-            if ((Convert.ToInt32(character_karma) + bonus) > 50)
+            if (Int32.TryParse(Character_karma, out int result))
             {
-                character_karma = "50";
-            }
-            else if ((Convert.ToInt32(character_karma) + bonus) <-50)
-            {
-                character_karma = "-50";
+                if ((Convert.ToInt32(Character_karma) + bonus) > 50)
+                {
+                    Character_karma = "50";
+                }
+                else if ((Convert.ToInt32(Character_karma) + bonus) < -50)
+                {
+                    Character_karma = "-50";
+                }
+                else
+                {
+                    Character_karma = (Convert.ToInt32(Character_karma) + bonus).ToString();
+                }
             }
             else
             {
-                character_karma = (Convert.ToInt32(character_karma) + bonus).ToString();
+                Character_karma = bonus.ToString();
             }
             OnPropertyChanged("Character_karma");
         }
@@ -1266,6 +1243,47 @@ namespace Character_design
             {
                 Current_exp_points_fontsize = usual_text_fontsize;
                 Exp_text_color.Color = Usual_text_color;
+            }
+        }
+        private void Check_character_karma(string karma, out string error_state)
+        {
+            bool set_default = false;
+            bool set_usual = false;
+            error_state = "";
+            if (Int32.TryParse(karma, out int result))
+            {
+                if ((Convert.ToInt32(result) >= Minimum_karma) && (Convert.ToInt32(result) <= Maximum_karma))
+                {
+                    character_karma = karma;
+                    Current_character_karma = Current_character_karma + Convert.ToInt32(karma);
+                    Character.GetInstance().Karma = result;
+                    set_usual = true;
+                }
+                else
+                {
+                    error_state = "Введенное значение выходит за допустимые границы!";
+                    set_default = true;
+                }
+            }
+            else if (karma == "")
+            {
+                set_default = true;
+            }
+            else
+            {
+                error_state = "Введено нечисловое значение!";
+                set_default = true;
+            }
+            if (set_default)
+            {
+                character_karma = default_text;
+                Current_karma_points_fontsize = help_text_fontsize;
+                Karma_text_color.Color = Help_text_color;
+            }
+            if (set_usual)
+            {
+                Current_karma_points_fontsize = usual_text_fontsize;
+                Karma_text_color.Color = Usual_text_color;
             }
         }
         private void Refresh_combat_parameters()
