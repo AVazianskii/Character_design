@@ -278,6 +278,8 @@ namespace Character_design
                 Block_features(feature, Character.GetInstance().Sith_feature,    ref sith_feature_block);
                 Block_features(feature, Character.GetInstance().Jedi_feature,    ref jedi_feature_block);
                 Block_features(feature, Character.GetInstance().Exp_feature,     ref exp_feature_block);
+                Apply_skill_bonus(feature);
+
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
@@ -309,6 +311,8 @@ namespace Character_design
                 UnBlock_features(feature, Character.GetInstance().Sith_feature);
                 UnBlock_features(feature, Character.GetInstance().Jedi_feature);
                 UnBlock_features(feature, Character.GetInstance().Exp_feature);
+                UnApply_skill_bonus(feature);
+
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
@@ -489,6 +493,28 @@ namespace Character_design
                 {
                     ftr.Is_enabled = true;
                 }
+            }
+        }
+        private void Apply_skill_bonus (All_feature_template feature)
+        {
+            int i = 0;
+            foreach(byte skill in feature.Skill_bonus)
+            {
+                Character.GetInstance().Skills[i].Set_score(Character.GetInstance().Skills[i].Get_score() + skill);
+
+                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
+                i = i + 1;
+            }
+        }
+        private void UnApply_skill_bonus(All_feature_template feature)
+        {
+            int i = 0;
+            foreach (byte skill in feature.Skill_bonus)
+            {
+                Character.GetInstance().Skills[i].Set_score(Character.GetInstance().Skills[i].Get_score() - skill);
+
+                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
+                i = i + 1;
             }
         }
     }
