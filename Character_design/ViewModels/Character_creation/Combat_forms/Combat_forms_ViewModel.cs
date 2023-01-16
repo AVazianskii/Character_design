@@ -228,6 +228,7 @@ namespace Character_design
             if (ability != null)
             {
                 Character.GetInstance().Delete_combat_ability(ability, Selected_combat_sequence);
+                ShowSomeAdvice();
                 Selected_combat_sequence.Check_enable_state();
                 Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
@@ -261,6 +262,7 @@ namespace Character_design
             if (ability != null)
             {
                 Character.GetInstance().Learn_combat_ability(ability, Selected_combat_sequence);
+                ShowSomeAdvice();
                 Selected_combat_sequence.Check_enable_state();
                 Skill_ViewModel.GetInstance().Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
@@ -296,20 +298,25 @@ namespace Character_design
         {
             Combat_ability_choose_advice = "";
 
-            if (Selected_combat_sequence.Base_ability_lvl != null)
+            if ((Selected_combat_ability == Selected_combat_sequence.Adept_ability_lvl) && (Selected_combat_ability.Is_enable == false))
             {
-                if ((Selected_combat_ability == Selected_combat_sequence.Adept_ability_lvl) && (Selected_combat_sequence.Base_ability_lvl.Is_chosen == false))
-                {
-                    Combat_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_combat_sequence.Base_ability_lvl.Name}";
-                }
+                Combat_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_combat_sequence.Enable_condition_adept.Name}";
             }
-
-            if (Selected_combat_sequence.Adept_ability_lvl != null)
+            else if ((Selected_combat_ability == Selected_combat_sequence.Master_ability_lvl) && (Selected_combat_ability.Is_enable == false))
             {
-                if ((Selected_combat_ability == Selected_combat_sequence.Master_ability_lvl) && (Selected_combat_sequence.Adept_ability_lvl.Is_chosen == false))
-                {
-                    Combat_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_combat_sequence.Adept_ability_lvl.Name}";
-                }
+                Combat_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_combat_sequence.Enable_condition_master.Name}";
+            }
+            else if (Selected_combat_sequence.Master_ability_lvl.Is_chosen && Selected_combat_sequence.Master_ability_lvl != null)
+            {
+                Combat_ability_choose_advice = $"Достигнуто звание {Selected_combat_sequence.Master_ability_lvl.Name} в стиле {Selected_combat_sequence.Name}";
+            }
+            else if (Selected_combat_sequence.Adept_ability_lvl.Is_chosen && Selected_combat_sequence.Adept_ability_lvl != null)
+            {
+                Combat_ability_choose_advice = $"Достигнуто звание {Selected_combat_sequence.Adept_ability_lvl.Name} в стиле {Selected_combat_sequence.Name}";
+            }
+            else if (Selected_combat_sequence.Base_ability_lvl.Is_chosen && Selected_combat_sequence.Base_ability_lvl != null)
+            {
+                Combat_ability_choose_advice = $"Достигнуто звание {Selected_combat_sequence.Base_ability_lvl.Name} в стиле {Selected_combat_sequence.Name}";
             }
         }
         private void Refresh_fields()
