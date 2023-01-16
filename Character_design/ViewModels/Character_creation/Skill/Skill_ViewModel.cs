@@ -34,7 +34,8 @@ namespace Character_design
         private string selected_skill_description;
         private string skill_name;
         private string selected_skill_title;
-        private string skill_choose_warning;
+        private string skill_choose_warning,
+                       skill_choose_advice;
 
         private int selected_skill_score,
                     selected_skill_min_score,
@@ -158,7 +159,15 @@ namespace Character_design
                     Selected_skill_score        = selected_skill.Get_score();
                     Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit + Character.GetInstance().Return_combat_ability_skill_limit(selected_skill);
 
-
+                    if (selected_skill.Is_chosen)
+                    {
+                        Skill_choose_advice = "Навык изучен!";
+                    }
+                    else
+                    {
+                        Skill_choose_advice = "";
+                    }
+                    OnPropertyChanged("Skill_choose_advice");
                     OnPropertyChanged("Skill_img_path");
                 }
                 OnPropertyChanged("Skill_base_text");
@@ -261,6 +270,11 @@ namespace Character_design
         {
             get { return Character.GetInstance().Limit_skills_left; }
         }
+        public string Skill_choose_advice
+        {
+            get { return skill_choose_advice; }
+            set { skill_choose_advice = value; OnPropertyChanged("Skill_choose_advice"); }
+        }
 
 
 
@@ -308,6 +322,8 @@ namespace Character_design
             Unchosen_color = Colors.Black;
 
             Set_colors_for_chosen_item(Button_borders,Combat_skills_button_border,Chosen_color,Unchosen_color);
+
+            Skill_choose_advice = "";
         }
 
 
@@ -376,6 +392,14 @@ namespace Character_design
                         OnPropertyChanged("Selected_skill_counter");
 
                         Character.GetInstance().Update_combat_parameters(Character_skill, 1);
+
+                        if (Character_skill.Is_chosen != true)
+                        {
+                            Character_skill.Is_chosen = true;
+                            Skill_choose_advice = "Навык изучен!";
+                            OnPropertyChanged("Skill_choose_advice");
+                        }
+
                         break;
                     }
                 }
@@ -400,6 +424,14 @@ namespace Character_design
                         OnPropertyChanged("Selected_skill_counter");
 
                         Character.GetInstance().Update_combat_parameters(Character_skill, -1);
+
+                        if (Character_skill.Score == 0)
+                        {
+                            Character_skill.Is_chosen = false;
+                            Skill_choose_advice = "";
+                            OnPropertyChanged("Skill_choose_advice");
+                        }
+
                         break;
                     }
                 }

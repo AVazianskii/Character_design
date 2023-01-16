@@ -85,8 +85,12 @@ namespace Character_design
                     if (selected_force_skill.Is_chosen)
                     {
                         Force_skill_choose_advice = "Навык владения Силой изучен!";
-                        OnPropertyChanged("Force_skill_choose_advice");
                     }
+                    else
+                    {
+                        Force_skill_choose_advice = "";
+                    }
+                    OnPropertyChanged("Force_skill_choose_advice");
                 }
             }
         }

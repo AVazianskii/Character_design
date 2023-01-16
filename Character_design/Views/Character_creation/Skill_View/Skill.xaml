@@ -249,7 +249,7 @@
                            FontSize="18"/>
                 <TextBlock Height="34" 
                            Canvas.Left="530" 
-                           Canvas.Top="520" 
+                           Canvas.Top="470" 
                            TextWrapping="Wrap" 
                            Width="240"
                            TextAlignment="Center"
@@ -257,7 +257,7 @@
                            FontSize="18"/>
                 <TextBlock Height="34" 
                            Canvas.Left="770" 
-                           Canvas.Top="520" 
+                           Canvas.Top="470" 
                            TextWrapping="Wrap" 
                            Width="62" 
                            HorizontalAlignment="Center" 
@@ -267,7 +267,7 @@
                            Text="{Binding Selected_skill_counter}"/>
                 <ProgressBar Height="17" 
                              Canvas.Left="300" 
-                             Canvas.Top="550" 
+                             Canvas.Top="500" 
                              Width="754" 
                              HorizontalAlignment="Center" 
                              VerticalAlignment="Top"
@@ -276,7 +276,7 @@
                              Maximum="{Binding Selected_skill_max_score, Mode=OneWay}"/>
                 <TextBlock Height="23" 
                            Canvas.Left="227" 
-                           Canvas.Top="547" 
+                           Canvas.Top="497" 
                            TextWrapping="Wrap" 
                            Width="62" 
                            HorizontalAlignment="Center" 
@@ -286,7 +286,7 @@
                            Text="{Binding Selected_skill_min_score}"/>
                 <TextBlock Height="23" 
                            Canvas.Left="1060" 
-                           Canvas.Top="547" 
+                           Canvas.Top="497" 
                            TextWrapping="Wrap" 
                            Width="62" 
                            HorizontalAlignment="Center" 
@@ -350,13 +350,13 @@
                                FontSize="11"
                                Text="{Binding Selected_skill_age_limit}"/>
                 </Canvas>
-                <Canvas Height="133" 
+                <Canvas Height="183" 
                         Canvas.Left="770"
-                        Canvas.Top="584"
+                        Canvas.Top="534"
                         Width="349">
                     <Button Height="57" 
                             Canvas.Left="10" 
-                            Canvas.Top="66"
+                            Canvas.Top="116"
                             Width="150"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
@@ -365,7 +365,7 @@
                             CommandParameter="{Binding Selected_skill}"/>
                     <Button Height="57"
                             Canvas.Right="10"
-                            Canvas.Top="66"
+                            Canvas.Top="116"
                             Width="150"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
@@ -380,6 +380,14 @@
                                FontSize="14"
                                Foreground="Red"
                                Text="{Binding Skill_choose_warning}"/>
+                    <TextBlock Canvas.Left="10" 
+                               Canvas.Top="60" 
+                               Width="320" 
+                               Height="50"
+                               TextWrapping="Wrap" 
+                               FontSize="14"
+                               Foreground="Black"
+                               Text="{Binding Skill_choose_advice}"/>
                 </Canvas>
                 <Grid Height="70"
                       Canvas.Left="590"
