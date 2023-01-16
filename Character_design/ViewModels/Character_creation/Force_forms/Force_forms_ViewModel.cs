@@ -232,8 +232,10 @@ namespace Character_design
             if (ability != null)
             {
                 Character.GetInstance().Delete_force_ability(ability, Selected_force_sequence);
+
+                ShowSomeAdvice();
                 CheckAbilityCondition();
-                
+
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
             }
@@ -265,16 +267,16 @@ namespace Character_design
             if (ability != null)
             {
                 Character.GetInstance().Learn_force_ability(ability, Selected_force_sequence);
+
+                ShowSomeAdvice();
                 CheckAbilityCondition();
-                
+
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
             }
         }
         private bool _Enable_learn_force_ability(Abilities_sequence_template sequence)
-        {
-           
-            
+        {           
             if (Character.GetInstance().Experience_left < Selected_force_ability.Cost)
             {
                 Force_ability_choose_warning = "Недостаточно очков опыта для изучения!";
@@ -305,10 +307,21 @@ namespace Character_design
             {
                 Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Enable_condition_adept.Name}";
             }
-
-            if ((Selected_force_ability == Selected_force_sequence.Master_ability_lvl) && (Selected_force_ability.Is_enable == false))
+            else if ((Selected_force_ability == Selected_force_sequence.Master_ability_lvl) && (Selected_force_ability.Is_enable == false))
             {
                 Force_ability_choose_advice = $"Для выбора данного стиля изучите {Selected_force_sequence.Enable_condition_master.Name}";
+            }
+            else if (Selected_force_sequence.Master_ability_lvl.Is_chosen && Selected_force_sequence.Master_ability_lvl != null)
+            {
+                Force_ability_choose_advice = $"Достигнуто звание {Selected_force_sequence.Master_ability_lvl.Name} в стиле {Selected_force_sequence.Name}";
+            }
+            else if (Selected_force_sequence.Adept_ability_lvl.Is_chosen && Selected_force_sequence.Adept_ability_lvl != null)
+            {
+                Force_ability_choose_advice = $"Достигнуто звание {Selected_force_sequence.Adept_ability_lvl.Name} в стиле {Selected_force_sequence.Name}";
+            }
+            else if (Selected_force_sequence.Base_ability_lvl.Is_chosen && Selected_force_sequence.Base_ability_lvl != null)
+            {
+                Force_ability_choose_advice = $"Достигнуто звание {Selected_force_sequence.Base_ability_lvl.Name} в стиле {Selected_force_sequence.Name}";
             }
         }
         private void CheckAbilityCondition()
