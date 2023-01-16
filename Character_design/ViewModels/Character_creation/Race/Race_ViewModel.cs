@@ -35,7 +35,8 @@ namespace Character_design
 
         private bool race_chosen;
 
-        private string selected_race_feature_list;
+        private string selected_race_feature_list, 
+                       race_choose_advice;
         private Race_class selected_race;
 
 
@@ -168,6 +169,11 @@ namespace Character_design
                 OnPropertyChanged("Selected_race");
             }
         }
+        public string Race_choose_advice
+        {
+            get { return race_choose_advice; }
+            set { race_choose_advice = value; OnPropertyChanged("Race_choose_advice"); }
+        }
 
 
 
@@ -181,6 +187,8 @@ namespace Character_design
                                                          o => race_chosen == false);
             Unchoose_race = new Character_changing_command(o => _Unchoose_race(),
                                                            o => race_chosen == true);
+
+            Race_choose_advice = "";
 
         }
 
@@ -232,8 +240,8 @@ namespace Character_design
 
             Skill_ViewModel.GetInstance().Apply_race_skill_bonus(Selected_race);
             Skill_ViewModel.GetInstance().Refresh_fields();
-            
 
+            Race_choose_advice = $"Выбрана раса: {Character.GetInstance().Character_race.Get_race_name()}!";
             race_chosen = true;
         }
         private void _Unchoose_race()
@@ -259,7 +267,8 @@ namespace Character_design
 
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
             Skill_ViewModel.GetInstance().Refresh_fields();
-            
+
+            Race_choose_advice = "";
             race_chosen = false;
         }
         private void Apply_race_atr_bonus (Character character, Race_class race)
