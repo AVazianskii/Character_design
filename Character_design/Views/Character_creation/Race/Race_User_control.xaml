@@ -428,19 +428,43 @@
                                  Foreground="Green"
                                  Value="{Binding Selected_race_perception_bonus}"/>
                 </Canvas>
-                <Canvas Grid.Row="7" Grid.Column="1" >
-                    <TextBlock Canvas.Top="0" Canvas.Left="0" Height="15" Width="15" Text="-4" TextAlignment="Center"/>
-                    <TextBlock Canvas.Top="0" Canvas.Left="51" Height="15" Width="15" Text="-2" />
-                    <TextBlock Canvas.Top="0" Canvas.Left="92" Height="15" Width="15" Text="0" TextAlignment="Center"/>
-                    <TextBlock Canvas.Top="0" Canvas.Left="136" Height="15" Width="15" Text="+2" />
+                <Canvas Grid.Row="7"
+                        Grid.Column="1" >
+                    <TextBlock Canvas.Top="0" 
+                               Canvas.Left="0" 
+                               Height="15" 
+                               Width="15" 
+                               Text="-4" 
+                               TextAlignment="Center"/>
+                    <TextBlock Canvas.Top="0"
+                               Canvas.Left="51" 
+                               Height="15" 
+                               Width="15" 
+                               Text="-2" />
+                    <TextBlock Canvas.Top="0" 
+                               Canvas.Left="92"
+                               Height="15" 
+                               Width="15" 
+                               Text="0" 
+                               TextAlignment="Center"/>
+                    <TextBlock Canvas.Top="0" 
+                               Canvas.Left="136" 
+                               Height="15" 
+                               Width="15" 
+                               Text="+2" />
 
-                    <TextBlock Canvas.Top="0" Canvas.Left="188" Height="15" Width="15" Text="+4" />
+                    <TextBlock Canvas.Top="0" 
+                               Canvas.Left="188" 
+                               Height="15"
+                               Width="15" 
+                               Text="+4" />
                     <ProgressBar Canvas.Top="17"
-                             Height="10" Width="198"
-                             Maximum="4"
-                             Minimum="-4"
-                             Foreground="Green"
-                             Value="{Binding Selected_race_intelligence_bonus}"/>
+                                 Height="10" 
+                                 Width="198"
+                                 Maximum="4"
+                                 Minimum="-4"
+                                 Foreground="Green"
+                                 Value="{Binding Selected_race_intelligence_bonus}"/>
                 </Canvas>
                 <Canvas Grid.Row="8" Grid.Column="1" >
                     <TextBlock Canvas.Top="0" Canvas.Left="0" Height="15" Width="15" Text="-4" TextAlignment="Center"/>
