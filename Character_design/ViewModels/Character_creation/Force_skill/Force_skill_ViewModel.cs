@@ -27,7 +27,8 @@ namespace Character_design
                     selected_force_skill_max_score,
                     selected_force_skill_counter;
 
-        private string force_skill_choose_warning;
+        private string force_skill_choose_warning,
+                       force_skill_choose_advice;
 
         private Color Chosen_color,
                       Unchosen_color;
@@ -80,6 +81,12 @@ namespace Character_design
                     OnPropertyChanged("Selected_force_skill_max_score");
                     OnPropertyChanged("Force_skill_img_path");
                     OnPropertyChanged("Skill_base_text");
+
+                    if (selected_force_skill.Is_chosen)
+                    {
+                        Force_skill_choose_advice = "Навык владения Силой изучен!";
+                        OnPropertyChanged("Force_skill_choose_advice");
+                    }
                 }
             }
         }
@@ -134,6 +141,11 @@ namespace Character_design
         {
             get { return Character.GetInstance().Limit_force_skills_left; }
         }
+        public string Force_skill_choose_advice
+        {
+            get { return force_skill_choose_advice; }
+            set { force_skill_choose_advice = value; OnPropertyChanged("Force_skill_choose_advice"); }
+        }
 
 
 
@@ -182,6 +194,8 @@ namespace Character_design
             Selected_force_skill_min_score = 0;
             
             Set_colors_for_chosen_item(Button_borders, Neutral_force_border, Chosen_color, Unchosen_color);
+
+            Force_skill_choose_advice = "";
         }
 
 
@@ -226,6 +240,14 @@ namespace Character_design
                         OnPropertyChanged("Selected_force_skill_counter");
 
                         Character.GetInstance().Update_combat_parameters_due_ForceSkill(Character_skill, 1);
+                        
+                        if(Character_skill.Is_chosen != true)
+                        {
+                            Character_skill.Is_chosen = true;
+                            Force_skill_choose_advice = "Навык владения Силой изучен!";
+                            OnPropertyChanged("Force_skill_choose_advice");
+                        }
+
                         break;                  
                     }
                 }
@@ -250,6 +272,13 @@ namespace Character_design
                         OnPropertyChanged("Selected_force_skill_counter");
 
                         Character.GetInstance().Update_combat_parameters_due_ForceSkill(Character_skill, -1);
+
+                        if (Character_skill.Score == 0)
+                        {
+                            Character_skill.Is_chosen = false;
+                            Force_skill_choose_advice = "";
+                            OnPropertyChanged("Force_skill_choose_advice");
+                        }
                         break;
                     }
                 }
