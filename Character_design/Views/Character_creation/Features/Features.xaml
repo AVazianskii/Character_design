@@ -271,7 +271,7 @@
                         Canvas.Top="534" 
                         Width="349">
                     <Button Height="57" 
-                            Canvas.Left="10" 
+                            Canvas.Right="10" 
                             Canvas.Top="116" 
                             Width="150" 
                             HorizontalAlignment="Left" 
@@ -280,7 +280,7 @@
                             Command="{Binding Learn_feature}"
                             CommandParameter="{Binding Selected_feature}"/>
                     <Button Height="57" 
-                            Canvas.Right="10" 
+                            Canvas.Left="10" 
                             Canvas.Top="116" 
                             Width="150" 
                             HorizontalAlignment="Left" 
