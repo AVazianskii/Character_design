@@ -28,7 +28,9 @@ namespace Character_design
                      textBlockOpacity;
 
         private bool comboBoxEnabled,
-                     textBlockEnabled;
+                     textBlockEnabled,
+                     delete_feature_enable,
+                     learn_feature_enable;
 
         private string feature_choose_warning,
                        feature_choose_advice,
@@ -92,6 +94,7 @@ namespace Character_design
                     selected_feature_cost_list = selected_feature.Cost;
                     Selected_feature_cost = selected_feature_cost_list[0];
                     Select_show_cost(Selected_feature);
+                    Check_warning_advice(Selected_feature);
                     OnPropertyChanged("Selected_feature_description");
                     OnPropertyChanged("Selected_feature_title");
                     OnPropertyChanged("Selected_feature_img_path");
@@ -190,6 +193,11 @@ namespace Character_design
             }
             return _instance;
         }
+        public void Refresh_fields()
+        {
+            Check_warning_advice(Selected_feature);
+        }
+
 
 
         private Features_ViewModel()
@@ -197,10 +205,10 @@ namespace Character_design
             Show_positive_features = new Command(o => _Show_positive_features());
             Show_negative_features = new Command(o => _Show_negative_features());
 
-            Learn_feature  = new Character_changing_command(o => _Learn_feature(Selected_feature),
-                                                            o => Feature_learning_is_posible(Selected_feature));
+            Learn_feature = new Character_changing_command(o => _Learn_feature(Selected_feature),
+                                                            o => learn_feature_enable);
             Delete_feature = new Character_changing_command(o => _Delete_feature(Selected_feature),
-                                                            o => Selected_feature.Is_chosen);
+                                                            o => delete_feature_enable);
 
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
@@ -222,6 +230,7 @@ namespace Character_design
 
             selected_feature = Current_feature_list[0];
             Select_show_cost(Selected_feature);
+            Check_warning_advice(Selected_feature);
             selected_feature_cost_list = selected_feature.Cost;
             Selected_feature_cost = selected_feature_cost_list[0];
 
@@ -286,6 +295,7 @@ namespace Character_design
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
+                Check_warning_advice(feature);
 
                 Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
                 Character_info_ViewModel.GetInstance().Refresh_karma_points();
@@ -320,129 +330,12 @@ namespace Character_design
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
+                Check_warning_advice(feature);
 
                 Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
                 Character_info_ViewModel.GetInstance().Refresh_karma_points();
                 Character_info_ViewModel.GetInstance().Update_new_karma_points(-feature.Karma_bonus);
             }
-        }
-        private bool Feature_learning_is_posible(All_feature_template feature)
-        {
-            if (feature.Is_chosen)
-            {
-                if (feature.Cost.Count > 1)
-                {
-                    Feature_choose_warning = "";
-                    Feature_choose_advice = $"Особенность выбрана!\nСтоимость особенности: {feature.Chosen_cost}";
-                }
-                else
-                {
-                    Feature_choose_warning = "";
-                    Feature_choose_advice = "Особенность выбрана!";
-                }
-                return false;
-            }
-            if (feature.Is_force_usered_only && Character.GetInstance().Forceuser != true)
-            {
-                Feature_choose_advice = "";
-                Feature_choose_warning = "Особенность предназначена для адептов Силы!";
-                return false;
-            }
-            if (feature.Is_usual_usered_only && Character.GetInstance().Forceuser == true)
-            {
-                Feature_choose_advice = "";
-                Feature_choose_warning = "Особенность не предназначена для адептов Силы!";
-                return false;
-            }
-            if (Character.GetInstance().Is_sith)
-            {
-                if (feature.ID == 89 || feature.ID == 90 || feature.ID == 102)
-                {
-                    Feature_choose_advice = "";
-                    Feature_choose_warning = "Особенность предназначена для адептов Светлой стороны Силы!";
-                    return false;
-                }
-            }
-            if (Character.GetInstance().Is_jedi)
-            {
-                if (feature.ID == 91 || feature.ID == 100 || feature.ID == 101)
-                {
-                    Feature_choose_advice = "";
-                    Feature_choose_warning = "Особенность предназначена для адептов Темной стороны Силы!";
-                    return false;
-                }
-            }
-            if (feature.Is_enabled == false)
-            {
-                Feature_choose_advice = "";
-                Feature_choose_warning = "";
-                if (hero_feature_block != "" && Character.GetInstance().Hero_features.Contains(feature))
-                {
-                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{hero_feature_block}";
-                }
-                if (charm_feature_block != "" && Character.GetInstance().Charm_features.Contains(feature))
-                {
-                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{charm_feature_block}";
-                }
-                if (sleep_feature_block != "" && Character.GetInstance().Sleep_feature.Contains(feature))
-                {
-                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sleep_feature_block}";
-                }
-                if (alcohol_feature_block != "" && Character.GetInstance().Alcohol_feature.Contains(feature))
-                {
-                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{alcohol_feature_block}";
-                }
-                if (sith_feature_block != "" && Character.GetInstance().Sith_feature.Contains(feature))
-                {
-                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sith_feature_block}";
-                }
-                if (jedi_feature_block != "" && Character.GetInstance().Jedi_feature.Contains(feature))
-                {
-                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{jedi_feature_block}";
-                }
-                if (exp_feature_block != "" && Character.GetInstance().Exp_feature.Contains(feature))
-                {
-                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{exp_feature_block}";
-                }
-                if (arm_feature_block != "" && Character.GetInstance().Armor_feature.Contains(feature))
-                {
-                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{arm_feature_block}";
-                }
-                return false;
-            }
-            if (current_feature_list == positive_features) 
-            {
-                if(Character.GetInstance().Limit_positive_features_left == 0)
-                {
-                    Feature_choose_advice = "";
-                    Feature_choose_warning = "Достигнут лимит изучения особенностей!";
-                    return false;
-                }
-                if (Selected_feature_cost > Character.GetInstance().Positive_features_points_left)
-                {
-                    Feature_choose_advice = "";
-                    Feature_choose_warning = "Недостаточно очков особенностей!";
-                    return false;
-                }
-            }
-            if (current_feature_list == negative_features)
-            {
-                if (Character.GetInstance().Limit_negative_features_left == 0)
-                {
-                    Feature_choose_advice = "";
-                    Feature_choose_warning = "Достигнут лимит изучения особенностей!";
-                    return false;
-                }
-                if (Selected_feature_cost > Character.GetInstance().Negative_features_points_left)
-                {
-                    Feature_choose_advice = "";
-                    Feature_choose_warning = "Недостаточно очков особенностей!";
-                    return false;
-                }
-            }
-            Feature_choose_warning = "";
-            Feature_choose_advice = "";
-            return true;
         }
         private void Select_show_cost(All_feature_template feature)
         {
@@ -523,6 +416,126 @@ namespace Character_design
 
                 Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
                 i = i + 1;
+            }
+        }
+        private void Check_warning_advice (All_feature_template feature)
+        {
+            learn_feature_enable = true;
+            delete_feature_enable = true;
+            Feature_choose_warning = "";
+            Feature_choose_advice = "";
+
+            // Условия запрета отмены особенности
+            if (feature.Is_chosen != true)
+            {
+                delete_feature_enable = false;
+            }
+            if (feature.Exp_bonus > Character.GetInstance().Experience_left && feature.Is_chosen)
+            {
+                Feature_choose_warning = $"Для отмены особенности восстановите {feature.Exp_bonus - Character.GetInstance().Experience_left} оч.  опыта";
+                delete_feature_enable = false;
+            }
+
+            // Условия запрета выбора особенности
+            if (feature.Is_chosen)
+            {
+                if (feature.Cost.Count > 1)
+                {
+                    Feature_choose_advice = $"Особенность выбрана!\nСтоимость особенности: {feature.Chosen_cost}";
+                }
+                else
+                {
+                    Feature_choose_advice = "Особенность выбрана!";
+                }
+                learn_feature_enable = false;
+            }
+            if (feature.Is_force_usered_only && Character.GetInstance().Forceuser != true)
+            {
+                Feature_choose_warning = "Особенность предназначена для адептов Силы!";
+                learn_feature_enable = false;
+            }
+            if (feature.Is_usual_usered_only && Character.GetInstance().Forceuser == true)
+            {
+                Feature_choose_warning = "Особенность не предназначена для адептов Силы!";
+                learn_feature_enable = false;
+            }
+            if (Character.GetInstance().Is_sith)
+            {
+                if (feature.ID == 89 || feature.ID == 90 || feature.ID == 102)
+                {
+                    Feature_choose_warning = "Особенность предназначена для адептов Светлой стороны Силы!";
+                    learn_feature_enable = false;
+                }
+            }
+            if (Character.GetInstance().Is_jedi)
+            {
+                if (feature.ID == 91 || feature.ID == 100 || feature.ID == 101)
+                {
+                    Feature_choose_warning = "Особенность предназначена для адептов Темной стороны Силы!";
+                    learn_feature_enable = false;
+                }
+            }
+            if (feature.Is_enabled == false)
+            {
+                if (hero_feature_block != "" && Character.GetInstance().Hero_features.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{hero_feature_block}";
+                }
+                if (charm_feature_block != "" && Character.GetInstance().Charm_features.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{charm_feature_block}";
+                }
+                if (sleep_feature_block != "" && Character.GetInstance().Sleep_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sleep_feature_block}";
+                }
+                if (alcohol_feature_block != "" && Character.GetInstance().Alcohol_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{alcohol_feature_block}";
+                }
+                if (sith_feature_block != "" && Character.GetInstance().Sith_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sith_feature_block}";
+                }
+                if (jedi_feature_block != "" && Character.GetInstance().Jedi_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{jedi_feature_block}";
+                }
+                if (exp_feature_block != "" && Character.GetInstance().Exp_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{exp_feature_block}";
+                }
+                if (arm_feature_block != "" && Character.GetInstance().Armor_feature.Contains(feature))
+                {
+                    Feature_choose_warning = $"Изучение заблокировано особенностью:\n{arm_feature_block}";
+                }
+                learn_feature_enable = false;
+            }
+            if (current_feature_list == positive_features)
+            {
+                if (Character.GetInstance().Limit_positive_features_left == 0)
+                {
+                    Feature_choose_warning = "Достигнут лимит изучения особенностей!";
+                    learn_feature_enable = false;
+                }
+                if (Selected_feature_cost > Character.GetInstance().Positive_features_points_left && feature.Is_chosen != true)
+                {
+                    Feature_choose_warning = "Недостаточно очков особенностей!";
+                    learn_feature_enable = false;
+                }
+            }
+            if (current_feature_list == negative_features)
+            {
+                if (Character.GetInstance().Limit_negative_features_left == 0)
+                {
+                    Feature_choose_warning = "Достигнут лимит изучения особенностей!";
+                    learn_feature_enable = false;
+                }
+                if (Selected_feature_cost > Character.GetInstance().Negative_features_points_left)
+                {
+                    Feature_choose_warning = "Недостаточно очков особенностей!";
+                    learn_feature_enable = false;
+                }
             }
         }
     }

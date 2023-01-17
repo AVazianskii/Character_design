@@ -210,6 +210,7 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Feature_border, Chosen_color, Unchosen_color);
 
             CurrentViewModel = features;
+            Features_ViewModel.GetInstance().Refresh_fields();
         }
         private void _Open_equipment_user_control()
         {
