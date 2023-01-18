@@ -311,7 +311,7 @@ namespace Character_design
                 Force_skill_choose_warning = "Недостаточно опыта для развития навыка!";
                 return false;
             }
-            if (skill.Score > limit)
+            if (skill.Score >= limit)
             {
                 Force_skill_choose_warning = "Достигнут лимит развития навыка!";
                 return false;
