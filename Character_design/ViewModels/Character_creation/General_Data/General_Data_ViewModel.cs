@@ -157,7 +157,14 @@ namespace Character_design
         {
             Set_colors_for_chosen_item(SolidBrushes, Character_features_button_border, Chosen_border_color, Unchoosen_border_color);
 
-            CurrentViewModel = Character_features;
+            if (Character.GetInstance().Positive_features_with_points.Count == 0 && Character.GetInstance().Negative_features_with_points.Count == 0)
+            {
+                CurrentViewModel = Nothing_chosen;
+            }
+            else
+            {
+                CurrentViewModel = Character_features;
+            }
         }
         private void _Open_character_equipment()
         {
