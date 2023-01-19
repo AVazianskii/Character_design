@@ -290,12 +290,6 @@ namespace Character_design
             selected_form = new Abilities_sequence_template();
             selected_value = new Abilities_sequence_template();
 
-            /*
-            if (Forms_group.Count != 0)
-            {
-                selected_form = Forms_group[0];
-            }*/
-
             Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
         }
 
