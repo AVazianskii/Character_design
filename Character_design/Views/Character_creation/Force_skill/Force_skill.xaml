@@ -311,7 +311,7 @@
                         Canvas.Top="534" 
                         Width="349">
                     <Button Height="57" 
-                            Canvas.Left="10" 
+                            Canvas.Right="10" 
                             Canvas.Top="116" 
                             Width="150" 
                             HorizontalAlignment="Left" 
@@ -320,7 +320,7 @@
                             Command="{Binding Decrease_force_skill_score}"
                             CommandParameter="{Binding Selected_force_skill}"/>
                     <Button Height="57" 
-                            Canvas.Right="10" 
+                            Canvas.Left="10" 
                             Canvas.Top="116" 
                             Width="150" 
                             HorizontalAlignment="Left" 

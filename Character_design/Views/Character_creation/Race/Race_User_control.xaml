@@ -597,7 +597,7 @@
         <Canvas Margin="659,794,16,10">
             <Button Content="Отменить выбор" 
                     Height="36" 
-                    Canvas.Left="10" 
+                    Canvas.Right="10" 
                     Canvas.Top="10" 
                     Width="203"
                     FontSize="17" 
@@ -606,7 +606,7 @@
                     Command="{Binding Unchoose_race}"/>
             <Button Content="Выбрать расу" 
                     Height="36" 
-                    Canvas.Right="10" 
+                    Canvas.Left="10" 
                     Canvas.Top="10" 
                     Width="203"
                     FontSize="17" 
