@@ -28,7 +28,15 @@ namespace Character_design
         public All_feature_template Selected_feature
         {
             get { return selected_feature; }
-            set { selected_feature = value; OnPropertyChanged("Selected_feature"); }
+            set 
+            { 
+                selected_feature = value; 
+                OnPropertyChanged("Selected_feature");
+                OnPropertyChanged("Selected_feature_name");
+                OnPropertyChanged("Selected_feature_img_path");
+                OnPropertyChanged("Selected_feature_description");
+                OnPropertyChanged("Selected_feature_cost_reson");
+            }
         }
         public List<All_feature_template> Positive_features
         {
@@ -68,6 +76,32 @@ namespace Character_design
         public int Negative_exists_opacity
         {
             get { return Convert.ToByte(Negative_exists) * 100; }
+        }
+        public string Selected_feature_name
+        {
+            get { return Selected_feature.Name; }
+        }
+        public string Selected_feature_img_path
+        {
+            get { return Selected_feature.Image_path; }
+        }
+        public string Selected_feature_description
+        {
+            get { return Selected_feature.Description; }
+        }
+        public string Selected_feature_cost_reson
+        {
+            get
+            {
+                if (Selected_feature.Is_bought_for_exp)
+                {
+                    return "Получено за очки опыта";
+                }
+                else
+                {
+                    return "Получено за очки особенностей";
+                }
+            }
         }
 
 

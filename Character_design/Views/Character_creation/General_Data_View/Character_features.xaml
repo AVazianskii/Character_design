@@ -76,34 +76,16 @@
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Column="2" 
                                        Grid.ColumnSpan="3"
+                                       Grid.RowSpan="2"
                                        Margin="10,0,0,0"
-                                   Grid.Row="0" 
-                                   Height="36" 
-                                   TextWrapping="Wrap" 
-                                   Foreground="Wheat" 
-                                   TextAlignment="Center"
-                                   FontSize="16"
-                                   VerticalAlignment="Bottom"
-                                   Text="{Binding Path=Name}"/>
-                            <TextBlock Grid.Column="2"
-                                   Grid.Row="1"
-                                       Grid.ColumnSpan="2"
-                                       Margin="10,0,0,0"
-                                   Height="36"
-                                   Foreground="Wheat"
-                                   TextAlignment="Left"
-                                   FontSize="12"
-                                   VerticalAlignment="Bottom"
-                                   Text="Уровень владения:"/>
-                            <TextBlock Grid.Column="4"
-                                   Grid.Row="1"
-                                   Margin="10,0,0,0"
-                                   Height="36"
-                                   Foreground="Wheat"
-                                   TextAlignment="Left"
-                                   FontSize="12"
-                                   VerticalAlignment="Bottom"
-                                   Text="{Binding Level}"/>
+                                       Grid.Row="0" 
+                                       Height="36" 
+                                       TextWrapping="Wrap" 
+                                       Foreground="Wheat" 
+                                       TextAlignment="Center"
+                                       FontSize="16"
+                                       VerticalAlignment="Bottom"
+                                       Text="{Binding Path=Name}"/>
                             <Image Grid.Column="0"
                                    Grid.ColumnSpan="2"
                                    Grid.RowSpan="2"
@@ -115,6 +97,49 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <Canvas Margin="405,0,0,0">
+                <TextBlock Canvas.Top="10"
+                       Canvas.Left="40"
+                       Height="50"
+                       Width="650"
+                       FontSize="20"
+                       TextAlignment="Center"
+                       Text="{Binding Selected_feature_name}"/>
+                <Image Canvas.Top="70"
+                   Canvas.Left="200"
+                   Width="325"
+                   Height="300"
+                   Source="{Binding Selected_feature_img_path}"/>
+                <TextBlock Canvas.Top="380"
+                       Canvas.Left="40"
+                       Height="50"
+                       Width="650"
+                       FontSize="20"
+                       TextAlignment="Center"
+                       Text="{Binding Selected_feature_cost_reson}"/>
+                <ScrollViewer Canvas.Top="440"
+                          Canvas.Left="40"
+                          Width="650"
+                          Height="300"
+                          CanContentScroll="True"
+                          VerticalScrollBarVisibility="Auto">
+                    <Grid Width="640">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Margin="10,0,0,0"
+                                   FontSize="16"
+                                   TextAlignment="Justify"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Selected_feature_description}"/>
+                    </Grid>
+                </ScrollViewer>
+            </Canvas>
         </Grid>
     </Grid>
 </UserControl>
