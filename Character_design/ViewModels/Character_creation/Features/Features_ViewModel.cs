@@ -107,6 +107,9 @@ namespace Character_design
                     OnPropertyChanged("Exp_feature_enable");
                     OnPropertyChanged("Exp_feature_opacity");
                     OnPropertyChanged("Main_choose_button_text");
+                    OnPropertyChanged("Selected_feature_exp_cost");
+                    OnPropertyChanged("Feature_exp_cost_enable");
+                    OnPropertyChanged("Feature_exp_cost_opacity");
                 }
             }
         }
@@ -205,6 +208,18 @@ namespace Character_design
                 }
                 return "Взять особенность";
             }
+        }
+        public string Selected_feature_exp_cost
+        {
+            get { return Convert.ToString(Selected_feature.Exp_cost); }
+        }
+        public bool Feature_exp_cost_enable
+        {
+            get { return Selected_feature.Is_able_to_buy_for_exp; }
+        }
+        public int Feature_exp_cost_opacity
+        {
+            get { return 100 * Convert.ToInt32(Feature_exp_cost_enable); }
         }
 
 
@@ -523,19 +538,6 @@ namespace Character_design
             }
 
             // Условия запрета выбора особенности
-            if (feature.Is_chosen)
-            {
-                if (feature.Cost.Count > 1)
-                {
-                    Feature_choose_advice = $"Особенность выбрана!\nСтоимость особенности: {feature.Chosen_cost}";
-                }
-                else
-                {
-                    Feature_choose_advice = "Особенность выбрана!";
-                }
-                learn_feature_enable = false;
-                learn_feature_exp_enable = false;
-            }
             if (feature.Is_force_usered_only && Character.GetInstance().Forceuser != true)
             {
                 Feature_choose_warning = "Особенность предназначена для адептов Силы!";
@@ -658,6 +660,26 @@ namespace Character_design
             {
                 Feature_choose_advice = "Особенность нельзя приобрести за очки особенностей!";
                 learn_feature_enable = false;
+            }
+            if (feature.Is_chosen)
+            {
+                if (feature.Is_bought_for_ftr)
+                {
+                    if (feature.Cost.Count > 1)
+                    {
+                        Feature_choose_advice = $"Особенность выбрана!\nСтоимость особенности: {feature.Chosen_cost}";
+                    }
+                    else
+                    {
+                        Feature_choose_advice = "Особенность выбрана!";
+                    }
+                }
+                else if (feature.Is_bought_for_exp)
+                {
+                    Feature_choose_advice = "Особенность выбрана за очки опыта!";
+                }
+                learn_feature_enable = false;
+                learn_feature_exp_enable = false;
             }
         }
     }
