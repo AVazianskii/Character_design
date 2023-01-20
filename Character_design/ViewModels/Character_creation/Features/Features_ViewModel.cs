@@ -30,7 +30,8 @@ namespace Character_design
         private bool comboBoxEnabled,
                      textBlockEnabled,
                      delete_feature_enable,
-                     learn_feature_enable;
+                     learn_feature_enable,
+                     learn_feature_exp_enable;
 
         private string feature_choose_warning,
                        feature_choose_advice,
@@ -52,6 +53,7 @@ namespace Character_design
         public Command Show_negative_features { get; private set; }
         public Character_changing_command Learn_feature {get; private set;}
         public Character_changing_command Delete_feature { get; private set; }
+        public Character_changing_command Learn_exp_feature { get; private set; }
         public SolidColorBrush Positive_feature_border
         {
             get { return positive_feature_border; }
@@ -99,13 +101,16 @@ namespace Character_design
                     OnPropertyChanged("Selected_feature_title");
                     OnPropertyChanged("Selected_feature_img_path");
                     OnPropertyChanged("Selected_feature_cost_list");
-                    OnPropertyChanged("Exp_points_left");
+                    OnPropertyChanged("Ftr_points_left");
                     OnPropertyChanged("Num_skills_left");
                     OnPropertyChanged("Total_feature_score");
+                    OnPropertyChanged("Exp_feature_enable");
+                    OnPropertyChanged("Exp_feature_opacity");
+                    OnPropertyChanged("Main_choose_button_text");
                 }
             }
         }
-        public int Exp_points_left
+        public int Ftr_points_left
         {
             get 
             {   
@@ -182,6 +187,25 @@ namespace Character_design
         {
             get { return Character.GetInstance().Return_total_feature_score(); }
         }
+        public bool Exp_feature_enable
+        {
+            get { return Selected_feature.Is_able_to_buy_for_exp; }
+        }
+        public int Exp_feature_opacity
+        {
+            get { return 100 * Convert.ToInt32(Exp_feature_enable); }
+        }
+        public string Main_choose_button_text
+        {
+            get 
+            { 
+                if (Exp_feature_enable)
+                {
+                    return "Взять особенность за очки особенностей";
+                }
+                return "Взять особенность";
+            }
+        }
 
 
 
@@ -193,6 +217,9 @@ namespace Character_design
             }
             return _instance;
         }
+
+
+
         public void Refresh_fields()
         {
             Check_warning_advice(Selected_feature);
@@ -209,6 +236,8 @@ namespace Character_design
                                                             o => learn_feature_enable);
             Delete_feature = new Character_changing_command(o => _Delete_feature(Selected_feature),
                                                             o => delete_feature_enable);
+            Learn_exp_feature = new Character_changing_command(o => _Learn_exp_feature(Selected_feature),
+                                                               o => learn_feature_exp_enable);
 
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
@@ -282,6 +311,7 @@ namespace Character_design
                     Character.GetInstance().Learn_negative_feature(feature);
                 }
                 feature.Chosen_cost = Selected_feature_cost;
+                feature.Is_bought_for_ftr = true;
                 Block_features(feature, Character.GetInstance().Charm_features,  ref charm_feature_block);
                 Block_features(feature, Character.GetInstance().Hero_features,   ref hero_feature_block);
                 Block_features(feature, Character.GetInstance().Sleep_feature,   ref sleep_feature_block);
@@ -292,7 +322,7 @@ namespace Character_design
                 Block_features(feature, Character.GetInstance().Armor_feature,   ref arm_feature_block);
                 Apply_skill_bonus(feature);
 
-                OnPropertyChanged("Exp_points_left");
+                OnPropertyChanged("Ftr_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
                 Check_warning_advice(feature);
@@ -309,12 +339,31 @@ namespace Character_design
             {
                 if (current_feature_list == positive_features)
                 {
-                    Character.GetInstance().Refund_positive_feature_points(feature.Chosen_cost);
+
+                    if (feature.Is_bought_for_exp)
+                    {
+                        Character.GetInstance().Refund_exp_points(feature.Exp_cost);
+                        feature.Is_bought_for_exp = false;
+                    }
+                    else
+                    {
+                        Character.GetInstance().Refund_positive_feature_points(feature.Chosen_cost);
+                        feature.Is_bought_for_ftr = false;
+                    }
                     Character.GetInstance().Delete_positive_feature(feature);
                 }
                 else
                 {
-                    Character.GetInstance().Refund_negative_feature_points(feature.Chosen_cost);
+                    if (feature.Is_bought_for_exp)
+                    {
+                        Character.GetInstance().Refund_exp_points(feature.Exp_cost);
+                        feature.Is_bought_for_exp = false;
+                    }
+                    else
+                    {
+                        Character.GetInstance().Refund_negative_feature_points(feature.Chosen_cost);
+                        feature.Is_bought_for_ftr = false;
+                    } 
                     Character.GetInstance().Delete_negative_feature(feature);
                 }
                 UnBlock_features(feature, Character.GetInstance().Charm_features);
@@ -327,7 +376,7 @@ namespace Character_design
                 UnBlock_features(feature, Character.GetInstance().Armor_feature);
                 UnApply_skill_bonus(feature);
 
-                OnPropertyChanged("Exp_points_left");
+                OnPropertyChanged("Ftr_points_left");
                 OnPropertyChanged("Num_skills_left");
                 OnPropertyChanged("Total_feature_score");
                 Check_warning_advice(feature);
@@ -335,6 +384,42 @@ namespace Character_design
                 Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
                 Character_info_ViewModel.GetInstance().Refresh_karma_points();
                 Character_info_ViewModel.GetInstance().Update_new_karma_points(-feature.Karma_bonus);
+            }
+        }
+        private void _Learn_exp_feature(object o)
+        {
+            All_feature_template feature = o as All_feature_template;
+            if (feature != null)
+            {
+                if (current_feature_list == positive_features)
+                {
+                    Character.GetInstance().Learn_positive_feature(feature);
+                }
+                else
+                {
+                    Character.GetInstance().Learn_negative_feature(feature);
+                }
+
+                feature.Is_bought_for_exp = true;
+                Character.GetInstance().Spend_exp_points(feature.Exp_cost);
+                Block_features(feature, Character.GetInstance().Charm_features, ref charm_feature_block);
+                Block_features(feature, Character.GetInstance().Hero_features, ref hero_feature_block);
+                Block_features(feature, Character.GetInstance().Sleep_feature, ref sleep_feature_block);
+                Block_features(feature, Character.GetInstance().Alcohol_feature, ref alcohol_feature_block);
+                Block_features(feature, Character.GetInstance().Sith_feature, ref sith_feature_block);
+                Block_features(feature, Character.GetInstance().Jedi_feature, ref jedi_feature_block);
+                Block_features(feature, Character.GetInstance().Exp_feature, ref exp_feature_block);
+                Block_features(feature, Character.GetInstance().Armor_feature, ref arm_feature_block);
+                Apply_skill_bonus(feature);
+
+                OnPropertyChanged("Ftr_points_left");
+                OnPropertyChanged("Num_skills_left");
+                OnPropertyChanged("Total_feature_score");
+                Check_warning_advice(feature);
+
+                Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
+                Character_info_ViewModel.GetInstance().Refresh_karma_points();
+                Character_info_ViewModel.GetInstance().Update_new_karma_points(feature.Karma_bonus);
             }
         }
         private void Select_show_cost(All_feature_template feature)
@@ -422,6 +507,7 @@ namespace Character_design
         {
             learn_feature_enable = true;
             delete_feature_enable = true;
+            learn_feature_exp_enable = true;
             Feature_choose_warning = "";
             Feature_choose_advice = "";
 
@@ -448,6 +534,7 @@ namespace Character_design
                     Feature_choose_advice = "Особенность выбрана!";
                 }
                 learn_feature_enable = false;
+                learn_feature_exp_enable = false;
             }
             if (feature.Is_force_usered_only && Character.GetInstance().Forceuser != true)
             {
@@ -536,6 +623,41 @@ namespace Character_design
                     Feature_choose_warning = "Недостаточно очков особенностей!";
                     learn_feature_enable = false;
                 }
+            }
+            if (feature.Is_able_to_buy_for_exp)
+            {
+                if (feature.Exp_cost > Character.GetInstance().Experience_left)
+                {
+                    Feature_choose_warning = "Недостаточно очков опыта для взятия особенности!";
+                    learn_feature_exp_enable = false;
+                }
+                if (Character.GetInstance().Forceuser != true)
+                {
+                    Feature_choose_warning = "Изчуение особенности за опыт достпуно только адептам Силы!";
+                    learn_feature_exp_enable = false;
+                }
+                if (feature.ID == 31 || feature.ID == 103)
+                {
+                    bool flag = false;
+                    foreach(All_skill_template skill in Character.GetInstance().Force_skills_with_points)
+                    {
+                        if (skill.ID == 1)
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (flag == false)
+                    {
+                        Feature_choose_warning = "Изчуение особенности за очки опыта доступно после изучения формы Силы 'Чутье'!";
+                        learn_feature_exp_enable = false;
+                    }
+                }
+            }
+            if (feature.Is_able_to_buy_for_ftr == false)
+            {
+                Feature_choose_advice = "Особенность нельзя приобрести за очки особенностей!";
+                learn_feature_enable = false;
             }
         }
     }

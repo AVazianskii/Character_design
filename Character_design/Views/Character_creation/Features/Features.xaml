@@ -91,7 +91,7 @@
                        Canvas.Top="15" 
                        Height="40" 
                        Width="128"
-                       Text="{Binding Exp_points_left}" 
+                       Text="{Binding Ftr_points_left}" 
                        Foreground="Wheat" 
                        FontSize="28"/>
             <TextBlock Canvas.Left="50" 
@@ -276,9 +276,14 @@
                             Width="150" 
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center"
-                            Content="Взять особенность за очки особенностей"
                             Command="{Binding Learn_feature}"
-                            CommandParameter="{Binding Selected_feature}"/>
+                            CommandParameter="{Binding Selected_feature}">
+                        <Button.Content>
+                            <TextBlock Text="{Binding Main_choose_button_text}"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"/>
+                        </Button.Content>
+                    </Button>
                     <Button Height="57" 
                             Canvas.Right="10" 
                             Canvas.Top="116" 
@@ -304,6 +309,22 @@
                                FontSize="14"
                                Foreground="Black"
                                Text="{Binding Feature_choose_advice}"/>
+                    <Button Height="57" 
+                            Canvas.Left="-160" 
+                            Canvas.Top="116" 
+                            Width="150" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center"
+                            Command="{Binding Learn_exp_feature}"
+                            CommandParameter="{Binding Selected_feature}"
+                            Opacity="{Binding Exp_feature_opacity}"
+                            IsEnabled="{Binding Exp_feature_enable}">
+                        <Button.Content>
+                            <TextBlock Text="Взять особенность за очки опыта"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"/>
+                        </Button.Content>
+                    </Button>
                 </Canvas>
             </Canvas>
         </Border>
