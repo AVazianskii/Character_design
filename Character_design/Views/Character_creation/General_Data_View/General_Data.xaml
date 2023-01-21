@@ -8,6 +8,22 @@
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1130">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="MyButton2">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Opacity" Value="100"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Opacity" Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="Black">
         <Canvas HorizontalAlignment="Center" 
                 Height="90" 
@@ -21,7 +37,8 @@
                     BorderThickness="3"
                     Command="{Binding Open_character_info}"
                     BorderBrush="{Binding Character_info_button_border, 
-                                          UpdateSourceTrigger=PropertyChanged}">
+                                          UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource MyButton2}">
                 <Button.Content>
                         <TextBlock Text="Персонаж" 
                                    FontSize="16" 
@@ -36,7 +53,8 @@
                     BorderThickness="3"
                     Command="{Binding Open_character_skills}"
                     BorderBrush="{Binding Character_skills_button_border, 
-                                          UpdateSourceTrigger=PropertyChanged}">
+                                          UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource MyButton2}">
                 <Button.Content>
                     <TextBlock Text="Навыки персонажа" 
                                FontSize="16" 
@@ -52,7 +70,8 @@
                     Background="Black"
                     BorderThickness="3"
                     BorderBrush="{Binding Character_forms_button_border}"
-                    Command="{Binding Open_character_forms}">
+                    Command="{Binding Open_character_forms}"
+                    Style="{StaticResource MyButton2}">
                 <Button.Content>
                     <TextBlock Text="Изученные стили боя" 
                                FontSize="16" 
@@ -68,7 +87,8 @@
                     Background="Black"
                     BorderThickness="3"
                     BorderBrush="{Binding Character_features_button_border}"
-                    Command="{Binding Open_character_features}">
+                    Command="{Binding Open_character_features}"
+                    Style="{StaticResource MyButton2}">
                 <Button.Content>
                     <TextBlock Text="Особенности персонажа" 
                                FontSize="16" 
@@ -84,7 +104,8 @@
                     Background="Black"
                     BorderThickness="3"
                     BorderBrush="{Binding Character_equipment_button_border}"
-                    Command="{Binding Open_character_equipment}">
+                    Command="{Binding Open_character_equipment}"
+                    Style="{StaticResource MyButton2}">
                 <Button.Content>
                     <TextBlock Text="Снаряжение и инвентарь" 
                                FontSize="16" 
@@ -100,7 +121,8 @@
                     Background="Black"
                     BorderThickness="3"
                     BorderBrush="{Binding Character_companion_button_border}"
-                    Command="{Binding Open_character_companion}">
+                    Command="{Binding Open_character_companion}"
+                    Style="{StaticResource MyButton2}">
                 <Button.Content>
                     <TextBlock Text="Спутник персонажа" 
                                FontSize="16" 

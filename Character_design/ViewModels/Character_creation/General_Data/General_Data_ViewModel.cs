@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media;
+using SW_Character_creation;
 
 namespace Character_design
 {
@@ -98,7 +99,8 @@ namespace Character_design
             Open_character_forms        = new Command(o => _Open_character_forms());
             Open_character_features     = new Command(o => _Open_character_features());
             Open_character_equipment    = new Command(o => _Open_character_equipment());
-            Open_character_companion    = new Command(o => _Open_character_companion());
+            Open_character_companion    = new Command(o => _Open_character_companion(),
+                                                      o => _Enable_open_character_companion());
 
             Unchoosen_border_color  = Colors.Black;
             Chosen_border_color     = Colors.Wheat;
@@ -177,6 +179,17 @@ namespace Character_design
             Set_colors_for_chosen_item(SolidBrushes, Character_companion_button_border, Chosen_border_color, Unchoosen_border_color);
 
             CurrentViewModel = Character_companion;
+        }
+        private bool _Enable_open_character_companion()
+        {
+            foreach (All_feature_template feature in Character.GetInstance().Positive_features_with_points)
+            {
+                if (feature.ID == 5 || feature.ID == 6)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

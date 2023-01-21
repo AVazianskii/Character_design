@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows;
+using SW_Character_creation;
 
 namespace Character_design
 {
@@ -123,7 +124,8 @@ namespace Character_design
                                                           o => Character.GetInstance().Forceuser);
             Open_feature_user_control       = new Command(o => _Open_feature_user_control());
             Open_equipment_user_control     = new Command(o => _Open_equipment_user_control());
-            Open_companion_user_control     = new Command(o => _Open_companion_user_control());
+            Open_companion_user_control     = new Command(o => _Open_companion_user_control(),
+                                                          o => _Enable_open_companion_user_control());
             Return_back_to_Menu             = new Command(o => Return_to_main_menu(Character.GetInstance()));
             Save_character_card             = new Command(o => Save_character_info(), 
                                                           o => Character.GetInstance().Saved_state == false);
@@ -223,6 +225,17 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Companion_border, Chosen_color, Unchosen_color);
 
             CurrentViewModel = companion;
+        }
+        private bool _Enable_open_companion_user_control()
+        {
+            foreach(All_feature_template feature in Character.GetInstance().Positive_features_with_points)
+            {
+                if (feature.ID == 5 || feature.ID == 6)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         private void  Save_character_info ()
         {
