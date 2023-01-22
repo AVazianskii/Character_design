@@ -689,6 +689,46 @@ namespace Character_design
         {
             get { return Character.GetInstance().Concentration; }
         }
+        public string Character_scratch_lvl
+        {
+            get { return Convert.ToString(Character.GetInstance().Scratch_lvl); }
+        }
+        public string Character_light_wound_lvl
+        {
+            get { return Convert.ToString(Character.GetInstance().Light_wound_lvl); }
+        }
+        public string Character_medium_wound_lvl
+        {
+            get { return Convert.ToString(Character.GetInstance().Medium_wound_lvl); }
+        }
+        public string Character_tough_wound_lvl
+        {
+            get { return Convert.ToString(Character.GetInstance().Tough_wound_lvl); }
+        }
+        public string Character_mortal_wound_lvl
+        {
+            get { return Convert.ToString(Character.GetInstance().Mortal_wound_lvl); }
+        }
+        public string Character_scratch_penalty
+        {
+            get { return Convert.ToString(Character.GetInstance().Scratch_penalty); }
+        }
+        public string Character_light_wound_penalty
+        {
+            get { return Convert.ToString(Character.GetInstance().Light_wound_penalty); }
+        }
+        public string Character_medium_wound_penalty
+        {
+            get { return Convert.ToString(Character.GetInstance().Medium_wound_penalty); }
+        }
+        public string Character_tough_wound_penalty
+        {
+            get { return Convert.ToString(Character.GetInstance().Tough_wound_penalty); }
+        }
+        public string Character_wound
+        {
+            get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\wound.png"; }
+        }
 
 
 

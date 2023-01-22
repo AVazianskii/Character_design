@@ -8,7 +8,7 @@
              d:DesignHeight="770" d:DesignWidth="1130" >
     <Grid Background="White">
         <Image HorizontalAlignment="Left" 
-               Height="449" 
+               Height="400" 
                Margin="468,60,0,0" 
                VerticalAlignment="Top" 
                Width="326"/>
@@ -680,7 +680,7 @@
             </Grid>
 
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="245" Margin="750,525,0,0" VerticalAlignment="Top" Width="380">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="280" Margin="750,485,0,0" VerticalAlignment="Top" Width="380">
             <TextBlock Margin="20,10,20,150" Text="Аналитика разваития персонажа " TextAlignment="Center" FontSize="20"
                        TextWrapping="Wrap"/>
         </Border>
@@ -857,7 +857,150 @@
                 </Image.ToolTip>
             </Image>
         </Grid>
-
-
+        <Canvas Margin="400,485,400,0"
+                Height="285"
+                Width="350">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Center"
+                           VerticalAlignment="Bottom"
+                           Text="{Binding Character_scratch_lvl}">
+                </TextBlock>
+                <Image Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <Image Grid.Row="4"
+                       Grid.Column="0"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <Image Grid.Row="6"
+                       Grid.Column="0"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <Image Grid.Row="8"
+                       Grid.Column="0"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <TextBlock Grid.Row="10"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Center"
+                           Text="{Binding Character_scratch_penalty}">
+                </TextBlock>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Center"
+                           VerticalAlignment="Bottom"
+                           Text="{Binding Character_light_wound_lvl}">
+                </TextBlock>
+                <Image Grid.Row="3"
+                       Grid.Column="1"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <Image Grid.Row="5"
+                       Grid.Column="1"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <Image Grid.Row="7"
+                       Grid.Column="1"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <TextBlock Grid.Row="9"
+                           Grid.Column="1"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Center"
+                           Text="{Binding Character_light_wound_penalty}">
+                </TextBlock>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="2"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Center"
+                           VerticalAlignment="Bottom"
+                           Text="{Binding Character_medium_wound_lvl}">
+                </TextBlock>
+                <Image Grid.Row="4"
+                       Grid.Column="2"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <Image Grid.Row="6"
+                       Grid.Column="2"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <TextBlock Grid.Row="8"
+                           Grid.Column="2"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Center"
+                           Text="{Binding Character_medium_wound_penalty}">
+                </TextBlock>
+                <TextBlock Grid.Row="3"
+                           Grid.Column="3"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Center"
+                           VerticalAlignment="Bottom"
+                           Text="{Binding Character_tough_wound_lvl}">
+                </TextBlock>
+                <Image Grid.Row="5"
+                       Grid.Column="3"
+                       Grid.RowSpan="2"
+                       Source="{Binding Character_wound}">
+                </Image>
+                <TextBlock Grid.Row="7"
+                           Grid.Column="3"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Center"
+                           Text="{Binding Character_tough_wound_penalty}">
+                </TextBlock>
+                <TextBlock Grid.Row="5"
+                           Grid.Column="4"
+                           Grid.RowSpan="2"
+                           FontSize="14"
+                           TextAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="{Binding Character_mortal_wound_lvl}">
+                </TextBlock>
+            </Grid>
+        </Canvas>
     </Grid>
 </UserControl>
