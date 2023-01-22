@@ -594,7 +594,9 @@
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5">
+            <Grid Grid.Row="7" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="20"/>
@@ -607,32 +609,67 @@
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="2" Grid.Column="0" Margin="30,0,3,0"
+                <Image Grid.Row="2" 
+                       Grid.Column="0" 
+                       Margin="30,0,3,0"
                        Source="{Binding Question_sign}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="{Binding Charm_description}"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="{Binding Charm_description}"/>
                     </Image.ToolTip>
                 </Image>
-                <TextBlock Grid.Row="1" Grid.Column="2" Text="Обаяние" TextAlignment="Left" FontSize="14"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
-                       Text="{Binding Character_charm, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
-                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Height="10"
-                         Minimum="{Binding Min_character_charm, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-                         Maximum="{Binding Max_character_charm, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-                         Value="{Binding Character_charm, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
-                <Button Grid.Row="1" Grid.Column="3" Margin="2"
-                        Background="White" BorderThickness="1"
+                <TextBlock Grid.Row="1" 
+                           Grid.Column="2" 
+                           Text="Обаяние" 
+                           TextAlignment="Left" 
+                           FontSize="14"/>
+                <TextBlock Grid.Row="1" 
+                           Grid.Column="1" 
+                           TextAlignment="Center" 
+                           FontSize="14" 
+                           Margin="0,0,0,2"
+                           Text="{Binding Character_charm, 
+                                          UpdateSourceTrigger=PropertyChanged, 
+                                          Mode=OneWay}"/>
+                <ProgressBar Grid.Row="2" 
+                             Grid.Column="1"
+                             Grid.ColumnSpan="4"
+                             Height="10"
+                             Minimum="{Binding Min_character_charm, 
+                                               UpdateSourceTrigger=PropertyChanged,
+                                               Mode=OneWay}"
+                             Maximum="{Binding Max_character_charm,
+                                               UpdateSourceTrigger=PropertyChanged, 
+                                               Mode=OneWay}"
+                             Value="{Binding Character_charm, 
+                                             UpdateSourceTrigger=PropertyChanged, 
+                                             Mode=OneWay}"/>
+                <Button Grid.Row="1" 
+                        Grid.Column="3" 
+                        Margin="2"
+                        Background="White" 
+                        BorderThickness="1"
                         Command="{Binding Decrease_charm}">
                     <Button.Content>
-                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="-" 
+                                   FontSize="10" 
+                                   Margin="0" 
+                                   VerticalAlignment="Center"/>
                     </Button.Content>
                 </Button>
-                <Button Grid.Row="1" Grid.Column="4" Margin="2"
-                        Background="White" BorderThickness="1"
+                <Button Grid.Row="1" 
+                        Grid.Column="4" 
+                        Margin="2"
+                        Background="White" 
+                        BorderThickness="1"
                         Command="{Binding Increase_charm}">
                     <Button.Content>
-                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="+" 
+                                   FontSize="10" 
+                                   Margin="0" 
+                                   VerticalAlignment="Center"/>
                     </Button.Content>
                 </Button>
             </Grid>
@@ -981,7 +1018,7 @@
         <Canvas Margin="400,485,400,0"
                 Height="285"
                 Width="350">
-            <Grid>
+            <Grid Margin="25,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="60"/>
