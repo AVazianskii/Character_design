@@ -889,14 +889,22 @@
                            TextAlignment="Center"
                            VerticalAlignment="Bottom"
                            Text="{Binding Character_scratch_lvl}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Порог урона для царапины"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
                 <Image Grid.Row="2"
                        Grid.Column="0"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Царапина"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Царапина"/>
                     </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="4"
@@ -904,8 +912,10 @@
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Царапина"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Царапина"/>
                     </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="6"
@@ -913,8 +923,10 @@
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Царапина"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Царапина"/>
                     </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="8"
@@ -922,8 +934,10 @@
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Царапина"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Царапина"/>
                     </Image.ToolTip>
                 </Image>
                 <TextBlock Grid.Row="10"
@@ -932,6 +946,12 @@
                            FontSize="14"
                            TextAlignment="Center"
                            Text="{Binding Character_scratch_penalty}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Штраф за царапину"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
                 <TextBlock Grid.Row="1"
                            Grid.Column="1"
@@ -940,14 +960,22 @@
                            TextAlignment="Center"
                            VerticalAlignment="Bottom"
                            Text="{Binding Character_light_wound_lvl}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Порог урона для легкого ранения"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
                 <Image Grid.Row="3"
                        Grid.Column="1"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Легкое ранение"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Легкое ранение"/>
                     </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="5"
@@ -955,8 +983,10 @@
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Легкое ранение"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Легкое ранение"/>
                     </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="7"
@@ -964,8 +994,10 @@
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Легкое ранение"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Легкое ранение"/>
                     </Image.ToolTip>
                 </Image>
                 <TextBlock Grid.Row="9"
@@ -974,6 +1006,12 @@
                            FontSize="14"
                            TextAlignment="Center"
                            Text="{Binding Character_light_wound_penalty}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Штраф за легкое ранение"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
                 <TextBlock Grid.Row="2"
                            Grid.Column="2"
@@ -982,14 +1020,22 @@
                            TextAlignment="Center"
                            VerticalAlignment="Bottom"
                            Text="{Binding Character_medium_wound_lvl}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Порог урона для среднего ранения"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
                 <Image Grid.Row="4"
                        Grid.Column="2"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Среднее ранение"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Среднее ранение"/>
                     </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="6"
@@ -997,8 +1043,10 @@
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Среднее ранение"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Среднее ранение"/>
                     </Image.ToolTip>
                 </Image>
                 <TextBlock Grid.Row="8"
@@ -1007,6 +1055,12 @@
                            FontSize="14"
                            TextAlignment="Center"
                            Text="{Binding Character_medium_wound_penalty}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Штраф за среднее ранение"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
                 <TextBlock Grid.Row="3"
                            Grid.Column="3"
@@ -1015,14 +1069,22 @@
                            TextAlignment="Center"
                            VerticalAlignment="Bottom"
                            Text="{Binding Character_tough_wound_lvl}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Порог урона для тяжелого ранения"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
                 <Image Grid.Row="5"
                        Grid.Column="3"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
                     <Image.ToolTip>
-                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
-                        Text="Тяжелое ранение"/>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Тяжелое ранение"/>
                     </Image.ToolTip>
                 </Image>
                 <TextBlock Grid.Row="7"
@@ -1031,6 +1093,12 @@
                            FontSize="14"
                            TextAlignment="Center"
                            Text="{Binding Character_tough_wound_penalty}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Штраф за тяжелое ранение"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
                 <TextBlock Grid.Row="5"
                            Grid.Column="4"
@@ -1039,6 +1107,12 @@
                            TextAlignment="Left"
                            VerticalAlignment="Center"
                            Text="{Binding Character_mortal_wound_lvl}">
+                    <TextBlock.ToolTip>
+                        <TextBlock FontSize="10" 
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="150"
+                                   Text="Порог урона для смертельного ранения"/>
+                    </TextBlock.ToolTip>
                 </TextBlock>
             </Grid>
         </Canvas>
