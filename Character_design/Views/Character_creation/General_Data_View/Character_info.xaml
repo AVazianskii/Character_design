@@ -698,7 +698,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
                 <ColumnDefinition Width="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
@@ -894,21 +894,37 @@
                        Grid.Column="0"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Царапина"/>
+                    </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="4"
                        Grid.Column="0"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Царапина"/>
+                    </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="6"
                        Grid.Column="0"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Царапина"/>
+                    </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="8"
                        Grid.Column="0"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Царапина"/>
+                    </Image.ToolTip>
                 </Image>
                 <TextBlock Grid.Row="10"
                            Grid.Column="0"
@@ -929,16 +945,28 @@
                        Grid.Column="1"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Легкое ранение"/>
+                    </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="5"
                        Grid.Column="1"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Легкое ранение"/>
+                    </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="7"
                        Grid.Column="1"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Легкое ранение"/>
+                    </Image.ToolTip>
                 </Image>
                 <TextBlock Grid.Row="9"
                            Grid.Column="1"
@@ -959,11 +987,19 @@
                        Grid.Column="2"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Среднее ранение"/>
+                    </Image.ToolTip>
                 </Image>
                 <Image Grid.Row="6"
                        Grid.Column="2"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Среднее ранение"/>
+                    </Image.ToolTip>
                 </Image>
                 <TextBlock Grid.Row="8"
                            Grid.Column="2"
@@ -984,6 +1020,10 @@
                        Grid.Column="3"
                        Grid.RowSpan="2"
                        Source="{Binding Character_wound}">
+                    <Image.ToolTip>
+                        <TextBlock FontSize="10" TextWrapping="Wrap" MaxWidth="150"
+                        Text="Тяжелое ранение"/>
+                    </Image.ToolTip>
                 </Image>
                 <TextBlock Grid.Row="7"
                            Grid.Column="3"
