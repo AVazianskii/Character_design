@@ -620,7 +620,7 @@ namespace Character_design
                     Feature_choose_warning = "Достигнут лимит изучения особенностей!";
                     learn_feature_enable = false;
                 }
-                if (Selected_feature_cost > Character.GetInstance().Negative_features_points_left)
+                if (Selected_feature_cost > Character.GetInstance().Negative_features_points_left && feature.Is_chosen != true)
                 {
                     Feature_choose_warning = "Недостаточно очков особенностей!";
                     learn_feature_enable = false;
@@ -628,7 +628,7 @@ namespace Character_design
             }
             if (feature.Is_able_to_buy_for_exp)
             {
-                if (feature.Exp_cost > Character.GetInstance().Experience_left)
+                if (feature.Exp_cost > Character.GetInstance().Experience_left && feature.Is_chosen == false)
                 {
                     Feature_choose_warning = "Недостаточно очков опыта для взятия особенности!";
                     learn_feature_exp_enable = false;
