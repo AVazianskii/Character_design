@@ -30,6 +30,9 @@ namespace Character_design
         private string force_skill_choose_warning,
                        force_skill_choose_advice;
 
+        private bool learn_skill_enable,
+                     delete_skill_enable;
+
         private Color Chosen_color,
                       Unchosen_color;
 
@@ -73,6 +76,8 @@ namespace Character_design
                 OnPropertyChanged("Selected_force_skill");
                 if (selected_force_skill != null)
                 {
+                    Check_warning_advice();
+
                     OnPropertyChanged("Selected_force_skill_title");
                     OnPropertyChanged("Selected_force_skill_description");
                     OnPropertyChanged("Selected_force_skill_cost");
@@ -91,6 +96,7 @@ namespace Character_design
                         Force_skill_choose_advice = "";
                     }
                     OnPropertyChanged("Force_skill_choose_advice");
+                    OnPropertyChanged("Force_skill_choose_warning");
                 }
             }
         }
@@ -177,10 +183,10 @@ namespace Character_design
             Show_neutral_force_skills   = new Command(o => _Show_neutral_force_skills());
             Show_jedi_force_skills      = new Command(o => _Show_jedi_force_skills(), o => Character.GetInstance().Is_jedi);
             Show_sith_force_skills      = new Command(o => _Show_sith_force_skills(), o => Character.GetInstance().Is_sith);
-            Increase_force_skill_score  = new Character_changing_command(o => _Increase_force_skill_score(Selected_force_skill),
-                                                                         o => Increase_is_possible(Selected_force_skill, Selected_force_skill_max_score, Exp_points_left));
-            Decrease_force_skill_score  = new Character_changing_command(o => _Decrease_force_skill_score(Selected_force_skill),
-                                                                         o => Selected_force_skill.Score > 0);
+            Increase_force_skill_score = new Character_changing_command(o => _Increase_force_skill_score(Selected_force_skill),
+                                                                         o => learn_skill_enable); //Increase_is_possible(Selected_force_skill, Selected_force_skill_max_score, Exp_points_left));
+            Decrease_force_skill_score = new Character_changing_command(o => _Decrease_force_skill_score(Selected_force_skill),
+                                                                         o => delete_skill_enable); //Selected_force_skill.Score > 0);
 
             Neutral_force_border    = new SolidColorBrush();
             Light_force_border      = new SolidColorBrush();
@@ -249,8 +255,10 @@ namespace Character_design
                         {
                             Character_skill.Is_chosen = true;
                             Force_skill_choose_advice = "Навык владения Силой изучен!";
-                            OnPropertyChanged("Force_skill_choose_advice");
                         }
+
+                        OnPropertyChanged("Force_skill_choose_advice");
+                        OnPropertyChanged("Force_skill_choose_warning");
 
                         break;                  
                     }
@@ -281,8 +289,11 @@ namespace Character_design
                         {
                             Character_skill.Is_chosen = false;
                             Force_skill_choose_advice = "";
-                            OnPropertyChanged("Force_skill_choose_advice");
                         }
+
+                        OnPropertyChanged("Force_skill_choose_advice");
+                        OnPropertyChanged("Force_skill_choose_warning");
+
                         break;
                     }
                 }
@@ -324,6 +335,74 @@ namespace Character_design
 
             Force_skill_choose_warning = "";
             return true;
+        }
+        private void Check_warning_advice()
+        {
+            force_skill_choose_warning = "";
+            force_skill_choose_advice = "";
+            learn_skill_enable = true;
+            delete_skill_enable = true;
+
+            // Запреты на изучение\увеличение навыка
+            if (Character.GetInstance().Character_race == Race__manager.GetInstance().Get_Race_list()[0])
+            {
+                Force_skill_choose_warning = "Раса персонажа не выбрана!";
+                learn_skill_enable = false;
+            }
+            if (Character.GetInstance().Age_status == Age_status_manager.GetInstance().Get_Unknown_age_status())
+            {
+                Force_skill_choose_warning = "Возрастной стаус персонажа не выбран!";
+                learn_skill_enable = false;
+            }
+            if (((Character.GetInstance().Is_jedi && Selected_force_skill.Type == 3) || (Character.GetInstance().Is_sith && Selected_force_skill.Type == 2)) == true)
+            {
+                Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!";
+                learn_skill_enable = false;
+            }
+            if (Character.GetInstance().Experience_left < Selected_force_skill.Cost && Selected_force_skill.Is_chosen == false)
+            {
+                Force_skill_choose_warning = "Недостаточно опыта для развития навыка!";
+                learn_skill_enable = false;
+            }
+            if (Selected_force_skill.Score >= Selected_force_skill_max_score)
+            {
+                Force_skill_choose_warning = "Достигнут лимит развития навыка!";
+                learn_skill_enable = false;
+            }
+            if (Selected_force_skill.ID == 11)
+            {
+                bool flag = false;
+                foreach(Force_skill_class force_skill in Character.GetInstance().Force_skills_with_points)
+                {
+                    if (force_skill.ID == 3)
+                    {
+                        flag = true;
+                        if (force_skill.Score < 7)
+                        {
+                            Force_skill_choose_warning = "Необходим 7 уровень развития навыка 'Стойкость к Силе' для изучения данного навыка";
+                            learn_skill_enable = false;
+                        }
+                        break;
+                    }
+                }
+                if (flag == false)
+                {
+                    Force_skill_choose_warning = "Необходим 7 уровень развития навыка 'Стойкость к Силе' для изучения данного навыка";
+                    learn_skill_enable = false;
+                }
+            }
+            if (Character.GetInstance().Limit_force_skills_left == 0 && Character.GetInstance().Force_skills_with_points.Contains(Selected_force_skill) == false)
+            {
+                Force_skill_choose_warning = "Достигнут лимит по количеству изучаемых навыков!";
+                learn_skill_enable = false;
+            }
+
+            // Запреты на удаление\уменьшение навыка
+            if (Selected_force_skill.Is_chosen == false)
+            {
+                Force_skill_choose_warning = "";
+                delete_skill_enable = false;
+            }
         }
     }
 }
