@@ -491,22 +491,43 @@
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Проворство" TextAlignment="Left" FontSize="14"/>
                 <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="14" Margin="0,0,0,2"
                        Text="{Binding Character_quickness, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
-                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Height="10"
-                         Minimum="{Binding Min_character_quickness, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-                         Maximum="{Binding Max_character_quickness, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-                         Value="{Binding Character_quickness, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
-                <Button Grid.Row="1" Grid.Column="3" Margin="2"
-                        Background="White" BorderThickness="1"
+                <ProgressBar Grid.Row="2" 
+                             Grid.Column="1" 
+                             Grid.ColumnSpan="4" 
+                             Height="10"
+                             Minimum="{Binding Min_character_quickness, 
+                                               UpdateSourceTrigger=PropertyChanged, 
+                                               Mode=OneWay}"
+                             Maximum="{Binding Max_character_quickness, 
+                                               UpdateSourceTrigger=PropertyChanged, 
+                                               Mode=OneWay}"
+                             Value="{Binding Character_quickness, 
+                                             UpdateSourceTrigger=PropertyChanged, 
+                                             Mode=OneWay}"/>
+                <Button Grid.Row="1" 
+                        Grid.Column="3" 
+                        Margin="2"
+                        Background="White" 
+                        BorderThickness="1"
                         Command="{Binding Decrease_quickness}">
                     <Button.Content>
-                        <TextBlock Text="-" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="-" 
+                                   FontSize="10" 
+                                   Margin="0" 
+                                   VerticalAlignment="Center"/>
                     </Button.Content>
                 </Button>
-                <Button Grid.Row="1" Grid.Column="4" Margin="2"
-                        Background="White" BorderThickness="1"
+                <Button Grid.Row="1" 
+                        Grid.Column="4" 
+                        Margin="2"
+                        Background="White" 
+                        BorderThickness="1"
                         Command="{Binding Increase_quickness}">
                     <Button.Content>
-                        <TextBlock Text="+" FontSize="10" Margin="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="+" 
+                                   FontSize="10" 
+                                   Margin="0" 
+                                   VerticalAlignment="Center"/>
                     </Button.Content>
                 </Button>
             </Grid>
