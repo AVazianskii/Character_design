@@ -604,7 +604,7 @@ namespace Character_design
             { 
                 current_character_karma = value;
                 Check_karma_range(current_character_karma, Current_karma_color, Neutral_color, Sith_color, Jedi_color);
-                Check_forceuser_status(Character.GetInstance(), current_character_karma);
+                Check_forceuser_status(current_character_karma);
                 OnPropertyChanged("Current_character_karma"); 
             }
         }
@@ -1209,25 +1209,25 @@ namespace Character_design
             }
             else { karma_color.Color = neutral; }
         }
-        private void Check_forceuser_status(Character character,int current_karma)
+        private void Check_forceuser_status(int current_karma)
         {
             if (current_karma >= jedi_karma) 
             { 
-                character.Is_jedi = true;
-                character.Is_sith = false;
-                character.Is_neutral = true;
+                Character.GetInstance().Is_jedi = true;
+                Character.GetInstance().Is_sith = false;
+                Character.GetInstance().Is_neutral = true;
             }
             else if (current_karma <= sith_karma) 
             {
-                character.Is_sith = true;
-                character.Is_jedi = false;
-                character.Is_neutral = true;
+                Character.GetInstance().Is_sith = true;
+                Character.GetInstance().Is_jedi = false;
+                Character.GetInstance().Is_neutral = true;
             }
             else
             {
-                character.Is_neutral = true;
-                character.Is_sith = false;
-                character.Is_jedi = false;
+                Character.GetInstance().Is_neutral = true;
+                Character.GetInstance().Is_sith = false;
+                Character.GetInstance().Is_jedi = false;
             }
         }
         private void Check_character_exp(string Exp, out string error_state)

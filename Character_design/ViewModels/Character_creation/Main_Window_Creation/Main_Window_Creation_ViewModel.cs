@@ -194,6 +194,7 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Force_skill_border, Chosen_color, Unchosen_color);
 
             CurrentViewModel = force_skill;
+            Force_skill_ViewModel.GetInstance().Refresh_fields();
         }
         private void _Open_combat_forms_user_control()
         {
