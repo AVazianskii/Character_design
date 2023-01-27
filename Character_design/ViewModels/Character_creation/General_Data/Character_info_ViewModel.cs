@@ -249,7 +249,7 @@ namespace Character_design
             { 
                 character_name = value; 
                 OnPropertyChanged("Character_name");
-
+                Character.GetInstance().Name = character_name;
                 Character.GetInstance().Change_character_state_to_unsave();
             }
         }

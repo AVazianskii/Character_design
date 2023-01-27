@@ -249,9 +249,24 @@ namespace Character_design
             }
             else
             {
-                Character.GetInstance().Save_character_to_excel_card();
+                Character.GetInstance().Save_character();
 
-                Save_character_excel.GetInstance().Save_character_to_Excel_card(Character.GetInstance());
+                Save_character_excel.GetInstance().Save_character_to_Excel_card(out string error_msg);
+
+                if (error_msg != "")
+                {
+                    MessageBox.Show("error_msg",
+                                    "Сохранение",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
+                }
+                else
+                {
+                    MessageBox.Show($"Карточка персонажа {Character.GetInstance().Name} сохранена под своим именем в папке 'Карточки персонажей'!",
+                                     "Сохранение",
+                                     MessageBoxButton.OK,
+                                     MessageBoxImage.Information) ;
+                }
             }
         }
         private void Return_to_main_menu(Character character)
