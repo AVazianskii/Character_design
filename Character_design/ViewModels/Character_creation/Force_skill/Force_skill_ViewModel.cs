@@ -269,8 +269,8 @@ namespace Character_design
                             Force_skill_choose_advice = "Навык владения Силой изучен!";
                         }
                         Check_warning_advice(); 
-                        OnPropertyChanged("Force_skill_choose_advice");
-                        OnPropertyChanged("Force_skill_choose_warning");
+                        //OnPropertyChanged("Force_skill_choose_advice");
+                        //OnPropertyChanged("Force_skill_choose_warning");
 
                         break;                  
                     }
@@ -335,14 +335,14 @@ namespace Character_design
                 Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!";
                 learn_skill_enable = false;
             }
-            else if (Character.GetInstance().Experience_left < Selected_force_skill.Cost && Selected_force_skill.Is_chosen == false)
-            {
-                Force_skill_choose_warning = "Недостаточно опыта для развития навыка!";
-                learn_skill_enable = false;
-            }
             else if (Selected_force_skill.Score >= Selected_force_skill_max_score)
             {
                 Force_skill_choose_warning = "Достигнут лимит развития навыка!";
+                learn_skill_enable = false;
+            }
+            else if (Character.GetInstance().Experience_left < Selected_force_skill.Cost)
+            {
+                Force_skill_choose_warning = "Недостаточно опыта для развития навыка!";
                 learn_skill_enable = false;
             }
             else if (Selected_force_skill.ID == 11)
@@ -387,6 +387,11 @@ namespace Character_design
                     Force_skill_choose_warning = "Данный навык доступен только адептам Силы с отрицательной кармой!";
                     learn_skill_enable = false;
                 }
+            }
+            else if (Character.GetInstance().Forceuser == false)
+            {
+                Force_skill_choose_warning = "Данный навык доступен только адептам Силы!";
+                learn_skill_enable = false;
             }
 
             // Запреты на удаление\уменьшение навыка
