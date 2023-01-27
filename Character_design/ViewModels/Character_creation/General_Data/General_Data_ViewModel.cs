@@ -82,6 +82,15 @@ namespace Character_design
 
 
 
+        public void Refresh_character_fields()
+        {
+            Refresh_character_skills();
+            Refresh_character_forms();
+            Refresh_character_features();
+        }
+
+
+
         private General_Data_ViewModel()
         {
             Character_info      = Character_info_ViewModel.GetInstance();
@@ -132,7 +141,10 @@ namespace Character_design
         private void _Open_character_skills()
         {
             Set_colors_for_chosen_item(SolidBrushes, Character_skills_button_border, Chosen_border_color, Unchoosen_border_color);
-
+            Refresh_character_skills();
+        }
+        private void Refresh_character_skills()
+        {
             if (Character.GetInstance().Skills_with_points.Count == 0 && Character.GetInstance().Force_skills_with_points.Count == 0)
             {
                 CurrentViewModel = Nothing_chosen;
@@ -145,7 +157,10 @@ namespace Character_design
         private void _Open_character_forms()
         {
             Set_colors_for_chosen_item(SolidBrushes, Character_forms_button_border, Chosen_border_color, Unchoosen_border_color);
-
+            Refresh_character_forms();
+        }
+        private void Refresh_character_forms()
+        {
             if (Character.GetInstance().Combat_abilities_with_points.Count == 0 && Character.GetInstance().Force_abilities_with_points.Count == 0)
             {
                 CurrentViewModel = Nothing_chosen;
@@ -153,12 +168,17 @@ namespace Character_design
             else
             {
                 CurrentViewModel = Character_forms;
+                Character_forms_ViewModel.GetInstance().Check_initial_state();
             }
         }
         private void _Open_character_features()
         {
             Set_colors_for_chosen_item(SolidBrushes, Character_features_button_border, Chosen_border_color, Unchoosen_border_color);
 
+            Refresh_character_features();
+        }
+        private void Refresh_character_features()
+        {
             if (Character.GetInstance().Positive_features_with_points.Count == 0 && Character.GetInstance().Negative_features_with_points.Count == 0)
             {
                 CurrentViewModel = Nothing_chosen;
@@ -166,6 +186,7 @@ namespace Character_design
             else
             {
                 CurrentViewModel = Character_features;
+                Character_features_ViewModel.GetInstance().Check_initial_state();
             }
         }
         private void _Open_character_equipment()

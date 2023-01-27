@@ -182,11 +182,29 @@ namespace Character_design
             }
             return _instance;
         }
+
+
+
         public void Refresh_fields()
         {
             OnPropertyChanged("Usual_skills_group");
             OnPropertyChanged("Force_skills_group");
             OnPropertyChanged("Skill_group");
+        }
+        public void Check_initial_state()
+        {
+            if (Usual_skills_group.Count > 0)
+            {
+                Skill_group = Skill_group;
+                Selected_skill = Skill_group[0];
+                Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
+            }
+            else if (Force_skills_group.Count > 0)
+            {
+                Skill_group = Force_skills_group;
+                Selected_skill = Skill_group[0];
+                Set_colors_for_chosen_item(Button_borders, Force_skills_border, Chosen_color, Unchosen_color);
+            }
         }
 
 
@@ -194,7 +212,6 @@ namespace Character_design
         private Character_skills_ViewModel()
         {
             skill_group = new List<All_skill_template>();
-            Skill_group = Usual_skills_group;
             selected_skill = new All_skill_template();
             selected_value = new All_skill_template();
 
@@ -211,7 +228,7 @@ namespace Character_design
             Chosen_color    = Colors.Wheat;
             Unchosen_color  = Colors.Black;
 
-            Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
+            Check_initial_state();
         }
 
 

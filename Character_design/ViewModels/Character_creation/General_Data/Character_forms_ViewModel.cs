@@ -270,6 +270,25 @@ namespace Character_design
         }
 
 
+
+        public void Check_initial_state()
+        {
+            if (Usual_forms_group.Count > 0)
+            {
+                Forms_group = Usual_forms_group;
+                Selected_form = Forms_group[0];
+                Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
+            }
+            else if (Force_forms_group.Count > 0)
+            {
+                Forms_group = Force_forms_group;
+                Selected_form = Forms_group[0];
+                Set_colors_for_chosen_item(Button_borders, Force_forms_border, Chosen_color, Unchosen_color);
+            }
+        }
+
+
+
         private Character_forms_ViewModel()
         {
             Forms_border = new SolidColorBrush();
@@ -279,18 +298,17 @@ namespace Character_design
             Button_borders.Add(Forms_border);
             Button_borders.Add(Force_forms_border);
 
-            Show_forms       = new Command(o => _Show_forms());
-            Show_force_forms = new Command(o => _Show_force_forms());
+            Show_forms       = new Command(o => _Show_forms(), o => Usual_forms_group.Count > 0);
+            Show_force_forms = new Command(o => _Show_force_forms(), o => Force_forms_group.Count > 0);
 
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;
 
             Forms_group = new List<Abilities_sequence_template>();
-            Forms_group = Usual_forms_group;
             selected_form = new Abilities_sequence_template();
             selected_value = new Abilities_sequence_template();
 
-            Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
+            Check_initial_state();
         }
 
 
