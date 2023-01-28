@@ -176,7 +176,6 @@ namespace Character_design
             Set_colors_for_chosen_item(Button_borders, Character_button_border, Chosen_color, Unchosen_color);
 
             CurrentViewModel = general_data;
-            General_Data_ViewModel.GetInstance().Refresh_character_fields();
         }
         private void _Open_Race_user_control()
         {
