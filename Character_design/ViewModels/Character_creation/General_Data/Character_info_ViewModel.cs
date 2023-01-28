@@ -1295,8 +1295,8 @@ namespace Character_design
                 if ((Convert.ToInt32(result) >= Minimum_karma) && (Convert.ToInt32(result) <= Maximum_karma))
                 {
                     character_karma = karma;
-                    Current_character_karma = Current_character_karma + Convert.ToInt32(karma);
                     Character.GetInstance().Karma = result;
+                    Current_character_karma = Character.GetInstance().Karma;// Current_character_karma + Convert.ToInt32(karma);
                     set_usual = true;
                 }
                 else
