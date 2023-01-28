@@ -84,9 +84,18 @@ namespace Character_design
 
         public void Refresh_character_fields()
         {
-            Refresh_character_skills();
-            Refresh_character_forms();
-            Refresh_character_features();
+            if (Character_skills_button_border.Color == Chosen_border_color)
+            {
+                Refresh_character_skills();
+            }
+            else if (Character_forms_button_border.Color == Chosen_border_color)
+            {
+                Refresh_character_forms();
+            }
+            else if (Character_features_button_border.Color == Chosen_border_color)
+            {
+                Refresh_character_features();
+            }
         }
 
 
