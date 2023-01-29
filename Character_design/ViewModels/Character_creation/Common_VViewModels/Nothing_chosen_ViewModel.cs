@@ -23,6 +23,14 @@ namespace Character_design
             }
             return _instance;
         }
+        public void DeleteInstance()
+        {
+            if (_instance != null)
+            {
+                _instance = null;
+            }
+        }
+
 
 
         private Nothing_chosen_ViewModel()

@@ -24,26 +24,16 @@ namespace Character_design
         private SolidColorBrush character_companion_button_border;
         private Color Chosen_border_color;
         private Color Unchoosen_border_color;
-
         private List<SolidColorBrush> SolidBrushes;
         
+
+
         public Command Open_character_info { get; private set; }
         public Command Open_character_skills { get; private set; }
         public Command Open_character_forms { get; private set; }
         public Command Open_character_features { get; private set; }
         public Command Open_character_equipment { get; private set; }
         public Command Open_character_companion { get; private set; }
-
-        public static General_Data_ViewModel GetInstance()
-        {
-            if (_instance == null)
-            {
-                _instance = new General_Data_ViewModel();
-            }
-            return _instance;
-        }
-
-
         public BaseViewModel CurrentViewModel
         {
             get { return currentViewModel; }
@@ -82,6 +72,21 @@ namespace Character_design
 
 
 
+        public static General_Data_ViewModel GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new General_Data_ViewModel();
+            }
+            return _instance;
+        }
+        public void DeleteInstance()
+        {
+            if (_instance != null)
+            {
+                _instance = null;
+            }
+        }
         public void Refresh_character_fields()
         {
             if (Character_skills_button_border.Color == Chosen_border_color)

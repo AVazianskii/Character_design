@@ -28,6 +28,13 @@ namespace Character_design
             }
             return _instance;
         }
+        public void DeleteInstance()
+        {
+            if (_instance != null)
+            {
+                _instance = null;
+            }
+        }
         public void _Open_Player_Menu()
         {
             Current_Menu_ViewModel = player_menu;

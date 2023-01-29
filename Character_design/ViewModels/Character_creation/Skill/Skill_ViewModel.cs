@@ -55,6 +55,13 @@ namespace Character_design
             if (_instance == null) { _instance = new Skill_ViewModel(); }
             return _instance;
         }
+        public void DeleteInstance()
+        {
+            if (_instance != null)
+            {
+                _instance = null;
+            }
+        }
         public void Refresh_fields()
         {
             if(Selected_skill != null)

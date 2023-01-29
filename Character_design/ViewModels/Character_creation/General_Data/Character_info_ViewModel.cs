@@ -740,6 +740,13 @@ namespace Character_design
             }
             return _instance;
         }
+        public void DeleteInstance()
+        {
+            if (_instance != null)
+            {
+                _instance = null;
+            }
+        }
         public void Refresh_atr_exp_points()
         {
             OnPropertyChanged("Atr_points_left");

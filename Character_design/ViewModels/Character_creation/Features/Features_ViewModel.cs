@@ -239,6 +239,13 @@ namespace Character_design
         {
             Check_warning_advice(Selected_feature);
         }
+        public void DeleteInstance()
+        {
+            if (_instance != null)
+            {
+                _instance = null;
+            }
+        }
 
 
 
