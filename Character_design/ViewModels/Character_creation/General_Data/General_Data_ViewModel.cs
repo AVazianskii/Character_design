@@ -80,7 +80,7 @@ namespace Character_design
             }
             return _instance;
         }
-        public void DeleteInstance()
+        public static void DeleteInstance()
         {
             if (_instance != null)
             {
@@ -217,11 +217,14 @@ namespace Character_design
         }
         private bool _Enable_open_character_companion()
         {
-            foreach (All_feature_template feature in Character.GetInstance().Positive_features_with_points)
+            if (Character.CheckInstanceNotNull())
             {
-                if (feature.ID == 5 || feature.ID == 6)
+                foreach (All_feature_template feature in Character.GetInstance().Positive_features_with_points)
                 {
-                    return true;
+                    if (feature.ID == 5 || feature.ID == 6)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

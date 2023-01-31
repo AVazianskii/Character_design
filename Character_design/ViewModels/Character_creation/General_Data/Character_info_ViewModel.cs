@@ -244,7 +244,7 @@ namespace Character_design
         }
         public string Character_name
         {
-            get { return character_name; }
+            get { return Character.GetInstance().Name; }
             set 
             { 
                 character_name = value; 
@@ -740,7 +740,7 @@ namespace Character_design
             }
             return _instance;
         }
-        public void DeleteInstance()
+        public static void DeleteInstance()
         {
             if (_instance != null)
             {
@@ -832,7 +832,7 @@ namespace Character_design
 
         private Character_info_ViewModel()
         {
-            Character_name = "Дарт Сидиус";
+            //Character_name = "Дарт Сидиус";
             default_question = "Сколько назначил Мастер?";
             default_text = $"от {Minimum_karma} до {Maximum_karma}";
 

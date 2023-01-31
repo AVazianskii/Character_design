@@ -45,7 +45,7 @@ namespace Character_design
             }
             return _instance;
         }
-        public void DeleteInstance()
+        public static void DeleteInstance()
         {
             if (_instance != null)
             {
@@ -124,18 +124,15 @@ namespace Character_design
             Open_general_data_user_control  = new Command(o => _Open_general_fata_user_control());
             Open_race_user_control          = new Command(o => _Open_Race_user_control());
             Open_skill_user_control         = new Command(o => _Open_skill_user_control());
-            Open_force_skill_user_control   = new Command(o => _Open_force_skill_user_control(), 
-                                                          o => Character.GetInstance().Forceuser);
+            Open_force_skill_user_control   = new Command(o => _Open_force_skill_user_control());
             Open_combat_forms_user_control  = new Command(o => _Open_combat_forms_user_control());
-            Open_force_forms_user_control   = new Command(o => _Open_force_forms_user_control(),
-                                                          o => Character.GetInstance().Forceuser);
+            Open_force_forms_user_control   = new Command(o => _Open_force_forms_user_control());
             Open_feature_user_control       = new Command(o => _Open_feature_user_control());
             Open_equipment_user_control     = new Command(o => _Open_equipment_user_control());
             Open_companion_user_control     = new Command(o => _Open_companion_user_control(),
                                                           o => _Enable_open_companion_user_control());
-            Return_back_to_Menu             = new Command(o => Return_to_main_menu(Character.GetInstance()));
-            Save_character_card             = new Command(o => Save_character_info(), 
-                                                          o => Character.GetInstance().Saved_state == false);
+            Return_back_to_Menu             = new Command(o => Return_to_main_menu());
+            Save_character_card             = new Command(o => Save_character_info());
 
             general_data    = General_Data_ViewModel.GetInstance();
             race            = Race_ViewModel.GetInstance();
@@ -237,11 +234,17 @@ namespace Character_design
         }
         private bool _Enable_open_companion_user_control()
         {
-            foreach(All_feature_template feature in Character.GetInstance().Positive_features_with_points)
+            if (Character.CheckInstanceNotNull())
             {
-                if (feature.ID == 5 || feature.ID == 6)
+                if (Character.GetInstance().Positive_features_with_points.Count > 0)
                 {
-                    return true;
+                    foreach (All_feature_template feature in Character.GetInstance().Positive_features_with_points)
+                    {
+                        if (feature.ID == 5 || feature.ID == 6)
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
             return false;
@@ -277,10 +280,10 @@ namespace Character_design
                 }
             }
         }
-        private void Return_to_main_menu(Character character)
+        private void Return_to_main_menu()
         {
             bool flag = false;
-            if (character.Saved_state != true)
+            if (Character.GetInstance().Saved_state != true)
             {
                 // Предупреждение, что выход без сохранения актуального состояния персонажа
                 if (MessageBox.Show("Изменения не сохранены! Вы действительно хотите выйти?",
@@ -298,9 +301,40 @@ namespace Character_design
 
             if (flag)
             {
-                Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation();
+                // Удаляем классы данных с описанием вариантов генерации персонажа
+                //Main_model.DeleteInstance();
+
+                // Удаляем класс персонажа
+                Character.Delete_character();
+
+                // Удаляем инстансы классов ViewModel страниц
                 Character_info_ViewModel.GetInstance().Clear_page_fields();
-                Character.GetInstance().Delete_character();
+                //Combat_forms_ViewModel.DeleteInstance();
+                //Nothing_chosen_ViewModel.DeleteInstance();
+                //Companion_ViewModel.DeleteInstance();
+                //Equipment_ViewModel.DeleteInstance();
+                //Features_ViewModel.DeleteInstance();
+                //Force_forms_ViewModel.DeleteInstance();
+                //Force_skill_ViewModel.DeleteInstance();
+                //Race_ViewModel.DeleteInstance();
+                //Skill_ViewModel.DeleteInstance();
+                //Character_companion_ViewModel.DeleteInstance();
+                //Character_equipment_ViewModel.DeleteInstance();
+                //Character_features_ViewModel.DeleteInstance();
+                //Character_forms_ViewModel.DeleteInstance();
+                //Character_info_ViewModel.DeleteInstance();
+                //Character_skills_ViewModel.DeleteInstance();
+                //General_Data_ViewModel.DeleteInstance();
+                //Main_Window_Creation_ViewModel.DeleteInstance();
+
+                // Возращаемся в предыдущее меню
+                Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation();
+
+
+                //General_Data_ViewModel.DeleteInstance();
+                //Character_info_ViewModel.DeleteInstance();
+                //Character_features_ViewModel.DeleteInstance();
+                //Features_ViewModel.DeleteInstance();
             }
         }
     }

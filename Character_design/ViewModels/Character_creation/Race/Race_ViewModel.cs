@@ -51,7 +51,7 @@ namespace Character_design
             if (_instance == null) { _instance = new Race_ViewModel(); }
             return _instance;
         }
-        public void DeleteInstance()
+        public static void DeleteInstance()
         {
             if (_instance != null)
             {

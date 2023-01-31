@@ -28,7 +28,10 @@ namespace Character_design
         public void Execute(object parameter)
         {
             this.execute(parameter);
-            Character.GetInstance().Change_character_state_to_unsave();
+            if (Character.CheckInstanceNotNull())
+            {
+                Character.GetInstance().Change_character_state_to_unsave();
+            }
         }
 
     }
