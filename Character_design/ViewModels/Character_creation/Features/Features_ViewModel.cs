@@ -232,11 +232,11 @@ namespace Character_design
             }
             return _instance;
         }
-        public static void DeleteInstance()
+        public static void OverWriteInstance()
         {
             if (_instance != null)
             {
-                _instance = null;
+                _instance = new Features_ViewModel();
             }
         }
 
@@ -280,11 +280,14 @@ namespace Character_design
 
             selected_feature = new All_feature_template();
 
-            selected_feature = Current_feature_list[0];
-            Select_show_cost(Selected_feature);
-            Check_warning_advice(Selected_feature);
-            selected_feature_cost_list = selected_feature.Cost;
-            Selected_feature_cost = selected_feature_cost_list[0];
+            if (Current_feature_list.Count > 0)
+            {
+                selected_feature = Current_feature_list[0];
+                Select_show_cost(Selected_feature);
+                Check_warning_advice(Selected_feature);
+                selected_feature_cost_list = selected_feature.Cost;
+                Selected_feature_cost = selected_feature_cost_list[0];
+            }
 
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;

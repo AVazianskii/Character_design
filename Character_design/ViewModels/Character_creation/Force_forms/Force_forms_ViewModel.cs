@@ -132,11 +132,11 @@ namespace Character_design
             }
             return _instance;
         }
-        public static void DeleteInstance()
+        public static void OverWriteInstance()
         {
             if (_instance != null)
             {
-                _instance = null;
+                _instance = new Force_forms_ViewModel();
             }
         }
 

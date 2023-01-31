@@ -51,11 +51,11 @@ namespace Character_design
             if (_instance == null) { _instance = new Race_ViewModel(); }
             return _instance;
         }
-        public static void DeleteInstance()
+        public static void OverWriteInstance()
         {
             if (_instance != null)
             {
-                _instance = null;
+                _instance = new Race_ViewModel();
             }
         }
 

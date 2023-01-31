@@ -45,11 +45,11 @@ namespace Character_design
             }
             return _instance;
         }
-        public static void DeleteInstance()
+        public static void OverWriteInstance()
         {
             if (_instance != null)
             {
-                _instance = null;
+                _instance = new Main_Window_Creation_ViewModel();
             }
         }
 
@@ -301,40 +301,34 @@ namespace Character_design
 
             if (flag)
             {
-                // Удаляем классы данных с описанием вариантов генерации персонажа
-                //Main_model.DeleteInstance();
 
                 // Удаляем класс персонажа
-                Character.Delete_character();
+                Character.OverWriteInstance();
+                // Удаляем классы данных с описанием вариантов генерации персонажа
+                Main_model.OverWriteInstance();
 
                 // Удаляем инстансы классов ViewModel страниц
-                Character_info_ViewModel.GetInstance().Clear_page_fields();
-                //Combat_forms_ViewModel.DeleteInstance();
-                //Nothing_chosen_ViewModel.DeleteInstance();
-                //Companion_ViewModel.DeleteInstance();
-                //Equipment_ViewModel.DeleteInstance();
-                //Features_ViewModel.DeleteInstance();
-                //Force_forms_ViewModel.DeleteInstance();
-                //Force_skill_ViewModel.DeleteInstance();
-                //Race_ViewModel.DeleteInstance();
-                //Skill_ViewModel.DeleteInstance();
-                //Character_companion_ViewModel.DeleteInstance();
-                //Character_equipment_ViewModel.DeleteInstance();
-                //Character_features_ViewModel.DeleteInstance();
-                //Character_forms_ViewModel.DeleteInstance();
-                //Character_info_ViewModel.DeleteInstance();
-                //Character_skills_ViewModel.DeleteInstance();
-                //General_Data_ViewModel.DeleteInstance();
-                //Main_Window_Creation_ViewModel.DeleteInstance();
+
+                Combat_forms_ViewModel.OverWriteInstance();
+                Nothing_chosen_ViewModel.OverWriteInstance();
+                Companion_ViewModel.OverWriteInstance();
+                Equipment_ViewModel.OverWriteInstance();
+                Features_ViewModel.OverWriteInstance();
+                Force_forms_ViewModel.OverWriteInstance();
+                Force_skill_ViewModel.OverWriteInstance();
+                Race_ViewModel.OverWriteInstance();
+                Skill_ViewModel.OverWriteInstance();
+                Character_companion_ViewModel.OverWriteInstance();
+                Character_equipment_ViewModel.OverWriteInstance();
+                Character_features_ViewModel.OverWriteInstance();
+                Character_forms_ViewModel.OverWriteInstance();
+                Character_info_ViewModel.OverWriteInstance();
+                Character_skills_ViewModel.OverWriteInstance();
+                General_Data_ViewModel.OverWriteInstance();
+                Main_Window_Creation_ViewModel.OverWriteInstance();
 
                 // Возращаемся в предыдущее меню
                 Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation();
-
-
-                //General_Data_ViewModel.DeleteInstance();
-                //Character_info_ViewModel.DeleteInstance();
-                //Character_features_ViewModel.DeleteInstance();
-                //Features_ViewModel.DeleteInstance();
             }
         }
     }

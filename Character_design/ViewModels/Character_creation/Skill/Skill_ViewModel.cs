@@ -55,11 +55,11 @@ namespace Character_design
             if (_instance == null) { _instance = new Skill_ViewModel(); }
             return _instance;
         }
-        public static void DeleteInstance()
+        public static void OverWriteInstance()
         {
             if (_instance != null)
             {
-                _instance = null;
+                _instance = new Skill_ViewModel();
             }
         }
         public void Refresh_fields()

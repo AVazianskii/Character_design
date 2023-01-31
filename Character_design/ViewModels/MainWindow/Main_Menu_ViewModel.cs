@@ -12,9 +12,8 @@ namespace Character_design
         private Common_menu_ViewModel common_menu;
         private Player_menu_ViewModel player_menu;
         private Master_menu_ViewModel master_menu;
-        private Main_Menu_ViewModel this_window;
-
-        public string left_picture_source,
+        
+        private string left_picture_source,
                       right_picture_source,
                       central_picture_source;
 
@@ -29,11 +28,11 @@ namespace Character_design
             }
             return _instance;
         }
-        public void DeleteInstance()
+        public void OverWriteInstance()
         {
             if (_instance != null)
             {
-                _instance = null;
+                _instance = new Main_Menu_ViewModel();
             }
         }
         public void _Open_Player_Menu()
@@ -53,7 +52,7 @@ namespace Character_design
             Main_model.GetInstance();
             Character.GetInstance();
             
-            CurrentViewModel = Main_Window_Creation_ViewModel.GetInstance(); //main_window_creation;
+            CurrentViewModel = main_window_creation;
         }
         public void _Return_from_exp_player_char_creation()
         {
@@ -96,21 +95,16 @@ namespace Character_design
             current_VM = null;
             Current_Menu_ViewModel = new BaseViewModel();
 
-            //main_window_creation = Main_Window_Creation_ViewModel.GetInstance();
+            main_window_creation = Main_Window_Creation_ViewModel.GetInstance();
             common_menu = Common_menu_ViewModel.GetInstance();
             player_menu = Player_menu_ViewModel.GetInstance();
             master_menu = Master_menu_ViewModel.GetInstance();
             
             Current_Menu_ViewModel = common_menu;
-
-            
+                        
             Left_picture_source     = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Left_picture.jpg";
             Right_picture_source    = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Right_picture.jpg";
-            Central_picture_source  = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Central_picture.jpg";
-
-            
+            Central_picture_source  = Directory.GetCurrentDirectory() + "\\Pictures\\Main_menu\\Central_picture.jpg";            
         }
-
-
     }
 }

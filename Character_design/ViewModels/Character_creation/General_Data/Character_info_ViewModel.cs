@@ -740,11 +740,11 @@ namespace Character_design
             }
             return _instance;
         }
-        public static void DeleteInstance()
+        public static void OverWriteInstance()
         {
             if (_instance != null)
             {
-                _instance = null;
+                _instance = new Character_info_ViewModel();
             }
         }
         public void Refresh_atr_exp_points()
@@ -769,40 +769,6 @@ namespace Character_design
                 case 7: OnPropertyChanged("Character_charm"); break;
                 case 8: OnPropertyChanged("Character_willpower"); break;
             }
-        }
-        public void Clear_page_fields()
-        {
-            _Choose_male(Character.GetInstance());
-
-            Forceuser_border_color.Color = Unchosen_color;
-
-            Karma_opacity = 0;
-
-            Character_age = "";
-            Character_exp = "";
-            Character_atr = "";
-            Character_karma = "";
-
-            Current_age_text_fontsize = help_text_fontsize;
-            Current_exp_points_fontsize = help_text_fontsize;
-            Current_atr_points_fontsize = help_text_fontsize;
-            Current_karma_points_fontsize = help_text_fontsize;
-            Age_text_color.Color = Help_text_color;
-            Exp_text_color.Color = Help_text_color;
-            Atr_text_color.Color = Help_text_color;
-            Karma_text_color.Color = Help_text_color;
-
-            Character_current_range = Character_ranges[0];
-            Character_current_age_status = Character_ages[0];
-
-            Refresh_atr_score(Character.GetInstance().Strength);
-            Refresh_atr_score(Character.GetInstance().Agility);
-            Refresh_atr_score(Character.GetInstance().Stamina);
-            Refresh_atr_score(Character.GetInstance().Perception);
-            Refresh_atr_score(Character.GetInstance().Quickness);
-            Refresh_atr_score(Character.GetInstance().Intelligence);
-            Refresh_atr_score(Character.GetInstance().Charm);
-            Refresh_atr_score(Character.GetInstance().Willpower);
         }
         public void Update_new_karma_points(int bonus)
         {

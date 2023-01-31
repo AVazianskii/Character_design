@@ -80,11 +80,11 @@ namespace Character_design
             }
             return _instance;
         }
-        public static void DeleteInstance()
+        public static void OverWriteInstance()
         {
             if (_instance != null)
             {
-                _instance = null;
+                _instance = new General_Data_ViewModel();
             }
         }
         public void Refresh_character_fields()
