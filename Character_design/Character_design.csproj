@@ -131,6 +131,7 @@
     <Compile Include="ViewModels\Character_creation\General_Data\General_Data_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Main_Window_Creation\Main_Window_Creation_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Skill\Skill_ViewModel.cs" />
+    <Compile Include="ViewModels\Common_ViewModels\Loading_window_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\Common_menu_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\Main_Menu_ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\MainWindow_ViewModel.cs" />
@@ -184,6 +185,9 @@
     </Compile>
     <Compile Include="Views\Character_creation\Skill_View\Skill.xaml.cs">
       <DependentUpon>Skill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Common_views\Loading_window.xaml.cs">
+      <DependentUpon>Loading_window.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow\Common_menu.xaml.cs">
       <DependentUpon>Common_menu.xaml</DependentUpon>
@@ -273,6 +277,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Character_creation\Skill_View\Skill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Common_views\Loading_window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

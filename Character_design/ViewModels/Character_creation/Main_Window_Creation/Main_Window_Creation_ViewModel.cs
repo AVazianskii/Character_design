@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows;
 using SW_Character_creation;
+using System.Threading.Tasks;
 
 namespace Character_design
 {
@@ -251,6 +252,8 @@ namespace Character_design
         }
         private void  Save_character_info ()
         {
+            string error_msg = "";
+            Loading_window_ViewModel load = new Loading_window_ViewModel();
             if (Character.GetInstance().Features_balanced == false)
             {
                 MessageBox.Show("Особенности персонажа не сбалансированы! Сохранение невозможно.",
@@ -260,9 +263,25 @@ namespace Character_design
             }
             else
             {
-                Character.GetInstance().Save_character();
+                Task task1 = new Task(
+                    () =>
+                    {
+                        Character.GetInstance().Save_character();
 
-                Save_character_excel.GetInstance().Save_character_to_Excel_card(out string error_msg);
+                        Save_character_excel.GetInstance().Save_character_to_Excel_card(out error_msg);
+                    });
+                Task task2 = new Task(
+                    () =>
+                    {
+                        load.Start_progress_bar();
+                    });
+                task1.Start();
+                task2.Start();
+                task1.Wait();
+                if (task1.IsCompleted)
+                {
+                    load.Stop_progress_bar();
+                }
 
                 if (error_msg != "")
                 {
