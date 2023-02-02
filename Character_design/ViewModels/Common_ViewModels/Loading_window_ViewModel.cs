@@ -34,27 +34,25 @@ namespace Character_design
 
 
 
-        public void Start_progress_bar()
+        public void Start_progress_bar(CancellationToken tkn)
         {
-            CancellationToken token = cancelTokenSource.Token;
+            Progress = 0;
             progress_bar = new Task(() =>
             {
                 while (true)
                 {
-                    if (token.IsCancellationRequested)
+                    if (tkn.IsCancellationRequested)
                     {
                         return;
                     }
-                    Views.Common_views.Loading_window loading_window = new Views.Common_views.Loading_window();
-                    loading_window.Show();
-
+                    
                     Progress = Progress + 1;
                     if (Progress > 100)
                     {
                         Progress = 0;
                     }
                 }
-            }, token);
+            }, tkn);
         }
         public void Stop_progress_bar()
         {

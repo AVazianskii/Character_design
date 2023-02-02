@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows;
 using SW_Character_creation;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Character_design
 {
@@ -36,8 +37,10 @@ namespace Character_design
         private Color Chosen_color,
                       Unchosen_color;
 
+        private string error_msg = "";
 
 
+        
         public static Main_Window_Creation_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -67,6 +70,7 @@ namespace Character_design
         public Command Open_companion_user_control { get; private set; }
         public Command Return_back_to_Menu { get; private set; }
         public Command Save_character_card { get; private set; }
+        public Command Test { get; private set; }
         public BaseViewModel CurrentViewModel
         {
             get { return current_VM; }
@@ -250,10 +254,10 @@ namespace Character_design
             }
             return false;
         }
-        private void  Save_character_info ()
+        private async void  Save_character_info ()
         {
-            string error_msg = "";
-            Loading_window_ViewModel load = new Loading_window_ViewModel();
+            
+
             if (Character.GetInstance().Features_balanced == false)
             {
                 MessageBox.Show("Особенности персонажа не сбалансированы! Сохранение невозможно.",
@@ -263,26 +267,25 @@ namespace Character_design
             }
             else
             {
-                Task task1 = new Task(
-                    () =>
-                    {
-                        Character.GetInstance().Save_character();
-
-                        Save_character_excel.GetInstance().Save_character_to_Excel_card(out error_msg);
-                    });
-                Task task2 = new Task(
-                    () =>
-                    {
-                        load.Start_progress_bar();
-                    });
-                task1.Start();
-                task2.Start();
-                task1.Wait();
-                if (task1.IsCompleted)
+                Views.Common_views.Loading_window loading_window = new Views.Common_views.Loading_window();
+                using (var cts = new CancellationTokenSource())
                 {
-                    load.Stop_progress_bar();
-                }
+                    Thread thrd1 = new Thread(() =>
+                        {
+                            Character.GetInstance().Save_character();
+                            Save_character_excel.GetInstance().Save_character_to_Excel_card(out error_msg);
 
+                            Application.Current.Dispatcher.Invoke(() => loading_window.Close());
+                        });
+                    Thread thrd2 = new Thread(() =>
+                    {
+                        Application.Current.Dispatcher.Invoke(() => loading_window.ShowDialog());
+                    });
+
+                    thrd1.Start();
+                    thrd2.Start();
+                }
+                
                 if (error_msg != "")
                 {
                     MessageBox.Show("error_msg",

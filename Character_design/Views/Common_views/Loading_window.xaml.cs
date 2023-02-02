@@ -22,7 +22,7 @@ namespace Character_design.Views.Common_views
         public Loading_window()
         {
             InitializeComponent();
-            DataContext = new Loading_window_ViewModel();
+            //DataContext = new Loading_window_ViewModel();
         }
     }
 }
