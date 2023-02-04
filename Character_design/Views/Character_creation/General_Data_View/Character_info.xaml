@@ -18,6 +18,18 @@
                    Height="350"            
                    Width="326"
                    Source="{Binding Character_img}"/>
+            <Button Canvas.Top="360"
+                    Canvas.Left="37"
+                    Height="30"
+                    Width="250"
+                    Background="LightGray"
+                    Command="{Binding Choose_character_img}">
+                <Button.Content>
+                    <TextBlock FontSize="14"
+                               Foreground="Black"
+                               Text="Выбрать изображение персонажа"/>
+                </Button.Content>
+            </Button>
         </Canvas>
         <Grid HorizontalAlignment="Left" 
               Height="380" 

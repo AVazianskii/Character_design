@@ -6,6 +6,7 @@ using Range_libs;
 using Age_status_libs;
 using System.Windows;
 using System.Windows.Media;
+using Microsoft.Win32;
 
 namespace Character_design
 {
@@ -81,6 +82,7 @@ namespace Character_design
         public Character_changing_command Decrease_charm { get; private set; }
         public Character_changing_command Increase_willpower { get; private set; }
         public Character_changing_command Decrease_willpower { get; private set; }
+        public Character_changing_command Choose_character_img { get; private set; }
         public int Current_age_text_fontsize
         {
             get { return current_age_text_fontsize; }
@@ -894,6 +896,8 @@ namespace Character_design
             Choose_male     = new Character_changing_command(o => _Choose_male(Character.GetInstance()));
             Choose_female   = new Character_changing_command(o => _Choose_female(Character.GetInstance()));
 
+            Choose_character_img = new Character_changing_command(o => _Choose_character_img());
+
             _Choose_male(Character.GetInstance());
         }
 
@@ -1314,6 +1318,15 @@ namespace Character_design
             OnPropertyChanged("Character_hideness");
             OnPropertyChanged("Character_force_resistance");
             OnPropertyChanged("Character_concentration");
+        }
+        private void _Choose_character_img()
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Picture files (*.png)|*.png|Picture files (*.jpg)|*.jpg";
+            if (dlg.ShowDialog() == true)
+            {
+                Character_img = dlg.FileName;
+            }
         }
     }
 }
