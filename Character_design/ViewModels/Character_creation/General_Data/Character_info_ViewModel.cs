@@ -16,7 +16,8 @@ namespace Character_design
         private string character_name;
         private string character_race_name;
         private string character_age_status;
-        private string exp_error;
+        private string exp_error,
+                       character_img;
 
         private int help_text_fontsize,
                     usual_text_fontsize,
@@ -729,6 +730,11 @@ namespace Character_design
         {
             get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\wound.png"; }
         }
+        public string Character_img
+        {
+            get { return character_img; }
+            set { character_img = value; OnPropertyChanged("Character_img"); }
+        }
 
 
 
@@ -801,6 +807,7 @@ namespace Character_design
             //Character_name = "Дарт Сидиус";
             default_question = "Сколько назначил Мастер?";
             default_text = $"от {Minimum_karma} до {Maximum_karma}";
+            Character_img = Directory.GetCurrentDirectory() + "\\Pictures\\Common\\nobody_icon.png";
 
             Character_current_range = Character_ranges[0];
             Character_current_age_status = Character_ages[0];

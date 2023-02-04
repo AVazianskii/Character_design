@@ -8,11 +8,17 @@
              d:DesignHeight="770" 
              d:DesignWidth="1130" >
     <Grid Background="White">
-        <Image HorizontalAlignment="Left" 
-               Height="400" 
-               Margin="468,60,0,0" 
-               VerticalAlignment="Top" 
-               Width="326"/>
+        <Canvas Height="400"
+                Width="326"
+                Margin="468,60,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <Image Canvas.Left="0"
+                   Canvas.Top="0"
+                   Height="350"            
+                   Width="326"
+                   Source="{Binding Character_img}"/>
+        </Canvas>
         <Grid HorizontalAlignment="Left" 
               Height="380" 
               Margin="20,80,0,0" 
