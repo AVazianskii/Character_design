@@ -735,7 +735,12 @@ namespace Character_design
         public string Character_img
         {
             get { return character_img; }
-            set { character_img = value; OnPropertyChanged("Character_img"); }
+            set 
+            { 
+                character_img = value; 
+                Character.GetInstance().Img_path = value;
+                OnPropertyChanged("Character_img"); 
+            }
         }
 
 
