@@ -49,9 +49,6 @@ namespace Character_design
         }
         public void _Open_main_window_creation_user_control()
         {
-            Main_model.GetInstance();
-            Character.GetInstance();
-            
             CurrentViewModel = main_window_creation;
         }
         public void _Return_from_exp_player_char_creation()

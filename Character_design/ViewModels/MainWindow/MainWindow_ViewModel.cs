@@ -1,10 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Races_libs;
-using SW_Character_creation;
+﻿using System.Threading;
+using System.Windows;
 
 namespace Character_design
 {
@@ -52,9 +47,22 @@ namespace Character_design
 
         public MainWindow_ViewModel()
         {
+            Views.Common_views.Loading_window loading_window = new Views.Common_views.Loading_window();
+
+            Thread thrd1 = new Thread(() =>
+            {
+                Main_model.GetInstance().Download_all();
+
+                Character.GetInstance();
+
+                Application.Current.Dispatcher.Invoke(() => loading_window.Close());
+            });
+
+            thrd1.Start();
+            Application.Current.Dispatcher.Invoke(() => loading_window.ShowDialog());
+            
             Main_menu = Main_Menu_ViewModel.GetInstance();
             current_VM = Main_menu;
-            //Main_model.GetInstance();
         }
     }
 }
