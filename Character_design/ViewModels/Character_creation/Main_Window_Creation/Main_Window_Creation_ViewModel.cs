@@ -326,6 +326,19 @@ namespace Character_design
 
                 Views.Common_views.Loading_window loading_window = new Views.Common_views.Loading_window();
 
+                // Удаляем классы данных с описанием вариантов генерации персонажа
+                Main_model.OverWriteInstance();
+                
+                Thread thrd1 = new Thread(() =>
+                {
+                    Main_model.GetInstance().Download_all();
+
+                    Application.Current.Dispatcher.Invoke(() => loading_window.Close());
+                });
+
+                thrd1.Start();
+                Application.Current.Dispatcher.Invoke(() => loading_window.ShowDialog());
+
                 // Удаляем инстансы классов ViewModel страниц
                 Combat_forms_ViewModel.OverWriteInstance();
                 Nothing_chosen_ViewModel.OverWriteInstance();
@@ -345,24 +358,9 @@ namespace Character_design
                 General_Data_ViewModel.OverWriteInstance();
                 Main_Window_Creation_ViewModel.OverWriteInstance();
 
-                // Удаляем классы данных с описанием вариантов генерации персонажа
-                Main_model.OverWriteInstance();
-
-                Thread thrd1 = new Thread(() =>
-                {
-                    Main_model.GetInstance().Download_all();
-
-                    Character.GetInstance();
-
-                    Application.Current.Dispatcher.Invoke(() => loading_window.Close());
-                });
-
-                thrd1.Start();
-                Application.Current.Dispatcher.Invoke(() => loading_window.ShowDialog());
-
                 // Удаляем класс персонажа
                 Character.OverWriteInstance();
-                
+
                 // Возращаемся в предыдущее меню
                 Main_Menu_ViewModel.GetInstance()._Return_from_exp_player_char_creation();
             }
