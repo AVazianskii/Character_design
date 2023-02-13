@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Media;
+using System.Threading;
+using System;
 
 namespace Character_design
 {
@@ -23,6 +26,23 @@ namespace Character_design
                     item.Color = Unchosen_color;
                 }
             }
+        }
+
+        public void Run_method_with_loading(Action input_method)
+        {
+            Views.Common_views.Loading_window loading_window = new Views.Common_views.Loading_window();
+
+            // Запускаем дополнительный поток с необходимым методом. после его заверщения будет закрыто окно загрузки
+            
+            Thread thrd1 = new Thread(() =>
+            {
+                input_method();
+
+                Application.Current.Dispatcher.Invoke(() => loading_window.Close());
+            });
+
+            thrd1.Start();
+            Application.Current.Dispatcher.Invoke(() => loading_window.ShowDialog());
         }
     }
 }
