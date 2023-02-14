@@ -141,7 +141,7 @@
     <Compile Include="Views\Character_creation\Combat_forms\Combat_forms.xaml.cs">
       <DependentUpon>Combat_forms.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Character_creation\Common_views\Nothing_chosen.xaml.cs">
+    <Compile Include="Views\Common_views\Nothing_chosen.xaml.cs">
       <DependentUpon>Nothing_chosen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Character_creation\Companion\Companion.xaml.cs">
@@ -220,7 +220,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Character_creation\Common_views\Nothing_chosen.xaml">
+    <Page Include="Views\Common_views\Nothing_chosen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -334,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Character_library\" />
+    <Folder Include="Views\Character_creation\Common_views\" />
     <Folder Include="Views\Character_library\" />
   </ItemGroup>
   <ItemGroup>

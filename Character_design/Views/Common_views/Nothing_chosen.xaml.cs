@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Character_design.Views.Character_creation.Common_views
+namespace Character_design.Views.Common_views
 {
     /// <summary>
     /// Логика взаимодействия для Nothing_chosen.xaml

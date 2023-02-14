@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:general_data="clr-namespace:Character_design.Views.Character_creation.General_Data_View"
-             xmlns:common_views="clr-namespace:Character_design.Views.Character_creation.Common_views"
+             xmlns:common_views="clr-namespace:Character_design.Views.Common_views"
              xmlns:local="clr-namespace:Character_design"
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1130">

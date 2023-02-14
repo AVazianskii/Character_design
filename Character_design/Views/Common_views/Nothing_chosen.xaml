@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Character_design.Views.Character_creation.Common_views.Nothing_chosen"
+﻿<UserControl x:Class="Character_design.Views.Common_views.Nothing_chosen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Character_design.Views.Character_creation.Common_views"
+             xmlns:local="clr-namespace:Character_design.Views.Common_views"
              mc:Ignorable="d" 
              d:DesignHeight="770" d:DesignWidth="1130">
     <Grid Background="White">
