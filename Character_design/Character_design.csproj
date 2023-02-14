@@ -116,7 +116,7 @@
     <Compile Include="MVVM infrastructure\Command.cs" />
     <Compile Include="MVVM infrastructure\BaseViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Combat_forms\Combat_forms_ViewModel.cs" />
-    <Compile Include="ViewModels\Character_creation\Common_VViewModels\Nothing_chosen_ViewModel.cs" />
+    <Compile Include="ViewModels\Common_ViewModels\Nothing_chosen_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Companion\Companion_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Equipment\Equipment_ViewModel.cs" />
     <Compile Include="ViewModels\Character_creation\Features\Features_ViewModel.cs" />
