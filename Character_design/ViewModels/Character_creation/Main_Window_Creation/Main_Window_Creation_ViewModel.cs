@@ -37,9 +37,7 @@ namespace Character_design
         private Color Chosen_color,
                       Unchosen_color;
 
-        private string error_msg = "";
-
-
+        
         
         public static Main_Window_Creation_ViewModel GetInstance()
         {
@@ -254,52 +252,37 @@ namespace Character_design
             }
             return false;
         }
-        private async void  Save_character_info ()
+        private void Save_character_info ()
         {
-            
-
-            if (Character.GetInstance().Features_balanced == false)
+            try
             {
-                MessageBox.Show("Особенности персонажа не сбалансированы! Сохранение невозможно.",
-                                "Сохранение",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Warning);
-            }
-            else
-            {
-                Views.Common_views.Loading_window loading_window = new Views.Common_views.Loading_window();
-                using (var cts = new CancellationTokenSource())
+                if (Character.GetInstance().Features_balanced == false)
                 {
-                    Thread thrd1 = new Thread(() =>
-                        {
-                            Character.GetInstance().Save_character();
-                            Save_character_excel.GetInstance().Save_character_to_Excel_card(out error_msg);
-
-                            Application.Current.Dispatcher.Invoke(() => loading_window.Close());
-                        });
-                    Thread thrd2 = new Thread(() =>
-                    {
-                        Application.Current.Dispatcher.Invoke(() => loading_window.ShowDialog());
-                    });
-
-                    thrd1.Start();
-                    thrd2.Start();
-                }
-                
-                if (error_msg != "")
-                {
-                    MessageBox.Show("error_msg",
+                    MessageBox.Show("Особенности персонажа не сбалансированы! Сохранение невозможно.",
                                     "Сохранение",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Warning);
                 }
                 else
                 {
-                    MessageBox.Show($"Карточка персонажа {Character.GetInstance().Name} сохранена под своим именем в папке 'Карточки персонажей'!",
-                                     "Сохранение",
-                                     MessageBoxButton.OK,
-                                     MessageBoxImage.Information) ;
+                    Run_method_with_loading("Сохранение",() =>
+                    {
+                        Character.GetInstance().Save_character();
+                        Save_character_excel.GetInstance().Save_character_to_Excel_card();
+
+                        MessageBox.Show($"Карточка персонажа {Character.GetInstance().Name} сохранена под своим именем в папке 'Карточки персонажей'!",
+                                         "Сохранение",
+                                         MessageBoxButton.OK,
+                                         MessageBoxImage.Information);
+                    });
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "Сохранение",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
             }
         }
         private void Return_to_main_menu()
