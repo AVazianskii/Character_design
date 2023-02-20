@@ -241,7 +241,39 @@ namespace Character_design
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Charm,         Selected_race.Get_race_bonus_charm());
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Willpower,     Selected_race.Get_race_bonus_willpower());
 
-
+            if (Selected_race.Bonus_feature[0] > 0)
+            {
+                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[0] - 1].Type % 20 < 11)
+                {
+                    Character.GetInstance().Learn_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[0] - 1]);
+                }
+                else
+                {
+                    Character.GetInstance().Learn_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[0] - 1]);
+                }
+            }
+            if (Selected_race.Bonus_feature[1] > 0)
+            {
+                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[1] - 1].Type % 20 < 11)
+                {
+                    Character.GetInstance().Learn_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[1] - 1]);
+                }
+                else
+                {
+                    Character.GetInstance().Learn_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[1] - 1]);
+                }
+            }
+            if (Selected_race.Bonus_feature[2] > 0)
+            {
+                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[2] - 1].Type % 20 < 11)
+                {
+                    Character.GetInstance().Learn_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[2] - 1]);
+                }
+                else
+                {
+                    Character.GetInstance().Learn_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[2] - 1]);
+                }
+            }
 
             Apply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
 
@@ -271,6 +303,40 @@ namespace Character_design
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Intelligence,  -Character.GetInstance().Character_race.Get_race_bonus_intelligence());
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Charm,         -Character.GetInstance().Character_race.Get_race_bonus_charm());
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Willpower,     -Character.GetInstance().Character_race.Get_race_bonus_willpower());
+
+            if (Selected_race.Bonus_feature[0] > 0)
+            {
+                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[0] - 1].Type % 20 < 11)
+                {
+                    Character.GetInstance().Delete_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[0] - 1]);
+                }
+                else
+                {
+                    Character.GetInstance().Delete_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[0] - 1]);
+                }
+            }
+            if (Selected_race.Bonus_feature[1] > 0)
+            {
+                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[1] - 1].Type % 20 < 11)
+                {
+                    Character.GetInstance().Delete_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[1] - 1]);
+                }
+                else
+                {
+                    Character.GetInstance().Delete_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[1] - 1]);
+                }
+            }
+            if (Selected_race.Bonus_feature[2] > 0)
+            {
+                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[2] - 1].Type % 20 < 11)
+                {
+                    Character.GetInstance().Delete_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[2] - 1]);
+                }
+                else
+                {
+                    Character.GetInstance().Delete_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[2] - 1]);
+                }
+            }
 
             Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
             Skill_ViewModel.GetInstance().Refresh_fields();
