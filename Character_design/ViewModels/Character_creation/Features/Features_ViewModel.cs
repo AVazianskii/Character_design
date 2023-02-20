@@ -692,6 +692,11 @@ namespace Character_design
                 learn_feature_enable = false;
                 learn_feature_exp_enable = false;
             }
+            if (feature.Is_chosen_for_race)
+            {
+                Feature_choose_advice = "Расовая особенность!";
+                delete_feature_enable = false;
+            }
         }
     }
 }

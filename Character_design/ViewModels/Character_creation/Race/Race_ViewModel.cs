@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SW_Character_creation;
 using Races_libs;
 using System.Windows.Media;
 
@@ -241,37 +239,21 @@ namespace Character_design
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Charm,         Selected_race.Get_race_bonus_charm());
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Willpower,     Selected_race.Get_race_bonus_willpower());
 
-            if (Selected_race.Bonus_feature[0] > 0)
+            // Добавляем расовую особенность
+            for (int i = 0; i < 3; i++)
             {
-                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[0] - 1].Type % 20 < 11)
+                if (Selected_race.Bonus_feature[i] > 0)
                 {
-                    Character.GetInstance().Learn_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[0] - 1]);
-                }
-                else
-                {
-                    Character.GetInstance().Learn_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[0] - 1]);
-                }
-            }
-            if (Selected_race.Bonus_feature[1] > 0)
-            {
-                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[1] - 1].Type % 20 < 11)
-                {
-                    Character.GetInstance().Learn_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[1] - 1]);
-                }
-                else
-                {
-                    Character.GetInstance().Learn_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[1] - 1]);
-                }
-            }
-            if (Selected_race.Bonus_feature[2] > 0)
-            {
-                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[2] - 1].Type % 20 < 11)
-                {
-                    Character.GetInstance().Learn_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[2] - 1]);
-                }
-                else
-                {
-                    Character.GetInstance().Learn_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[2] - 1]);
+                    All_feature_template feature = Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[i] - 1];
+                    if (feature.Type % 20 < 11)
+                    {
+                        Character.GetInstance().Learn_positive_feature(feature);
+                    }
+                    else
+                    {
+                        Character.GetInstance().Learn_negative_feature(feature);
+                    }
+                    feature.Is_chosen_for_race = true;
                 }
             }
 
@@ -304,37 +286,21 @@ namespace Character_design
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Charm,         -Character.GetInstance().Character_race.Get_race_bonus_charm());
             Character.GetInstance().Update_combat_parameters(Character.GetInstance().Willpower,     -Character.GetInstance().Character_race.Get_race_bonus_willpower());
 
-            if (Selected_race.Bonus_feature[0] > 0)
+            // Убираем расовую особенность
+            for (int i = 0; i < 3; i++)
             {
-                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[0] - 1].Type % 20 < 11)
+                if (Selected_race.Bonus_feature[i] > 0)
                 {
-                    Character.GetInstance().Delete_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[0] - 1]);
-                }
-                else
-                {
-                    Character.GetInstance().Delete_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[0] - 1]);
-                }
-            }
-            if (Selected_race.Bonus_feature[1] > 0)
-            {
-                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[1] - 1].Type % 20 < 11)
-                {
-                    Character.GetInstance().Delete_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[1] - 1]);
-                }
-                else
-                {
-                    Character.GetInstance().Delete_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[1] - 1]);
-                }
-            }
-            if (Selected_race.Bonus_feature[2] > 0)
-            {
-                if (Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[2] - 1].Type % 20 < 11)
-                {
-                    Character.GetInstance().Delete_positive_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[2] - 1]);
-                }
-                else
-                {
-                    Character.GetInstance().Delete_negative_feature(Main_model.GetInstance().Feature_Manager.Get_features()[Character.GetInstance().Character_race.Bonus_feature[2] - 1]);
+                    All_feature_template feature = Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[i] - 1];
+                    if (feature.Type % 20 < 11)
+                    {
+                        Character.GetInstance().Delete_positive_feature(feature);
+                    }
+                    else
+                    {
+                        Character.GetInstance().Delete_negative_feature(feature);
+                    }
+                    feature.Is_chosen_for_race = false;
                 }
             }
 
