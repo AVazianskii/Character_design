@@ -246,7 +246,28 @@ namespace Character_design
         {
             Check_warning_advice(Selected_feature);
         }
-
+        public void Check_feature_for_blocking(All_feature_template feature)
+        {
+            Block_features(feature, Character.GetInstance().Charm_features, ref charm_feature_block);
+            Block_features(feature, Character.GetInstance().Hero_features, ref hero_feature_block);
+            Block_features(feature, Character.GetInstance().Sleep_feature, ref sleep_feature_block);
+            Block_features(feature, Character.GetInstance().Alcohol_feature, ref alcohol_feature_block);
+            Block_features(feature, Character.GetInstance().Sith_feature, ref sith_feature_block);
+            Block_features(feature, Character.GetInstance().Jedi_feature, ref jedi_feature_block);
+            Block_features(feature, Character.GetInstance().Exp_feature, ref exp_feature_block);
+            Block_features(feature, Character.GetInstance().Armor_feature, ref arm_feature_block);
+        }
+        public void Check_feature_for_unblocking(All_feature_template feature)
+        {
+            UnBlock_features(feature, Character.GetInstance().Charm_features);
+            UnBlock_features(feature, Character.GetInstance().Hero_features);
+            UnBlock_features(feature, Character.GetInstance().Sleep_feature);
+            UnBlock_features(feature, Character.GetInstance().Alcohol_feature);
+            UnBlock_features(feature, Character.GetInstance().Sith_feature);
+            UnBlock_features(feature, Character.GetInstance().Jedi_feature);
+            UnBlock_features(feature, Character.GetInstance().Exp_feature);
+            UnBlock_features(feature, Character.GetInstance().Armor_feature);
+        }
 
 
 
@@ -338,14 +359,9 @@ namespace Character_design
                 }
                 feature.Chosen_cost = Selected_feature_cost;
                 feature.Is_bought_for_ftr = true;
-                Block_features(feature, Character.GetInstance().Charm_features,  ref charm_feature_block);
-                Block_features(feature, Character.GetInstance().Hero_features,   ref hero_feature_block);
-                Block_features(feature, Character.GetInstance().Sleep_feature,   ref sleep_feature_block);
-                Block_features(feature, Character.GetInstance().Alcohol_feature, ref alcohol_feature_block);
-                Block_features(feature, Character.GetInstance().Sith_feature,    ref sith_feature_block);
-                Block_features(feature, Character.GetInstance().Jedi_feature,    ref jedi_feature_block);
-                Block_features(feature, Character.GetInstance().Exp_feature,     ref exp_feature_block);
-                Block_features(feature, Character.GetInstance().Armor_feature,   ref arm_feature_block);
+
+                Check_feature_for_blocking(feature);
+
                 Apply_skill_bonus(feature);
 
                 OnPropertyChanged("Ftr_points_left");
@@ -392,14 +408,9 @@ namespace Character_design
                     } 
                     Character.GetInstance().Delete_negative_feature(feature);
                 }
-                UnBlock_features(feature, Character.GetInstance().Charm_features);
-                UnBlock_features(feature, Character.GetInstance().Hero_features);
-                UnBlock_features(feature, Character.GetInstance().Sleep_feature);
-                UnBlock_features(feature, Character.GetInstance().Alcohol_feature);
-                UnBlock_features(feature, Character.GetInstance().Sith_feature);
-                UnBlock_features(feature, Character.GetInstance().Jedi_feature);
-                UnBlock_features(feature, Character.GetInstance().Exp_feature);
-                UnBlock_features(feature, Character.GetInstance().Armor_feature);
+
+                Check_feature_for_unblocking(feature);
+
                 UnApply_skill_bonus(feature);
 
                 OnPropertyChanged("Ftr_points_left");
@@ -428,14 +439,9 @@ namespace Character_design
 
                 feature.Is_bought_for_exp = true;
                 Character.GetInstance().Spend_exp_points(feature.Exp_cost);
-                Block_features(feature, Character.GetInstance().Charm_features, ref charm_feature_block);
-                Block_features(feature, Character.GetInstance().Hero_features, ref hero_feature_block);
-                Block_features(feature, Character.GetInstance().Sleep_feature, ref sleep_feature_block);
-                Block_features(feature, Character.GetInstance().Alcohol_feature, ref alcohol_feature_block);
-                Block_features(feature, Character.GetInstance().Sith_feature, ref sith_feature_block);
-                Block_features(feature, Character.GetInstance().Jedi_feature, ref jedi_feature_block);
-                Block_features(feature, Character.GetInstance().Exp_feature, ref exp_feature_block);
-                Block_features(feature, Character.GetInstance().Armor_feature, ref arm_feature_block);
+
+                Check_feature_for_blocking(feature);
+
                 Apply_skill_bonus(feature);
 
                 OnPropertyChanged("Ftr_points_left");

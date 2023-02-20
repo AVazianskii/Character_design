@@ -253,6 +253,7 @@ namespace Character_design
                     {
                         Character.GetInstance().Learn_negative_feature(feature);
                     }
+                    Features_ViewModel.GetInstance().Check_feature_for_blocking(feature);
                     feature.Is_chosen_for_race = true;
                 }
             }
@@ -300,6 +301,7 @@ namespace Character_design
                     {
                         Character.GetInstance().Delete_negative_feature(feature);
                     }
+                    Features_ViewModel.GetInstance().Check_feature_for_unblocking(feature);
                     feature.Is_chosen_for_race = false;
                 }
             }
