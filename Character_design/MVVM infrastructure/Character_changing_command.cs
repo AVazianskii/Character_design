@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Character_design
@@ -27,10 +28,17 @@ namespace Character_design
 
         public void Execute(object parameter)
         {
-            this.execute(parameter);
-            if (Character.CheckInstanceNotNull())
+            try
             {
-                Character.GetInstance().Change_character_state_to_unsave();
+                this.execute(parameter);
+                if (Character.CheckInstanceNotNull())
+                {
+                    Character.GetInstance().Change_character_state_to_unsave();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
