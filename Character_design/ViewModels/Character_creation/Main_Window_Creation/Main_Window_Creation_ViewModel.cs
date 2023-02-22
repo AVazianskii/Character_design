@@ -265,10 +265,11 @@ namespace Character_design
                 }
                 else
                 {
+                    Character_card character_card = new Character_card();
                     Run_method_with_loading("Сохранение",() =>
                     {
                         Character.GetInstance().Save_character();
-                        Save_character_excel.GetInstance().Save_character_to_Excel_card();
+                        character_card.Save_character_to_Excel_card();
 
                         MessageBox.Show($"Карточка персонажа {Character.GetInstance().Name} сохранена под своим именем в папке 'Карточки персонажей'!",
                                          "Сохранение",
