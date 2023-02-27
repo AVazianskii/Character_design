@@ -6,8 +6,8 @@ namespace Character_design
 {
     internal class Character_companion_ViewModel : BaseViewModel
     {
-        private static Character_companion_ViewModel _instance;
-
+        //private static Character_companion_ViewModel _instance;
+        private Character _character;
         
 
         public string Img_path
@@ -15,7 +15,7 @@ namespace Character_design
             get { return $@"{Directory.GetCurrentDirectory()}\Pictures\Common\Content_soon.jpg"; }
         }
 
-
+        /*
         public static Character_companion_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -31,12 +31,12 @@ namespace Character_design
                 _instance = new Character_companion_ViewModel();
             }
         }
+        */
 
 
-
-        private Character_companion_ViewModel()
+        public Character_companion_ViewModel(Character character)
         {
-
+            _character = character;
         }
     }
 }

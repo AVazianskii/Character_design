@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Main_Window_Creation_View
         public Main_Window_Creation()
         {
             InitializeComponent();
-            DataContext = Main_Window_Creation_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Main_Window_Creation_ViewModel;
         }
     }
 }

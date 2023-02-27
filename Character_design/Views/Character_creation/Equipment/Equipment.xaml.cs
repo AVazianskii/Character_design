@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Equipment
         public Equipment()
         {
             InitializeComponent();
-            DataContext = Equipment_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Equipment_ViewModel;
         }
     }
 }

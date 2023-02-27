@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Force_forms
         public Force_forms()
         {
             InitializeComponent();
-            DataContext = Force_forms_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Force_Forms_ViewModel;
         }
     }
 }

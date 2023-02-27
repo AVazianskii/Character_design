@@ -6,7 +6,8 @@ namespace Character_design
 {
     internal class Companion_ViewModel : BaseViewModel
     {
-        private static Companion_ViewModel _instance;
+        //private static Companion_ViewModel _instance;
+        private Character _character;
 
 
         public string Img_path
@@ -15,7 +16,7 @@ namespace Character_design
         }
 
 
-
+        /*
         public static Companion_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -31,12 +32,12 @@ namespace Character_design
                 _instance = new Companion_ViewModel();
             }
         }
+        */
 
 
-
-        private Companion_ViewModel()
+        public Companion_ViewModel(Character character)
         {
-
+            _character = character;
         }
     }
 }

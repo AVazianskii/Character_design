@@ -17,7 +17,6 @@ namespace Character_design
                       right_picture_source,
                       central_picture_source;
 
-              
 
 
         public static Main_Menu_ViewModel GetInstance()
@@ -49,6 +48,12 @@ namespace Character_design
         }
         public void _Open_main_window_creation_user_control()
         {
+            Run_method_with_loading("Создание персонажа", () =>
+            {
+                Character_creation_model.GetInstance().Create_character_creating_model();
+            });
+            Character_creation_model.GetInstance().Create_character(Character_creation_model.GetInstance().creation_managers);
+            main_window_creation = Character_creation_model.GetInstance().Main_Window_Creation_ViewModel;
             CurrentViewModel = main_window_creation;
         }
         public void _Return_from_exp_player_char_creation()
@@ -92,7 +97,6 @@ namespace Character_design
             current_VM = null;
             Current_Menu_ViewModel = new BaseViewModel();
 
-            main_window_creation = Main_Window_Creation_ViewModel.GetInstance();
             common_menu = Common_menu_ViewModel.GetInstance();
             player_menu = Player_menu_ViewModel.GetInstance();
             master_menu = Master_menu_ViewModel.GetInstance();

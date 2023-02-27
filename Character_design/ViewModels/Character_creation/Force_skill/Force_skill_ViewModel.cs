@@ -5,10 +5,10 @@ using System.Windows.Media;
 using System.IO;
 
 namespace Character_design
-{ 
+{
     internal class Force_skill_ViewModel : BaseViewModel
     {
-        private static Force_skill_ViewModel _instance;
+        //private static Force_skill_ViewModel _instance;
 
         private SolidColorBrush neutral_force_border,
                                 light_force_border,
@@ -36,6 +36,9 @@ namespace Character_design
         private Color Chosen_color,
                       Unchosen_color;
 
+        private Main_model _model;
+        private Character _character;
+
 
 
         public Command Show_neutral_force_skills { get; private set; }
@@ -60,7 +63,7 @@ namespace Character_design
         }
         public int Exp_points_left
         {
-            get { return Character.GetInstance().Experience_left; }
+            get { return _character.Experience_left; }
         }
         public List<Force_skill_class> Current_force_skill_list
         {
@@ -70,7 +73,7 @@ namespace Character_design
         public Force_skill_class Selected_force_skill
         {
             get { return selected_force_skill; }
-            set 
+            set
             {
                 selected_force_skill = value;
                 OnPropertyChanged("Selected_force_skill");
@@ -105,7 +108,7 @@ namespace Character_design
             get { return Selected_force_skill.Name; }
         }
         public string Selected_force_skill_description
-        { 
+        {
             get { return Selected_force_skill.Description; }
         }
         public int Selected_force_skill_cost
@@ -124,7 +127,7 @@ namespace Character_design
         }
         public int Selected_force_skill_max_score
         {
-            get { return Character.GetInstance().Age_status.Force_skill_limit; }
+            get { return _character.Age_status.Force_skill_limit; }
         }
         public string Force_skill_choose_warning
         {
@@ -149,7 +152,7 @@ namespace Character_design
         }
         public int Num_skills_left
         {
-            get { return Character.GetInstance().Limit_force_skills_left; }
+            get { return _character.Limit_force_skills_left; }
         }
         public string Force_skill_choose_advice
         {
@@ -158,7 +161,7 @@ namespace Character_design
         }
 
 
-
+        /*
         public static Force_skill_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -174,7 +177,7 @@ namespace Character_design
                 _instance = new Force_skill_ViewModel();
             }
         }
-
+        */
 
 
         public void Refresh_fields()
@@ -185,27 +188,29 @@ namespace Character_design
 
 
 
-        private Force_skill_ViewModel()
+        public Force_skill_ViewModel(Character character, Main_model model)
         {
-            neutral_force_skills    = Main_model.GetInstance().Force_skill_Manager.Get_Neutral_force_skills();
-            jedi_force_skills       = Main_model.GetInstance().Force_skill_Manager.Get_Jedi_force_skills();
-            sith_force_skills       = Main_model.GetInstance().Force_skill_Manager.Get_Sith_force_skills();
+            _character = character;
+            _model = model;
+            neutral_force_skills = _model.Force_skill_Manager.Get_Neutral_force_skills();
+            jedi_force_skills = _model.Force_skill_Manager.Get_Jedi_force_skills();
+            sith_force_skills = _model.Force_skill_Manager.Get_Sith_force_skills();
 
             Current_force_skill_list = neutral_force_skills;
 
             Selected_force_skill = Current_force_skill_list[0];
 
-            Show_neutral_force_skills   = new Command(o => _Show_neutral_force_skills());
-            Show_jedi_force_skills      = new Command(o => _Show_jedi_force_skills());
-            Show_sith_force_skills      = new Command(o => _Show_sith_force_skills());
+            Show_neutral_force_skills = new Command(o => _Show_neutral_force_skills());
+            Show_jedi_force_skills = new Command(o => _Show_jedi_force_skills());
+            Show_sith_force_skills = new Command(o => _Show_sith_force_skills());
             Increase_force_skill_score = new Character_changing_command(o => _Increase_force_skill_score(Selected_force_skill),
-                                                                         o => learn_skill_enable); 
+                                                                         o => learn_skill_enable);
             Decrease_force_skill_score = new Character_changing_command(o => _Decrease_force_skill_score(Selected_force_skill),
                                                                          o => delete_skill_enable);
 
-            Neutral_force_border    = new SolidColorBrush();
-            Light_force_border      = new SolidColorBrush();
-            Dark_force_border       = new SolidColorBrush();
+            Neutral_force_border = new SolidColorBrush();
+            Light_force_border = new SolidColorBrush();
+            Dark_force_border = new SolidColorBrush();
 
             Button_borders = new List<SolidColorBrush>();
             Button_borders.Add(Neutral_force_border);
@@ -217,7 +222,7 @@ namespace Character_design
 
             // TODO: Внедрить систему лимитов. См. правила
             Selected_force_skill_min_score = 0;
-            
+
             Set_colors_for_chosen_item(Button_borders, Neutral_force_border, Chosen_color, Unchosen_color);
 
             Force_skill_choose_advice = "";
@@ -253,20 +258,20 @@ namespace Character_design
             Force_skill_class skill = o as Force_skill_class;
             if (skill != null)
             {
-                foreach (Force_skill_class Character_skill in Character.GetInstance().Get_force_skills())
+                foreach (Force_skill_class Character_skill in _character.Get_force_skills())
                 {
                     if (skill.Name == Character_skill.Name)
                     {
                         Character_skill.Increase_score();
                         Selected_force_skill_counter = Character_skill.Score;
-                        Character.GetInstance().Spend_exp_points(Selected_force_skill_cost);
-                        Character.GetInstance().Increase_exp_sold_for_force_skills(Character_skill);
-                        Character.GetInstance().Update_character_force_skills_list(Character_skill);
+                        _character.Spend_exp_points(Selected_force_skill_cost);
+                        _character.Increase_exp_sold_for_force_skills(Character_skill);
+                        _character.Update_character_force_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Num_skills_left");
                         OnPropertyChanged("Selected_force_skill_counter");
 
-                        Character.GetInstance().Update_combat_parameters_due_ForceSkill(Character_skill, 1);
+                        _character.Update_combat_parameters_due_ForceSkill(Character_skill, 1);
                         Check_special_force_skill_bonus(previous_score: Character_skill.Score - 1);
 
 
@@ -275,11 +280,11 @@ namespace Character_design
                             Character_skill.Is_chosen = true;
                             Force_skill_choose_advice = "Навык владения Силой изучен!";
                         }
-                        Check_warning_advice(); 
+                        Check_warning_advice();
                         //OnPropertyChanged("Force_skill_choose_advice");
                         //OnPropertyChanged("Force_skill_choose_warning");
 
-                        break;                  
+                        break;
                     }
                 }
             }
@@ -289,20 +294,20 @@ namespace Character_design
             Force_skill_class skill = o as Force_skill_class;
             if (skill != null)
             {
-                foreach (Force_skill_class Character_skill in Character.GetInstance().Get_force_skills())
+                foreach (Force_skill_class Character_skill in _character.Get_force_skills())
                 {
                     if (skill.Name == Character_skill.Name)
                     {
                         Character_skill.Decrease_score();
                         Selected_force_skill_counter = Character_skill.Score;
-                        Character.GetInstance().Refund_exp_points(Selected_force_skill_cost);
-                        Character.GetInstance().Decrease_exp_sold_for_force_skills(Character_skill);
-                        Character.GetInstance().Update_character_force_skills_list(Character_skill);
+                        _character.Refund_exp_points(Selected_force_skill_cost);
+                        _character.Decrease_exp_sold_for_force_skills(Character_skill);
+                        _character.Update_character_force_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Num_skills_left");
                         OnPropertyChanged("Selected_force_skill_counter");
 
-                        Character.GetInstance().Update_combat_parameters_due_ForceSkill(Character_skill, -1);
+                        _character.Update_combat_parameters_due_ForceSkill(Character_skill, -1);
                         Check_special_force_skill_bonus(previous_score: Character_skill.Score + 1);
 
                         if (Character_skill.Score == 0)
@@ -327,17 +332,17 @@ namespace Character_design
             delete_skill_enable = true;
 
             // Запреты на изучение\увеличение навыка
-            if (Character.GetInstance().Character_race == Race__manager.GetInstance().Get_Race_list()[0])
+            if (_character.Character_race == _model.Race_Manager.Get_Race_list()[0])
             {
                 Force_skill_choose_warning = "Раса персонажа не выбрана!";
                 learn_skill_enable = false;
             }
-            else if (Character.GetInstance().Age_status == Age_status_manager.GetInstance().Get_Unknown_age_status())
+            else if (_character.Age_status == _model.Age_status_Manager.Get_Unknown_age_status())
             {
                 Force_skill_choose_warning = "Возрастной стаус персонажа не выбран!";
                 learn_skill_enable = false;
             }
-            else if (((Character.GetInstance().Is_jedi && Selected_force_skill.Type == 3) || (Character.GetInstance().Is_sith && Selected_force_skill.Type == 2)) == true)
+            else if (((_character.Is_jedi && Selected_force_skill.Type == 3) || (_character.Is_sith && Selected_force_skill.Type == 2)) == true)
             {
                 Force_skill_choose_warning = "Недопустимая сторона Силы для изучения навыка!";
                 learn_skill_enable = false;
@@ -347,7 +352,7 @@ namespace Character_design
                 Force_skill_choose_warning = "Достигнут лимит развития навыка!";
                 learn_skill_enable = false;
             }
-            else if (Character.GetInstance().Experience_left < Selected_force_skill.Cost)
+            else if (_character.Experience_left < Selected_force_skill.Cost)
             {
                 Force_skill_choose_warning = "Недостаточно опыта для развития навыка!";
                 learn_skill_enable = false;
@@ -355,7 +360,7 @@ namespace Character_design
             else if (Selected_force_skill.ID == 11)
             {
                 bool flag = false;
-                foreach(Force_skill_class force_skill in Character.GetInstance().Force_skills_with_points)
+                foreach (Force_skill_class force_skill in _character.Force_skills_with_points)
                 {
                     if (force_skill.ID == 3)
                     {
@@ -374,14 +379,14 @@ namespace Character_design
                     learn_skill_enable = false;
                 }
             }
-            else if (Character.GetInstance().Limit_force_skills_left == 0 && Character.GetInstance().Force_skills_with_points.Contains(Selected_force_skill) == false)
+            else if (_character.Limit_force_skills_left == 0 && _character.Force_skills_with_points.Contains(Selected_force_skill) == false)
             {
                 Force_skill_choose_warning = "Достигнут лимит по количеству изучаемых навыков!";
                 learn_skill_enable = false;
             }
             else if (Current_force_skill_list == jedi_force_skills)
             {
-                if ((Character.GetInstance().Is_neutral || Character.GetInstance().Is_sith) && Character.GetInstance().Is_jedi == false)
+                if ((_character.Is_neutral || _character.Is_sith) && _character.Is_jedi == false)
                 {
                     Force_skill_choose_warning = "Данный навык доступен только адептам Силы с положительной кармой!";
                     learn_skill_enable = false;
@@ -389,13 +394,13 @@ namespace Character_design
             }
             else if (Current_force_skill_list == sith_force_skills)
             {
-                if ((Character.GetInstance().Is_neutral || Character.GetInstance().Is_jedi) && Character.GetInstance().Is_sith == false)
+                if ((_character.Is_neutral || _character.Is_jedi) && _character.Is_sith == false)
                 {
                     Force_skill_choose_warning = "Данный навык доступен только адептам Силы с отрицательной кармой!";
                     learn_skill_enable = false;
                 }
             }
-            else if (Character.GetInstance().Forceuser == false)
+            else if (_character.Forceuser == false)
             {
                 Force_skill_choose_warning = "Данный навык доступен только адептам Силы!";
                 learn_skill_enable = false;
@@ -411,9 +416,9 @@ namespace Character_design
         {
             if (Selected_force_skill.ID == 13)
             {
-                sbyte   scratch_bonus = 0, 
-                        light_wound_bonus = 0, 
-                        medium_wound_bonus = 0, 
+                sbyte scratch_bonus = 0,
+                        light_wound_bonus = 0,
+                        medium_wound_bonus = 0,
                         tough_wound_bonus = 0;
                 bool learning_flag = false,
                      bonus_1 = false,
@@ -453,17 +458,17 @@ namespace Character_design
 
                 if (learning_flag)
                 {
-                    Character.GetInstance().Scratch_penalty = (sbyte)(Character.GetInstance().Scratch_penalty + scratch_bonus);
-                    Character.GetInstance().Light_wound_penalty = (sbyte)(Character.GetInstance().Light_wound_penalty + light_wound_bonus);
-                    Character.GetInstance().Medium_wound_penalty = (sbyte)(Character.GetInstance().Medium_wound_penalty + medium_wound_bonus);
-                    Character.GetInstance().Tough_wound_penalty = (sbyte)(Character.GetInstance().Tough_wound_penalty + tough_wound_bonus);
+                    _character.Scratch_penalty = (sbyte)(_character.Scratch_penalty + scratch_bonus);
+                    _character.Light_wound_penalty = (sbyte)(_character.Light_wound_penalty + light_wound_bonus);
+                    _character.Medium_wound_penalty = (sbyte)(_character.Medium_wound_penalty + medium_wound_bonus);
+                    _character.Tough_wound_penalty = (sbyte)(_character.Tough_wound_penalty + tough_wound_bonus);
                 }
                 else
                 {
-                    Character.GetInstance().Scratch_penalty = (sbyte)(Character.GetInstance().Scratch_penalty - scratch_bonus);
-                    Character.GetInstance().Light_wound_penalty = (sbyte)(Character.GetInstance().Light_wound_penalty - light_wound_bonus);
-                    Character.GetInstance().Medium_wound_penalty = (sbyte)(Character.GetInstance().Medium_wound_penalty - medium_wound_bonus);
-                    Character.GetInstance().Tough_wound_penalty = (sbyte)(Character.GetInstance().Tough_wound_penalty - tough_wound_bonus);
+                    _character.Scratch_penalty = (sbyte)(_character.Scratch_penalty - scratch_bonus);
+                    _character.Light_wound_penalty = (sbyte)(_character.Light_wound_penalty - light_wound_bonus);
+                    _character.Medium_wound_penalty = (sbyte)(_character.Medium_wound_penalty - medium_wound_bonus);
+                    _character.Tough_wound_penalty = (sbyte)(_character.Tough_wound_penalty - tough_wound_bonus);
                 }
             }
         }

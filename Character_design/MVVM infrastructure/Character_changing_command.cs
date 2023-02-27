@@ -31,9 +31,8 @@ namespace Character_design
             try
             {
                 this.execute(parameter);
-                if (Character.CheckInstanceNotNull())
                 {
-                    Character.GetInstance().Change_character_state_to_unsave();
+                    Character_creation_model.GetInstance().character.Change_character_state_to_unsave();
                 }
             }
             catch (Exception ex)

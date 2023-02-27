@@ -9,7 +9,7 @@ namespace Character_design
 {
     internal class Skill_ViewModel : BaseViewModel
     {
-        private static Skill_ViewModel _instance;
+        //private static Skill_ViewModel _instance;
         private BaseViewModel current_VM;
 
         private Skill_Class selected_skill;
@@ -48,8 +48,10 @@ namespace Character_design
 
         private int selected_skill_limit;
 
+        private Character _character;
+        private Main_model _model;
 
-
+        /*
         public static Skill_ViewModel GetInstance()
         {
             if (_instance == null) { _instance = new Skill_ViewModel(); }
@@ -62,20 +64,21 @@ namespace Character_design
                 _instance = new Skill_ViewModel();
             }
         }
+        */
         public void Refresh_fields()
         {
-            if(Selected_skill != null)
+            if (Selected_skill != null)
             {
-                Selected_skill_description  = Selected_skill.Description;
-                Selected_skill_title        = Selected_skill.Name;
-                Selected_skill_race_bonus   = Character.GetInstance().Return_race_skill_bonus(selected_skill);
-                Selected_skill_min_score    = 0;
-                Selected_skill_range_limit  = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
-                Selected_skill_age_limit    = Return_age_skill_limit(Character.GetInstance().Age_status);
-                Selected_skill_cost         = Return_skill_cost(selected_skill);
-                Selected_skill_limit        = Character.GetInstance().Return_skill_limit(selected_skill);
-                Selected_skill_score        = Selected_skill.Get_score();
-                Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit + Character.GetInstance().Return_combat_ability_skill_limit(selected_skill);
+                Selected_skill_description = Selected_skill.Description;
+                Selected_skill_title = Selected_skill.Name;
+                Selected_skill_race_bonus = _character.Return_race_skill_bonus(selected_skill);
+                Selected_skill_min_score = 0;
+                Selected_skill_range_limit = Return_range_skill_limit(selected_skill, _character.Range);
+                Selected_skill_age_limit = Return_age_skill_limit(_character.Age_status);
+                Selected_skill_cost = Return_skill_cost(selected_skill);
+                Selected_skill_limit = _character.Return_skill_limit(selected_skill);
+                Selected_skill_score = Selected_skill.Get_score();
+                Selected_skill_max_score = Selected_skill_race_bonus + Selected_skill_limit + _character.Return_combat_ability_skill_limit(selected_skill);
                 OnPropertyChanged("Skill_base_text");
                 OnPropertyChanged("Skill_choose_warning");
                 OnPropertyChanged("Skill_img_path");
@@ -84,11 +87,11 @@ namespace Character_design
         public void Apply_race_skill_bonus(Races_libs.Race_class race)
         {
             int i = 0;
-            foreach(int skill_bonus in race.Race_skill_bonus)
+            foreach (int skill_bonus in race.Race_skill_bonus)
             {
-                Character.GetInstance().Skills[i].Set_score(Character.GetInstance().Skills[i].Get_score() + skill_bonus);
+                _character.Skills[i].Set_score(_character.Skills[i].Get_score() + skill_bonus);
 
-                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
+                _character.Update_character_skills_list(_character.Skills[i]);
                 i = i + 1;
             }
         }
@@ -97,9 +100,9 @@ namespace Character_design
             int i = 0;
             foreach (int skill_bonus in race.Race_skill_bonus)
             {
-                Character.GetInstance().Skills[i].Set_score(Character.GetInstance().Skills[i].Get_score() - skill_bonus);
+                _character.Skills[i].Set_score(_character.Skills[i].Get_score() - skill_bonus);
 
-                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
+                _character.Update_character_skills_list(_character.Skills[i]);
                 i = i + 1;
             }
         }
@@ -145,7 +148,7 @@ namespace Character_design
         }
         public int Exp_points_left
         {
-            get { return Character.GetInstance().Experience_left; }
+            get { return _character.Experience_left; }
         }
         public Skill_Class Selected_skill
         {
@@ -155,16 +158,16 @@ namespace Character_design
                 selected_skill = value;
                 if (selected_skill != null)
                 {
-                    Selected_skill_description  = selected_skill.Description;
-                    Selected_skill_title        = selected_skill.Name;
-                    Selected_skill_race_bonus   = Character.GetInstance().Return_race_skill_bonus(selected_skill);
-                    Selected_skill_min_score    = 0;
-                    Selected_skill_range_limit  = Return_range_skill_limit(selected_skill, Character.GetInstance().Range);
-                    Selected_skill_age_limit    = Return_age_skill_limit(Character.GetInstance().Age_status);
-                    Selected_skill_cost         = Return_skill_cost(selected_skill);
-                    Selected_skill_limit        = Character.GetInstance().Return_skill_limit(selected_skill);
-                    Selected_skill_score        = selected_skill.Get_score();
-                    Selected_skill_max_score    = Selected_skill_race_bonus + Selected_skill_limit + Character.GetInstance().Return_combat_ability_skill_limit(selected_skill);
+                    Selected_skill_description = selected_skill.Description;
+                    Selected_skill_title = selected_skill.Name;
+                    Selected_skill_race_bonus = _character.Return_race_skill_bonus(selected_skill);
+                    Selected_skill_min_score = 0;
+                    Selected_skill_range_limit = Return_range_skill_limit(selected_skill, _character.Range);
+                    Selected_skill_age_limit = Return_age_skill_limit(_character.Age_status);
+                    Selected_skill_cost = Return_skill_cost(selected_skill);
+                    Selected_skill_limit = _character.Return_skill_limit(selected_skill);
+                    Selected_skill_score = selected_skill.Get_score();
+                    Selected_skill_max_score = Selected_skill_race_bonus + Selected_skill_limit + _character.Return_combat_ability_skill_limit(selected_skill);
 
                     if (selected_skill.Is_chosen)
                     {
@@ -190,7 +193,7 @@ namespace Character_design
         }
         public string Selected_skill_description
         {
-            get { return selected_skill_description;  }
+            get { return selected_skill_description; }
             set { selected_skill_description = value; OnPropertyChanged("Selected_skill_description"); }
         }
         public string Skill_name
@@ -210,10 +213,10 @@ namespace Character_design
         }
         public int Selected_skill_counter
         {
-            get 
+            get
             {
                 selected_skill_counter = Selected_skill_score;
-                return selected_skill_counter; 
+                return selected_skill_counter;
             }
             set { selected_skill_counter = value; OnPropertyChanged("Selected_skill_counter"); }
         }
@@ -275,7 +278,7 @@ namespace Character_design
         }
         public int Num_skills_left
         {
-            get { return Character.GetInstance().Limit_skills_left; }
+            get { return _character.Limit_skills_left; }
         }
         public string Skill_choose_advice
         {
@@ -285,37 +288,39 @@ namespace Character_design
 
 
 
-        private Skill_ViewModel()
+        public Skill_ViewModel(Character character, Main_model model)
         {
-            combat_skills       = Skill_manager.GetInstance().Get_Combat_skills();
-            surviving_skills    = Skill_manager.GetInstance().Get_Survivng_skills();
-            charming_skills     = Skill_manager.GetInstance().Get_Charming_skills();
-            tech_skills         = Skill_manager.GetInstance().Get_Tech_skills();
-            specific_skills     = Skill_manager.GetInstance().Get_Specific_skills();
+            _character = character;
+            _model = model;
+            combat_skills = _model.Skill_Manager.Get_Combat_skills();
+            surviving_skills = _model.Skill_Manager.Get_Survivng_skills();
+            charming_skills = _model.Skill_Manager.Get_Charming_skills();
+            tech_skills = _model.Skill_Manager.Get_Tech_skills();
+            specific_skills = _model.Skill_Manager.Get_Specific_skills();
 
-            skill_group     = combat_skills;
-            Selected_skill  = skill_group[0];
+            skill_group = combat_skills;
+            Selected_skill = skill_group[0];
 
-            Show_combat_skills      = new Command(o => _Show_combat_skills());
-            Show_surviving_skills   = new Command(o => _Show_surviving_skills());
-            Show_charming_skills    = new Command(o => _Show_charming_skills());
-            Show_tech_skills        = new Command(o => _Show_tech_skills());
-            Show_specific_skills    = new Command(o => _Show_specific_skills());
+            Show_combat_skills = new Command(o => _Show_combat_skills());
+            Show_surviving_skills = new Command(o => _Show_surviving_skills());
+            Show_charming_skills = new Command(o => _Show_charming_skills());
+            Show_tech_skills = new Command(o => _Show_tech_skills());
+            Show_specific_skills = new Command(o => _Show_specific_skills());
 
-            Decrease_skill_score = new Character_changing_command(o => _Decrease_skill_score(o), 
+            Decrease_skill_score = new Character_changing_command(o => _Decrease_skill_score(o),
                                                                   o => selected_skill.Get_counter() > 0);
 
-            Increase_skill_score = new Character_changing_command(o => _Increase_skill_score(o), 
-                                                                  o => Increase_is_possible(selected_skill, 
-                                                                                            Selected_skill_cost, 
+            Increase_skill_score = new Character_changing_command(o => _Increase_skill_score(o),
+                                                                  o => Increase_is_possible(selected_skill,
+                                                                                            Selected_skill_cost,
                                                                                             Selected_skill_limit,
-                                                                                            Character.GetInstance().Experience_left));
+                                                                                            _character.Experience_left));
 
-            Combat_skills_button_border     = new SolidColorBrush();
-            Surviving_skills_button_border  = new SolidColorBrush();
-            Charming_skills_button_border   = new SolidColorBrush();
-            Tech_skills_button_border       = new SolidColorBrush();
-            Specific_skills_button_border   = new SolidColorBrush();
+            Combat_skills_button_border = new SolidColorBrush();
+            Surviving_skills_button_border = new SolidColorBrush();
+            Charming_skills_button_border = new SolidColorBrush();
+            Tech_skills_button_border = new SolidColorBrush();
+            Specific_skills_button_border = new SolidColorBrush();
 
             Button_borders = new List<SolidColorBrush>();
 
@@ -328,16 +333,16 @@ namespace Character_design
             Chosen_color = Colors.Wheat;
             Unchosen_color = Colors.Black;
 
-            Set_colors_for_chosen_item(Button_borders,Combat_skills_button_border,Chosen_color,Unchosen_color);
+            Set_colors_for_chosen_item(Button_borders, Combat_skills_button_border, Chosen_color, Unchosen_color);
 
             Skill_choose_advice = "";
         }
 
 
-        
+
         private int Return_skill_cost(Skill_Class skill)
         {
-            if (Character.GetInstance().Forceuser)
+            if (_character.Forceuser)
             {
                 return skill.Get_Forceuser_cost();
             }
@@ -386,19 +391,19 @@ namespace Character_design
             Skill_Class skill = o as Skill_Class;
             if (skill != null)
             {
-                foreach (Skill_Class Character_skill in Character.GetInstance().Get_skills())
+                foreach (Skill_Class Character_skill in _character.Get_skills())
                 {
                     if (skill.Name == Character_skill.Name)
                     {
                         Character_skill.Increase_score();
                         Selected_skill_score = Character_skill.Get_score();
-                        Character.GetInstance().Spend_exp_points(Selected_skill_cost);
-                        Character.GetInstance().Update_character_skills_list(Character_skill);
+                        _character.Spend_exp_points(Selected_skill_cost);
+                        _character.Update_character_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Num_skills_left");
                         OnPropertyChanged("Selected_skill_counter");
 
-                        Character.GetInstance().Update_combat_parameters(Character_skill, 1);
+                        _character.Update_combat_parameters(Character_skill, 1);
 
                         if (Character_skill.Is_chosen != true)
                         {
@@ -417,20 +422,20 @@ namespace Character_design
             Skill_Class skill = o as Skill_Class;
             if (skill != null)
             {
-                foreach (Skill_Class Character_skill in Character.GetInstance().Get_skills())
+                foreach (Skill_Class Character_skill in _character.Get_skills())
                 {
                     if (skill.Name == Character_skill.Name)
                     {
                         Character_skill.Decrease_score();
                         Character_skill.Skill_max_score = Selected_skill_max_score;
                         Selected_skill_score = Character_skill.Get_score();
-                        Character.GetInstance().Refund_exp_points(Selected_skill_cost);
-                        Character.GetInstance().Update_character_skills_list(Character_skill);
+                        _character.Refund_exp_points(Selected_skill_cost);
+                        _character.Update_character_skills_list(Character_skill);
                         OnPropertyChanged("Exp_points_left");
                         OnPropertyChanged("Num_skills_left");
                         OnPropertyChanged("Selected_skill_counter");
 
-                        Character.GetInstance().Update_combat_parameters(Character_skill, -1);
+                        _character.Update_combat_parameters(Character_skill, -1);
 
                         if (Character_skill.Score == 0)
                         {
@@ -451,7 +456,7 @@ namespace Character_design
         private int Return_range_skill_limit(Skill_Class skill, Range_libs.Range_Class range)
         {
             int limit = 0;
-            switch(skill.Skill_type)
+            switch (skill.Skill_type)
             {
                 case 1: limit = range.Combat_skill_limit; break;
                 case 2: limit = range.Surviving_skill_limit; break;
@@ -461,9 +466,9 @@ namespace Character_design
             }
             return limit;
         }
-        private bool Increase_is_possible (Skill_Class skill,int cost, int limit, int exp_points_left)
+        private bool Increase_is_possible(Skill_Class skill, int cost, int limit, int exp_points_left)
         {
-            if (Character.GetInstance().Character_race == Race__manager.GetInstance().Get_Race_list()[0])
+            if (_character.Character_race == _model.Race_Manager.Get_Race_list()[0])
             {
                 Skill_choose_warning = "Раса персонажа не выбрана!";
                 return false;
@@ -473,7 +478,7 @@ namespace Character_design
                 Skill_choose_warning = "Недостаточно опыта для развития навыка!";
                 return false;
             }
-            if (Character.GetInstance().Age_status == Age_status_manager.GetInstance().Age_Statuses()[0])
+            if (_character.Age_status == _model.Age_status_Manager.Age_Statuses()[0])
             {
                 Skill_choose_warning = "Возрастной статус персонажа не выбран!";
                 return false;
@@ -483,12 +488,12 @@ namespace Character_design
                 Skill_choose_warning = "Достигнут лимит развития навыка!";
                 return false;
             }
-            if (Character.GetInstance().Limit_skills_left == 0 && Character.GetInstance().Skills_with_points.Contains(skill) == false)
+            if (_character.Limit_skills_left == 0 && _character.Skills_with_points.Contains(skill) == false)
             {
                 Skill_choose_warning = "Достигнут лимит по количеству изучаемых навыков!";
                 return false;
             }
-            Skill_choose_warning = "";            
+            Skill_choose_warning = "";
             return true;
         }
         private string _Skill_base_text(Skill_Class skill)

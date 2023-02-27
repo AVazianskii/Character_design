@@ -13,5 +13,6 @@ namespace Character_design
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

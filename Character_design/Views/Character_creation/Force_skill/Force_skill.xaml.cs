@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Force_skill
         public Force_skill()
         {
             InitializeComponent();
-            DataContext = Force_skill_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Force_Skill_ViewModel;
         }
     }
 }

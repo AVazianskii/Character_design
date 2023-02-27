@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.General_Data_View
         public General_Data()
         {
             InitializeComponent();
-            DataContext = General_Data_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().General_data_ViewModel;
         }
     }
 }

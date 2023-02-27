@@ -8,7 +8,7 @@ namespace Character_design
 {
     internal class Character_forms_ViewModel : BaseViewModel
     {
-        private static Character_forms_ViewModel _instance;
+        //private static Character_forms_ViewModel _instance;
 
 
         private List<Abilities_sequence_template> forms_group;
@@ -24,6 +24,7 @@ namespace Character_design
                       Unchosen_color;
 
         private int button_opacity;
+        private Character _character;
 
 
 
@@ -47,13 +48,13 @@ namespace Character_design
         public Abilities_sequence_template Selected_form
         {
             get { return selected_form; }
-            set 
-            { 
-                selected_form = value; 
+            set
+            {
+                selected_form = value;
                 OnPropertyChanged("Selected_form");
                 if (selected_form != null)
                 {
-                    
+
                     OnPropertyChanged("Selected_sequence_name");
                     OnPropertyChanged("Selected_sequence_img_path");
                     OnPropertyChanged("Selected_sequence_level");
@@ -73,7 +74,7 @@ namespace Character_design
                     {
                         OnPropertyChanged("Master_exist");
                         OnPropertyChanged("Master_desc");
-                    }                   
+                    }
                 }
             }
         }
@@ -89,11 +90,11 @@ namespace Character_design
         }
         public List<Abilities_sequence_template> Usual_forms_group
         {
-            get { return Character.GetInstance().Combat_sequences_with_points; }
+            get { return _character.Combat_sequences_with_points; }
         }
         public List<Abilities_sequence_template> Force_forms_group
         {
-            get { return Character.GetInstance().Force_sequences_with_points; }
+            get { return _character.Force_sequences_with_points; }
         }
         public int Button_opacity
         {
@@ -106,7 +107,7 @@ namespace Character_design
             {
                 Forms_group = Usual_forms_group;
                 Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
-                if (Character.GetInstance().Forceuser)
+                if (_character.Forceuser)
                 {
                     Button_opacity = 100;
                 }
@@ -114,12 +115,12 @@ namespace Character_design
                 {
                     Button_opacity = 0;
                 }
-                return Character.GetInstance().Forceuser;
+                return _character.Forceuser;
             }
         }
         public string Selected_sequence_name
         {
-            get 
+            get
             {
                 if (Selected_value != null)
                 {
@@ -130,7 +131,7 @@ namespace Character_design
         }
         public string Selected_sequence_img_path
         {
-            get 
+            get
             {
                 if (Selected_value != null)
                 {
@@ -141,7 +142,7 @@ namespace Character_design
         }
         public string Selected_sequence_description
         {
-            get 
+            get
             {
                 if (Selected_value != null)
                 {
@@ -163,7 +164,7 @@ namespace Character_design
         }
         public string Selected_sequence_level
         {
-            get 
+            get
             {
                 if (Selected_value != null)
                 {
@@ -174,7 +175,7 @@ namespace Character_design
         }
         public int Base_exist
         {
-            get 
+            get
             {
                 if (Selected_value != null)
                 {
@@ -202,7 +203,7 @@ namespace Character_design
         }
         public int Master_exist
         {
-            get 
+            get
             {
                 if (Selected_value != null)
                 {
@@ -259,7 +260,7 @@ namespace Character_design
         }
 
 
-
+        /*
         public static Character_forms_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -275,7 +276,7 @@ namespace Character_design
                 _instance = new Character_forms_ViewModel();
             }
         }
-
+        */
 
 
         public void Check_initial_state()
@@ -296,8 +297,9 @@ namespace Character_design
 
 
 
-        private Character_forms_ViewModel()
+        public Character_forms_ViewModel(Character character)
         {
+            _character = character;
             Forms_border = new SolidColorBrush();
             Force_forms_border = new SolidColorBrush();
 
@@ -305,7 +307,7 @@ namespace Character_design
             Button_borders.Add(Forms_border);
             Button_borders.Add(Force_forms_border);
 
-            Show_forms       = new Command(o => _Show_forms(), o => Usual_forms_group.Count > 0);
+            Show_forms = new Command(o => _Show_forms(), o => Usual_forms_group.Count > 0);
             Show_force_forms = new Command(o => _Show_force_forms(), o => Force_forms_group.Count > 0);
 
             Chosen_color = Colors.Wheat;
@@ -323,13 +325,13 @@ namespace Character_design
         private void _Show_forms()
         {
             Forms_group = Usual_forms_group;
-            
+
             Set_colors_for_chosen_item(Button_borders, Forms_border, Chosen_color, Unchosen_color);
         }
         private void _Show_force_forms()
         {
             Forms_group = Force_forms_group;
-            
+
             Set_colors_for_chosen_item(Button_borders, Force_forms_border, Chosen_color, Unchosen_color);
         }
     }

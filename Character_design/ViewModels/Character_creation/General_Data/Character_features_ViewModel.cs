@@ -8,7 +8,7 @@ namespace Character_design
 {
     internal class Character_features_ViewModel : BaseViewModel
     {
-        private static Character_features_ViewModel _instance;
+        //private static Character_features_ViewModel _instance;
 
         private List<All_feature_template> selected_feature_list;
         private All_feature_template selected_feature;
@@ -20,6 +20,7 @@ namespace Character_design
 
         private Color Chosen_color,
                       Unchosen_color;
+        private Character _character;
 
 
 
@@ -28,9 +29,9 @@ namespace Character_design
         public All_feature_template Selected_feature
         {
             get { return selected_feature; }
-            set 
-            { 
-                selected_feature = value; 
+            set
+            {
+                selected_feature = value;
                 OnPropertyChanged("Selected_feature");
                 if (selected_feature != null)
                 {
@@ -43,11 +44,11 @@ namespace Character_design
         }
         public List<All_feature_template> Positive_features
         {
-            get { return Character.GetInstance().Positive_features_with_points; }
+            get { return _character.Positive_features_with_points; }
         }
         public List<All_feature_template> Negative_features
         {
-            get {  return Character.GetInstance().Negative_features_with_points; }
+            get { return _character.Negative_features_with_points; }
         }
         public List<All_feature_template> Selected_feature_list
         {
@@ -66,11 +67,11 @@ namespace Character_design
         }
         public bool Positive_exists
         {
-            get { return Character.GetInstance().Positive_features_with_points.Count > 0; }
+            get { return _character.Positive_features_with_points.Count > 0; }
         }
         public bool Negative_exists
         {
-            get { return Character.GetInstance().Negative_features_with_points.Count > 0; }
+            get { return _character.Negative_features_with_points.Count > 0; }
         }
         public int Positive_exists_opacity
         {
@@ -109,7 +110,7 @@ namespace Character_design
 
 
 
-
+        /*
         public static Character_features_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -125,7 +126,7 @@ namespace Character_design
                 _instance = new Character_features_ViewModel();
             }
         }
-
+        */
 
 
         public void Check_initial_state()
@@ -146,8 +147,9 @@ namespace Character_design
 
 
 
-        private Character_features_ViewModel()
+        public Character_features_ViewModel(Character character)
         {
+            _character = character;
             Selected_feature = new All_feature_template();
             Selected_feature_list = new List<All_feature_template>();
 

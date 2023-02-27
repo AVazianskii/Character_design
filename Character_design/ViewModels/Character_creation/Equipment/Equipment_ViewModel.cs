@@ -6,7 +6,8 @@ namespace Character_design
 {
     internal class Equipment_ViewModel : BaseViewModel
     {
-        private static Equipment_ViewModel _instance;
+        //private static Equipment_ViewModel _instance;
+        private Character _character;
 
 
         public string Img_path
@@ -15,7 +16,7 @@ namespace Character_design
         }
 
 
-
+        /*
         public static Equipment_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -31,12 +32,12 @@ namespace Character_design
                 _instance = new Equipment_ViewModel();
             }
         }
+        */
 
 
-
-        private Equipment_ViewModel()
+        public Equipment_ViewModel(Character character)
         {
-
+            _character = character;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Features
         public Features()
         {
             InitializeComponent();
-            DataContext = Features_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Features_ViewModel;
         }
     }
 }

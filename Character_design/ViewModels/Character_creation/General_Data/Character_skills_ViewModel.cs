@@ -9,7 +9,7 @@ namespace Character_design
 {
     internal class Character_skills_ViewModel : BaseViewModel
     {
-        private static Character_skills_ViewModel _instance;
+        //private static Character_skills_ViewModel _instance;
 
         private List<All_skill_template> skill_group;
         private All_skill_template selected_skill;
@@ -24,7 +24,7 @@ namespace Character_design
                       Unchosen_color;
 
         private int button_opacity;
-
+        private Character _character;
 
 
         public Command Show_skills { get; private set; }
@@ -32,17 +32,17 @@ namespace Character_design
         public List<All_skill_template> Skill_group
         {
             get { return skill_group; }
-            set 
-            { 
+            set
+            {
                 skill_group = value;
-                OnPropertyChanged("Skill_group"); 
+                OnPropertyChanged("Skill_group");
             }
         }
         public All_skill_template Selected_skill
         {
             get { return selected_skill; }
-            set 
-            { 
+            set
+            {
                 selected_skill = value;
                 OnPropertyChanged("Selected_skill");
                 if (selected_skill != null)
@@ -53,7 +53,7 @@ namespace Character_design
                     OnPropertyChanged("Skill_description");
                     OnPropertyChanged("Skill_max_score");
                 }
-                
+
             }
         }
         public All_skill_template Selected_value
@@ -78,11 +78,11 @@ namespace Character_design
         }
         public bool Character_forceuser
         {
-            get 
+            get
             {
                 Skill_group = Usual_skills_group;
                 Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
-                if (Character.GetInstance().Forceuser)
+                if (_character.Forceuser)
                 {
                     Button_opacity = 100;
                 }
@@ -90,7 +90,7 @@ namespace Character_design
                 {
                     Button_opacity = 0;
                 }
-                return Character.GetInstance().Forceuser; 
+                return _character.Forceuser;
             }
         }
         public string Question_sign
@@ -103,7 +103,7 @@ namespace Character_design
         }
         public string Skill_base
         {
-            get 
+            get
             {
                 string result = "";
                 if (Skill_group == Usual_skills_group)
@@ -132,8 +132,8 @@ namespace Character_design
         }
         public string Selected_skill_name
         {
-            get 
-            {   
+            get
+            {
                 if (Selected_value != null)
                 {
                     return Selected_skill.Name;
@@ -143,7 +143,7 @@ namespace Character_design
         }
         public string Selected_skill_img_path
         {
-            get 
+            get
             {
                 if (Selected_value != null)
                 {
@@ -154,7 +154,7 @@ namespace Character_design
         }
         public string Skill_description
         {
-            get 
+            get
             {
                 if (Selected_value != null)
                 {
@@ -165,15 +165,15 @@ namespace Character_design
         }
         public List<All_skill_template> Usual_skills_group
         {
-            get { return Character.GetInstance().Skills_with_points; }
+            get { return _character.Skills_with_points; }
         }
         public List<All_skill_template> Force_skills_group
         {
-            get { return Character.GetInstance().Force_skills_with_points; }
+            get { return _character.Force_skills_with_points; }
         }
 
 
-
+        /*
         public static Character_skills_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -189,7 +189,7 @@ namespace Character_design
                 _instance = new Character_skills_ViewModel();
             }
         }
-
+        */
 
 
         public void Refresh_fields()
@@ -216,24 +216,25 @@ namespace Character_design
 
 
 
-        private Character_skills_ViewModel()
+        public Character_skills_ViewModel(Character character)
         {
+            _character = character;
             skill_group = new List<All_skill_template>();
             selected_skill = new All_skill_template();
             selected_value = new All_skill_template();
 
-            Skills_border       = new SolidColorBrush();
+            Skills_border = new SolidColorBrush();
             Force_skills_border = new SolidColorBrush();
 
             Button_borders = new List<SolidColorBrush>();
             Button_borders.Add(Skills_border);
             Button_borders.Add(Force_skills_border);
 
-            Show_skills         = new Command(o => _Show_skills());
-            Show_force_skills   = new Command(o => _Show_force_skills());
+            Show_skills = new Command(o => _Show_skills());
+            Show_force_skills = new Command(o => _Show_force_skills());
 
-            Chosen_color    = Colors.Wheat;
-            Unchosen_color  = Colors.Black;
+            Chosen_color = Colors.Wheat;
+            Unchosen_color = Colors.Black;
 
             Check_initial_state();
         }
@@ -243,13 +244,13 @@ namespace Character_design
         private void _Show_skills()
         {
             Skill_group = Usual_skills_group;
-            
+
             Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
         }
         private void _Show_force_skills()
         {
             Skill_group = Force_skills_group;
-            
+
             Set_colors_for_chosen_item(Button_borders, Force_skills_border, Chosen_color, Unchosen_color);
         }
     }

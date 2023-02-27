@@ -8,7 +8,7 @@ namespace Character_design
 {
     public class Force_forms_ViewModel : BaseViewModel
     {
-        private static Force_forms_ViewModel _instance;
+        //private static Force_forms_ViewModel _instance;
 
 
         private Abilities_sequence_template selected_force_sequence;
@@ -25,6 +25,9 @@ namespace Character_design
 
         private string force_ability_choose_warning,
                        force_ability_choose_advice;
+
+        private Main_model _model;
+        private Character _character;
 
 
 
@@ -50,11 +53,11 @@ namespace Character_design
         }
         public int Exp_points_left
         {
-            get { return Character.GetInstance().Experience_left; }
+            get { return _character.Experience_left; }
         }
         public List<Abilities_sequence_template> Current_force_sequnces
         {
-            get { return Main_model.GetInstance().Force_ability_Manager.Get_sequences(); }
+            get { return _model.Force_ability_Manager.Get_sequences(); }
 
         }
         public All_abilities_template Selected_force_ability
@@ -119,11 +122,11 @@ namespace Character_design
         }
         public int Num_skills_left
         {
-            get { return Character.GetInstance().Limit_all_forms_left; }
+            get { return _character.Limit_all_forms_left; }
         }
 
 
-
+        /*
         public static Force_forms_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -139,11 +142,13 @@ namespace Character_design
                 _instance = new Force_forms_ViewModel();
             }
         }
+        */
 
 
-
-        private Force_forms_ViewModel()
+        public Force_forms_ViewModel(Character character, Main_model model)
         {
+            _character = character;
+            _model = model;
             Show_base_ability = new Command(o => _Show_base_ability(),
                                               o => _Base_exist());
             Show_adept_ability = new Command(o => _Show_adept_ability(),
@@ -238,7 +243,7 @@ namespace Character_design
             All_abilities_template ability = o as All_abilities_template;
             if (ability != null)
             {
-                Character.GetInstance().Delete_force_ability(ability, Selected_force_sequence);
+                _character.Delete_force_ability(ability, Selected_force_sequence);
 
                 ShowSomeAdvice();
                 CheckAbilityCondition();
@@ -250,7 +255,7 @@ namespace Character_design
         private bool _Enable_delete_force_ability()
         {
             bool result = true;
-            
+
             if ((Selected_force_ability == Selected_force_sequence.Base_ability_lvl) & (Selected_force_sequence.Adept_ability_lvl.Is_chosen | Selected_force_sequence.Master_ability_lvl.Is_chosen))
             {
                 Force_ability_choose_warning = "Для удаления текущего уровня стиля, удалите более высокие уровни!";
@@ -264,7 +269,7 @@ namespace Character_design
             else if (Selected_force_ability.Is_chosen == false)
             {
                 result = false;
-            } 
+            }
             else { Force_ability_choose_warning = ""; }
             return result;
         }
@@ -273,7 +278,7 @@ namespace Character_design
             All_abilities_template ability = o as All_abilities_template;
             if (ability != null)
             {
-                Character.GetInstance().Learn_force_ability(ability, Selected_force_sequence);
+                _character.Learn_force_ability(ability, Selected_force_sequence);
 
                 ShowSomeAdvice();
                 CheckAbilityCondition();
@@ -283,8 +288,8 @@ namespace Character_design
             }
         }
         private bool _Enable_learn_force_ability(Abilities_sequence_template sequence)
-        {           
-            if (Character.GetInstance().Experience_left < Selected_force_ability.Cost)
+        {
+            if (_character.Experience_left < Selected_force_ability.Cost)
             {
                 Force_ability_choose_warning = "Недостаточно очков опыта для изучения!";
                 return false;
@@ -298,12 +303,12 @@ namespace Character_design
             {
                 return false;
             }
-            if(Character.GetInstance().Limit_all_forms_left == 0 && Character.GetInstance().Force_sequences_with_points.Contains(sequence) == false)
+            if (_character.Limit_all_forms_left == 0 && _character.Force_sequences_with_points.Contains(sequence) == false)
             {
                 Force_ability_choose_warning = "Достигнут лимит по количеству изучаемых стилей!";
                 return false;
             }
-            Force_ability_choose_warning = ""; 
+            Force_ability_choose_warning = "";
             return true;
         }
         private void ShowSomeAdvice()
@@ -333,7 +338,7 @@ namespace Character_design
         }
         private void CheckAbilityCondition()
         {
-            foreach(Abilities_sequence_template sequence in Current_force_sequnces)
+            foreach (Abilities_sequence_template sequence in Current_force_sequnces)
             {
                 sequence.Check_enable_state();
             }

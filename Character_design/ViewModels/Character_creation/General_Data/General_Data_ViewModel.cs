@@ -7,7 +7,7 @@ namespace Character_design
 {
     internal class General_Data_ViewModel : BaseViewModel
     {
-        private static General_Data_ViewModel _instance;
+        //private static General_Data_ViewModel _instance;
         private BaseViewModel currentViewModel;
         private BaseViewModel Character_info;
         private BaseViewModel Character_skills;
@@ -25,7 +25,8 @@ namespace Character_design
         private Color Chosen_border_color;
         private Color Unchoosen_border_color;
         private List<SolidColorBrush> SolidBrushes;
-        
+
+        private Character _character;
 
 
         public Command Open_character_info { get; private set; }
@@ -41,7 +42,7 @@ namespace Character_design
         }
         public SolidColorBrush Character_info_button_border
         {
-            get { return character_info_button_border;  }
+            get { return character_info_button_border; }
             set { character_info_button_border = value; OnPropertyChanged("Character_info_button_border"); }
         }
         public SolidColorBrush Character_skills_button_border
@@ -71,7 +72,7 @@ namespace Character_design
         }
 
 
-
+        /*
         public static General_Data_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -87,6 +88,7 @@ namespace Character_design
                 _instance = new General_Data_ViewModel();
             }
         }
+        */
         public void Refresh_character_fields()
         {
             if (Character_skills_button_border.Color == Chosen_border_color)
@@ -105,35 +107,36 @@ namespace Character_design
 
 
 
-        private General_Data_ViewModel()
+        public General_Data_ViewModel(Character character)
         {
-            Character_info      = Character_info_ViewModel.GetInstance();
-            Character_skills    = Character_skills_ViewModel.GetInstance();
-            Character_forms     = Character_forms_ViewModel.GetInstance();
-            Character_features  = Character_features_ViewModel.GetInstance();
-            Character_equipment = Character_equipment_ViewModel.GetInstance();
-            Character_companion = Character_companion_ViewModel.GetInstance();
-            Nothing_chosen      = Nothing_chosen_ViewModel.GetInstance();
+            _character = character;
+            Character_info = Character_creation_model.GetInstance().Character_Info_ViewModel;
+            Character_skills = Character_creation_model.GetInstance().Character_Skills_ViewModel;
+            Character_forms = Character_creation_model.GetInstance().Combat_Forms_ViewModel;
+            Character_features = Character_creation_model.GetInstance().Character_Features_ViewModel;
+            Character_equipment = Character_creation_model.GetInstance().Character_Equipment_ViewModel;
+            Character_companion = Character_creation_model.GetInstance().Character_Companion_ViewModel;
+            Nothing_chosen = Nothing_chosen_ViewModel.GetInstance();
 
-            currentViewModel    = Character_info;
+            currentViewModel = Character_info;
 
-            Open_character_info         = new Command(o => _Open_character_info());
-            Open_character_skills       = new Command(o => _Open_character_skills());
-            Open_character_forms        = new Command(o => _Open_character_forms());
-            Open_character_features     = new Command(o => _Open_character_features());
-            Open_character_equipment    = new Command(o => _Open_character_equipment());
-            Open_character_companion    = new Command(o => _Open_character_companion(),
+            Open_character_info = new Command(o => _Open_character_info());
+            Open_character_skills = new Command(o => _Open_character_skills());
+            Open_character_forms = new Command(o => _Open_character_forms());
+            Open_character_features = new Command(o => _Open_character_features());
+            Open_character_equipment = new Command(o => _Open_character_equipment());
+            Open_character_companion = new Command(o => _Open_character_companion(),
                                                       o => _Enable_open_character_companion());
 
-            Unchoosen_border_color  = Colors.Black;
-            Chosen_border_color     = Colors.Wheat;
+            Unchoosen_border_color = Colors.Black;
+            Chosen_border_color = Colors.Wheat;
 
-            Character_info_button_border        = new SolidColorBrush();
-            Character_skills_button_border      = new SolidColorBrush();
-            Character_forms_button_border       = new SolidColorBrush();
-            Character_features_button_border    = new SolidColorBrush();
-            Character_equipment_button_border   = new SolidColorBrush();
-            Character_companion_button_border   = new SolidColorBrush();
+            Character_info_button_border = new SolidColorBrush();
+            Character_skills_button_border = new SolidColorBrush();
+            Character_forms_button_border = new SolidColorBrush();
+            Character_features_button_border = new SolidColorBrush();
+            Character_equipment_button_border = new SolidColorBrush();
+            Character_companion_button_border = new SolidColorBrush();
 
             SolidBrushes = new List<SolidColorBrush>();
             SolidBrushes.Add(Character_info_button_border);
@@ -159,7 +162,7 @@ namespace Character_design
         }
         private void Refresh_character_skills()
         {
-            if (Character.GetInstance().Skills_with_points.Count == 0 && Character.GetInstance().Force_skills_with_points.Count == 0)
+            if (_character.Skills_with_points.Count == 0 && _character.Force_skills_with_points.Count == 0)
             {
                 CurrentViewModel = Nothing_chosen;
             }
@@ -175,14 +178,14 @@ namespace Character_design
         }
         private void Refresh_character_forms()
         {
-            if (Character.GetInstance().Combat_abilities_with_points.Count == 0 && Character.GetInstance().Force_abilities_with_points.Count == 0)
+            if (_character.Combat_abilities_with_points.Count == 0 && _character.Force_abilities_with_points.Count == 0)
             {
                 CurrentViewModel = Nothing_chosen;
             }
             else
             {
                 CurrentViewModel = Character_forms;
-                Character_forms_ViewModel.GetInstance().Check_initial_state();
+                Character_creation_model.GetInstance().Character_Forms_ViewModel.Check_initial_state();
             }
         }
         private void _Open_character_features()
@@ -193,14 +196,14 @@ namespace Character_design
         }
         private void Refresh_character_features()
         {
-            if (Character.GetInstance().Positive_features_with_points.Count == 0 && Character.GetInstance().Negative_features_with_points.Count == 0)
+            if (_character.Positive_features_with_points.Count == 0 && _character.Negative_features_with_points.Count == 0)
             {
                 CurrentViewModel = Nothing_chosen;
             }
             else
             {
                 CurrentViewModel = Character_features;
-                Character_features_ViewModel.GetInstance().Check_initial_state();
+                Character_creation_model.GetInstance().Character_Features_ViewModel.Check_initial_state();
             }
         }
         private void _Open_character_equipment()
@@ -217,9 +220,9 @@ namespace Character_design
         }
         private bool _Enable_open_character_companion()
         {
-            if (Character.CheckInstanceNotNull())
+
             {
-                foreach (All_feature_template feature in Character.GetInstance().Positive_features_with_points)
+                foreach (All_feature_template feature in _character.Positive_features_with_points)
                 {
                     if (feature.ID == 5 || feature.ID == 6)
                     {

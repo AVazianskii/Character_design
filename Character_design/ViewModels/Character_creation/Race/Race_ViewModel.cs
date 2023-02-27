@@ -10,8 +10,8 @@ namespace Character_design
     internal class Race_ViewModel : BaseViewModel
     {
         List<Race_class> destination_race_list = new List<Race_class>();
-        
-        private static Race_ViewModel _instance;
+
+        //private static Race_ViewModel _instance;
 
         private BaseViewModel current_VM;
 
@@ -33,9 +33,12 @@ namespace Character_design
 
         private bool race_chosen;
 
-        private string selected_race_feature_list, 
+        private string selected_race_feature_list,
                        race_choose_advice;
         private Race_class selected_race;
+
+        private Main_model _model;
+        private Character _character;
 
 
 
@@ -43,7 +46,7 @@ namespace Character_design
         public Character_changing_command Unchoose_race { get; private set; }
 
 
-
+        /*
         public static Race_ViewModel GetInstance()
         {
             if (_instance == null) { _instance = new Race_ViewModel(); }
@@ -56,7 +59,7 @@ namespace Character_design
                 _instance = new Race_ViewModel();
             }
         }
-
+        */
 
 
         public BaseViewModel CurrentViewModel
@@ -182,18 +185,21 @@ namespace Character_design
 
 
 
-        private Race_ViewModel()
+        public Race_ViewModel(Character character, Main_model model)
         {
+            _character = character;
+            _model = model;
             Initial_load_race_list(destination_race_list);
             Selected_race = destination_race_list[0];
 
             race_chosen = false;
             Choose_race = new Character_changing_command(o => _Choose_race(),
-                                                         o => race_chosen == false);
+                                                         o => _character.Character_race.Is_chosen == false);
             Unchoose_race = new Character_changing_command(o => _Unchoose_race(),
-                                                           o => race_chosen == true);
+                                                           o => _character.Character_race.Is_chosen == true);
 
             Race_choose_advice = "";
+
 
         }
 
@@ -201,7 +207,7 @@ namespace Character_design
 
         private void Initial_load_race_list(List<Race_class> _destination_race_list)
         {
-            foreach (Race_class race in Main_model.GetInstance().Race_Manager.Get_Race_list())
+            foreach (Race_class race in _model.Race_Manager.Get_Race_list())
             {
                 _destination_race_list.Add(race);
             }
@@ -222,117 +228,117 @@ namespace Character_design
         }
         private void _Choose_race()
         {
-            Character.GetInstance().Character_race = Selected_race;
-            Character.GetInstance().Calculate_reaction          (Selected_race.Get_race_reaction_bonus());
-            Character.GetInstance().Calculate_armor             (Selected_race.Get_race_armor_bonus());
-            Character.GetInstance().Calculate_hideness          (Selected_race.Get_race_stealthiness_combat_bonus());
-            Character.GetInstance().Calculate_watchfullness     (Selected_race.Get_race_watchfulness_combat_bonus());
-            Character.GetInstance().Calculate_force_resistance  (Selected_race.Get_race_force_resist_bonus());
-            Character.GetInstance().Calculate_concentration     (Selected_race.Get_race_flow_control_bonus());
+            _character.Character_race = Selected_race;
+            _character.Calculate_reaction(Selected_race.Get_race_reaction_bonus());
+            _character.Calculate_armor(Selected_race.Get_race_armor_bonus());
+            _character.Calculate_hideness(Selected_race.Get_race_stealthiness_combat_bonus());
+            _character.Calculate_watchfullness(Selected_race.Get_race_watchfulness_combat_bonus());
+            _character.Calculate_force_resistance(Selected_race.Get_race_force_resist_bonus());
+            _character.Calculate_concentration(Selected_race.Get_race_flow_control_bonus());
 
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Strength,      Selected_race.Get_race_bonus_strength());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Agility,       Selected_race.Get_race_bonus_agility());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Stamina,       Selected_race.Get_race_bonus_stamina());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Perception,    Selected_race.Get_race_bonus_perception());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Quickness,     Selected_race.Get_race_bonus_quickness());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Intelligence,  Selected_race.Get_race_bonus_intelligence());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Charm,         Selected_race.Get_race_bonus_charm());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Willpower,     Selected_race.Get_race_bonus_willpower());
+            _character.Update_combat_parameters(_character.Strength, Selected_race.Get_race_bonus_strength());
+            _character.Update_combat_parameters(_character.Agility, Selected_race.Get_race_bonus_agility());
+            _character.Update_combat_parameters(_character.Stamina, Selected_race.Get_race_bonus_stamina());
+            _character.Update_combat_parameters(_character.Perception, Selected_race.Get_race_bonus_perception());
+            _character.Update_combat_parameters(_character.Quickness, Selected_race.Get_race_bonus_quickness());
+            _character.Update_combat_parameters(_character.Intelligence, Selected_race.Get_race_bonus_intelligence());
+            _character.Update_combat_parameters(_character.Charm, Selected_race.Get_race_bonus_charm());
+            _character.Update_combat_parameters(_character.Willpower, Selected_race.Get_race_bonus_willpower());
 
             // Добавляем расовую особенность
             for (int i = 0; i < 3; i++)
             {
                 if (Selected_race.Bonus_feature[i] > 0)
                 {
-                    All_feature_template feature = Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[i] - 1];
+                    All_feature_template feature = _model.Feature_Manager.Get_features()[Selected_race.Bonus_feature[i] - 1];
                     if (feature.Type % 20 < 11)
                     {
-                        Character.GetInstance().Learn_positive_feature(feature);
+                        _character.Learn_positive_feature(feature);
                     }
                     else
                     {
-                        Character.GetInstance().Learn_negative_feature(feature);
+                        _character.Learn_negative_feature(feature);
                     }
-                    Features_ViewModel.GetInstance().Check_feature_for_blocking(feature);
+                    Character_creation_model.GetInstance().Features_ViewModel.Check_feature_for_blocking(feature);
                     feature.Is_chosen_for_race = true;
                 }
             }
 
-            Apply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
+            Apply_race_atr_bonus(_character, _character.Character_race);
 
-            Skill_ViewModel.GetInstance().Apply_race_skill_bonus(Selected_race);
-            Skill_ViewModel.GetInstance().Refresh_fields();
+            Character_creation_model.GetInstance().Skill_ViewModel.Apply_race_skill_bonus(Selected_race);
+            Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
 
-            Race_choose_advice = $"Выбрана раса: {Character.GetInstance().Character_race.Get_race_name()}!";
-            race_chosen = true;
+            Race_choose_advice = $"Выбрана раса: {_character.Character_race.Get_race_name()}!";
+            _character.Character_race.Is_chosen = true;
         }
         private void _Unchoose_race()
         {
-            Skill_ViewModel.GetInstance().UnApply_race_skill_bonus(Character.GetInstance().Character_race);
-            UnApply_race_atr_bonus(Character.GetInstance(), Character.GetInstance().Character_race);
+            Character_creation_model.GetInstance().Skill_ViewModel.UnApply_race_skill_bonus(_character.Character_race);
+            UnApply_race_atr_bonus(_character, _character.Character_race);
 
-            Character.GetInstance().Calculate_reaction          (-Character.GetInstance().Character_race.Get_race_reaction_bonus());
-            Character.GetInstance().Calculate_armor             (-Character.GetInstance().Character_race.Get_race_armor_bonus());
-            Character.GetInstance().Calculate_hideness          (-Character.GetInstance().Character_race.Get_race_stealthiness_combat_bonus());
-            Character.GetInstance().Calculate_watchfullness     (-Character.GetInstance().Character_race.Get_race_watchfulness_combat_bonus());
-            Character.GetInstance().Calculate_force_resistance  (-Character.GetInstance().Character_race.Get_race_force_resist_bonus());
-            Character.GetInstance().Calculate_concentration     (-Character.GetInstance().Character_race.Get_race_flow_control_bonus());
+            _character.Calculate_reaction(-_character.Character_race.Get_race_reaction_bonus());
+            _character.Calculate_armor(-_character.Character_race.Get_race_armor_bonus());
+            _character.Calculate_hideness(-_character.Character_race.Get_race_stealthiness_combat_bonus());
+            _character.Calculate_watchfullness(-_character.Character_race.Get_race_watchfulness_combat_bonus());
+            _character.Calculate_force_resistance(-_character.Character_race.Get_race_force_resist_bonus());
+            _character.Calculate_concentration(-_character.Character_race.Get_race_flow_control_bonus());
 
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Strength,      -Character.GetInstance().Character_race.Get_race_bonus_strength());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Agility,       -Character.GetInstance().Character_race.Get_race_bonus_agility());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Stamina,       -Character.GetInstance().Character_race.Get_race_bonus_stamina());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Perception,    -Character.GetInstance().Character_race.Get_race_bonus_perception());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Quickness,     -Character.GetInstance().Character_race.Get_race_bonus_quickness());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Intelligence,  -Character.GetInstance().Character_race.Get_race_bonus_intelligence());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Charm,         -Character.GetInstance().Character_race.Get_race_bonus_charm());
-            Character.GetInstance().Update_combat_parameters(Character.GetInstance().Willpower,     -Character.GetInstance().Character_race.Get_race_bonus_willpower());
+            _character.Update_combat_parameters(_character.Strength, -_character.Character_race.Get_race_bonus_strength());
+            _character.Update_combat_parameters(_character.Agility, -_character.Character_race.Get_race_bonus_agility());
+            _character.Update_combat_parameters(_character.Stamina, -_character.Character_race.Get_race_bonus_stamina());
+            _character.Update_combat_parameters(_character.Perception, -_character.Character_race.Get_race_bonus_perception());
+            _character.Update_combat_parameters(_character.Quickness, -_character.Character_race.Get_race_bonus_quickness());
+            _character.Update_combat_parameters(_character.Intelligence, -_character.Character_race.Get_race_bonus_intelligence());
+            _character.Update_combat_parameters(_character.Charm, -_character.Character_race.Get_race_bonus_charm());
+            _character.Update_combat_parameters(_character.Willpower, -_character.Character_race.Get_race_bonus_willpower());
 
             // Убираем расовую особенность
             for (int i = 0; i < 3; i++)
             {
                 if (Selected_race.Bonus_feature[i] > 0)
                 {
-                    All_feature_template feature = Main_model.GetInstance().Feature_Manager.Get_features()[Selected_race.Bonus_feature[i] - 1];
+                    All_feature_template feature = _model.Feature_Manager.Get_features()[Selected_race.Bonus_feature[i] - 1];
                     if (feature.Type % 20 < 11)
                     {
-                        Character.GetInstance().Delete_positive_feature(feature);
+                        _character.Delete_positive_feature(feature);
                     }
                     else
                     {
-                        Character.GetInstance().Delete_negative_feature(feature);
+                        _character.Delete_negative_feature(feature);
                     }
-                    Features_ViewModel.GetInstance().Check_feature_for_unblocking(feature);
+                    Character_creation_model.GetInstance().Features_ViewModel.Check_feature_for_unblocking(feature);
                     feature.Is_chosen_for_race = false;
                 }
             }
 
-            Character.GetInstance().Character_race = Main_model.GetInstance().Race_Manager.Get_Race_list()[0];
-            Skill_ViewModel.GetInstance().Refresh_fields();
+            _character.Character_race = _model.Race_Manager.Get_Race_list()[0];
+            Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
 
             Race_choose_advice = "";
             race_chosen = false;
         }
-        private void Apply_race_atr_bonus (Character character, Race_class race)
+        private void Apply_race_atr_bonus(Character character, Race_class race)
         {
-            character.Strength.Increase_atr     (race.Get_race_bonus_strength());
-            character.Agility.Increase_atr      (race.Get_race_bonus_agility());
-            character.Stamina.Increase_atr      (race.Get_race_bonus_stamina());
-            character.Quickness.Increase_atr    (race.Get_race_bonus_quickness());
-            character.Perception.Increase_atr   (race.Get_race_bonus_perception());
-            character.Intelligence.Increase_atr (race.Get_race_bonus_intelligence());
-            character.Charm.Increase_atr        (race.Get_race_bonus_charm());
-            character.Willpower.Increase_atr    (race.Get_race_bonus_willpower());
+            character.Strength.Increase_atr(race.Get_race_bonus_strength());
+            character.Agility.Increase_atr(race.Get_race_bonus_agility());
+            character.Stamina.Increase_atr(race.Get_race_bonus_stamina());
+            character.Quickness.Increase_atr(race.Get_race_bonus_quickness());
+            character.Perception.Increase_atr(race.Get_race_bonus_perception());
+            character.Intelligence.Increase_atr(race.Get_race_bonus_intelligence());
+            character.Charm.Increase_atr(race.Get_race_bonus_charm());
+            character.Willpower.Increase_atr(race.Get_race_bonus_willpower());
         }
         private void UnApply_race_atr_bonus(Character character, Race_class race)
         {
-            character.Strength.Decrease_atr     (race.Get_race_bonus_strength());
-            character.Agility.Decrease_atr      (race.Get_race_bonus_agility());
-            character.Stamina.Decrease_atr      (race.Get_race_bonus_stamina());
-            character.Quickness.Decrease_atr    (race.Get_race_bonus_quickness());
-            character.Perception.Decrease_atr   (race.Get_race_bonus_perception());
-            character.Intelligence.Decrease_atr (race.Get_race_bonus_intelligence());
-            character.Charm.Decrease_atr        (race.Get_race_bonus_charm());
-            character.Willpower.Decrease_atr    (race.Get_race_bonus_willpower());
+            character.Strength.Decrease_atr(race.Get_race_bonus_strength());
+            character.Agility.Decrease_atr(race.Get_race_bonus_agility());
+            character.Stamina.Decrease_atr(race.Get_race_bonus_stamina());
+            character.Quickness.Decrease_atr(race.Get_race_bonus_quickness());
+            character.Perception.Decrease_atr(race.Get_race_bonus_perception());
+            character.Intelligence.Decrease_atr(race.Get_race_bonus_intelligence());
+            character.Charm.Decrease_atr(race.Get_race_bonus_charm());
+            character.Willpower.Decrease_atr(race.Get_race_bonus_willpower());
         }
     }
 }

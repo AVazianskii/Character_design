@@ -12,7 +12,7 @@ namespace Character_design
 {
     internal class Character_info_ViewModel : BaseViewModel
     {
-        private static Character_info_ViewModel _instance;
+        //private static Character_info_ViewModel _instance;
 
         private string character_name;
         private string character_race_name;
@@ -60,6 +60,9 @@ namespace Character_design
         private Color Sith_color;
         private Color Jedi_color;
         private Color Neutral_color;
+
+        private Main_model _model;
+        private Character _character;
 
 
 
@@ -145,50 +148,50 @@ namespace Character_design
         }
         public List<Range_Class> Character_ranges
         {
-            get { return Main_model.GetInstance().Range_Manager.Ranges(); }
+            get { return _model.Range_Manager.Ranges(); }
         }
         public Range_Class Character_current_range
         {
             get { return character_current_range; }
-            set 
-            { 
+            set
+            {
                 character_current_range = value;
-                Character.GetInstance().Range = character_current_range;
-                Character_range_description = Character.GetInstance().Range.Get_range_descr();
+                _character.Range = character_current_range;
+                Character_range_description = _character.Range.Get_range_descr();
                 OnPropertyChanged("Character_current_range");
 
-                Skill_ViewModel.GetInstance().Refresh_fields();
-                Character.GetInstance().Refresh_fields();
-                Character_skills_ViewModel.GetInstance().Refresh_fields();
+                Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
+                _character.Refresh_fields();
+                Character_creation_model.GetInstance().Character_Skills_ViewModel.Refresh_fields();
 
                 Refresh_atr_fields();
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Change_character_state_to_unsave();
             }
         }
         public List<Age_status_class> Character_ages
         {
-            get{ return Main_model.GetInstance().Age_status_Manager.Age_Statuses(); }
+            get { return _model.Age_status_Manager.Age_Statuses(); }
         }
         public Age_status_class Character_current_age_status
         {
             get { return character_current_age_status; }
-            set 
+            set
             {
-                UnApply_age_status_atr_bonus(Character.GetInstance()); // Снимаем бонусы от возратсного статуса при смене этого статуса
+                UnApply_age_status_atr_bonus(_character); // Снимаем бонусы от возратсного статуса при смене этого статуса
 
                 character_current_age_status = value;
-                Character.GetInstance().Age_status = character_current_age_status;
-                Character_age_status_description = Character.GetInstance().Age_status.Get_age_status_descr();
+                _character.Age_status = character_current_age_status;
+                Character_age_status_description = _character.Age_status.Get_age_status_descr();
                 OnPropertyChanged("Character_age");
                 OnPropertyChanged("Character_current_age_status");
 
-                Skill_ViewModel.GetInstance().Refresh_fields();
-                Character.GetInstance().Refresh_fields();
-                Character_skills_ViewModel.GetInstance().Refresh_fields();
+                Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
+                _character.Refresh_fields();
+                Character_creation_model.GetInstance().Character_Skills_ViewModel.Refresh_fields();
 
-                Apply_age_status_atr_bonus(Character.GetInstance()); // Устанавливаем бонусы от возратсного статуса при смене этого статуса
+                Apply_age_status_atr_bonus(_character); // Устанавливаем бонусы от возратсного статуса при смене этого статуса
                 Refresh_atr_fields();
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Change_character_state_to_unsave();
             }
         }
         public string Question_sign
@@ -247,99 +250,99 @@ namespace Character_design
         }
         public string Character_name
         {
-            get { return Character.GetInstance().Name; }
-            set 
-            { 
-                character_name = value; 
+            get { return _character.Name; }
+            set
+            {
+                character_name = value;
                 OnPropertyChanged("Character_name");
-                Character.GetInstance().Name = character_name;
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Name = character_name;
+                _character.Change_character_state_to_unsave();
             }
         }
         public string Character_race_name
         {
-            get { character_race_name = Character.GetInstance().Character_race.Race_name; return character_race_name; }
-            set 
-            { 
+            get { character_race_name = _character.Character_race.Race_name; return character_race_name; }
+            set
+            {
                 character_race_name = value;
                 OnPropertyChanged("Character_age");
                 OnPropertyChanged("Character_race_name");
 
                 Refresh_atr_fields();
 
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Change_character_state_to_unsave();
             }
         }
         public string Character_age
         {
-            get 
+            get
             {
                 Current_age_text_fontsize = usual_text_fontsize;
                 Age_text_color.Color = Usual_text_color;
                 if (!(Int32.TryParse(character_age, out int result)))
                 {
-                    character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                               Character.GetInstance().Character_race);
+                    character_age = Default_Character_age_text(_character.Age_status,
+                                                               _character.Character_race);
                     Current_age_text_fontsize = help_text_fontsize;
                     Age_text_color.Color = Help_text_color;
                 }
-                return character_age; 
+                return character_age;
             }
-            set 
+            set
             {
                 if (Int32.TryParse(value, out int result))
                 {
-                    if (Check_age_limits(Convert.ToInt32(value), Character.GetInstance().Age_status, Character.GetInstance().Character_race))
+                    if (Check_age_limits(Convert.ToInt32(value), _character.Age_status, _character.Character_race))
                     {
                         character_age = value;
-                        Character.GetInstance().Age = result;
+                        _character.Age = result;
                         Current_age_text_fontsize = usual_text_fontsize;
                         Age_text_color.Color = Usual_text_color;
                     }
                     else
                     {
                         MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
-                        character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                                   Character.GetInstance().Character_race);
+                        character_age = Default_Character_age_text(_character.Age_status,
+                                                                   _character.Character_race);
                         Current_age_text_fontsize = help_text_fontsize;
                         Age_text_color.Color = Help_text_color;
                     }
                 }
                 else if (value == "")
                 {
-                    character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                               Character.GetInstance().Character_race);
+                    character_age = Default_Character_age_text(_character.Age_status,
+                                                               _character.Character_race);
                     Current_age_text_fontsize = help_text_fontsize;
                     Age_text_color.Color = Help_text_color;
                 }
                 else
                 {
                     MessageBox.Show("Ошибка, пробуй еще раз", "Error", MessageBoxButton.OK);
-                    character_age = Default_Character_age_text(Character.GetInstance().Age_status,
-                                                               Character.GetInstance().Character_race);
+                    character_age = Default_Character_age_text(_character.Age_status,
+                                                               _character.Character_race);
                     Current_age_text_fontsize = help_text_fontsize;
                     Age_text_color.Color = Help_text_color;
                 }
                 OnPropertyChanged("Character_age");
 
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Change_character_state_to_unsave();
             }
         }
         public string Character_age_status
         {
             get { return character_age_status; }
-            set 
-            { 
+            set
+            {
                 character_age_status = value;
                 OnPropertyChanged("Character_age_status");
 
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Change_character_state_to_unsave();
             }
         }
         public string Character_exp
         {
             get { return character_exp; }
-            set 
+            set
             {
                 Check_character_exp(value, out exp_error);
 
@@ -352,18 +355,18 @@ namespace Character_design
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Exp_points_for_atr");
 
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Change_character_state_to_unsave();
             }
         }
         public string Character_atr
         {
             get { return character_atr; }
-            set 
+            set
             {
                 if (Int32.TryParse(value, out int result))
                 {
                     character_atr = value;
-                    Character.GetInstance().Attributes = result;
+                    _character.Attributes = result;
                     Current_atr_points_fontsize = usual_text_fontsize;
                     Atr_text_color.Color = Usual_text_color;
                 }
@@ -384,168 +387,168 @@ namespace Character_design
                 OnPropertyChanged("Atr_points_left");
                 OnPropertyChanged("Character_atr");
 
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Change_character_state_to_unsave();
             }
         }
         public int Character_strength
         {
-            get { return Character.GetInstance().Strength.Get_atribute_score(); }
+            get { return _character.Strength.Get_atribute_score(); }
         }
         public int Min_character_strength
         {
-            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_strength(), Character.GetInstance().Age_status.Get_age_status_strength_bonus()); }
+            get { return Return_atr_min(_character.Character_race.Get_race_bonus_strength(), _character.Age_status.Get_age_status_strength_bonus()); }
         }
         public int Max_character_strength
         {
-            get 
-            { 
-                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_strength(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_strength_limit,
-                                                                                                                         Character.GetInstance().Range.Strength_limit)); 
+            get
+            {
+                return Return_atr_max(_character.Character_race.Get_race_bonus_strength(), Return_atr_limit(_character.Age_status.Age_status_strength_limit,
+                                                                                                                         _character.Range.Strength_limit));
             }
         }
         public int Character_agility
         {
-            get { return Character.GetInstance().Agility.Get_atribute_score(); }
+            get { return _character.Agility.Get_atribute_score(); }
         }
         public int Min_character_agility
         {
-            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_agility(), Character.GetInstance().Age_status.Get_age_status_agility_bonus()); }
+            get { return Return_atr_min(_character.Character_race.Get_race_bonus_agility(), _character.Age_status.Get_age_status_agility_bonus()); }
         }
         public int Max_character_agility
         {
-            get 
-            { 
-                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_agility(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_agility_limit,
-                                                                                                                        Character.GetInstance().Range.Agility_limit));
+            get
+            {
+                return Return_atr_max(_character.Character_race.Get_race_bonus_agility(), Return_atr_limit(_character.Age_status.Age_status_agility_limit,
+                                                                                                                        _character.Range.Agility_limit));
             }
         }
         public int Character_stamina
         {
-            get { return Character.GetInstance().Stamina.Get_atribute_score(); }
+            get { return _character.Stamina.Get_atribute_score(); }
         }
         public int Min_character_stamina
         {
-            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_stamina(), Character.GetInstance().Age_status.Get_age_status_stamina_bonus()); }
+            get { return Return_atr_min(_character.Character_race.Get_race_bonus_stamina(), _character.Age_status.Get_age_status_stamina_bonus()); }
         }
         public int Max_character_stamina
         {
             get
             {
-                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_stamina(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_stamina_limit,
-                                                                                                                        Character.GetInstance().Range.Stamina_limit));
+                return Return_atr_max(_character.Character_race.Get_race_bonus_stamina(), Return_atr_limit(_character.Age_status.Age_status_stamina_limit,
+                                                                                                                        _character.Range.Stamina_limit));
             }
         }
         public int Character_quickness
         {
-            get { return Character.GetInstance().Quickness.Get_atribute_score(); }
+            get { return _character.Quickness.Get_atribute_score(); }
         }
         public int Min_character_quickness
         {
-            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_quickness(), Character.GetInstance().Age_status.Get_age_status_quickness_bonus()); }
+            get { return Return_atr_min(_character.Character_race.Get_race_bonus_quickness(), _character.Age_status.Get_age_status_quickness_bonus()); }
         }
         public int Max_character_quickness
         {
             get
             {
-                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_quickness(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_quickness_limit,
-                                                                                                                          Character.GetInstance().Range.Quickness_limit));
+                return Return_atr_max(_character.Character_race.Get_race_bonus_quickness(), Return_atr_limit(_character.Age_status.Age_status_quickness_limit,
+                                                                                                                          _character.Range.Quickness_limit));
             }
         }
         public int Character_perception
         {
-            get { return Character.GetInstance().Perception.Get_atribute_score(); }
+            get { return _character.Perception.Get_atribute_score(); }
         }
         public int Min_character_perception
         {
-            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_perception(), Character.GetInstance().Age_status.Get_age_status_perception_bonus()); }
+            get { return Return_atr_min(_character.Character_race.Get_race_bonus_perception(), _character.Age_status.Get_age_status_perception_bonus()); }
         }
         public int Max_character_perception
         {
             get
             {
-                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_perception(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_perception_limit,
-                                                                                                                           Character.GetInstance().Range.Perception_limit));
+                return Return_atr_max(_character.Character_race.Get_race_bonus_perception(), Return_atr_limit(_character.Age_status.Age_status_perception_limit,
+                                                                                                                           _character.Range.Perception_limit));
             }
         }
         public int Character_intelligence
         {
-            get { return Character.GetInstance().Intelligence.Get_atribute_score(); }
+            get { return _character.Intelligence.Get_atribute_score(); }
         }
         public int Min_character_intelligence
         {
-            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_intelligence(), Character.GetInstance().Age_status.Get_age_status_intelligence_bonus()); }
+            get { return Return_atr_min(_character.Character_race.Get_race_bonus_intelligence(), _character.Age_status.Get_age_status_intelligence_bonus()); }
         }
         public int Max_character_intelligence
         {
             get
             {
-                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_intelligence(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_intelligence_limit,
-                                                                                                                             Character.GetInstance().Range.Intelligence_limit));
+                return Return_atr_max(_character.Character_race.Get_race_bonus_intelligence(), Return_atr_limit(_character.Age_status.Age_status_intelligence_limit,
+                                                                                                                             _character.Range.Intelligence_limit));
             }
         }
         public int Character_charm
         {
-            get { return Character.GetInstance().Charm.Get_atribute_score(); }
+            get { return _character.Charm.Get_atribute_score(); }
         }
         public int Min_character_charm
         {
-            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_charm(), Character.GetInstance().Age_status.Get_age_status_charm_bonus()); }
+            get { return Return_atr_min(_character.Character_race.Get_race_bonus_charm(), _character.Age_status.Get_age_status_charm_bonus()); }
         }
         public int Max_character_charm
         {
             get
             {
-                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_charm(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_charm_limit,
-                                                                                                                      Character.GetInstance().Range.Charm_limit));
+                return Return_atr_max(_character.Character_race.Get_race_bonus_charm(), Return_atr_limit(_character.Age_status.Age_status_charm_limit,
+                                                                                                                      _character.Range.Charm_limit));
             }
         }
         public int Character_willpower
         {
-            get { return Character.GetInstance().Willpower.Get_atribute_score(); }
+            get { return _character.Willpower.Get_atribute_score(); }
         }
         public int Min_character_willpower
         {
-            get { return Return_atr_min(Character.GetInstance().Character_race.Get_race_bonus_willpower(), Character.GetInstance().Age_status.Get_age_status_willpower_bonus()); }
+            get { return Return_atr_min(_character.Character_race.Get_race_bonus_willpower(), _character.Age_status.Get_age_status_willpower_bonus()); }
         }
         public int Max_character_willpower
         {
             get
             {
-                return Return_atr_max(Character.GetInstance().Character_race.Get_race_bonus_willpower(), Return_atr_limit(Character.GetInstance().Age_status.Age_status_willpower_limit,
-                                                                                                                          Character.GetInstance().Range.Willpower_limit));
+                return Return_atr_max(_character.Character_race.Get_race_bonus_willpower(), Return_atr_limit(_character.Age_status.Age_status_willpower_limit,
+                                                                                                                          _character.Range.Willpower_limit));
             }
         }
         public string Strength_description
         {
-            get { return Character.GetInstance().Strength.Get_description(); }
+            get { return _character.Strength.Get_description(); }
         }
         public string Agility_description
         {
-            get { return Character.GetInstance().Agility.Get_description(); }
+            get { return _character.Agility.Get_description(); }
         }
         public string Stamina_description
         {
-            get { return Character.GetInstance().Stamina.Get_description(); }
+            get { return _character.Stamina.Get_description(); }
         }
         public string Quickness_description
         {
-            get { return Character.GetInstance().Quickness.Get_description(); }
+            get { return _character.Quickness.Get_description(); }
         }
         public string Perception_description
         {
-            get { return Character.GetInstance().Perception.Get_description(); }
+            get { return _character.Perception.Get_description(); }
         }
         public string Intelligence_description
         {
-            get { return Character.GetInstance().Intelligence.Get_description(); }
+            get { return _character.Intelligence.Get_description(); }
         }
         public string Charm_description
         {
-            get { return Character.GetInstance().Charm.Get_description(); }
+            get { return _character.Charm.Get_description(); }
         }
         public string Willpower_description
         {
-            get { return Character.GetInstance().Willpower.Get_description(); }
+            get { return _character.Willpower.Get_description(); }
         }
         public string Atr_price_description
         {
@@ -553,11 +556,11 @@ namespace Character_design
         }
         public int Exp_points_left
         {
-            get { return Character.GetInstance().Experience_left; }
+            get { return _character.Experience_left; }
         }
         public int Atr_points_left
         {
-            get { return Character.GetInstance().Attributes_left; }
+            get { return _character.Attributes_left; }
         }
         public int Exp_points_for_atr
         {
@@ -603,18 +606,18 @@ namespace Character_design
         public int Current_character_karma
         {
             get { return current_character_karma; }
-            set 
-            { 
+            set
+            {
                 current_character_karma = value;
                 Check_karma_range(current_character_karma, Current_karma_color, Neutral_color, Sith_color, Jedi_color);
                 Check_forceuser_status(current_character_karma);
-                OnPropertyChanged("Current_character_karma"); 
+                OnPropertyChanged("Current_character_karma");
             }
         }
         public string Character_karma
         {
             get { return character_karma; }
-            set 
+            set
             {
                 Check_character_karma(value, out string karma_error);
 
@@ -625,7 +628,7 @@ namespace Character_design
 
                 OnPropertyChanged("Character_karma");
 
-                Character.GetInstance().Change_character_state_to_unsave();
+                _character.Change_character_state_to_unsave();
             }
         }
         public string Character_karma_description
@@ -634,7 +637,7 @@ namespace Character_design
         }
         public bool Character_is_forceuser
         {
-            get { return Character.GetInstance().Forceuser; }
+            get { return _character.Forceuser; }
         }
         public string Sith_description
         {
@@ -670,63 +673,63 @@ namespace Character_design
         }
         public int Character_reaction
         {
-            get { return Character.GetInstance().Reaction; }
+            get { return _character.Reaction; }
         }
         public int Character_armor
         {
-            get { return Character.GetInstance().Armor; }
+            get { return _character.Armor; }
         }
         public int Character_watchfullness
         {
-            get { return Character.GetInstance().Watchfullness; }
+            get { return _character.Watchfullness; }
         }
         public int Character_hideness
         {
-            get { return Character.GetInstance().Hideness; }
+            get { return _character.Hideness; }
         }
         public int Character_force_resistance
         {
-            get { return Character.GetInstance().Force_resistance; }
+            get { return _character.Force_resistance; }
         }
         public int Character_concentration
         {
-            get { return Character.GetInstance().Concentration; }
+            get { return _character.Concentration; }
         }
         public string Character_scratch_lvl
         {
-            get { return Convert.ToString(Character.GetInstance().Scratch_lvl); }
+            get { return Convert.ToString(_character.Scratch_lvl); }
         }
         public string Character_light_wound_lvl
         {
-            get { return Convert.ToString(Character.GetInstance().Light_wound_lvl); }
+            get { return Convert.ToString(_character.Light_wound_lvl); }
         }
         public string Character_medium_wound_lvl
         {
-            get { return Convert.ToString(Character.GetInstance().Medium_wound_lvl); }
+            get { return Convert.ToString(_character.Medium_wound_lvl); }
         }
         public string Character_tough_wound_lvl
         {
-            get { return Convert.ToString(Character.GetInstance().Tough_wound_lvl); }
+            get { return Convert.ToString(_character.Tough_wound_lvl); }
         }
         public string Character_mortal_wound_lvl
         {
-            get { return Convert.ToString(Character.GetInstance().Mortal_wound_lvl); }
+            get { return Convert.ToString(_character.Mortal_wound_lvl); }
         }
         public string Character_scratch_penalty
         {
-            get { return Convert.ToString(Character.GetInstance().Scratch_penalty); }
+            get { return Convert.ToString(_character.Scratch_penalty); }
         }
         public string Character_light_wound_penalty
         {
-            get { return Convert.ToString(Character.GetInstance().Light_wound_penalty); }
+            get { return Convert.ToString(_character.Light_wound_penalty); }
         }
         public string Character_medium_wound_penalty
         {
-            get { return Convert.ToString(Character.GetInstance().Medium_wound_penalty); }
+            get { return Convert.ToString(_character.Medium_wound_penalty); }
         }
         public string Character_tough_wound_penalty
         {
-            get { return Convert.ToString(Character.GetInstance().Tough_wound_penalty); }
+            get { return Convert.ToString(_character.Tough_wound_penalty); }
         }
         public string Character_wound
         {
@@ -735,16 +738,16 @@ namespace Character_design
         public string Character_img
         {
             get { return character_img; }
-            set 
-            { 
-                character_img = value; 
-                Character.GetInstance().Img_path = value;
-                OnPropertyChanged("Character_img"); 
+            set
+            {
+                character_img = value;
+                _character.Img_path = value;
+                OnPropertyChanged("Character_img");
             }
         }
 
 
-
+        /*
         public static Character_info_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -760,6 +763,7 @@ namespace Character_design
                 _instance = new Character_info_ViewModel();
             }
         }
+        */
         public void Refresh_atr_exp_points()
         {
             OnPropertyChanged("Atr_points_left");
@@ -809,8 +813,10 @@ namespace Character_design
 
 
 
-        private Character_info_ViewModel()
+        public Character_info_ViewModel(Character character, Main_model model)
         {
+            _character = character;
+            _model = model;
             //Character_name = "Дарт Сидиус";
             default_question = "Сколько назначил Мастер?";
             default_text = $"от {Minimum_karma} до {Maximum_karma}";
@@ -819,13 +825,13 @@ namespace Character_design
             Character_current_range = Character_ranges[0];
             Character_current_age_status = Character_ages[0];
 
-            Help_text_color     = Colors.Gray;
-            Usual_text_color    = Colors.Black;
-            Chosen_color        = Colors.Wheat;
-            Unchosen_color      = Colors.White;
-            Sith_color          = Colors.Red;
-            Neutral_color       = Colors.Gray;
-            Jedi_color          = Colors.Green;
+            Help_text_color = Colors.Gray;
+            Usual_text_color = Colors.Black;
+            Chosen_color = Colors.Wheat;
+            Unchosen_color = Colors.White;
+            Sith_color = Colors.Red;
+            Neutral_color = Colors.Gray;
+            Jedi_color = Colors.Green;
 
             Age_text_color = new SolidColorBrush();
             Exp_text_color = new SolidColorBrush();
@@ -856,59 +862,59 @@ namespace Character_design
             Character_atr = "";
             Character_karma = "";
 
-            Increase_strength = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Strength),
-                                                               o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Strength, Max_character_strength));
-            Decrease_strength = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Strength),
-                                                               o => Decrease_atr_is_allowed(Character.GetInstance().Strength, Min_character_strength));
+            Increase_strength = new Character_changing_command(o => _Increase_atr(_character.Strength),
+                                                               o => Increase_atr_is_allowed(_character, _character.Strength, Max_character_strength));
+            Decrease_strength = new Character_changing_command(o => _Decrease_atr(_character.Strength),
+                                                               o => Decrease_atr_is_allowed(_character.Strength, Min_character_strength));
 
-            Increase_agility = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Agility),
-                                                              o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Agility, Max_character_agility));
-            Decrease_agility = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Agility),
-                                                              o => Decrease_atr_is_allowed(Character.GetInstance().Agility, Min_character_agility));
+            Increase_agility = new Character_changing_command(o => _Increase_atr(_character.Agility),
+                                                              o => Increase_atr_is_allowed(_character, _character.Agility, Max_character_agility));
+            Decrease_agility = new Character_changing_command(o => _Decrease_atr(_character.Agility),
+                                                              o => Decrease_atr_is_allowed(_character.Agility, Min_character_agility));
 
-            Increase_stamina = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Stamina),
-                                                              o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Stamina, Max_character_stamina));
-            Decrease_stamina = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Stamina),
-                                                              o => Decrease_atr_is_allowed(Character.GetInstance().Stamina, Min_character_stamina));
+            Increase_stamina = new Character_changing_command(o => _Increase_atr(_character.Stamina),
+                                                              o => Increase_atr_is_allowed(_character, _character.Stamina, Max_character_stamina));
+            Decrease_stamina = new Character_changing_command(o => _Decrease_atr(_character.Stamina),
+                                                              o => Decrease_atr_is_allowed(_character.Stamina, Min_character_stamina));
 
-            Increase_perception = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Perception),
-                                                                 o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Perception, Max_character_perception));
-            Decrease_perception = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Perception),
-                                                                 o => Decrease_atr_is_allowed(Character.GetInstance().Perception, Min_character_perception));
+            Increase_perception = new Character_changing_command(o => _Increase_atr(_character.Perception),
+                                                                 o => Increase_atr_is_allowed(_character, _character.Perception, Max_character_perception));
+            Decrease_perception = new Character_changing_command(o => _Decrease_atr(_character.Perception),
+                                                                 o => Decrease_atr_is_allowed(_character.Perception, Min_character_perception));
 
-            Increase_quickness = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Quickness),
-                                                                o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Quickness, Max_character_quickness));
-            Decrease_quickness = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Quickness),
-                                                                o => Decrease_atr_is_allowed(Character.GetInstance().Quickness, Min_character_quickness));
+            Increase_quickness = new Character_changing_command(o => _Increase_atr(_character.Quickness),
+                                                                o => Increase_atr_is_allowed(_character, _character.Quickness, Max_character_quickness));
+            Decrease_quickness = new Character_changing_command(o => _Decrease_atr(_character.Quickness),
+                                                                o => Decrease_atr_is_allowed(_character.Quickness, Min_character_quickness));
 
-            Increase_intelligence = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Intelligence),
-                                                                   o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Intelligence, Max_character_intelligence));
-            Decrease_intelligence = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Intelligence),
-                                                                   o => Decrease_atr_is_allowed(Character.GetInstance().Intelligence, Min_character_intelligence));
+            Increase_intelligence = new Character_changing_command(o => _Increase_atr(_character.Intelligence),
+                                                                   o => Increase_atr_is_allowed(_character, _character.Intelligence, Max_character_intelligence));
+            Decrease_intelligence = new Character_changing_command(o => _Decrease_atr(_character.Intelligence),
+                                                                   o => Decrease_atr_is_allowed(_character.Intelligence, Min_character_intelligence));
 
-            Increase_charm = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Charm),
-                                                            o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Charm, Max_character_charm));
-            Decrease_charm = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Charm),
-                                                            o => Decrease_atr_is_allowed(Character.GetInstance().Charm, Min_character_charm));
+            Increase_charm = new Character_changing_command(o => _Increase_atr(_character.Charm),
+                                                            o => Increase_atr_is_allowed(_character, _character.Charm, Max_character_charm));
+            Decrease_charm = new Character_changing_command(o => _Decrease_atr(_character.Charm),
+                                                            o => Decrease_atr_is_allowed(_character.Charm, Min_character_charm));
 
-            Increase_willpower = new Character_changing_command(o => _Increase_atr(Character.GetInstance().Willpower),
-                                                                o => Increase_atr_is_allowed(Character.GetInstance(), Character.GetInstance().Willpower, Max_character_willpower));
-            Decrease_willpower = new Character_changing_command(o => _Decrease_atr(Character.GetInstance().Willpower),
-                                                                o => Decrease_atr_is_allowed(Character.GetInstance().Willpower, Min_character_willpower));
+            Increase_willpower = new Character_changing_command(o => _Increase_atr(_character.Willpower),
+                                                                o => Increase_atr_is_allowed(_character, _character.Willpower, Max_character_willpower));
+            Decrease_willpower = new Character_changing_command(o => _Decrease_atr(_character.Willpower),
+                                                                o => Decrease_atr_is_allowed(_character.Willpower, Min_character_willpower));
 
-            Manage_forceuser = new Character_changing_command(o => _Manage_forceuser(Character.GetInstance()));
+            Manage_forceuser = new Character_changing_command(o => _Manage_forceuser(_character));
 
-            Choose_male     = new Character_changing_command(o => _Choose_male(Character.GetInstance()));
-            Choose_female   = new Character_changing_command(o => _Choose_female(Character.GetInstance()));
+            Choose_male = new Character_changing_command(o => _Choose_male(_character));
+            Choose_female = new Character_changing_command(o => _Choose_female(_character));
 
             Choose_character_img = new Character_changing_command(o => _Choose_character_img());
 
-            _Choose_male(Character.GetInstance());
+            _Choose_male(_character);
         }
 
 
 
-        private string Default_Character_age_text (Age_status_libs.Age_status_class character_age_status, Races_libs.Race_class character_race)
+        private string Default_Character_age_text(Age_status_libs.Age_status_class character_age_status, Races_libs.Race_class character_race)
         {
             string local_text = "";
             switch (character_age_status.Get_age_status_code()) //character_age_status.Get_age_status_code()
@@ -930,7 +936,7 @@ namespace Character_design
             switch (character_age_status.Get_age_status_code()) //character_age_status.Get_age_status_code()
             {
                 case 0: limits_comfirmed = false; break;
-                case 1: 
+                case 1:
                     if (input_age >= character_race.Get_min_child_age())
                     {
                         if (input_age <= character_race.Get_max_child_age()) { limits_comfirmed = true; }
@@ -1017,23 +1023,23 @@ namespace Character_design
         }
         private void Apply_age_status_atr_bonus(Character character)
         {
-            character.Strength.Increase_atr     (character.Age_status.Get_age_status_strength_bonus());
-            character.Agility.Increase_atr      (character.Age_status.Get_age_status_agility_bonus());
-            character.Stamina.Increase_atr      (character.Age_status.Get_age_status_stamina_bonus());
-            character.Perception.Increase_atr   (character.Age_status.Get_age_status_perception_bonus());
-            character.Quickness.Increase_atr    (character.Age_status.Get_age_status_quickness_bonus());
-            character.Intelligence.Increase_atr (character.Age_status.Get_age_status_intelligence_bonus());
-            character.Charm.Increase_atr        (character.Age_status.Get_age_status_charm_bonus());
-            character.Willpower.Increase_atr    (character.Age_status.Get_age_status_willpower_bonus());
+            character.Strength.Increase_atr(character.Age_status.Get_age_status_strength_bonus());
+            character.Agility.Increase_atr(character.Age_status.Get_age_status_agility_bonus());
+            character.Stamina.Increase_atr(character.Age_status.Get_age_status_stamina_bonus());
+            character.Perception.Increase_atr(character.Age_status.Get_age_status_perception_bonus());
+            character.Quickness.Increase_atr(character.Age_status.Get_age_status_quickness_bonus());
+            character.Intelligence.Increase_atr(character.Age_status.Get_age_status_intelligence_bonus());
+            character.Charm.Increase_atr(character.Age_status.Get_age_status_charm_bonus());
+            character.Willpower.Increase_atr(character.Age_status.Get_age_status_willpower_bonus());
 
-            character.Update_combat_parameters(character.Strength,        character.Age_status.Get_age_status_strength_bonus());
-            character.Update_combat_parameters(character.Agility,         character.Age_status.Get_age_status_agility_bonus());
-            character.Update_combat_parameters(character.Stamina,         character.Age_status.Get_age_status_stamina_bonus());
-            character.Update_combat_parameters(character.Perception,      character.Age_status.Get_age_status_perception_bonus());
-            character.Update_combat_parameters(character.Quickness,       character.Age_status.Get_age_status_quickness_bonus());
-            character.Update_combat_parameters(character.Intelligence,    character.Age_status.Get_age_status_intelligence_bonus());
-            character.Update_combat_parameters(character.Charm,           character.Age_status.Get_age_status_charm_bonus());
-            character.Update_combat_parameters(character.Willpower,       character.Age_status.Get_age_status_willpower_bonus());
+            character.Update_combat_parameters(character.Strength, character.Age_status.Get_age_status_strength_bonus());
+            character.Update_combat_parameters(character.Agility, character.Age_status.Get_age_status_agility_bonus());
+            character.Update_combat_parameters(character.Stamina, character.Age_status.Get_age_status_stamina_bonus());
+            character.Update_combat_parameters(character.Perception, character.Age_status.Get_age_status_perception_bonus());
+            character.Update_combat_parameters(character.Quickness, character.Age_status.Get_age_status_quickness_bonus());
+            character.Update_combat_parameters(character.Intelligence, character.Age_status.Get_age_status_intelligence_bonus());
+            character.Update_combat_parameters(character.Charm, character.Age_status.Get_age_status_charm_bonus());
+            character.Update_combat_parameters(character.Willpower, character.Age_status.Get_age_status_willpower_bonus());
 
             Refresh_atr_score(character.Strength);
             Refresh_atr_score(character.Agility);
@@ -1048,23 +1054,23 @@ namespace Character_design
         }
         private void UnApply_age_status_atr_bonus(Character character)
         {
-            character.Strength.Decrease_atr     (character.Age_status.Get_age_status_strength_bonus());
-            character.Agility.Decrease_atr      (character.Age_status.Get_age_status_agility_bonus());
-            character.Stamina.Decrease_atr      (character.Age_status.Get_age_status_stamina_bonus());
-            character.Perception.Decrease_atr   (character.Age_status.Get_age_status_perception_bonus());
-            character.Quickness.Decrease_atr    (character.Age_status.Get_age_status_quickness_bonus());
-            character.Intelligence.Decrease_atr (character.Age_status.Get_age_status_intelligence_bonus());
-            character.Charm.Decrease_atr        (character.Age_status.Get_age_status_charm_bonus());
-            character.Willpower.Decrease_atr    (character.Age_status.Get_age_status_willpower_bonus());
+            character.Strength.Decrease_atr(character.Age_status.Get_age_status_strength_bonus());
+            character.Agility.Decrease_atr(character.Age_status.Get_age_status_agility_bonus());
+            character.Stamina.Decrease_atr(character.Age_status.Get_age_status_stamina_bonus());
+            character.Perception.Decrease_atr(character.Age_status.Get_age_status_perception_bonus());
+            character.Quickness.Decrease_atr(character.Age_status.Get_age_status_quickness_bonus());
+            character.Intelligence.Decrease_atr(character.Age_status.Get_age_status_intelligence_bonus());
+            character.Charm.Decrease_atr(character.Age_status.Get_age_status_charm_bonus());
+            character.Willpower.Decrease_atr(character.Age_status.Get_age_status_willpower_bonus());
 
-            character.Update_combat_parameters(character.Strength,        -character.Age_status.Get_age_status_strength_bonus());
-            character.Update_combat_parameters(character.Agility,         -character.Age_status.Get_age_status_agility_bonus());
-            character.Update_combat_parameters(character.Stamina,         -character.Age_status.Get_age_status_stamina_bonus());
-            character.Update_combat_parameters(character.Perception,      -character.Age_status.Get_age_status_perception_bonus());
-            character.Update_combat_parameters(character.Quickness,       -character.Age_status.Get_age_status_quickness_bonus());
-            character.Update_combat_parameters(character.Intelligence,    -character.Age_status.Get_age_status_intelligence_bonus());
-            character.Update_combat_parameters(character.Charm,           -character.Age_status.Get_age_status_charm_bonus());
-            character.Update_combat_parameters(character.Willpower,       -character.Age_status.Get_age_status_willpower_bonus());
+            character.Update_combat_parameters(character.Strength, -character.Age_status.Get_age_status_strength_bonus());
+            character.Update_combat_parameters(character.Agility, -character.Age_status.Get_age_status_agility_bonus());
+            character.Update_combat_parameters(character.Stamina, -character.Age_status.Get_age_status_stamina_bonus());
+            character.Update_combat_parameters(character.Perception, -character.Age_status.Get_age_status_perception_bonus());
+            character.Update_combat_parameters(character.Quickness, -character.Age_status.Get_age_status_quickness_bonus());
+            character.Update_combat_parameters(character.Intelligence, -character.Age_status.Get_age_status_intelligence_bonus());
+            character.Update_combat_parameters(character.Charm, -character.Age_status.Get_age_status_charm_bonus());
+            character.Update_combat_parameters(character.Willpower, -character.Age_status.Get_age_status_willpower_bonus());
 
             Refresh_atr_score(character.Strength);
             Refresh_atr_score(character.Agility);
@@ -1080,7 +1086,7 @@ namespace Character_design
         private int Return_atr_min(int race_atr_min, int age_status_atr_min)
         {
             int result = 0;
-            if(age_status_atr_min + race_atr_min < 0)
+            if (age_status_atr_min + race_atr_min < 0)
             {
                 result = age_status_atr_min + race_atr_min;
             }
@@ -1127,30 +1133,30 @@ namespace Character_design
             }
             return result;
         }
-        private void _Increase_atr (Attribute_libs.Atribute_class attribute)
+        private void _Increase_atr(Attribute_libs.Atribute_class attribute)
         {
-            Character.GetInstance().Increase_atr(attribute);
+            _character.Increase_atr(attribute);
             Refresh_atr_exp_points();
             Refresh_atr_score(attribute);
-            Character.GetInstance().Update_combat_parameters(attribute, 1);
+            _character.Update_combat_parameters(attribute, 1);
             Refresh_combat_parameters();
         }
         private void _Decrease_atr(Attribute_libs.Atribute_class attribute)
         {
-            Character.GetInstance().Decrease_atr(attribute);
+            _character.Decrease_atr(attribute);
             Refresh_atr_exp_points();
             Refresh_atr_score(attribute);
-            Character.GetInstance().Update_combat_parameters(attribute, -1);
+            _character.Update_combat_parameters(attribute, -1);
             Refresh_combat_parameters();
         }
-        
-        private void _Manage_forceuser (Character character)
+
+        private void _Manage_forceuser(Character character)
         {
             if (character.Forceuser != true)
             {
                 character.Forceuser = true;
                 Forceuser_border_color.Color = Chosen_color;
-                Skill_ViewModel.GetInstance().Refresh_fields(); // Изменяем стоимость навыков, если игрок начал делать персонажа-адепта Силы
+                Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields(); // Изменяем стоимость навыков, если игрок начал делать персонажа-адепта Силы
                 Show_forceuser_fields();
                 OnPropertyChanged("Character_is_forceuser");
             }
@@ -1158,14 +1164,14 @@ namespace Character_design
             {
                 character.Forceuser = false;
                 Forceuser_border_color.Color = Unchosen_color;
-                Character.GetInstance().Refund_if_not_forceuser(); // Возвращаем очки опыта, если игрок перехотел делать персонажа-адепта Силы
-                Skill_ViewModel.GetInstance().Refresh_fields(); // Изменяем стоимость навыков, если игрок перехотел делать персонажа-адепта Силы
+                _character.Refund_if_not_forceuser(); // Возвращаем очки опыта, если игрок перехотел делать персонажа-адепта Силы
+                Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields(); // Изменяем стоимость навыков, если игрок перехотел делать персонажа-адепта Силы
                 Unshow_forceuser_fields();
                 OnPropertyChanged("Character_is_forceuser");
                 OnPropertyChanged("Exp_points_left");
             }
         }
-        private void _Choose_male (Character character)
+        private void _Choose_male(Character character)
         {
             character.Sex = "Мужской";
             Male_sign_border_color.Color = Chosen_color;
@@ -1177,7 +1183,7 @@ namespace Character_design
             Female_sign_border_color.Color = Chosen_color;
             Male_sign_border_color.Color = Unchosen_color;
         }
-        private void Show_forceuser_fields ()
+        private void Show_forceuser_fields()
         {
             Karma_opacity = 100;
             Check_karma_range(Current_character_karma, Current_karma_color, Neutral_color, Sith_color, Jedi_color);
@@ -1200,23 +1206,23 @@ namespace Character_design
         }
         private void Check_forceuser_status(int current_karma)
         {
-            if (current_karma >= jedi_karma) 
-            { 
-                Character.GetInstance().Is_jedi = true;
-                Character.GetInstance().Is_sith = false;
-                Character.GetInstance().Is_neutral = true;
-            }
-            else if (current_karma <= sith_karma) 
+            if (current_karma >= jedi_karma)
             {
-                Character.GetInstance().Is_sith = true;
-                Character.GetInstance().Is_jedi = false;
-                Character.GetInstance().Is_neutral = true;
+                _character.Is_jedi = true;
+                _character.Is_sith = false;
+                _character.Is_neutral = true;
+            }
+            else if (current_karma <= sith_karma)
+            {
+                _character.Is_sith = true;
+                _character.Is_jedi = false;
+                _character.Is_neutral = true;
             }
             else
             {
-                Character.GetInstance().Is_neutral = true;
-                Character.GetInstance().Is_sith = false;
-                Character.GetInstance().Is_jedi = false;
+                _character.Is_neutral = true;
+                _character.Is_sith = false;
+                _character.Is_jedi = false;
             }
         }
         private void Check_character_exp(string Exp, out string error_state)
@@ -1226,17 +1232,17 @@ namespace Character_design
             error_state = "";
             if (Int32.TryParse(Exp, out int result))
             {
-                if (result < Character.GetInstance().Experience_sold && Character.GetInstance().Experience_sold > 0)
+                if (result < _character.Experience_sold && _character.Experience_sold > 0)
                 {
                     error_state = "Потрачено больше опыта, чем указанное число!\nИзмените значение!";
-                    character_exp = Character.GetInstance().Experience.ToString();
+                    character_exp = _character.Experience.ToString();
                     set_usual = true;
                 }
-                else if (result < Character.GetInstance().Experience_sold && Character.GetInstance().Experience_sold == 0)
+                else if (result < _character.Experience_sold && _character.Experience_sold == 0)
                 {
-                    if(Character.GetInstance().Experience > 0)
+                    if (_character.Experience > 0)
                     {
-                        character_exp = Character.GetInstance().Experience.ToString();
+                        character_exp = _character.Experience.ToString();
                         set_usual = true;
                     }
                     else
@@ -1248,7 +1254,7 @@ namespace Character_design
                 else
                 {
                     character_exp = Exp;
-                    Character.GetInstance().Experience = result;
+                    _character.Experience = result;
                     set_usual = true;
                 }
             }
@@ -1284,8 +1290,8 @@ namespace Character_design
                 if ((Convert.ToInt32(result) >= Minimum_karma) && (Convert.ToInt32(result) <= Maximum_karma))
                 {
                     character_karma = karma;
-                    Character.GetInstance().Karma = result;
-                    Current_character_karma = Character.GetInstance().Karma;// Current_character_karma + Convert.ToInt32(karma);
+                    _character.Karma = result;
+                    Current_character_karma = _character.Karma;// Current_character_karma + Convert.ToInt32(karma);
                     set_usual = true;
                 }
                 else

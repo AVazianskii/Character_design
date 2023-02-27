@@ -8,7 +8,7 @@ namespace Character_design
 {
     internal class Combat_forms_ViewModel : BaseViewModel
     {
-        private static Combat_forms_ViewModel _instance;
+        //private static Combat_forms_ViewModel _instance;
         private Abilities_sequence_template selected_combat_sequence;
         private All_abilities_template selected_combat_ability;
 
@@ -18,11 +18,14 @@ namespace Character_design
 
         private List<SolidColorBrush> Button_borders;
 
-        private Color   Chosen_color,
+        private Color Chosen_color,
                         Unchosen_color;
 
         private string combat_ability_choose_warning,
                        combat_ability_choose_advice;
+
+        private Character _character;
+        private Main_model _model;
 
 
 
@@ -48,12 +51,12 @@ namespace Character_design
         }
         public int Exp_points_left
         {
-            get { return Character.GetInstance().Experience_left; }
+            get { return _character.Experience_left; }
         }
         public List<Abilities_sequence_template> Current_combat_sequnces
         {
-            get { return Main_model.GetInstance().Combat_ability_Manager.Get_sequences(); }
-            
+            get { return _model.Combat_ability_Manager.Get_sequences(); }
+
         }
         public All_abilities_template Selected_combat_ability
         {
@@ -103,7 +106,7 @@ namespace Character_design
         }
         public string Combat_ability_description
         {
-            get {return Selected_combat_ability.Description; }
+            get { return Selected_combat_ability.Description; }
         }
         public string Combat_ability_choose_warning
         {
@@ -117,11 +120,11 @@ namespace Character_design
         }
         public int Num_skills_left
         {
-            get { return Character.GetInstance().Limit_all_forms_left; }
+            get { return _character.Limit_all_forms_left; }
         }
 
 
-
+        /*
         public static Combat_forms_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -137,26 +140,28 @@ namespace Character_design
                 _instance = new Combat_forms_ViewModel();
             }
         }
+        */
 
 
-
-        private Combat_forms_ViewModel()
+        public Combat_forms_ViewModel(Character character, Main_model model)
         {
-            Show_base_ability   = new Command(o => _Show_base_ability(),
-                                              o => _Base_exist()); 
-            Show_adept_ability  = new Command(o => _Show_adept_ability(),
+            _character = character;
+            _model = model;
+            Show_base_ability = new Command(o => _Show_base_ability(),
+                                              o => _Base_exist());
+            Show_adept_ability = new Command(o => _Show_adept_ability(),
                                               o => _Adept_exist());
             Show_master_ability = new Command(o => _Show_master_ability(),
                                               o => _Master_exist());
 
-            Delete_combat_ability   = new Character_changing_command(o => _Delete_combat_ability(Selected_combat_ability),
+            Delete_combat_ability = new Character_changing_command(o => _Delete_combat_ability(Selected_combat_ability),
                                                                      o => _Enable_delete_combat_ability());
-            Learn_combat_ability    = new Character_changing_command(o => _Learn_combat_ability(Selected_combat_ability),
+            Learn_combat_ability = new Character_changing_command(o => _Learn_combat_ability(Selected_combat_ability),
                                                                      o => _Enable_learn_combat_ability(Selected_combat_sequence));
 
-            Base_border     = new SolidColorBrush();
-            Adept_border    = new SolidColorBrush();
-            Master_border   = new SolidColorBrush();
+            Base_border = new SolidColorBrush();
+            Adept_border = new SolidColorBrush();
+            Master_border = new SolidColorBrush();
 
             Button_borders = new List<SolidColorBrush>();
             Button_borders.Add(Base_border);
@@ -235,10 +240,10 @@ namespace Character_design
             All_abilities_template ability = o as All_abilities_template;
             if (ability != null)
             {
-                Character.GetInstance().Delete_combat_ability(ability, Selected_combat_sequence);
+                _character.Delete_combat_ability(ability, Selected_combat_sequence);
                 ShowSomeAdvice();
                 Selected_combat_sequence.Check_enable_state();
-                Skill_ViewModel.GetInstance().Refresh_fields();
+                Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
             }
@@ -246,7 +251,7 @@ namespace Character_design
         private bool _Enable_delete_combat_ability()
         {
             bool result = true;
-            
+
             if (Selected_combat_ability.Is_chosen == false)
             {
                 result = false;
@@ -269,23 +274,23 @@ namespace Character_design
             All_abilities_template ability = o as All_abilities_template;
             if (ability != null)
             {
-                Character.GetInstance().Learn_combat_ability(ability, Selected_combat_sequence);
+                _character.Learn_combat_ability(ability, Selected_combat_sequence);
                 ShowSomeAdvice();
                 Selected_combat_sequence.Check_enable_state();
-                Skill_ViewModel.GetInstance().Refresh_fields();
+                Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
                 OnPropertyChanged("Exp_points_left");
                 OnPropertyChanged("Num_skills_left");
             }
         }
         private bool _Enable_learn_combat_ability(Abilities_sequence_template sequence)
         {
-            
-            if (Character.GetInstance().Experience_left < Selected_combat_ability.Cost)
+
+            if (_character.Experience_left < Selected_combat_ability.Cost)
             {
                 Combat_ability_choose_warning = "Недостаточно очков опыта для изучения!";
                 return false;
             }
-            if(Selected_combat_ability.Is_enable == false)
+            if (Selected_combat_ability.Is_enable == false)
             {
                 Combat_ability_choose_warning = "Изучение данного уровня стиля недоступно!";
                 return false;
@@ -294,12 +299,12 @@ namespace Character_design
             {
                 return false;
             }
-            if (Character.GetInstance().Limit_all_forms_left == 0 && Character.GetInstance().Combat_sequences_with_points.Contains(sequence) == false)
+            if (_character.Limit_all_forms_left == 0 && _character.Combat_sequences_with_points.Contains(sequence) == false)
             {
                 Combat_ability_choose_warning = "Достигнут лимит по количеству изучаемых стилей!";
                 return false;
             }
-            Combat_ability_choose_warning = ""; 
+            Combat_ability_choose_warning = "";
             return true;
         }
         private void ShowSomeAdvice()

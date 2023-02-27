@@ -112,6 +112,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Character_creation_model.cs" />
     <Compile Include="MVVM infrastructure\Character_changing_command.cs" />
     <Compile Include="MVVM infrastructure\Command.cs" />
     <Compile Include="MVVM infrastructure\BaseViewModel.cs" />

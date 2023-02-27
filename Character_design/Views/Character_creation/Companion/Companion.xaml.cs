@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Companion
         public Companion()
         {
             InitializeComponent();
-            DataContext = Companion_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Companion_ViewModel;
         }
     }
 }

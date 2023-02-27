@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Combat_forms
         public Combat_forms()
         {
             InitializeComponent();
-            DataContext = Combat_forms_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Combat_Forms_ViewModel;
         }
     }
 }

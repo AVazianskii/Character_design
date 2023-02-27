@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Race
         public Race_User_control()
         {
             InitializeComponent();
-            DataContext = Race_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Race_ViewModel;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Character_design
 {
     internal class Features_ViewModel : BaseViewModel
     {
-        private static Features_ViewModel _instance;
+        //private static Features_ViewModel _instance;
         private SolidColorBrush positive_feature_border,
                                 negative_feature_border;
 
@@ -47,11 +47,14 @@ namespace Character_design
         private Color Chosen_color,
                       Unchosen_color;
 
+        private Character _character;
+        private Main_model _model;
+
 
 
         public Command Show_positive_features { get; private set; }
         public Command Show_negative_features { get; private set; }
-        public Character_changing_command Learn_feature {get; private set;}
+        public Character_changing_command Learn_feature { get; private set; }
         public Character_changing_command Delete_feature { get; private set; }
         public Character_changing_command Learn_exp_feature { get; private set; }
         public SolidColorBrush Positive_feature_border
@@ -70,11 +73,11 @@ namespace Character_design
             {
                 if (current_feature_list == positive_features)
                 {
-                    return Character.GetInstance().Limit_positive_features_left;
+                    return _character.Limit_positive_features_left;
                 }
                 else
                 {
-                    return Character.GetInstance().Limit_negative_features_left;
+                    return _character.Limit_negative_features_left;
                 }
             }
         }
@@ -86,10 +89,10 @@ namespace Character_design
         public All_feature_template Selected_feature
         {
             get { return selected_feature; }
-            set 
-            { 
-                selected_feature = value; 
-                OnPropertyChanged("Selected_feature"); 
+            set
+            {
+                selected_feature = value;
+                OnPropertyChanged("Selected_feature");
 
                 if (selected_feature != null)
                 {
@@ -115,15 +118,15 @@ namespace Character_design
         }
         public int Ftr_points_left
         {
-            get 
-            {   
+            get
+            {
                 if (current_feature_list == positive_features)
                 {
-                    return Character.GetInstance().Positive_features_points_left;
+                    return _character.Positive_features_points_left;
                 }
                 else
                 {
-                    return Character.GetInstance().Negative_features_points_left;
+                    return _character.Negative_features_points_left;
                 }
             }
         }
@@ -188,7 +191,7 @@ namespace Character_design
         }
         public int Total_feature_score
         {
-            get { return Character.GetInstance().Return_total_feature_score(); }
+            get { return _character.Return_total_feature_score(); }
         }
         public bool Exp_feature_enable
         {
@@ -200,8 +203,8 @@ namespace Character_design
         }
         public string Main_choose_button_text
         {
-            get 
-            { 
+            get
+            {
                 if (Exp_feature_enable)
                 {
                     return "Взять особенность за очки особенностей";
@@ -223,7 +226,7 @@ namespace Character_design
         }
 
 
-
+        /*
         public static Features_ViewModel GetInstance()
         {
             if (_instance == null)
@@ -239,7 +242,7 @@ namespace Character_design
                 _instance = new Features_ViewModel();
             }
         }
-
+        */
 
 
         public void Refresh_fields()
@@ -248,31 +251,33 @@ namespace Character_design
         }
         public void Check_feature_for_blocking(All_feature_template feature)
         {
-            Block_features(feature, Character.GetInstance().Charm_features, ref charm_feature_block);
-            Block_features(feature, Character.GetInstance().Hero_features, ref hero_feature_block);
-            Block_features(feature, Character.GetInstance().Sleep_feature, ref sleep_feature_block);
-            Block_features(feature, Character.GetInstance().Alcohol_feature, ref alcohol_feature_block);
-            Block_features(feature, Character.GetInstance().Sith_feature, ref sith_feature_block);
-            Block_features(feature, Character.GetInstance().Jedi_feature, ref jedi_feature_block);
-            Block_features(feature, Character.GetInstance().Exp_feature, ref exp_feature_block);
-            Block_features(feature, Character.GetInstance().Armor_feature, ref arm_feature_block);
+            Block_features(feature, _character.Charm_features, ref charm_feature_block);
+            Block_features(feature, _character.Hero_features, ref hero_feature_block);
+            Block_features(feature, _character.Sleep_feature, ref sleep_feature_block);
+            Block_features(feature, _character.Alcohol_feature, ref alcohol_feature_block);
+            Block_features(feature, _character.Sith_feature, ref sith_feature_block);
+            Block_features(feature, _character.Jedi_feature, ref jedi_feature_block);
+            Block_features(feature, _character.Exp_feature, ref exp_feature_block);
+            Block_features(feature, _character.Armor_feature, ref arm_feature_block);
         }
         public void Check_feature_for_unblocking(All_feature_template feature)
         {
-            UnBlock_features(feature, Character.GetInstance().Charm_features);
-            UnBlock_features(feature, Character.GetInstance().Hero_features);
-            UnBlock_features(feature, Character.GetInstance().Sleep_feature);
-            UnBlock_features(feature, Character.GetInstance().Alcohol_feature);
-            UnBlock_features(feature, Character.GetInstance().Sith_feature);
-            UnBlock_features(feature, Character.GetInstance().Jedi_feature);
-            UnBlock_features(feature, Character.GetInstance().Exp_feature);
-            UnBlock_features(feature, Character.GetInstance().Armor_feature);
+            UnBlock_features(feature, _character.Charm_features);
+            UnBlock_features(feature, _character.Hero_features);
+            UnBlock_features(feature, _character.Sleep_feature);
+            UnBlock_features(feature, _character.Alcohol_feature);
+            UnBlock_features(feature, _character.Sith_feature);
+            UnBlock_features(feature, _character.Jedi_feature);
+            UnBlock_features(feature, _character.Exp_feature);
+            UnBlock_features(feature, _character.Armor_feature);
         }
 
 
 
-        private Features_ViewModel()
+        public Features_ViewModel(Character character, Main_model model)
         {
+            _character = character;
+            _model = model;
             Show_positive_features = new Command(o => _Show_positive_features());
             Show_negative_features = new Command(o => _Show_negative_features());
 
@@ -285,18 +290,18 @@ namespace Character_design
 
             Positive_feature_border = new SolidColorBrush();
             Negative_feature_border = new SolidColorBrush();
-            
+
             Button_borders = new List<SolidColorBrush>();
             Button_borders.Add(Positive_feature_border);
             Button_borders.Add(Negative_feature_border);
-            
-            current_feature_list    = new List<All_feature_template>();
-            positive_features       = new List<All_feature_template>();
-            negative_features       = new List<All_feature_template>();
-            
-            positive_features   = Feature_manager.GetInstance().Get_positive_features();
-            negative_features   = Feature_manager.GetInstance().Get_negative_features();
-            
+
+            current_feature_list = new List<All_feature_template>();
+            positive_features = new List<All_feature_template>();
+            negative_features = new List<All_feature_template>();
+
+            positive_features = model.Feature_Manager.Get_positive_features();
+            negative_features = model.Feature_Manager.Get_negative_features();
+
             Current_feature_list = positive_features;
 
             selected_feature = new All_feature_template();
@@ -349,13 +354,13 @@ namespace Character_design
             {
                 if (current_feature_list == positive_features)
                 {
-                    Character.GetInstance().Spend_positive_feature_points(Selected_feature_cost);
-                    Character.GetInstance().Learn_positive_feature(feature);
+                    _character.Spend_positive_feature_points(Selected_feature_cost);
+                    _character.Learn_positive_feature(feature);
                 }
                 else
                 {
-                    Character.GetInstance().Spend_negative_feature_points(Selected_feature_cost);
-                    Character.GetInstance().Learn_negative_feature(feature);
+                    _character.Spend_negative_feature_points(Selected_feature_cost);
+                    _character.Learn_negative_feature(feature);
                 }
                 feature.Chosen_cost = Selected_feature_cost;
                 feature.Is_bought_for_ftr = true;
@@ -369,9 +374,9 @@ namespace Character_design
                 OnPropertyChanged("Total_feature_score");
                 Check_warning_advice(feature);
 
-                Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
-                Character_info_ViewModel.GetInstance().Refresh_karma_points();
-                Character_info_ViewModel.GetInstance().Update_new_karma_points(feature.Karma_bonus);
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Refresh_atr_exp_points();
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Refresh_karma_points();
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Update_new_karma_points(feature.Karma_bonus);
             }
         }
         private void _Delete_feature(object o)
@@ -384,29 +389,29 @@ namespace Character_design
 
                     if (feature.Is_bought_for_exp)
                     {
-                        Character.GetInstance().Refund_exp_points(feature.Exp_cost);
+                        _character.Refund_exp_points(feature.Exp_cost);
                         feature.Is_bought_for_exp = false;
                     }
                     else
                     {
-                        Character.GetInstance().Refund_positive_feature_points(feature.Chosen_cost);
+                        _character.Refund_positive_feature_points(feature.Chosen_cost);
                         feature.Is_bought_for_ftr = false;
                     }
-                    Character.GetInstance().Delete_positive_feature(feature);
+                    _character.Delete_positive_feature(feature);
                 }
                 else
                 {
                     if (feature.Is_bought_for_exp)
                     {
-                        Character.GetInstance().Refund_exp_points(feature.Exp_cost);
+                        _character.Refund_exp_points(feature.Exp_cost);
                         feature.Is_bought_for_exp = false;
                     }
                     else
                     {
-                        Character.GetInstance().Refund_negative_feature_points(feature.Chosen_cost);
+                        _character.Refund_negative_feature_points(feature.Chosen_cost);
                         feature.Is_bought_for_ftr = false;
-                    } 
-                    Character.GetInstance().Delete_negative_feature(feature);
+                    }
+                    _character.Delete_negative_feature(feature);
                 }
 
                 Check_feature_for_unblocking(feature);
@@ -418,9 +423,9 @@ namespace Character_design
                 OnPropertyChanged("Total_feature_score");
                 Check_warning_advice(feature);
 
-                Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
-                Character_info_ViewModel.GetInstance().Refresh_karma_points();
-                Character_info_ViewModel.GetInstance().Update_new_karma_points(-feature.Karma_bonus);
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Refresh_atr_exp_points();
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Refresh_karma_points();
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Update_new_karma_points(-feature.Karma_bonus);
             }
         }
         private void _Learn_exp_feature(object o)
@@ -430,15 +435,15 @@ namespace Character_design
             {
                 if (current_feature_list == positive_features)
                 {
-                    Character.GetInstance().Learn_positive_feature(feature);
+                    _character.Learn_positive_feature(feature);
                 }
                 else
                 {
-                    Character.GetInstance().Learn_negative_feature(feature);
+                    _character.Learn_negative_feature(feature);
                 }
 
                 feature.Is_bought_for_exp = true;
-                Character.GetInstance().Spend_exp_points(feature.Exp_cost);
+                _character.Spend_exp_points(feature.Exp_cost);
 
                 Check_feature_for_blocking(feature);
 
@@ -449,14 +454,14 @@ namespace Character_design
                 OnPropertyChanged("Total_feature_score");
                 Check_warning_advice(feature);
 
-                Character_info_ViewModel.GetInstance().Refresh_atr_exp_points();
-                Character_info_ViewModel.GetInstance().Refresh_karma_points();
-                Character_info_ViewModel.GetInstance().Update_new_karma_points(feature.Karma_bonus);
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Refresh_atr_exp_points();
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Refresh_karma_points();
+                Character_creation_model.GetInstance().Character_Info_ViewModel.Update_new_karma_points(feature.Karma_bonus);
             }
         }
         private void Select_show_cost(All_feature_template feature)
         {
-            if(feature.Cost.Count > 1)
+            if (feature.Cost.Count > 1)
             {
                 ComboBoxOpacity = 100;
                 TextBlockOpacity = 0;
@@ -470,7 +475,7 @@ namespace Character_design
                 ComboBoxEnabled = false;
                 TextBlockEnabled = true;
             }
-        }       
+        }
         private void Block_features(All_feature_template feature, List<All_feature_template> feature_list, ref string status)
         {
             bool flag = false;
@@ -513,14 +518,14 @@ namespace Character_design
                 }
             }
         }
-        private void Apply_skill_bonus (All_feature_template feature)
+        private void Apply_skill_bonus(All_feature_template feature)
         {
             int i = 0;
-            foreach(byte skill in feature.Skill_bonus)
+            foreach (byte skill in feature.Skill_bonus)
             {
-                Character.GetInstance().Skills[i].Set_score(Character.GetInstance().Skills[i].Get_score() + skill);
+                _character.Skills[i].Set_score(_character.Skills[i].Get_score() + skill);
 
-                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
+                _character.Update_character_skills_list(_character.Skills[i]);
                 i = i + 1;
             }
         }
@@ -529,13 +534,13 @@ namespace Character_design
             int i = 0;
             foreach (byte skill in feature.Skill_bonus)
             {
-                Character.GetInstance().Skills[i].Set_score(Character.GetInstance().Skills[i].Get_score() - skill);
+                _character.Skills[i].Set_score(_character.Skills[i].Get_score() - skill);
 
-                Character.GetInstance().Update_character_skills_list(Character.GetInstance().Skills[i]);
+                _character.Update_character_skills_list(_character.Skills[i]);
                 i = i + 1;
             }
         }
-        private void Check_warning_advice (All_feature_template feature)
+        private void Check_warning_advice(All_feature_template feature)
         {
             learn_feature_enable = true;
             delete_feature_enable = true;
@@ -548,24 +553,24 @@ namespace Character_design
             {
                 delete_feature_enable = false;
             }
-            if (feature.Exp_bonus > Character.GetInstance().Experience_left && feature.Is_chosen)
+            if (feature.Exp_bonus > _character.Experience_left && feature.Is_chosen)
             {
-                Feature_choose_warning = $"Для отмены особенности восстановите {feature.Exp_bonus - Character.GetInstance().Experience_left} оч.  опыта";
+                Feature_choose_warning = $"Для отмены особенности восстановите {feature.Exp_bonus - _character.Experience_left} оч.  опыта";
                 delete_feature_enable = false;
             }
 
             // Условия запрета выбора особенности
-            if (feature.Is_force_usered_only && Character.GetInstance().Forceuser != true)
+            if (feature.Is_force_usered_only && _character.Forceuser != true)
             {
                 Feature_choose_warning = "Особенность предназначена для адептов Силы!";
                 learn_feature_enable = false;
             }
-            if (feature.Is_usual_usered_only && Character.GetInstance().Forceuser == true)
+            if (feature.Is_usual_usered_only && _character.Forceuser == true)
             {
                 Feature_choose_warning = "Особенность не предназначена для адептов Силы!";
                 learn_feature_enable = false;
             }
-            if (Character.GetInstance().Is_sith)
+            if (_character.Is_sith)
             {
                 if (feature.ID == 89 || feature.ID == 90 || feature.ID == 102)
                 {
@@ -573,7 +578,7 @@ namespace Character_design
                     learn_feature_enable = false;
                 }
             }
-            if (Character.GetInstance().Is_jedi)
+            if (_character.Is_jedi)
             {
                 if (feature.ID == 91 || feature.ID == 100 || feature.ID == 101)
                 {
@@ -583,35 +588,35 @@ namespace Character_design
             }
             if (feature.Is_enabled == false)
             {
-                if (hero_feature_block != "" && Character.GetInstance().Hero_features.Contains(feature))
+                if (hero_feature_block != "" && _character.Hero_features.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{hero_feature_block}";
                 }
-                if (charm_feature_block != "" && Character.GetInstance().Charm_features.Contains(feature))
+                if (charm_feature_block != "" && _character.Charm_features.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{charm_feature_block}";
                 }
-                if (sleep_feature_block != "" && Character.GetInstance().Sleep_feature.Contains(feature))
+                if (sleep_feature_block != "" && _character.Sleep_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sleep_feature_block}";
                 }
-                if (alcohol_feature_block != "" && Character.GetInstance().Alcohol_feature.Contains(feature))
+                if (alcohol_feature_block != "" && _character.Alcohol_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{alcohol_feature_block}";
                 }
-                if (sith_feature_block != "" && Character.GetInstance().Sith_feature.Contains(feature))
+                if (sith_feature_block != "" && _character.Sith_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{sith_feature_block}";
                 }
-                if (jedi_feature_block != "" && Character.GetInstance().Jedi_feature.Contains(feature))
+                if (jedi_feature_block != "" && _character.Jedi_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{jedi_feature_block}";
                 }
-                if (exp_feature_block != "" && Character.GetInstance().Exp_feature.Contains(feature))
+                if (exp_feature_block != "" && _character.Exp_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{exp_feature_block}";
                 }
-                if (arm_feature_block != "" && Character.GetInstance().Armor_feature.Contains(feature))
+                if (arm_feature_block != "" && _character.Armor_feature.Contains(feature))
                 {
                     Feature_choose_warning = $"Изучение заблокировано особенностью:\n{arm_feature_block}";
                 }
@@ -619,12 +624,12 @@ namespace Character_design
             }
             if (current_feature_list == positive_features)
             {
-                if (Character.GetInstance().Limit_positive_features_left == 0)
+                if (_character.Limit_positive_features_left == 0)
                 {
                     Feature_choose_warning = "Достигнут лимит изучения особенностей!";
                     learn_feature_enable = false;
                 }
-                if (Selected_feature_cost > Character.GetInstance().Positive_features_points_left && feature.Is_chosen != true)
+                if (Selected_feature_cost > _character.Positive_features_points_left && feature.Is_chosen != true)
                 {
                     Feature_choose_warning = "Недостаточно очков особенностей!";
                     learn_feature_enable = false;
@@ -632,12 +637,12 @@ namespace Character_design
             }
             if (current_feature_list == negative_features)
             {
-                if (Character.GetInstance().Limit_negative_features_left == 0)
+                if (_character.Limit_negative_features_left == 0)
                 {
                     Feature_choose_warning = "Достигнут лимит изучения особенностей!";
                     learn_feature_enable = false;
                 }
-                if (Selected_feature_cost > Character.GetInstance().Negative_features_points_left && feature.Is_chosen != true)
+                if (Selected_feature_cost > _character.Negative_features_points_left && feature.Is_chosen != true)
                 {
                     Feature_choose_warning = "Недостаточно очков особенностей!";
                     learn_feature_enable = false;
@@ -645,12 +650,12 @@ namespace Character_design
             }
             if (feature.Is_able_to_buy_for_exp)
             {
-                if (feature.Exp_cost > Character.GetInstance().Experience_left && feature.Is_chosen == false)
+                if (feature.Exp_cost > _character.Experience_left && feature.Is_chosen == false)
                 {
                     Feature_choose_warning = "Недостаточно очков опыта для взятия особенности!";
                     learn_feature_exp_enable = false;
                 }
-                if (Character.GetInstance().Forceuser != true)
+                if (_character.Forceuser != true)
                 {
                     Feature_choose_warning = "Изчуение особенности за опыт достпуно только адептам Силы!";
                     learn_feature_exp_enable = false;
@@ -658,7 +663,7 @@ namespace Character_design
                 if (feature.ID == 31 || feature.ID == 103)
                 {
                     bool flag = false;
-                    foreach(All_skill_template skill in Character.GetInstance().Force_skills_with_points)
+                    foreach (All_skill_template skill in _character.Force_skills_with_points)
                     {
                         if (skill.ID == 1)
                         {

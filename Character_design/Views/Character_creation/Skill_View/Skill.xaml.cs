@@ -23,7 +23,7 @@ namespace Character_design.Views.Character_creation.Skill_View
         public Skill()
         {
             InitializeComponent();
-            DataContext = Skill_ViewModel.GetInstance();
+            DataContext = Character_creation_model.GetInstance().Skill_ViewModel;
         }
     }
 }
