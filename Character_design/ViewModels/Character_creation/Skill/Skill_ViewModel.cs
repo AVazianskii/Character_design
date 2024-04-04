@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SW_Character_creation;
-using Skills_libs;
+//using Skills_libs;
 using System.Windows.Media;
 using System.IO;
 

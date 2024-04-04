@@ -88,7 +88,7 @@ namespace Character_design
             Character_Info_ViewModel = new Character_info_ViewModel(character, model); //
             General_data_ViewModel = new General_Data_ViewModel(character); //
             Main_Window_Creation_ViewModel = new Main_Window_Creation_ViewModel(character); //
-}
+        }
         private void Kill_character_pages()
         {
             Combat_Forms_ViewModel = null;

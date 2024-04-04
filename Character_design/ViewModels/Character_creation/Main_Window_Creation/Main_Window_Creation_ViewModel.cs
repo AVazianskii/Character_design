@@ -256,6 +256,7 @@ namespace Character_design
         }
         private void Save_character_info()
         {
+
             try
             {
                 if (_character.Features_balanced == false)
@@ -267,22 +268,63 @@ namespace Character_design
                 }
                 else
                 {
+                    //Character_card character_card = new Character_card();
+
                     Character_card character_card = new Character_card();
+
+                    character_card.Save_character_to_Excel_card(_character);
+                    character_card.Save_character_xml(_character);
+
                     Run_method_with_loading("Сохранение", () =>
                     {
                         _character.Save_character();
-                        character_card.Save_character_to_Excel_card(_character);
 
+                        /*  Временно закомментировано для решения проблемы с сериализацией
+                        Parallel.Invoke
+                        (
+                            () => // Сохраняем карточку персонажа по экселевскому шаблону
+                            {
+                                try
+                                {
+                                    character_card.Save_character_to_Excel_cardAsync(_character);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message,
+                                    "Сохранение",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                                }
+                            },
+                            () => // Сохраняем карточку персонажа в xml
+                            {
+                                try
+                                {
+                                    character_card.Save_character_xmlAsync(_character);
+                                }
+                                catch(Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message,
+                                    "Сохранение",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                                }
+                            }
+                        );*/
                         MessageBox.Show($"Карточка персонажа {_character.Name} сохранена под своим именем в папке 'Карточки персонажей'!",
-                                         "Сохранение",
-                                         MessageBoxButton.OK,
-                                         MessageBoxImage.Information);
+                                        "Сохранение",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Information);
                     });
+
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,
+                MessageBox.Show(ex.Message + "\n" + 
+                                ex.Data + "\n" + 
+                                ex.InnerException + "\n" + 
+                                ex.HelpLink,
                                 "Сохранение",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
