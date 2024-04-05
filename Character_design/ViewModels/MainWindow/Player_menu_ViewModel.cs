@@ -74,7 +74,7 @@ namespace Character_design
             {
                 character_card.Edit_character_card_from_Excel(character_card_path, Character_creation_model.GetInstance().character, Character_creation_model.GetInstance().creation_managers);
             });
-            Main_Menu_ViewModel.GetInstance()._Open_main_window_creation_user_control();
+            Main_Menu_ViewModel.GetInstance()._Open_main_window_creation_card_edition();
         }
     }
 }

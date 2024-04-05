@@ -56,6 +56,11 @@ namespace Character_design
             main_window_creation = Character_creation_model.GetInstance().Main_Window_Creation_ViewModel;
             CurrentViewModel = main_window_creation;
         }
+        public void _Open_main_window_creation_card_edition()
+        {
+            main_window_creation = Character_creation_model.GetInstance().Main_Window_Creation_ViewModel;
+            CurrentViewModel = main_window_creation;
+        }
         public void _Return_from_exp_player_char_creation()
         {
             CurrentViewModel        = null;
