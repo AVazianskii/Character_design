@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Microsoft.Win32;
+using System.Windows;
 
 namespace Character_design
 {
@@ -68,12 +69,12 @@ namespace Character_design
                 Character_creation_model.GetInstance().Create_character_creating_model();
             });
 
-            Character_creation_model.GetInstance().Create_character(Character_creation_model.GetInstance().creation_managers);
+            Character_creation_model.GetInstance().Edit_character(Character_creation_model.GetInstance().creation_managers);
 
-            Run_method_with_loading("Редактирование персонажа", () =>
-            {
-                character_card.Edit_character_card_from_Excel(character_card_path, Character_creation_model.GetInstance().character, Character_creation_model.GetInstance().creation_managers);
-            });
+            character_card.Edit_character_card_from_Excel(character_card_path, Character_creation_model.GetInstance().character, Character_creation_model.GetInstance().creation_managers);
+
+            Character_creation_model.GetInstance().Initialize_character_pages(  Character_creation_model.GetInstance().character,
+                                                                                Character_creation_model.GetInstance().creation_managers);
             Main_Menu_ViewModel.GetInstance()._Open_main_window_creation_card_edition();
         }
     }

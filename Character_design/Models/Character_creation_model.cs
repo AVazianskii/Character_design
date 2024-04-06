@@ -53,6 +53,10 @@ namespace Character_design
 
             Initialize_character_pages(character, model);
         }
+        public void Edit_character(Main_model model)
+        {
+            character = new Character(model);
+        }
         public void Delete_character()
         {
             Kill_character_pages();
@@ -60,17 +64,7 @@ namespace Character_design
             character = null;
             creation_managers = null;
         }
-
-
-
-        private Character_creation_model()
-        {
-
-        }
-
-
-
-        private void Initialize_character_pages(Character character, Main_model model)
+        public void Initialize_character_pages(Character character, Main_model model)
         {
             Combat_Forms_ViewModel = new Combat_forms_ViewModel(character, model); //
             Companion_ViewModel = new Companion_ViewModel(character); //
@@ -89,6 +83,17 @@ namespace Character_design
             General_data_ViewModel = new General_Data_ViewModel(character); //
             Main_Window_Creation_ViewModel = new Main_Window_Creation_ViewModel(character); //
         }
+
+
+
+        private Character_creation_model()
+        {
+
+        }
+
+
+
+
         private void Kill_character_pages()
         {
             Combat_Forms_ViewModel = null;

@@ -134,9 +134,9 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_skill != null)
                 {
-                    return Selected_skill.Name;
+                    return selected_skill.Name;
                 }
                 return "";
             }
@@ -145,7 +145,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_skill != null)
                 {
                     return Selected_skill.Img_path;
                 }
@@ -156,7 +156,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_skill != null)
                 {
                     return Selected_skill.Description;
                 }
@@ -202,13 +202,15 @@ namespace Character_design
         {
             if (Usual_skills_group.Count > 0)
             {
-                Skill_group = Skill_group;
+                Skill_group = Usual_skills_group;
+                OnPropertyChanged("Skill_group");
                 Selected_skill = Skill_group[0];
                 Set_colors_for_chosen_item(Button_borders, Skills_border, Chosen_color, Unchosen_color);
             }
             else if (Force_skills_group.Count > 0)
             {
                 Skill_group = Force_skills_group;
+                OnPropertyChanged("Skill_group");
                 Selected_skill = Skill_group[0];
                 Set_colors_for_chosen_item(Button_borders, Force_skills_border, Chosen_color, Unchosen_color);
             }

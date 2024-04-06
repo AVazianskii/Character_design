@@ -822,7 +822,7 @@ namespace Character_design
             default_text = $"от {Minimum_karma} до {Maximum_karma}";
             Character_img = Directory.GetCurrentDirectory() + "\\Pictures\\Common\\nobody_icon.png";
 
-            Character_current_range = Character_ranges[0];
+            Character_current_range = character.Range; //Character_ranges[0];
             Character_current_age_status = Character_ages[0];
 
             Help_text_color = Colors.Gray;
