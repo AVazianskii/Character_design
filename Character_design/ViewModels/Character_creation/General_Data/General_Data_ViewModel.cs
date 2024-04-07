@@ -112,7 +112,7 @@ namespace Character_design
             _character = character;
             Character_info = Character_creation_model.GetInstance().Character_Info_ViewModel;
             Character_skills = Character_creation_model.GetInstance().Character_Skills_ViewModel;
-            Character_forms = Character_creation_model.GetInstance().Combat_Forms_ViewModel;
+            Character_forms = Character_creation_model.GetInstance().Character_Forms_ViewModel;
             Character_features = Character_creation_model.GetInstance().Character_Features_ViewModel;
             Character_equipment = Character_creation_model.GetInstance().Character_Equipment_ViewModel;
             Character_companion = Character_creation_model.GetInstance().Character_Companion_ViewModel;

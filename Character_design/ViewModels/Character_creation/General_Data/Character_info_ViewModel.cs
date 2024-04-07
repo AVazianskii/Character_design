@@ -822,8 +822,8 @@ namespace Character_design
             default_text = $"от {Minimum_karma} до {Maximum_karma}";
             Character_img = Directory.GetCurrentDirectory() + "\\Pictures\\Common\\nobody_icon.png";
 
-            Character_current_range = character.Range; //Character_ranges[0];
-            Character_current_age_status = Character_ages[0];
+            Character_current_range = _character.Range; //Character_ranges[0];
+            Character_current_age_status = _character.Age_status;//Character_ages[0];
 
             Help_text_color = Colors.Gray;
             Usual_text_color = Colors.Black;
@@ -857,10 +857,15 @@ namespace Character_design
             Atr_text_color.Color = Help_text_color;
             Karma_text_color.Color = Help_text_color;
 
-            Character_age = "";
-            Character_exp = "";
-            Character_atr = "";
-            Character_karma = "";
+            Character_age = _character.Age == 0 ? "" : _character.Age.ToString();
+            Character_exp = _character.Experience == 0 ? "" : _character.Experience.ToString();
+            Character_atr = _character.Attributes == 0 ? "" : _character.Attributes.ToString();
+            Character_karma = _character.Karma == 0 ? "" : _character.Karma.ToString();
+
+            if (_character.Sex == "Женский") { _Choose_female(_character); }
+            else { _Choose_male(_character); }
+            _Manage_forceuser(_character);
+
 
             Increase_strength = new Character_changing_command(o => _Increase_atr(_character.Strength),
                                                                o => Increase_atr_is_allowed(_character, _character.Strength, Max_character_strength));
@@ -909,7 +914,7 @@ namespace Character_design
 
             Choose_character_img = new Character_changing_command(o => _Choose_character_img());
 
-            _Choose_male(_character);
+            
         }
 
 
