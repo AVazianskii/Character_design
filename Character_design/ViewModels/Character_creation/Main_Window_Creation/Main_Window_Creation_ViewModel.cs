@@ -273,7 +273,7 @@ namespace Character_design
                     Character_card character_card = new Character_card();
 
                     character_card.Save_character_to_Excel_card(_character);
-                    character_card.Save_character_xml(_character);
+                    //character_card.Save_character_xml(_character);
 
                     Run_method_with_loading("Сохранение", () =>
                     {

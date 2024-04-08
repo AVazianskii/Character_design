@@ -299,8 +299,8 @@ namespace Character_design
             positive_features = new List<All_feature_template>();
             negative_features = new List<All_feature_template>();
 
-            positive_features = model.Feature_Manager.Get_positive_features();
-            negative_features = model.Feature_Manager.Get_negative_features();
+            positive_features = _model.Feature_Manager.Get_positive_features();
+            negative_features = _model.Feature_Manager.Get_negative_features();
 
             Current_feature_list = positive_features;
 

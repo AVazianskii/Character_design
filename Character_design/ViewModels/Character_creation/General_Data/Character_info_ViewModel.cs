@@ -907,7 +907,7 @@ namespace Character_design
             Decrease_willpower = new Character_changing_command(o => _Decrease_atr(_character.Willpower),
                                                                 o => Decrease_atr_is_allowed(_character.Willpower, Min_character_willpower));
 
-            Manage_forceuser = new Character_changing_command(o => _Manage_forceuser(_character));
+            Manage_forceuser = new Character_changing_command(o => _Set_Unset_forceuser(_character));
 
             Choose_male = new Character_changing_command(o => _Choose_male(_character));
             Choose_female = new Character_changing_command(o => _Choose_female(_character));
@@ -1154,12 +1154,22 @@ namespace Character_design
             _character.Update_combat_parameters(attribute, -1);
             Refresh_combat_parameters();
         }
-
-        private void _Manage_forceuser(Character character)
+        private void _Set_Unset_forceuser (Character character)
         {
             if (character.Forceuser != true)
             {
                 character.Forceuser = true;
+            }
+            else
+            {
+                character.Forceuser = false;
+            }
+            _Manage_forceuser(character);
+        }
+        private void _Manage_forceuser(Character character)
+        {
+            if (character.Forceuser == true)
+            {
                 Forceuser_border_color.Color = Chosen_color;
                 Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields(); // Изменяем стоимость навыков, если игрок начал делать персонажа-адепта Силы
                 Show_forceuser_fields();
@@ -1167,7 +1177,6 @@ namespace Character_design
             }
             else
             {
-                character.Forceuser = false;
                 Forceuser_border_color.Color = Unchosen_color;
                 _character.Refund_if_not_forceuser(); // Возвращаем очки опыта, если игрок перехотел делать персонажа-адепта Силы
                 Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields(); // Изменяем стоимость навыков, если игрок перехотел делать персонажа-адепта Силы
