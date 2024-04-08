@@ -175,15 +175,8 @@ namespace Character_design
                                         selected_race.Get_feature_5(),
                                         selected_race.Get_feature_6(),
                                         selected_race.Get_feature_7(), ref selected_race_feature_list);
-                    if (selected_race.Is_chosen)
-                    {
-                        Race_choose_advice = $"Выбрана раса: {_character.Character_race.Get_race_name()}!";
-                    }
-                    else
-                    {
-                        Race_choose_advice = "";
-                    }
-                    OnPropertyChanged("Race_choose_advise");
+
+                    Check_race_state();
                     OnPropertyChanged("Selected_race_feature_list");
                     OnPropertyChanged("Selected_race");
                 }
@@ -210,9 +203,8 @@ namespace Character_design
             Unchoose_race = new Character_changing_command(o => _Unchoose_race(),
                                                            o => _character.Character_race.Is_chosen == true);
 
-            Race_choose_advice = "";
-
-
+            //Race_choose_advice = "";
+            Check_race_state();
         }
 
 
@@ -282,6 +274,7 @@ namespace Character_design
             Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
 
             _character.Character_race.Is_chosen = true;
+            Check_race_state();
         }
         private void _Unchoose_race()
         {
@@ -325,6 +318,7 @@ namespace Character_design
             _character.Character_race.Is_chosen = false;
             _character.Character_race = _model.Race_Manager.Get_Race_list()[0];
             Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
+            Check_race_state();
 
             //race_chosen = false;
         }
@@ -350,5 +344,17 @@ namespace Character_design
             character.Charm.Decrease_atr(race.Get_race_bonus_charm());
             character.Willpower.Decrease_atr(race.Get_race_bonus_willpower());
         }
+        private void Check_race_state()
+        {
+            if (_character.Character_race.Is_chosen)
+            {
+                Race_choose_advice = $"Выбрана раса: {_character.Character_race.Get_race_name()}!";
+            }
+            else
+            {
+                Race_choose_advice = "";
+            }
+            OnPropertyChanged("Race_choose_advise");
+        }        
     }
 }
