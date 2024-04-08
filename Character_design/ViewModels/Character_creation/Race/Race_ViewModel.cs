@@ -152,29 +152,41 @@ namespace Character_design
             set
             {
                 selected_race = value;
-                Selected_race_name = selected_race.Get_race_name();
-                Selected_race_description = selected_race.Get_general_description();
-                Selected_race_full_img_path = selected_race.Get_img_path();
-                Selected_race_personal_data = selected_race.Get_personal_properties();
-                Selected_race_physical_data = selected_race.Get_physical_properties();
-                Selected_race_home_world = selected_race.Get_home_world();
-                Selected_race_strength_bonus = selected_race.Get_race_bonus_strength();
-                Selected_race_agility_bonus = selected_race.Get_race_bonus_agility();
-                Selected_race_stamina_bonus = selected_race.Get_race_bonus_stamina();
-                Selected_race_quickness_bonus = selected_race.Get_race_bonus_quickness();
-                Selected_race_perception_bonus = selected_race.Get_race_bonus_perception();
-                Selected_race_intelligence_bonus = selected_race.Get_race_bonus_intelligence();
-                Selected_race_charm_bonus = selected_race.Get_race_bonus_charm();
-                Selected_race_will_power_bonus = selected_race.Get_race_bonus_willpower();
-                Setup_race_features(selected_race.Get_feature_1(),
-                                    selected_race.Get_feature_2(),
-                                    selected_race.Get_feature_3(),
-                                    selected_race.Get_feature_4(),
-                                    selected_race.Get_feature_5(),
-                                    selected_race.Get_feature_6(),
-                                    selected_race.Get_feature_7(), ref selected_race_feature_list);
-                OnPropertyChanged("Selected_race_feature_list");
-                OnPropertyChanged("Selected_race");
+                if (selected_race != null)
+                {
+                    Selected_race_name = selected_race.Get_race_name();
+                    Selected_race_description = selected_race.Get_general_description();
+                    Selected_race_full_img_path = selected_race.Get_img_path();
+                    Selected_race_personal_data = selected_race.Get_personal_properties();
+                    Selected_race_physical_data = selected_race.Get_physical_properties();
+                    Selected_race_home_world = selected_race.Get_home_world();
+                    Selected_race_strength_bonus = selected_race.Get_race_bonus_strength();
+                    Selected_race_agility_bonus = selected_race.Get_race_bonus_agility();
+                    Selected_race_stamina_bonus = selected_race.Get_race_bonus_stamina();
+                    Selected_race_quickness_bonus = selected_race.Get_race_bonus_quickness();
+                    Selected_race_perception_bonus = selected_race.Get_race_bonus_perception();
+                    Selected_race_intelligence_bonus = selected_race.Get_race_bonus_intelligence();
+                    Selected_race_charm_bonus = selected_race.Get_race_bonus_charm();
+                    Selected_race_will_power_bonus = selected_race.Get_race_bonus_willpower();
+                    Setup_race_features(selected_race.Get_feature_1(),
+                                        selected_race.Get_feature_2(),
+                                        selected_race.Get_feature_3(),
+                                        selected_race.Get_feature_4(),
+                                        selected_race.Get_feature_5(),
+                                        selected_race.Get_feature_6(),
+                                        selected_race.Get_feature_7(), ref selected_race_feature_list);
+                    if (selected_race.Is_chosen)
+                    {
+                        Race_choose_advice = $"Выбрана раса: {_character.Character_race.Get_race_name()}!";
+                    }
+                    else
+                    {
+                        Race_choose_advice = "";
+                    }
+                    OnPropertyChanged("Race_choose_advise");
+                    OnPropertyChanged("Selected_race_feature_list");
+                    OnPropertyChanged("Selected_race");
+                }
             }
         }
         public string Race_choose_advice
@@ -269,7 +281,6 @@ namespace Character_design
             Character_creation_model.GetInstance().Skill_ViewModel.Apply_race_skill_bonus(Selected_race);
             Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
 
-            Race_choose_advice = $"Выбрана раса: {_character.Character_race.Get_race_name()}!";
             _character.Character_race.Is_chosen = true;
         }
         private void _Unchoose_race()
@@ -311,12 +322,11 @@ namespace Character_design
                     feature.Is_chosen_for_race = false;
                 }
             }
-
+            _character.Character_race.Is_chosen = false;
             _character.Character_race = _model.Race_Manager.Get_Race_list()[0];
             Character_creation_model.GetInstance().Skill_ViewModel.Refresh_fields();
 
-            Race_choose_advice = "";
-            race_chosen = false;
+            //race_chosen = false;
         }
         private void Apply_race_atr_bonus(Character character, Race_class race)
         {
