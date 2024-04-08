@@ -122,7 +122,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     return Selected_form.Name;
                 }
@@ -133,7 +133,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     return Selected_form.Icon_path;
                 }
@@ -144,7 +144,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     if (Selected_form.Base_ability_lvl != null)
                     {
@@ -166,7 +166,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     return Selected_form.Level;
                 }
@@ -177,7 +177,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     if (Selected_form.Base_ability_lvl != null)
                     {
@@ -191,7 +191,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     if (Selected_form.Adept_ability_lvl != null)
                     {
@@ -205,7 +205,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     if (Selected_form.Master_ability_lvl != null)
                     {
@@ -219,7 +219,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     if (Selected_form.Base_ability_lvl != null)
                     {
@@ -233,7 +233,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     if (Selected_form.Adept_ability_lvl != null)
                     {
@@ -248,7 +248,7 @@ namespace Character_design
         {
             get
             {
-                if (Selected_value != null)
+                if (Selected_form != null)
                 {
                     if (Selected_form.Master_ability_lvl != null)
                     {
