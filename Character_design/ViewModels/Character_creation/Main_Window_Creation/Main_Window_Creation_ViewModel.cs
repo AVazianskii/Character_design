@@ -272,13 +272,13 @@ namespace Character_design
 
                     Character_card character_card = new Character_card();
 
-                    character_card.Save_character_to_Excel_card(_character);
+                    
                     //character_card.Save_character_xml(_character);
 
                     Run_method_with_loading("Сохранение", () =>
                     {
                         _character.Save_character();
-
+                        character_card.Save_character_to_Excel_card(_character);
                         /*  Временно закомментировано для решения проблемы с сериализацией
                         Parallel.Invoke
                         (
@@ -311,11 +311,12 @@ namespace Character_design
                                 }
                             }
                         );*/
-                        MessageBox.Show($"Карточка персонажа {_character.Name} сохранена под своим именем в папке 'Карточки персонажей'!",
-                                        "Сохранение",
-                                        MessageBoxButton.OK,
-                                        MessageBoxImage.Information);
+
                     });
+                    MessageBox.Show($"Карточка персонажа {_character.Name} сохранена под своим именем в папке 'Карточки персонажей'!",
+                                    "Сохранение",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Information);
 
                 }
             }
