@@ -820,7 +820,7 @@ namespace Character_design
             //Character_name = "Дарт Сидиус";
             default_question = "Сколько назначил Мастер?";
             default_text = $"от {Minimum_karma} до {Maximum_karma}";
-            Character_img = Directory.GetCurrentDirectory() + "\\Pictures\\Common\\nobody_icon.png";
+            Character_img = _character.Img_path; //Directory.GetCurrentDirectory() + "\\Pictures\\Common\\nobody_icon.png";
 
             Character_current_range = _character.Range; //Character_ranges[0];
             Character_current_age_status = _character.Age_status;//Character_ages[0];
